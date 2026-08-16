@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GAM | Student Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        /* TOP BAR */
+
+        header {
+            background: #063b75;
+            color: white;
+            padding: 14px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .brand span {
+            color: #ffd21f;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 8px 13px;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+
+        /* LAYOUT */
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 65px);
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 230px;
+            background: white;
+            border-right: 1px solid #e0e6ee;
+            padding: 25px 15px;
+        }
+
+        .profile {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e5e9ef;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 65px;
+            height: 65px;
+            background: #ffd21f;
+            color: #063b75;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .profile h3 {
+            margin-top: 10px;
+            color: #063b75;
+        }
+
+        .profile p {
+            color: #7a8494;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .nav-link {
+            display: block;
+            text-decoration: none;
+            color: #455267;
+            padding: 12px 14px;
+            border-radius: 7px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: #edf4fc;
+            color: #063b75;
+            font-weight: bold;
+        }
+
+        /* MAIN */
+
+        .main {
+            flex: 1;
+            padding: 35px 5%;
+            max-width: 1300px;
+        }
+
+        .welcome h1 {
+            color: #063b75;
+            font-size: 30px;
+        }
+
+        .welcome p {
+            color: #687386;
+            margin-top: 7px;
+        }
+
+        /* STAT CARDS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .stat {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+        }
+
+        .stat-icon {
+            font-size: 25px;
+        }
+
+        .stat h2 {
+            color: #063b75;
+            margin-top: 10px;
+        }
+
+        .stat p {
+            color: #758094;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* SECTION */
+
+        .section {
+            margin-top: 35px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2 {
+            color: #063b75;
+            font-size: 21px;
+        }
+
+        .section-title a {
+            color: #063b75;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        /* CONTEST */
+
+        .contest-card {
+            background: white;
+            border-radius: 12px;
+            padding: 23px;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+            border-left: 5px solid #ffd21f;
+        }
+
+        .contest-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .contest-card h3 {
+            color: #063b75;
+            margin-bottom: 8px;
+        }
+
+        .contest-card p {
+            color: #697587;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .badge {
+            background: #e8f6eb;
+            color: #26763a;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            height: fit-content;
+            font-weight: bold;
+        }
+
+        .contest-button {
+            display: inline-block;
+            margin-top: 18px;
+            background: #063b75;
+            color: white;
+            padding: 11px 17px;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* QUICK ACTIONS */
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .action {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+        }
+
+        .action-icon {
+            font-size: 28px;
+        }
+
+        .action h3 {
+            color: #063b75;
+            margin-top: 10px;
+        }
+
+        .action p {
+            color: #758094;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .main {
+                padding: 28px 5%;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat {
+                padding: 15px;
+            }
+
+            .stat h2 {
+                font-size: 22px;
+            }
+
+            .welcome h1 {
+                font-size: 25px;
+            }
+
+            .contest-top {
+                display: block;
+            }
+
+            .badge {
+                display: inline-block;
+                margin-top: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="brand">
+        <span>GAM</span> | Student Portal
+    </div>
+
+    <a href="login.html" class="logout">
+        Logout
+    </a>
+
+</header>
+
+
+<div class="layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="profile">
+
+            <div class="avatar">
+                S
+            </div>
+
+            <h3>Student</h3>
+
+            <p>GAM Learner</p>
+
+        </div>
+
+
+        <a href="#" class="nav-link active">
+            🏠 Dashboard
+        </a>
+
+        <a href="contests.html" class="nav-link">
+            📝 Contests
+        </a>
+
+        <a href="#" class="nav-link">
+            📚 Learning
+        </a>
+
+        <a href="#" class="nav-link">
+            📊 My Performance
+        </a>
+
+        <a href="#" class="nav-link">
+            🏆 Achievements
+        </a>
+
+        <a href="#" class="nav-link">
+            📜 Certificates
+        </a>
+
+        <a href="#" class="nav-link">
+            ⚙️ Settings
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+
+        <div class="welcome">
+
+            <h1>
+                Welcome to GAM! 👋
+            </h1>
+
+            <p>
+                Your learning and competition journey starts here.
+            </p>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <div class="stat-icon">📝</div>
+
+                <h2>0</h2>
+
+                <p>Contests Taken</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">🏆</div>
+
+                <h2>0</h2>
+
+                <p>Achievements</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">📊</div>
+
+                <h2>0%</h2>
+
+                <p>Average Score</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">📜</div>
+
+                <h2>0</h2>
+
+                <p>Certificates</p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CONTEST -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    Available Contest
+                </h2>
+
+                <a href="contests.html">
+                    View all →
+                </a>
+
+            </div>
+
+
+            <div class="contest-card">
+
+
+                <div class="contest-top">
+
+                    <div>
+
+                        <h3>
+                            GAM Mathematics Challenge
+                        </h3>
+
+                        <p>
+                            Test your mathematical reasoning,
+                            problem-solving and critical-thinking
+                            skills.
+                        </p>
+
+                    </div>
+
+                    <span class="badge">
+                        AVAILABLE
+                    </span>
+
+                </div>
+
+
+                <a href="contests.html" class="contest-button">
+                    View Contest
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    Quick Access
+                </h2>
+
+            </div>
+
+
+            <div class="actions">
+
+
+                <a href="contests.html" class="action">
+
+                    <div class="action-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Take a Contest
+                    </h3>
+
+                    <p>
+                        View available academic
+                        competitions.
+                    </p>
+
+                </a>
+
+
+                <a href="#" class="action">
+
+                    <div class="action-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        Continue Learning
+                    </h3>
+
+                    <p>
+                        Access your learning
+                        resources.
+                    </p>
+
+                </a>
+
+
+                <a href="#" class="action">
+
+                    <div class="action-icon">
+                        🏆
+                    </div>
+
+                    <h3>
+                        My Achievements
+                    </h3>
+
+                    <p>
+                        View your certificates
+                        and achievements.
+                    </p>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+</body>
+
+  </html>
