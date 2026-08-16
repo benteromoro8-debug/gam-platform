@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GAM | Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f8fc;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #063b75;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .brand span {
+            color: #ffd21f;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .page {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+        }
+
+        .login-box h1 {
+            text-align: center;
+            color: #063b75;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #657080;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #26344a;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccd5e1;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #063b75;
+        }
+
+        .button {
+            width: 100%;
+            border: none;
+            background: #063b75;
+            color: white;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #0a4c91;
+        }
+
+        .forgot {
+            display: block;
+            text-align: right;
+            margin-top: 8px;
+            color: #063b75;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 22px;
+            color: #657080;
+            font-size: 14px;
+        }
+
+        .register a {
+            color: #063b75;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .admin {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e7ee;
+            text-align: center;
+        }
+
+        .admin a {
+            color: #657080;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="brand">
+        <span>GAM</span> — Global Academy of Minds
+    </div>
+
+    <a href="index.html">
+        Home
+    </a>
+
+</header>
+
+
+<div class="page">
+
+
+    <div class="login-box">
+
+
+        <h1>
+            Welcome Back
+        </h1>
+
+        <p class="subtitle">
+            Login to your GAM account.
+        </p>
+
+
+        <form>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <a href="#" class="forgot">
+                    Forgot password?
+                </a>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="button"
+            >
+                Login
+            </button>
+
+
+        </form>
+
+
+        <div class="register">
+
+            Don't have an account?
+
+            <a href="register.html">
+                Create an account
+            </a>
+
+        </div>
+
+
+        <div class="admin">
+
+            <a href="#">
+                GAM Administrator
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
