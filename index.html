@@ -1,37 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Global Academy of Minds - Learn, Compete and Excel.">
 
     <title>GAM | Global Academy of Minds</title>
 
+
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             background: #f5f8fc;
             color: #172033;
+            line-height: 1.5;
         }
 
-        /* NAVIGATION */
+
+        /* =========================
+           NAVIGATION
+        ========================= */
 
         nav {
             background: #063b75;
             color: white;
+
             padding: 14px 5%;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             position: sticky;
             top: 0;
+
             z-index: 1000;
         }
+
 
         .brand {
             display: flex;
@@ -39,33 +58,42 @@
             gap: 10px;
         }
 
+
         .logo-box {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
+
             border-radius: 50%;
+
             background: #ffd21f;
             color: #063b75;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-weight: bold;
-            font-size: 18px;
+            font-size: 15px;
         }
+
 
         .brand-text h1 {
             font-size: 18px;
         }
+
 
         .brand-text p {
             font-size: 10px;
             opacity: 0.85;
         }
 
+
         .menu {
             display: flex;
-            gap: 22px;
             align-items: center;
+            gap: 22px;
         }
+
 
         .menu a {
             color: white;
@@ -73,444 +101,954 @@
             font-size: 14px;
         }
 
+
+        .menu a:hover {
+            color: #ffd21f;
+        }
+
+
         .login-btn {
             background: #ffd21f;
             color: #063b75 !important;
-            padding: 9px 15px;
+
+            padding: 9px 16px;
+
             border-radius: 7px;
+
             font-weight: bold;
         }
 
-        /* HERO */
+
+        .login-btn:hover {
+            background: white;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
-            min-height: 500px;
+
+            min-height: 560px;
+
             background:
                 linear-gradient(
-                    rgba(6, 59, 117, 0.92),
-                    rgba(6, 59, 117, 0.88)
-                ),
-                radial-gradient(circle at 80% 20%, #ffd21f, transparent 25%);
+                    rgba(6, 59, 117, 0.94),
+                    rgba(6, 59, 117, 0.91)
+                );
+
             color: white;
+
             display: flex;
             align-items: center;
+
             padding: 70px 7%;
+
+            position: relative;
+
+            overflow: hidden;
         }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            background: #ffd21f;
+
+            opacity: 0.10;
+
+            border-radius: 50%;
+
+            right: -100px;
+            top: -80px;
+        }
+
 
         .hero-content {
-            max-width: 700px;
+            max-width: 720px;
+            position: relative;
+            z-index: 2;
         }
+
 
         .badge {
-            display: inline-block;
-            background: rgba(255, 210, 31, 0.15);
-            border: 1px solid #ffd21f;
-            color: #ffd21f;
-            padding: 8px 14px;
-            border-radius: 30px;
-            font-size: 13px;
-            margin-bottom: 18px;
-        }
 
-        .hero h2 {
-            font-size: clamp(38px, 7vw, 68px);
-            line-height: 1.05;
+            display: inline-block;
+
+            background: rgba(255, 210, 31, 0.14);
+
+            border: 1px solid #ffd21f;
+
+            color: #ffd21f;
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            font-size: 13px;
+
             margin-bottom: 20px;
         }
+
+
+        .hero h2 {
+
+            font-size: clamp(42px, 8vw, 72px);
+
+            line-height: 1.02;
+
+            margin-bottom: 22px;
+        }
+
 
         .hero h2 span {
             color: #ffd21f;
         }
 
+
         .hero p {
+
             font-size: 18px;
-            line-height: 1.6;
-            max-width: 600px;
-            color: #e8eef7;
-            margin-bottom: 30px;
+
+            line-height: 1.7;
+
+            max-width: 620px;
+
+            color: #e6eef8;
+
+            margin-bottom: 32px;
         }
 
+
         .hero-buttons {
+
             display: flex;
+
             gap: 14px;
+
             flex-wrap: wrap;
         }
+
 
         .primary-btn,
         .secondary-btn {
-            padding: 14px 22px;
+
+            padding: 14px 23px;
+
             border-radius: 8px;
+
             text-decoration: none;
+
             font-weight: bold;
+
             display: inline-block;
         }
 
+
         .primary-btn {
+
             background: #ffd21f;
+
             color: #063b75;
         }
 
+
+        .primary-btn:hover {
+            background: white;
+        }
+
+
         .secondary-btn {
+
             border: 1px solid white;
+
             color: white;
         }
 
-        /* QUICK FEATURES */
 
-        .section {
-            padding: 60px 7%;
-        }
+        .secondary-btn:hover {
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+            background: white;
 
-        .section-title h2 {
-            font-size: 30px;
             color: #063b75;
         }
 
+
+        /* =========================
+           GENERAL SECTION
+        ========================= */
+
+        .section {
+
+            padding: 65px 7%;
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 38px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: 30px;
+
+            color: #063b75;
+        }
+
+
         .section-title p {
+
             margin-top: 8px;
+
             color: #657080;
         }
 
+
+        /* =========================
+           FEATURE CARDS
+        ========================= */
+
         .cards {
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(210px, 1fr));
+
             gap: 20px;
+
             max-width: 1100px;
+
             margin: auto;
         }
 
+
         .card {
+
             background: white;
+
             padding: 28px 22px;
+
             border-radius: 14px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.07);
+
             border-top: 4px solid #ffd21f;
-            transition: transform 0.2s;
+
+            transition: 0.2s;
         }
+
 
         .card:hover {
-            transform: translateY(-4px);
+
+            transform: translateY(-5px);
         }
 
+
         .icon {
+
             font-size: 32px;
+
             margin-bottom: 15px;
         }
 
+
         .card h3 {
+
             color: #063b75;
+
             margin-bottom: 10px;
         }
 
+
         .card p {
+
             color: #657080;
-            line-height: 1.5;
+
             font-size: 14px;
+
+            line-height: 1.6;
         }
 
-        /* CONTEST AREA */
+
+        /* =========================
+           CONTEST SECTION
+        ========================= */
 
         .contest-section {
+
             background: #063b75;
+
             color: white;
-            padding: 60px 7%;
+
+            padding: 65px 7%;
         }
 
+
         .contest-box {
+
             max-width: 1000px;
+
             margin: auto;
+
             background: #0a4c91;
-            padding: 35px;
+
+            padding: 38px;
+
             border-radius: 16px;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             gap: 25px;
+
             flex-wrap: wrap;
         }
 
+
         .contest-box h2 {
+
             margin-bottom: 10px;
+
+            font-size: 27px;
         }
 
+
         .contest-box p {
+
             color: #dbe8f7;
         }
 
-        /* FOOTER */
 
-        footer {
-            background: #03284f;
-            color: white;
-            padding: 35px 7%;
+        /* =========================
+           ABOUT GAM
+        ========================= */
+
+        .about {
+
+            max-width: 850px;
+
+            margin: auto;
+
             text-align: center;
         }
 
+
+        .about h2 {
+
+            color: #063b75;
+
+            margin-bottom: 15px;
+
+            font-size: 30px;
+        }
+
+
+        .about p {
+
+            color: #657080;
+
+            line-height: 1.8;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #03284f;
+
+            color: white;
+
+            padding: 38px 7%;
+
+            text-align: center;
+        }
+
+
+        footer strong {
+
+            font-size: 17px;
+        }
+
+
         footer p {
+
             color: #b9c9dc;
+
             font-size: 13px;
+
             margin-top: 8px;
         }
 
-        /* MOBILE */
+
+        .footer-links {
+
+            margin-top: 18px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .footer-links a {
+
+            color: #dce8f5;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+
+        .footer-links a:hover {
+
+            color: #ffd21f;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 700px) {
 
+
             .menu a:not(.login-btn) {
+
                 display: none;
             }
 
+
             nav {
+
                 padding: 12px 4%;
             }
 
+
             .hero {
-                padding: 60px 6%;
+
+                padding: 65px 6%;
+
                 min-height: 570px;
             }
 
+
             .hero h2 {
-                font-size: 42px;
+
+                font-size: 44px;
             }
 
+
             .hero p {
+
                 font-size: 16px;
             }
 
+
             .section {
-                padding: 50px 5%;
+
+                padding: 55px 5%;
             }
 
-            .contest-box {
-                padding: 25px;
+
+            .contest-section {
+
+                padding: 55px 5%;
             }
+
+
+            .contest-box {
+
+                padding: 27px;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- NAVIGATION -->
 
-    <nav>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-        <div class="brand">
 
-            <div class="logo-box">
+<nav>
+
+
+    <div class="brand">
+
+
+        <div class="logo-box">
+            GAM
+        </div>
+
+
+        <div class="brand-text">
+
+            <h1>
                 GAM
-            </div>
-
-            <div class="brand-text">
-                <h1>GAM</h1>
-                <p>Global Academy of Minds</p>
-            </div>
-
-        </div>
-
-        <div class="menu">
-
-            <a href="#">Home</a>
-            <a href="#contests">Contests</a>
-            <a href="#learning">Learning</a>
-            <a href="#results">Results</a>
-
-            <a href="#" class="login-btn">
-                Login
-            </a>
-
-        </div>
-
-    </nav>
-
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <div class="badge">
-                GLOBAL ACADEMY OF MINDS
-            </div>
-
-            <h2>
-                Learn.<br>
-                <span>Compete.</span><br>
-                Excel.
-            </h2>
+            </h1>
 
             <p>
-                A modern academic platform where learners
-                discover knowledge, participate in challenging
-                competitions and showcase their excellence.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#contests" class="primary-btn">
-                    Explore Contests
-                </a>
-
-                <a href="#learning" class="secondary-btn">
-                    Start Learning
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FEATURES -->
-
-    <section class="section">
-
-        <div class="section-title">
-
-            <h2>
-                Everything in One Platform
-            </h2>
-
-            <p>
-                Built for learning, competition and achievement.
+                Global Academy of Minds
             </p>
 
         </div>
 
 
-        <div class="cards">
-
-            <div class="card">
-
-                <div class="icon">📝</div>
-
-                <h3>Academic Contests</h3>
-
-                <p>
-                    Participate in carefully designed
-                    academic competitions and challenge
-                    yourself.
-                </p>
-
-            </div>
+    </div>
 
 
-            <div class="card">
-
-                <div class="icon">📚</div>
-
-                <h3>Learning Resources</h3>
-
-                <p>
-                    Access revision materials, lessons,
-                    questions and educational resources.
-                </p>
-
-            </div>
+    <div class="menu">
 
 
-            <div class="card">
-
-                <div class="icon">🏆</div>
-
-                <h3>Achievements</h3>
-
-                <p>
-                    Track your performance and earn
-                    certificates based on your achievement.
-                </p>
-
-            </div>
+        <a href="index.html">
+            Home
+        </a>
 
 
-            <div class="card">
+        <a href="contests.html">
+            Contests
+        </a>
 
-                <div class="icon">📊</div>
 
-                <h3>Performance</h3>
+        <a href="#learning">
+            Learning
+        </a>
 
-                <p>
-                    Understand your results and follow
-                    your academic progress.
-                </p>
 
-            </div>
+        <a href="#about">
+            About
+        </a>
+
+
+        <a href="login.html"
+           class="login-btn">
+
+            Login
+
+        </a>
+
+
+    </div>
+
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+
+<section class="hero">
+
+
+    <div class="hero-content">
+
+
+        <div class="badge">
+
+            GLOBAL ACADEMY OF MINDS
 
         </div>
 
-    </section>
 
+        <h2>
 
-    <!-- CONTEST -->
+            Learn.<br>
 
-    <section class="contest-section" id="contests">
+            <span>Compete.</span><br>
 
-        <div class="contest-box">
+            Excel.
 
-            <div>
+        </h2>
 
-                <h2>
-                    Ready for the next challenge?
-                </h2>
-
-                <p>
-                    Explore available GAM competitions
-                    and test your knowledge.
-                </p>
-
-            </div>
-
-            <a href="#" class="primary-btn">
-                View Contests
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- LEARNING -->
-
-    <section class="section" id="learning">
-
-        <div class="section-title">
-
-            <h2>
-                Learn Without Limits
-            </h2>
-
-            <p>
-                Your academic journey starts here.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer id="results">
-
-        <strong>
-            GAM — Global Academy of Minds
-        </strong>
 
         <p>
-            Learn • Compete • Excel
+
+            A modern academic platform where
+            learners discover knowledge,
+            participate in challenging competitions,
+            and showcase their excellence.
+
         </p>
+
+
+        <div class="hero-buttons">
+
+
+            <a href="contests.html"
+               class="primary-btn">
+
+                Explore Contests
+
+            </a>
+
+
+            <a href="#learning"
+               class="secondary-btn">
+
+                Start Learning
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+
+<section class="section">
+
+
+    <div class="section-title">
+
+        <h2>
+            Everything in One Platform
+        </h2>
 
         <p>
-            © 2026 Global Academy of Minds. All rights reserved.
+            Built for learning, competition and achievement.
         </p>
 
-    </footer>
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+
+            <div class="icon">
+                📝
+            </div>
+
+
+            <h3>
+                Academic Contests
+            </h3>
+
+
+            <p>
+
+                Participate in carefully
+                designed academic competitions
+                and challenge yourself.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="card">
+
+
+            <div class="icon">
+                📚
+            </div>
+
+
+            <h3>
+                Learning Resources
+            </h3>
+
+
+            <p>
+
+                Access revision materials,
+                lessons, questions and
+                educational resources.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="card">
+
+
+            <div class="icon">
+                🏆
+            </div>
+
+
+            <h3>
+                Achievements
+            </h3>
+
+
+            <p>
+
+                Track your performance and
+                earn certificates based on
+                your achievements.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="card">
+
+
+            <div class="icon">
+                📊
+            </div>
+
+
+            <h3>
+                Performance
+            </h3>
+
+
+            <p>
+
+                Understand your results and
+                follow your academic progress.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     CONTEST
+========================= -->
+
+
+<section class="contest-section"
+         id="contests">
+
+
+    <div class="contest-box">
+
+
+        <div>
+
+
+            <h2>
+                Ready for the next challenge?
+            </h2>
+
+
+            <p>
+
+                Explore available GAM competitions
+                and test your knowledge.
+
+            </p>
+
+
+        </div>
+
+
+        <a href="contests.html"
+           class="primary-btn">
+
+            View Contests
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     LEARNING
+========================= -->
+
+
+<section class="section"
+         id="learning">
+
+
+    <div class="about">
+
+
+        <h2>
+            Learn Without Limits
+        </h2>
+
+
+        <p>
+
+            GAM will provide learners with
+            academic resources, revision materials,
+            interactive learning experiences and
+            opportunities to improve their skills.
+
+            <br><br>
+
+            Our learning system will be developed
+            step by step as part of the GAM platform.
+
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+
+<section class="section"
+         id="about">
+
+
+    <div class="about">
+
+
+        <h2>
+            About GAM
+        </h2>
+
+
+        <p>
+
+            Global Academy of Minds is an
+            academic platform focused on
+            learning, innovation, competition
+            and excellence.
+
+            <br><br>
+
+            The platform is being developed
+            to give learners opportunities to
+            learn, compete and demonstrate
+            their abilities.
+
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+
+<footer>
+
+
+    <strong>
+        GAM — Global Academy of Minds
+    </strong>
+
+
+    <p>
+        Learn • Compete • Excel
+    </p>
+
+
+    <div class="footer-links">
+
+
+        <a href="index.html">
+            Home
+        </a>
+
+
+        <a href="contests.html">
+            Contests
+        </a>
+
+
+        <a href="login.html">
+            Login
+        </a>
+
+
+        <a href="register.html">
+            Register
+        </a>
+
+
+    </div>
+
+
+    <p>
+
+        © 2026 Global Academy of Minds.
+        All rights reserved.
+
+    </p>
+
+
+</footer>
+
 
 </body>
+
     </html>
