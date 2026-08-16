@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>GAM | Register</title>
 
@@ -17,111 +18,151 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f5f8fc;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        header {
+        nav {
             background: #063b75;
             color: white;
-            padding: 18px 6%;
+            padding: 14px 6%;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            background: #ffd21f;
+            color: #063b75;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            font-size: 20px;
         }
 
-        .brand span {
-            color: #ffd21f;
+        .brand h2 {
+            font-size: 18px;
         }
 
-        header a {
+        .brand p {
+            font-size: 10px;
+            opacity: .85;
+        }
+
+        .home-link {
             color: white;
             text-decoration: none;
             font-size: 14px;
         }
 
-        .page {
-            display: flex;
-            justify-content: center;
-            padding: 45px 20px;
-        }
-
-        .register-box {
-            background: white;
+        .container {
             width: 100%;
-            max-width: 520px;
-            padding: 32px;
-            border-radius: 15px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+            max-width: 500px;
+            margin: 45px auto;
+            padding: 0 20px;
+            flex: 1;
         }
 
-        .register-box h1 {
+        .register-card {
+            background: white;
+            padding: 32px 26px;
+            border-radius: 16px;
+            box-shadow: 0 6px 25px rgba(0,0,0,.08);
+        }
+
+        .register-card h1 {
             color: #063b75;
-            margin-bottom: 8px;
             text-align: center;
+            margin-bottom: 8px;
         }
 
         .subtitle {
             text-align: center;
-            color: #657080;
-            margin-bottom: 28px;
+            color: #687386;
             font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 25px;
         }
 
         label {
             display: block;
-            margin-bottom: 7px;
+            color: #26364a;
             font-weight: bold;
-            color: #26344a;
             font-size: 14px;
+            margin-bottom: 7px;
         }
 
-        input,
-        select {
+        input {
             width: 100%;
             padding: 13px;
-            border: 1px solid #ccd5e1;
-            border-radius: 7px;
+            border: 1px solid #ccd5e0;
+            border-radius: 8px;
             font-size: 15px;
+            margin-bottom: 17px;
             outline: none;
         }
 
-        input:focus,
-        select:focus {
+        input:focus {
             border-color: #063b75;
         }
 
-        .button {
+        .register-btn {
             width: 100%;
             border: none;
-            background: #063b75;
-            color: white;
+            background: #ffd21f;
+            color: #063b75;
             padding: 14px;
             border-radius: 8px;
-            font-weight: bold;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
         }
 
-        .button:hover {
-            background: #0a4c91;
+        .register-btn:hover {
+            background: #f4c600;
+        }
+
+        .register-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 17px;
+            font-size: 14px;
+        }
+
+        .error {
+            display: block;
+            background: #ffe8e8;
+            color: #a40000;
+        }
+
+        .success {
+            display: block;
+            background: #e6f7ed;
+            color: #087333;
         }
 
         .login-text {
             text-align: center;
             margin-top: 20px;
             font-size: 14px;
-            color: #657080;
+            color: #687386;
         }
 
         .login-text a {
@@ -130,184 +171,122 @@
             text-decoration: none;
         }
 
-        .note {
-            background: #fff8d6;
-            border-left: 4px solid #ffd21f;
-            padding: 12px;
-            margin-bottom: 22px;
+        footer {
+            background: #03284f;
+            color: white;
+            text-align: center;
+            padding: 25px;
             font-size: 13px;
-            line-height: 1.5;
-            color: #5b4d00;
+        }
+
+        footer p {
+            color: #b9c9dc;
+            margin-top: 6px;
         }
 
     </style>
 
 </head>
 
-
 <body>
 
 
-<header>
+<nav>
 
     <div class="brand">
-        <span>GAM</span> — Global Academy of Minds
+
+        <div class="logo">
+            GAM
+        </div>
+
+        <div>
+            <h2>GAM</h2>
+            <p>Global Academy of Minds</p>
+        </div>
+
     </div>
 
-    <a href="index.html">
+    <a href="index.html" class="home-link">
         Home
     </a>
 
-</header>
+</nav>
 
 
-<div class="page">
+<div class="container">
 
+    <div class="register-card">
 
-    <div class="register-box">
-
-
-        <h1>
-            Create Your Account
-        </h1>
+        <h1>Create Account</h1>
 
         <p class="subtitle">
-            Join the Global Academy of Minds platform.
+            Join Global Academy of Minds
         </p>
 
 
-        <div class="note">
-
-            Your account will allow you to participate in
-            GAM contests, access learning resources and
-            track your achievements.
-
-        </div>
+        <div id="message" class="message"></div>
 
 
-        <form>
+        <form id="registerForm">
+
+            <label for="fullName">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+            >
 
 
-            <div class="form-group">
+            <label for="email">
+                Email Address
+            </label>
 
-                <label for="fullname">
-                    Full Name
-                </label>
-
-                <input
-                    type="text"
-                    id="fullname"
-                    placeholder="Enter your full name"
-                    required
-                >
-
-            </div>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
 
 
-            <div class="form-group">
+            <label for="password">
+                Password
+            </label>
 
-                <label for="email">
-                    Email Address
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    required
-                >
-
-            </div>
+            <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                minlength="6"
+                required
+            >
 
 
-            <div class="form-group">
+            <label for="confirmPassword">
+                Confirm Password
+            </label>
 
-                <label for="school">
-                    School
-                </label>
-
-                <input
-                    type="text"
-                    id="school"
-                    placeholder="Enter your school"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="level">
-                    Class / Level
-                </label>
-
-                <select id="level" required>
-
-                    <option value="">
-                        Select your level
-                    </option>
-
-                    <option>
-                        Primary
-                    </option>
-
-                    <option>
-                        Junior Secondary
-                    </option>
-
-                    <option>
-                        Form 1
-                    </option>
-
-                    <option>
-                        Form 2
-                    </option>
-
-                    <option>
-                        Form 3
-                    </option>
-
-                    <option>
-                        Form 4
-                    </option>
-
-                    <option>
-                        College / University
-                    </option>
-
-                    <option>
-                        Other
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="password">
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Create a password"
-                    required
-                >
-
-            </div>
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Enter password again"
+                minlength="6"
+                required
+            >
 
 
             <button
                 type="submit"
-                class="button"
-            >
-                Create Account
-            </button>
+                id="registerBtn"
+                class="register-btn">
 
+                Create Account
+
+            </button>
 
         </form>
 
@@ -322,12 +301,210 @@
 
         </div>
 
-
     </div>
 
 </div>
 
 
+<footer>
+
+    <strong>
+        GAM — Global Academy of Minds
+    </strong>
+
+    <p>
+        Learn • Compete • Excel
+    </p>
+
+</footer>
+
+
+<script type="module">
+
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        updateProfile
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import { app } from "./firebase-config.js";
+
+
+    const auth = getAuth(app);
+
+
+    const form = document.getElementById("registerForm");
+
+    const fullName =
+        document.getElementById("fullName");
+
+    const email =
+        document.getElementById("email");
+
+    const password =
+        document.getElementById("password");
+
+    const confirmPassword =
+        document.getElementById("confirmPassword");
+
+    const message =
+        document.getElementById("message");
+
+    const registerBtn =
+        document.getElementById("registerBtn");
+
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className =
+            "message " + type;
+
+    }
+
+
+    form.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            fullName.value.trim();
+
+        const userEmail =
+            email.value.trim();
+
+        const userPassword =
+            password.value;
+
+        const confirmedPassword =
+            confirmPassword.value;
+
+
+        if (name.length < 2) {
+
+            showMessage(
+                "Please enter your full name.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (userPassword.length < 6) {
+
+            showMessage(
+                "Password must be at least 6 characters.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (userPassword !== confirmedPassword) {
+
+            showMessage(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        registerBtn.disabled = true;
+
+        registerBtn.textContent =
+            "Creating Account...";
+
+
+        try {
+
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    userEmail,
+                    userPassword
+                );
+
+
+            await updateProfile(
+                userCredential.user,
+                {
+                    displayName: name
+                }
+            );
+
+
+            showMessage(
+                "Account created successfully! Redirecting...",
+                "success"
+            );
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 1200);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            let errorMessage =
+                "Unable to create account.";
+
+
+            if (error.code ===
+                "auth/email-already-in-use") {
+
+                errorMessage =
+                    "This email is already registered.";
+
+            } else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                errorMessage =
+                    "Please enter a valid email address.";
+
+            } else if (
+                error.code ===
+                "auth/weak-password"
+            ) {
+
+                errorMessage =
+                    "Your password is too weak.";
+
+            }
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
+
+
+            registerBtn.disabled = false;
+
+            registerBtn.textContent =
+                "Create Account";
+
+        }
+
+    });
+
+</script>
+
+
 </body>
 
-  </html>
+    </html>
