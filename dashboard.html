@@ -4,7 +4,9 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>GAM | Student Dashboard</title>
 
@@ -17,308 +19,221 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
-            color: #172033;
+            min-height: 100vh;
         }
 
-        /* TOP BAR */
+        /* NAVBAR */
 
-        header {
+        nav {
             background: #063b75;
             color: white;
-            padding: 14px 5%;
+            padding: 13px 5%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .brand {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .brand span {
-            color: #ffd21f;
-        }
-
-        .logout {
-            color: white;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.5);
-            padding: 8px 13px;
-            border-radius: 7px;
-            font-size: 13px;
-        }
-
-        /* LAYOUT */
-
-        .layout {
-            display: flex;
-            min-height: calc(100vh - 65px);
-        }
-
-        /* SIDEBAR */
-
-        .sidebar {
-            width: 230px;
-            background: white;
-            border-right: 1px solid #e0e6ee;
-            padding: 25px 15px;
-        }
-
-        .profile {
-            text-align: center;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #e5e9ef;
-            margin-bottom: 20px;
-        }
-
-        .avatar {
-            width: 65px;
-            height: 65px;
-            background: #ffd21f;
-            color: #063b75;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .profile h3 {
-            margin-top: 10px;
-            color: #063b75;
-        }
-
-        .profile p {
-            color: #7a8494;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
-        .nav-link {
-            display: block;
-            text-decoration: none;
-            color: #455267;
-            padding: 12px 14px;
-            border-radius: 7px;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            background: #edf4fc;
-            color: #063b75;
-            font-weight: bold;
-        }
-
-        /* MAIN */
-
-        .main {
-            flex: 1;
-            padding: 35px 5%;
-            max-width: 1300px;
-        }
-
-        .welcome h1 {
-            color: #063b75;
-            font-size: 30px;
-        }
-
-        .welcome p {
-            color: #687386;
-            margin-top: 7px;
-        }
-
-        /* STAT CARDS */
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-top: 28px;
-        }
-
-        .stat {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 3px 14px rgba(0,0,0,0.06);
-        }
-
-        .stat-icon {
-            font-size: 25px;
-        }
-
-        .stat h2 {
-            color: #063b75;
-            margin-top: 10px;
-        }
-
-        .stat p {
-            color: #758094;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        /* SECTION */
-
-        .section {
-            margin-top: 35px;
-        }
-
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .section-title h2 {
-            color: #063b75;
-            font-size: 21px;
-        }
-
-        .section-title a {
-            color: #063b75;
-            font-size: 13px;
-            text-decoration: none;
-        }
-
-        /* CONTEST */
-
-        .contest-card {
-            background: white;
-            border-radius: 12px;
-            padding: 23px;
-            box-shadow: 0 3px 14px rgba(0,0,0,0.06);
-            border-left: 5px solid #ffd21f;
-        }
-
-        .contest-top {
-            display: flex;
             justify-content: space-between;
             gap: 15px;
         }
 
-        .contest-card h3 {
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            background: #ffd21f;
+            color: #063b75;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .brand h2 {
+            font-size: 18px;
+        }
+
+        .brand p {
+            font-size: 10px;
+            opacity: .85;
+        }
+
+        .logout-btn {
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            padding: 8px 13px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: #063b75;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .welcome {
+            background: linear-gradient(
+                135deg,
+                #063b75,
+                #0b5ca8
+            );
+
+            color: white;
+
+            padding: 28px;
+
+            border-radius: 16px;
+
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #dbeaff;
+            font-size: 14px;
+        }
+
+        /* CARDS */
+
+        .grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 23px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,.07);
+
+            border-top: 4px solid #ffd21f;
+        }
+
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
             color: #063b75;
             margin-bottom: 8px;
         }
 
-        .contest-card p {
-            color: #697587;
+        .card p {
+            color: #687386;
             font-size: 14px;
             line-height: 1.5;
+            margin-bottom: 16px;
         }
 
-        .badge {
-            background: #e8f6eb;
-            color: #26763a;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            height: fit-content;
-            font-weight: bold;
-        }
-
-        .contest-button {
+        .card-btn {
             display: inline-block;
-            margin-top: 18px;
+
             background: #063b75;
+
             color: white;
-            padding: 11px 17px;
-            text-decoration: none;
+
+            padding: 9px 14px;
+
             border-radius: 7px;
+
+            text-decoration: none;
+
             font-size: 13px;
+
             font-weight: bold;
         }
 
-        /* QUICK ACTIONS */
-
-        .actions {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
+        .card-btn:hover {
+            background: #0b5ca8;
         }
 
-        .action {
+        /* ACCOUNT */
+
+        .account {
+            margin-top: 25px;
+
             background: white;
+
             padding: 22px;
-            border-radius: 12px;
-            text-decoration: none;
-            box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,.07);
         }
 
-        .action-icon {
-            font-size: 28px;
-        }
-
-        .action h3 {
+        .account h3 {
             color: #063b75;
-            margin-top: 10px;
+            margin-bottom: 12px;
         }
 
-        .action p {
-            color: #758094;
+        .account p {
+            color: #687386;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .account strong {
+            color: #26364a;
+        }
+
+        /* LOADING */
+
+        #loading {
+            text-align: center;
+            padding: 80px 20px;
+            color: #063b75;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 45px;
+
+            background: #03284f;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
             font-size: 13px;
-            margin-top: 5px;
         }
 
-        /* MOBILE */
-
-        @media (max-width: 850px) {
-
-            .sidebar {
-                display: none;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .actions {
-                grid-template-columns: 1fr;
-            }
-
-            .main {
-                padding: 28px 5%;
-            }
-
-        }
-
-        @media (max-width: 500px) {
-
-            .stats {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-
-            .stat {
-                padding: 15px;
-            }
-
-            .stat h2 {
-                font-size: 22px;
-            }
-
-            .welcome h1 {
-                font-size: 25px;
-            }
-
-            .contest-top {
-                display: block;
-            }
-
-            .badge {
-                display: inline-block;
-                margin-top: 12px;
-            }
-
+        footer p {
+            color: #b9c9dc;
+            margin-top: 6px;
         }
 
     </style>
@@ -329,273 +244,405 @@
 <body>
 
 
-<header>
-
-    <div class="brand">
-        <span>GAM</span> | Student Portal
-    </div>
-
-    <a href="login.html" class="logout">
-        Logout
-    </a>
-
-</header>
+<div id="loading">
+    Checking your account...
+</div>
 
 
-<div class="layout">
+<div id="app" style="display:none;">
 
 
-    <!-- SIDEBAR -->
+    <!-- NAVIGATION -->
 
-    <aside class="sidebar">
+    <nav>
 
-        <div class="profile">
+        <div class="brand">
 
-            <div class="avatar">
-                S
+            <div class="logo">
+                GAM
             </div>
 
-            <h3>Student</h3>
+            <div>
 
-            <p>GAM Learner</p>
+                <h2>
+                    GAM
+                </h2>
+
+                <p>
+                    Global Academy of Minds
+                </p>
+
+            </div>
 
         </div>
 
 
-        <a href="#" class="nav-link active">
-            🏠 Dashboard
-        </a>
+        <button
+            id="logoutBtn"
+            class="logout-btn">
 
-        <a href="contests.html" class="nav-link">
-            📝 Contests
-        </a>
+            Logout
 
-        <a href="#" class="nav-link">
-            📚 Learning
-        </a>
+        </button>
 
-        <a href="#" class="nav-link">
-            📊 My Performance
-        </a>
-
-        <a href="#" class="nav-link">
-            🏆 Achievements
-        </a>
-
-        <a href="#" class="nav-link">
-            📜 Certificates
-        </a>
-
-        <a href="#" class="nav-link">
-            ⚙️ Settings
-        </a>
-
-    </aside>
+    </nav>
 
 
-    <!-- MAIN CONTENT -->
 
-    <main class="main">
+    <!-- MAIN -->
+
+    <main class="container">
 
 
-        <div class="welcome">
+        <section class="welcome">
 
             <h1>
-                Welcome to GAM! 👋
+                Welcome, <span id="studentName">Student</span>! 👋
             </h1>
 
             <p>
-                Your learning and competition journey starts here.
+                Welcome to your Global Academy of Minds student dashboard.
             </p>
-
-        </div>
-
-
-        <!-- STATISTICS -->
-
-        <div class="stats">
-
-
-            <div class="stat">
-
-                <div class="stat-icon">📝</div>
-
-                <h2>0</h2>
-
-                <p>Contests Taken</p>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-icon">🏆</div>
-
-                <h2>0</h2>
-
-                <p>Achievements</p>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-icon">📊</div>
-
-                <h2>0%</h2>
-
-                <p>Average Score</p>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-icon">📜</div>
-
-                <h2>0</h2>
-
-                <p>Certificates</p>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- CONTEST -->
-
-        <section class="section">
-
-            <div class="section-title">
-
-                <h2>
-                    Available Contest
-                </h2>
-
-                <a href="contests.html">
-                    View all →
-                </a>
-
-            </div>
-
-
-            <div class="contest-card">
-
-
-                <div class="contest-top">
-
-                    <div>
-
-                        <h3>
-                            GAM Mathematics Challenge
-                        </h3>
-
-                        <p>
-                            Test your mathematical reasoning,
-                            problem-solving and critical-thinking
-                            skills.
-                        </p>
-
-                    </div>
-
-                    <span class="badge">
-                        AVAILABLE
-                    </span>
-
-                </div>
-
-
-                <a href="contests.html" class="contest-button">
-                    View Contest
-                </a>
-
-
-            </div>
 
         </section>
 
 
-        <!-- QUICK ACTIONS -->
 
-        <section class="section">
+        <!-- DASHBOARD CARDS -->
 
-            <div class="section-title">
+        <section class="grid">
 
-                <h2>
-                    Quick Access
-                </h2>
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Contests
+                </h3>
+
+                <p>
+                    View available GAM competitions and enroll for upcoming contests.
+                </p>
+
+                <a
+                    href="#"
+                    class="card-btn">
+
+                    View Contests
+
+                </a>
 
             </div>
 
 
-            <div class="actions">
 
+            <div class="card">
 
-                <a href="contests.html" class="action">
+                <div class="card-icon">
+                    📊
+                </div>
 
-                    <div class="action-icon">
-                        📝
-                    </div>
+                <h3>
+                    My Results
+                </h3>
 
-                    <h3>
-                        Take a Contest
-                    </h3>
+                <p>
+                    View your contest scores and performance.
+                </p>
 
-                    <p>
-                        View available academic
-                        competitions.
-                    </p>
+                <a
+                    href="#"
+                    class="card-btn">
 
-                </a>
-
-
-                <a href="#" class="action">
-
-                    <div class="action-icon">
-                        📚
-                    </div>
-
-                    <h3>
-                        Continue Learning
-                    </h3>
-
-                    <p>
-                        Access your learning
-                        resources.
-                    </p>
+                    View Results
 
                 </a>
-
-
-                <a href="#" class="action">
-
-                    <div class="action-icon">
-                        🏆
-                    </div>
-
-                    <h3>
-                        My Achievements
-                    </h3>
-
-                    <p>
-                        View your certificates
-                        and achievements.
-                    </p>
-
-                </a>
-
 
             </div>
+
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    Certificates
+                </h3>
+
+                <p>
+                    Access certificates earned from GAM contests.
+                </p>
+
+                <a
+                    href="#"
+                    class="card-btn">
+
+                    My Certificates
+
+                </a>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+                <h3>
+                    My Profile
+                </h3>
+
+                <p>
+                    View and manage your GAM student profile.
+                </p>
+
+                <a
+                    href="#"
+                    class="card-btn">
+
+                    View Profile
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ACCOUNT INFORMATION -->
+
+        <section class="account">
+
+            <h3>
+                Account Information
+            </h3>
+
+            <p>
+                <strong>Name:</strong>
+                <span id="accountName">Loading...</span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <span id="accountEmail">Loading...</span>
+            </p>
+
+            <p>
+                <strong>Account status:</strong>
+                <span>Active</span>
+            </p>
 
         </section>
 
 
     </main>
 
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>
+            GAM — Global Academy of Minds
+        </strong>
+
+        <p>
+            Learn • Compete • Excel
+        </p>
+
+    </footer>
+
+
 </div>
+
+
+
+<script type="module">
+
+
+    import {
+        initializeApp
+    }
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signOut
+    }
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+
+    /* FIREBASE CONFIG */
+
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+        authDomain:
+            "gam-platform-59f1c.firebaseapp.com",
+
+        projectId:
+            "gam-platform-59f1c",
+
+        storageBucket:
+            "gam-platform-59f1c.firebasestorage.app",
+
+        messagingSenderId:
+            "423635446027",
+
+        appId:
+            "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+    };
+
+
+
+    const app =
+        initializeApp(firebaseConfig);
+
+
+    const auth =
+        getAuth(app);
+
+
+
+    /* ELEMENTS */
+
+
+    const loading =
+        document.getElementById("loading");
+
+
+    const dashboard =
+        document.getElementById("app");
+
+
+    const studentName =
+        document.getElementById("studentName");
+
+
+    const accountName =
+        document.getElementById("accountName");
+
+
+    const accountEmail =
+        document.getElementById("accountEmail");
+
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+
+
+    /* AUTHENTICATION CHECK */
+
+
+    onAuthStateChanged(
+        auth,
+        function(user) {
+
+
+            if (user) {
+
+
+                const name =
+                    user.displayName || "Student";
+
+
+                studentName.textContent =
+                    name;
+
+
+                accountName.textContent =
+                    name;
+
+
+                accountEmail.textContent =
+                    user.email || "Not available";
+
+
+                loading.style.display =
+                    "none";
+
+
+                dashboard.style.display =
+                    "block";
+
+
+            }
+
+            else {
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+        }
+
+    );
+
+
+
+    /* LOGOUT */
+
+
+    logoutBtn.addEventListener(
+        "click",
+        async function() {
+
+
+            try {
+
+
+                await signOut(auth);
+
+
+                window.location.href =
+                    "login.html";
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+            }
+
+        }
+
+    );
+
+
+</script>
 
 
 </body>
 
-  </html>
+                    </html>
