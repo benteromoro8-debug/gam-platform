@@ -4,9 +4,12 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>GAM | Login</title>
+
 
     <style>
 
@@ -16,141 +19,327 @@
             padding: 0;
         }
 
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f5f8fc;
+
             min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
         }
 
-        header {
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
             background: #063b75;
             color: white;
-            padding: 18px 6%;
+
+            padding: 14px 6%;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
+
         .brand {
-            font-weight: bold;
-            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .brand span {
+
+        .logo {
+            width: 44px;
+            height: 44px;
+
+            background: #ffd21f;
+
+            color: #063b75;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+
+        .brand h2 {
+            font-size: 18px;
+        }
+
+
+        .brand p {
+            font-size: 10px;
+
+            opacity: .85;
+        }
+
+
+        .home-link {
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+
+        .home-link:hover {
             color: #ffd21f;
         }
 
-        header a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
 
-        .page {
-            min-height: calc(100vh - 70px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 20px;
-        }
+        /* =========================
+           LOGIN
+        ========================= */
 
-        .login-box {
+        .container {
+
             width: 100%;
-            max-width: 430px;
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+
+            max-width: 450px;
+
+            margin: 55px auto;
+
+            padding: 0 20px;
+
+            flex: 1;
         }
 
-        .login-box h1 {
-            text-align: center;
+
+        .login-card {
+
+            background: white;
+
+            padding: 34px 27px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 6px 25px rgba(0,0,0,.08);
+        }
+
+
+        .login-card h1 {
+
             color: #063b75;
+
+            text-align: center;
+
             margin-bottom: 8px;
         }
 
+
         .subtitle {
+
             text-align: center;
-            color: #657080;
+
+            color: #687386;
+
             font-size: 14px;
-            margin-bottom: 28px;
+
+            margin-bottom: 26px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
 
         label {
+
             display: block;
-            margin-bottom: 7px;
+
+            color: #26364a;
+
             font-weight: bold;
+
             font-size: 14px;
-            color: #26344a;
+
+            margin-bottom: 7px;
         }
 
+
         input {
+
             width: 100%;
+
             padding: 13px;
-            border: 1px solid #ccd5e1;
-            border-radius: 7px;
+
+            border: 1px solid #ccd5e0;
+
+            border-radius: 8px;
+
             font-size: 15px;
+
+            margin-bottom: 17px;
+
             outline: none;
         }
 
+
         input:focus {
+
             border-color: #063b75;
         }
 
-        .button {
+
+        .login-btn {
+
             width: 100%;
+
             border: none;
-            background: #063b75;
-            color: white;
+
+            background: #ffd21f;
+
+            color: #063b75;
+
             padding: 14px;
+
             border-radius: 8px;
+
             font-size: 16px;
+
             font-weight: bold;
+
             cursor: pointer;
         }
 
-        .button:hover {
-            background: #0a4c91;
+
+        .login-btn:hover {
+
+            background: #f4c600;
         }
 
-        .forgot {
-            display: block;
-            text-align: right;
-            margin-top: 8px;
-            color: #063b75;
-            font-size: 13px;
-            text-decoration: none;
+
+        .login-btn:disabled {
+
+            opacity: .6;
+
+            cursor: not-allowed;
         }
 
-        .register {
-            text-align: center;
-            margin-top: 22px;
-            color: #657080;
+
+        /* =========================
+           MESSAGES
+        ========================= */
+
+        .message {
+
+            display: none;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 17px;
+
             font-size: 14px;
         }
 
-        .register a {
+
+        .error {
+
+            display: block;
+
+            background: #ffe8e8;
+
+            color: #a40000;
+        }
+
+
+        .success {
+
+            display: block;
+
+            background: #e6f7ed;
+
+            color: #087333;
+        }
+
+
+        /* =========================
+           LINKS
+        ========================= */
+
+        .forgot {
+
+            display: block;
+
+            text-align: right;
+
+            margin-top: -8px;
+
+            margin-bottom: 20px;
+
             color: #063b75;
-            font-weight: bold;
-            text-decoration: none;
-        }
 
-        .admin {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e7ee;
-            text-align: center;
-        }
-
-        .admin a {
-            color: #657080;
             font-size: 13px;
+
+            text-decoration: none;
+
+            cursor: pointer;
+        }
+
+
+        .forgot:hover {
+
+            text-decoration: underline;
+        }
+
+
+        .register-text {
+
+            text-align: center;
+
+            margin-top: 21px;
+
+            color: #687386;
+
+            font-size: 14px;
+        }
+
+
+        .register-text a {
+
+            color: #063b75;
+
+            font-weight: bold;
+
             text-decoration: none;
         }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #03284f;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+            font-size: 13px;
+        }
+
+
+        footer p {
+
+            color: #b9c9dc;
+
+            margin-top: 6px;
+        }
+
 
     </style>
 
@@ -160,99 +349,136 @@
 <body>
 
 
-<header>
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+
+<nav>
+
 
     <div class="brand">
-        <span>GAM</span> — Global Academy of Minds
+
+
+        <div class="logo">
+            GAM
+        </div>
+
+
+        <div>
+
+            <h2>
+                GAM
+            </h2>
+
+            <p>
+                Global Academy of Minds
+            </p>
+
+        </div>
+
+
     </div>
 
-    <a href="index.html">
+
+    <a href="index.html"
+       class="home-link">
+
         Home
+
     </a>
 
-</header>
+
+</nav>
 
 
-<div class="page">
+
+<!-- =========================
+     LOGIN FORM
+========================= -->
 
 
-    <div class="login-box">
+<div class="container">
+
+
+    <div class="login-card">
 
 
         <h1>
             Welcome Back
         </h1>
 
+
         <p class="subtitle">
-            Login to your GAM account.
+
+            Login to your GAM account
+
         </p>
 
 
-        <form>
+        <div id="message"
+             class="message">
+        </div>
 
 
-            <div class="form-group">
-
-                <label for="email">
-                    Email Address
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    required
-                >
-
-            </div>
+        <form id="loginForm">
 
 
-            <div class="form-group">
+            <label for="email">
+                Email Address
+            </label>
 
-                <label for="password">
-                    Password
-                </label>
 
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    required
-                >
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
 
-                <a href="#" class="forgot">
-                    Forgot password?
-                </a>
 
-            </div>
+
+            <label for="password">
+                Password
+            </label>
+
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+            <a href="#"
+               id="forgotPassword"
+               class="forgot">
+
+                Forgot password?
+
+            </a>
 
 
             <button
                 type="submit"
-                class="button"
-            >
+                id="loginBtn"
+                class="login-btn">
+
                 Login
+
             </button>
 
 
         </form>
 
 
-        <div class="register">
+        <div class="register-text">
 
-            Don't have an account?
+            Don't have a GAM account?
 
             <a href="register.html">
-                Create an account
-            </a>
-
-        </div>
-
-
-        <div class="admin">
-
-            <a href="#">
-                GAM Administrator
+                Create one
             </a>
 
         </div>
@@ -260,9 +486,329 @@
 
     </div>
 
+
 </div>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+
+<footer>
+
+    <strong>
+        GAM — Global Academy of Minds
+    </strong>
+
+    <p>
+        Learn • Compete • Excel
+    </p>
+
+</footer>
+
+
+
+<!-- =========================
+     FIREBASE LOGIN
+========================= -->
+
+
+<script type="module">
+
+
+    import {
+
+        getAuth,
+
+        signInWithEmailAndPassword,
+
+        sendPasswordResetEmail
+
+    }
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+    import { app }
+
+    from "./firebase-config.js";
+
+
+    const auth = getAuth(app);
+
+
+    const form =
+        document.getElementById("loginForm");
+
+
+    const email =
+        document.getElementById("email");
+
+
+    const password =
+        document.getElementById("password");
+
+
+    const message =
+        document.getElementById("message");
+
+
+    const loginBtn =
+        document.getElementById("loginBtn");
+
+
+    const forgotPassword =
+        document.getElementById("forgotPassword");
+
+
+
+    /* =========================
+       MESSAGE
+    ========================= */
+
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className =
+            "message " + type;
+
+    }
+
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+
+    form.addEventListener(
+        "submit",
+        async function(event) {
+
+
+            event.preventDefault();
+
+
+            const userEmail =
+                email.value.trim();
+
+
+            const userPassword =
+                password.value;
+
+
+            loginBtn.disabled = true;
+
+            loginBtn.textContent =
+                "Logging in...";
+
+
+            try {
+
+
+                await signInWithEmailAndPassword(
+
+                    auth,
+
+                    userEmail,
+
+                    userPassword
+
+                );
+
+
+                showMessage(
+
+                    "Login successful! Redirecting...",
+
+                    "success"
+
+                );
+
+
+                setTimeout(function() {
+
+
+                    window.location.href =
+                        "dashboard.html";
+
+
+                }, 900);
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(error);
+
+
+                let errorMessage =
+                    "Unable to login.";
+
+
+                if (
+
+                    error.code ===
+                    "auth/invalid-credential"
+
+                ) {
+
+                    errorMessage =
+                        "Incorrect email or password.";
+
+                }
+
+                else if (
+
+                    error.code ===
+                    "auth/user-not-found"
+
+                ) {
+
+                    errorMessage =
+                        "No account was found with this email.";
+
+                }
+
+                else if (
+
+                    error.code ===
+                    "auth/wrong-password"
+
+                ) {
+
+                    errorMessage =
+                        "Incorrect password.";
+
+                }
+
+                else if (
+
+                    error.code ===
+                    "auth/invalid-email"
+
+                ) {
+
+                    errorMessage =
+                        "Please enter a valid email.";
+
+                }
+
+
+                showMessage(
+
+                    errorMessage,
+
+                    "error"
+
+                );
+
+
+                loginBtn.disabled = false;
+
+                loginBtn.textContent =
+                    "Login";
+
+            }
+
+        }
+
+    );
+
+
+
+    /* =========================
+       FORGOT PASSWORD
+    ========================= */
+
+
+    forgotPassword.addEventListener(
+
+        "click",
+
+        async function(event) {
+
+
+            event.preventDefault();
+
+
+            const userEmail =
+                email.value.trim();
+
+
+            if (!userEmail) {
+
+
+                showMessage(
+
+                    "Enter your email address first.",
+
+                    "error"
+
+                );
+
+
+                email.focus();
+
+                return;
+
+            }
+
+
+            try {
+
+
+                await sendPasswordResetEmail(
+
+                    auth,
+
+                    userEmail
+
+                );
+
+
+                showMessage(
+
+                    "Password reset email sent. Check your inbox.",
+
+                    "success"
+
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(error);
+
+
+                showMessage(
+
+                    "We could not send the reset email. Check the email address.",
+
+                    "error"
+
+                );
+
+            }
+
+        }
+
+    );
+
+
+</script>
 
 
 </body>
 
-</html>
+                </html>
