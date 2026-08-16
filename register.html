@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GAM | Register</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f8fc;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #063b75;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .brand span {
+            color: #ffd21f;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .page {
+            display: flex;
+            justify-content: center;
+            padding: 45px 20px;
+        }
+
+        .register-box {
+            background: white;
+            width: 100%;
+            max-width: 520px;
+            padding: 32px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+        }
+
+        .register-box h1 {
+            color: #063b75;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #657080;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #26344a;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccd5e1;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #063b75;
+        }
+
+        .button {
+            width: 100%;
+            border: none;
+            background: #063b75;
+            color: white;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #0a4c91;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #657080;
+        }
+
+        .login-text a {
+            color: #063b75;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .note {
+            background: #fff8d6;
+            border-left: 4px solid #ffd21f;
+            padding: 12px;
+            margin-bottom: 22px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #5b4d00;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="brand">
+        <span>GAM</span> — Global Academy of Minds
+    </div>
+
+    <a href="index.html">
+        Home
+    </a>
+
+</header>
+
+
+<div class="page">
+
+
+    <div class="register-box">
+
+
+        <h1>
+            Create Your Account
+        </h1>
+
+        <p class="subtitle">
+            Join the Global Academy of Minds platform.
+        </p>
+
+
+        <div class="note">
+
+            Your account will allow you to participate in
+            GAM contests, access learning resources and
+            track your achievements.
+
+        </div>
+
+
+        <form>
+
+
+            <div class="form-group">
+
+                <label for="fullname">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullname"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="school">
+                    School
+                </label>
+
+                <input
+                    type="text"
+                    id="school"
+                    placeholder="Enter your school"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="level">
+                    Class / Level
+                </label>
+
+                <select id="level" required>
+
+                    <option value="">
+                        Select your level
+                    </option>
+
+                    <option>
+                        Primary
+                    </option>
+
+                    <option>
+                        Junior Secondary
+                    </option>
+
+                    <option>
+                        Form 1
+                    </option>
+
+                    <option>
+                        Form 2
+                    </option>
+
+                    <option>
+                        Form 3
+                    </option>
+
+                    <option>
+                        Form 4
+                    </option>
+
+                    <option>
+                        College / University
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="button"
+            >
+                Create Account
+            </button>
+
+
+        </form>
+
+
+        <div class="login-text">
+
+            Already have an account?
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+  </html>
