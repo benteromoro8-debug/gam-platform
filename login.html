@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+content="width=device-width, initial-scale=1.0">
 
 <title>GAM | Login</title>
 
@@ -113,6 +113,7 @@ button {
     border-radius: 8px;
     font-weight: bold;
     font-size: 16px;
+    cursor: pointer;
 }
 
 button:disabled {
@@ -164,9 +165,7 @@ GAM
 
 <div>
 
-<h2>
-GAM
-</h2>
+<h2>GAM</h2>
 
 <p>
 Global Academy of Minds
@@ -193,11 +192,9 @@ Home
 
 <div class="card">
 
-
 <h1>
 Welcome Back
 </h1>
-
 
 <p class="subtitle">
 Login to your GAM account
@@ -214,7 +211,6 @@ Login to your GAM account
 Email Address
 </label>
 
-
 <input
 id="email"
 type="email"
@@ -226,7 +222,6 @@ autocomplete="email"
 <label>
 Password
 </label>
-
 
 <input
 id="password"
@@ -246,7 +241,6 @@ Login
 
 
 </form>
-
 
 </div>
 
@@ -291,15 +285,12 @@ from
 import {
     getFirestore,
     doc,
-    getDoc
+    getDocFromServer
 }
 
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-
-
-/* FIREBASE CONFIG */
 
 
 const firebaseConfig = {
@@ -336,10 +327,6 @@ const auth =
 
 const db =
     getFirestore(app);
-
-
-
-/* ELEMENTS */
 
 
 const form =
@@ -388,9 +375,6 @@ function showMessage(
 
 
 
-/* LOGIN */
-
-
 form.addEventListener(
     "submit",
     async function(event) {
@@ -410,8 +394,6 @@ form.addEventListener(
         try {
 
 
-            /* SIGN IN */
-
             const result =
                 await signInWithEmailAndPassword(
                     auth,
@@ -424,12 +406,10 @@ form.addEventListener(
                 result.user;
 
 
-            /*
-             * TEMPORARY DIAGNOSTIC
-             *
-             * This shows the exact UID
-             * Firebase gives the website.
-             */
+            showMessage(
+                "Login successful. Checking GAM profile...",
+                "success"
+            );
 
 
             const userRef =
@@ -441,7 +421,7 @@ form.addEventListener(
 
 
             const snapshot =
-                await getDoc(
+                await getDocFromServer(
                     userRef
                 );
 
@@ -450,7 +430,7 @@ form.addEventListener(
 
 
                 showMessage(
-                    "PROFILE NOT FOUND. Website UID: " +
+                    "SERVER: GAM profile not found for UID: " +
                     user.uid,
                     "error"
                 );
@@ -553,7 +533,7 @@ form.addEventListener(
 
 
             showMessage(
-                "Unknown account role: " +
+                "Unknown GAM role: " +
                 role,
                 "error"
             );
@@ -578,7 +558,7 @@ form.addEventListener(
 
 
             showMessage(
-                "Firebase error: " +
+                "Firestore error: " +
                 error.code +
                 " — " +
                 error.message,
@@ -601,7 +581,6 @@ form.addEventListener(
 
 </script>
 
-
 </body>
 
-</html>
+      </html>
