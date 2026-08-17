@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GAM Owner Check</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            padding: 25px;
+        }
+
+        .box {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+        }
+
+        h1 {
+            color: #063b75;
+        }
+
+        .item {
+            background: #f1f4f8;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            word-break: break-all;
+        }
+
+        strong {
+            color: #063b75;
+        }
+
+        #status {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>GAM Owner Diagnostic</h1>
+
+    <p id="status">Checking...</p>
+
+    <div class="item">
+        <strong>Firebase UID:</strong>
+        <div id="uid">---</div>
+    </div>
+
+    <div class="item">
+        <strong>Firebase Email:</strong>
+        <div id="email">---</div>
+    </div>
+
+    <div class="item">
+        <strong>Firestore Document Exists:</strong>
+        <div id="exists">---</div>
+    </div>
+
+    <div class="item">
+        <strong>Firestore Role:</strong>
+        <div id="role">---</div>
+    </div>
+
+    <div class="item">
+        <strong>Firestore Name:</strong>
+        <div id="name">---</div>
+    </div>
+
+</div>
+
+
+<script type="module">
+
+    import {
+        initializeApp
+    } from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+    import {
+        getAuth,
+        onAuthStateChanged
+    } from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+    import {
+        getFirestore,
+        doc,
+        getDoc
+    } from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+
+        apiKey:
+            "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+        authDomain:
+            "gam-platform-59f1c.firebaseapp.com",
+
+        projectId:
+            "gam-platform-59f1c",
+
+        storageBucket:
+            "gam-platform-59f1c.firebasestorage.app",
+
+        messagingSenderId:
+            "423635446027",
+
+        appId:
+            "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+    };
+
+
+    const app =
+        initializeApp(firebaseConfig);
+
+    const auth =
+        getAuth(app);
+
+    const db =
+        getFirestore(app);
+
+
+    const status =
+        document.getElementById("status");
+
+    const uid =
+        document.getElementById("uid");
+
+    const email =
+        document.getElementById("email");
+
+    const exists =
+        document.getElementById("exists");
+
+    const role =
+        document.getElementById("role");
+
+    const name =
+        document.getElementById("name");
+
+
+    onAuthStateChanged(
+        auth,
+        async function(user) {
+
+            if (!user) {
+
+                status.textContent =
+                    "❌ You are NOT logged in.";
+
+                return;
+            }
+
+
+            uid.textContent =
+                user.uid;
+
+            email.textContent =
+                user.email;
+
+
+            try {
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const snapshot =
+                    await getDoc(userRef);
+
+
+                exists.textContent =
+                    snapshot.exists()
+                    ? "YES"
+                    : "NO";
+
+
+                if (snapshot.exists()) {
+
+                    const data =
+                        snapshot.data();
+
+
+                    role.textContent =
+                        data.role ?? "NO ROLE FIELD";
+
+
+                    name.textContent =
+                        data.name ?? "NO NAME FIELD";
+
+
+                    status.textContent =
+                        "✅ Firebase account found and Firestore document read.";
+
+                }
+
+                else {
+
+                    status.textContent =
+                        "⚠️ Firebase account exists, but no matching Firestore document was found.";
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                status.textContent =
+                    "❌ Firestore error: " +
+                    error.message;
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
