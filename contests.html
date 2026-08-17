@@ -2,222 +2,672 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GAM | Contests</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>GAM | Contest Management</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f8fc;
-            color: #172033;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        header {
-            background: #063b75;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
 
-        header h1 {
-            color: #ffd21f;
-        }
+header {
+    background: #063b75;
+    color: white;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .intro {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+.logo {
+    width: 45px;
+    height: 45px;
+    background: #ffd21f;
+    color: #063b75;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
 
-        .intro h2 {
-            color: #063b75;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
+.brand h2 {
+    margin: 0;
+    font-size: 18px;
+}
 
-        .intro p {
-            color: #657080;
-        }
+.brand p {
+    margin: 3px 0 0;
+    font-size: 11px;
+}
 
-        .contests {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
+.back {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        .contest {
-            background: white;
-            border-radius: 14px;
-            padding: 25px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-            border-top: 5px solid #ffd21f;
-        }
+.container {
+    max-width: 1150px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
 
-        .contest h3 {
-            color: #063b75;
-            margin-bottom: 12px;
-        }
+.top {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+}
 
-        .contest p {
-            color: #657080;
-            line-height: 1.5;
-            margin-bottom: 18px;
-        }
+.top h1 {
+    margin-top: 0;
+    color: #063b75;
+}
 
-        .status {
-            display: inline-block;
-            background: #e8f5e9;
-            color: #24752d;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-bottom: 15px;
-        }
+.button {
+    border: none;
+    padding: 12px 17px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .button {
-            display: inline-block;
-            background: #063b75;
-            color: white;
-            text-decoration: none;
-            padding: 11px 17px;
-            border-radius: 7px;
-            font-weight: bold;
-        }
+.primary {
+    background: #063b75;
+    color: white;
+}
 
-        .button:hover {
-            background: #0a4c91;
-        }
+.yellow {
+    background: #ffd21f;
+    color: #063b75;
+}
 
-        .back {
-            display: block;
-            text-align: center;
-            margin-top: 35px;
-            color: #063b75;
-            text-decoration: none;
-        }
+.danger {
+    background: #c62828;
+    color: white;
+}
 
-    </style>
+.form {
+    display: none;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+}
+
+.form h2 {
+    color: #063b75;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccd5e0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.contest-list {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.contest {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+    border-left: 5px solid #063b75;
+}
+
+.contest h3 {
+    color: #063b75;
+    margin-top: 0;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #fff4c2;
+    color: #725c00;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.empty {
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    text-align: center;
+    color: #687386;
+}
+
+.message {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.success {
+    display: block;
+    background: #e6f7ed;
+    color: #087333;
+}
+
+.error {
+    display: block;
+    background: #ffe8e8;
+    color: #a40000;
+}
+
+footer {
+    margin-top: 50px;
+    background: #03284f;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+</style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
-    <h1>GAM</h1>
+<div class="brand">
 
-    <p>
-        Global Academy of Minds
-    </p>
+<div class="logo">
+GAM
+</div>
+
+<div>
+
+<h2>
+GAM Contest Management
+</h2>
+
+<p>
+Global Academy of Minds
+</p>
+
+</div>
+
+</div>
+
+
+<a
+class="back"
+href="admin.html">
+
+← Owner Dashboard
+
+</a>
 
 </header>
 
 
+
 <div class="container">
 
-    <div class="intro">
 
-        <h2>Academic Contests</h2>
+<div class="top">
 
-        <p>
-            Challenge yourself and demonstrate your knowledge.
-        </p>
+<h1>
+🏆 Contest Management
+</h1>
 
-    </div>
+<p>
+Create and manage GAM academic contests.
+</p>
 
+<button
+class="button primary"
+id="showForm">
 
-    <div class="contests">
++ Create Contest
 
-
-        <div class="contest">
-
-            <span class="status">
-                AVAILABLE
-            </span>
-
-            <h3>
-                GAM Mathematics Challenge
-            </h3>
-
-            <p>
-                Test your mathematical reasoning,
-                problem-solving and critical-thinking skills.
-            </p>
-
-            <a href="#" class="button">
-                View Contest
-            </a>
-
-        </div>
-
-
-        <div class="contest">
-
-            <span class="status">
-                COMING SOON
-            </span>
-
-            <h3>
-                GAM Science Challenge
-            </h3>
-
-            <p>
-                Challenge yourself with questions
-                from science and technology.
-            </p>
-
-            <a href="#" class="button">
-                Coming Soon
-            </a>
-
-        </div>
-
-
-        <div class="contest">
-
-            <span class="status">
-                COMING SOON
-            </span>
-
-            <h3>
-                GAM English Challenge
-            </h3>
-
-            <p>
-                Test your language, comprehension
-                and communication skills.
-            </p>
-
-            <a href="#" class="button">
-                Coming Soon
-            </a>
-
-        </div>
-
-
-    </div>
-
-
-    <a href="index.html" class="back">
-        ← Back to GAM Home
-    </a>
+</button>
 
 </div>
 
+
+
+<!-- CREATE CONTEST -->
+
+<div
+class="form"
+id="contestForm">
+
+<h2>
+Create New Contest
+</h2>
+
+
+<label>
+Contest Name
+</label>
+
+<input
+id="contestName"
+type="text"
+placeholder="e.g. GAM Mathematics Challenge 2026"
+>
+
+
+<label>
+Description
+</label>
+
+<textarea
+id="contestDescription"
+placeholder="Enter contest description">
+</textarea>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>
+Start Date
+</label>
+
+<input
+id="startDate"
+type="date"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Start Time
+</label>
+
+<input
+id="startTime"
+type="time"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Duration (minutes)
+</label>
+
+<input
+id="duration"
+type="number"
+value="120"
+min="1"
+>
+
+</div>
+
+
+</div>
+
+
+<label>
+Contest Status
+</label>
+
+<select id="contestStatus">
+
+<option value="draft">
+Draft
+</option>
+
+<option value="published">
+Published
+</option>
+
+</select>
+
+
+<br><br>
+
+
+<button
+class="button primary"
+id="saveContest">
+
+Save Contest
+
+</button>
+
+
+<button
+class="button danger"
+id="cancelForm">
+
+Cancel
+
+</button>
+
+
+<div
+id="message"
+class="message">
+
+</div>
+
+</div>
+
+
+
+<!-- CONTEST LIST -->
+
+<h2>
+Your Contests
+</h2>
+
+<div
+id="contestList"
+class="contest-list">
+
+<div class="empty">
+
+No contests created yet.
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+<strong>
+GAM — Global Academy of Minds
+</strong>
+
+<p>
+Learn • Compete • Excel
+</p>
+
+</footer>
+
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const OWNER_UID =
+    "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
+
+
+const form =
+    document.getElementById(
+        "contestForm"
+    );
+
+
+const list =
+    document.getElementById(
+        "contestList"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+onAuthStateChanged(
+    auth,
+    function(user) {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        if (
+            user.uid !== OWNER_UID
+        ) {
+
+            document.body.innerHTML =
+                "<h2 style='text-align:center;margin-top:100px;color:#a40000'>" +
+                "Access denied. Owner only." +
+                "</h2>";
+
+            return;
+
+        }
+
+    }
+);
+
+
+
+document
+.getElementById("showForm")
+.addEventListener(
+    "click",
+    function() {
+
+        form.style.display =
+            "block";
+
+        window.scrollTo(
+            0,
+            300
+        );
+
+    }
+);
+
+
+
+document
+.getElementById("cancelForm")
+.addEventListener(
+    "click",
+    function() {
+
+        form.style.display =
+            "none";
+
+    }
+);
+
+
+
+document
+.getElementById("saveContest")
+.addEventListener(
+    "click",
+    function() {
+
+        const name =
+            document
+            .getElementById("contestName")
+            .value
+            .trim();
+
+        const description =
+            document
+            .getElementById("contestDescription")
+            .value
+            .trim();
+
+        const startDate =
+            document
+            .getElementById("startDate")
+            .value;
+
+        const startTime =
+            document
+            .getElementById("startTime")
+            .value;
+
+        const duration =
+            document
+            .getElementById("duration")
+            .value;
+
+        const status =
+            document
+            .getElementById("contestStatus")
+            .value;
+
+
+        if (
+            !name ||
+            !startDate ||
+            !startTime
+        ) {
+
+            message.className =
+                "message error";
+
+            message.textContent =
+                "Please enter the contest name, date and time.";
+
+            return;
+
+        }
+
+
+        /*
+         * TEMPORARY STAGE
+         *
+         * We are validating the contest
+         * information first.
+         *
+         * Firestore saving will be connected
+         * after we confirm the interface works.
+         */
+
+
+        message.className =
+            "message success";
+
+        message.textContent =
+            "Contest information is ready. Firestore saving will be connected next.";
+
+    }
+);
+
+</script>
+
 </body>
 
-  </html>
+    </html>
