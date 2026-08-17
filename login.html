@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GAM | Login</title>
 
 <style>
-
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f7fb;
     min-height: 100vh;
 }
 
-nav {
+header {
     background: #063b75;
     color: white;
     padding: 14px 6%;
@@ -52,10 +45,12 @@ nav {
 }
 
 .brand h2 {
+    margin: 0;
     font-size: 18px;
 }
 
 .brand p {
+    margin: 2px 0 0;
     font-size: 10px;
 }
 
@@ -78,8 +73,8 @@ nav {
 }
 
 h1 {
-    color: #063b75;
     text-align: center;
+    color: #063b75;
     margin-bottom: 8px;
 }
 
@@ -111,8 +106,8 @@ button {
     color: #063b75;
     border: none;
     border-radius: 8px;
-    font-weight: bold;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -121,16 +116,10 @@ button:disabled {
 }
 
 #message {
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 7px;
     display: none;
-}
-
-.error {
-    display: block !important;
-    background: #ffe8e8;
-    color: #a40000;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
 }
 
 .success {
@@ -139,77 +128,59 @@ button:disabled {
     color: #087333;
 }
 
+.error {
+    display: block !important;
+    background: #ffe8e8;
+    color: #a40000;
+}
+
 footer {
+    margin-top: 40px;
     background: #03284f;
     color: white;
     text-align: center;
     padding: 25px;
-    margin-top: 40px;
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<nav>
+<header>
 
 <div class="brand">
 
-<div class="logo">
-GAM
-</div>
+<div class="logo">GAM</div>
 
 <div>
-
 <h2>GAM</h2>
-
-<p>
-Global Academy of Minds
-</p>
-
+<p>Global Academy of Minds</p>
 </div>
 
 </div>
 
-
-<a
-class="home"
-href="index.html">
-
+<a class="home" href="index.html">
 Home
-
 </a>
 
-</nav>
-
+</header>
 
 
 <div class="container">
 
 <div class="card">
 
-<h1>
-Welcome Back
-</h1>
+<h1>Welcome Back</h1>
 
 <p class="subtitle">
 Login to your GAM account
 </p>
 
-
 <div id="message"></div>
-
 
 <form id="loginForm">
 
-
-<label>
-Email Address
-</label>
+<label>Email Address</label>
 
 <input
 id="email"
@@ -218,10 +189,7 @@ required
 autocomplete="email"
 >
 
-
-<label>
-Password
-</label>
+<label>Password</label>
 
 <input
 id="password"
@@ -230,22 +198,15 @@ required
 autocomplete="current-password"
 >
 
-
-<button
-id="loginButton"
-type="submit">
-
+<button id="loginButton" type="submit">
 Login
-
 </button>
-
 
 </form>
 
 </div>
 
 </div>
-
 
 
 <footer>
@@ -261,36 +222,18 @@ Learn • Compete • Excel
 </footer>
 
 
-
 <script type="module">
-
 
 import {
     initializeApp
-}
-
-from
+} from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
 
 import {
     getAuth,
     signInWithEmailAndPassword
-}
-
-from
+} from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-
-import {
-    getFirestore,
-    doc,
-    getDocFromServer
-}
-
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 
 
 const firebaseConfig = {
@@ -316,17 +259,17 @@ const firebaseConfig = {
 };
 
 
-
 const app =
-    initializeApp(firebaseConfig);
-
+    initializeApp(
+        firebaseConfig
+    );
 
 const auth =
     getAuth(app);
 
 
-const db =
-    getFirestore(app);
+const OWNER_UID =
+    "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
 
 
 const form =
@@ -334,30 +277,25 @@ const form =
         "loginForm"
     );
 
-
 const emailInput =
     document.getElementById(
         "email"
     );
-
 
 const passwordInput =
     document.getElementById(
         "password"
     );
 
-
 const button =
     document.getElementById(
         "loginButton"
     );
 
-
 const message =
     document.getElementById(
         "message"
     );
-
 
 
 function showMessage(
@@ -374,25 +312,18 @@ function showMessage(
 }
 
 
-
 form.addEventListener(
     "submit",
     async function(event) {
 
-
         event.preventDefault();
 
-
-        button.disabled =
-            true;
-
+        button.disabled = true;
 
         button.textContent =
-            "Checking...";
-
+            "Signing in...";
 
         try {
-
 
             const result =
                 await signInWithEmailAndPassword(
@@ -401,174 +332,108 @@ form.addEventListener(
                     passwordInput.value
                 );
 
-
             const user =
                 result.user;
 
 
+            /*
+             * OWNER
+             */
+
+            if (
+                user.uid === OWNER_UID
+            ) {
+
+                showMessage(
+                    "Owner login successful. Opening dashboard...",
+                    "success"
+                );
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "admin.html";
+
+                    },
+                    500
+                );
+
+                return;
+            }
+
+
+            /*
+             * TEMPORARY ROUTING
+             *
+             * Other accounts go to the
+             * student dashboard until
+             * we install the administrator
+             * permission system.
+             */
+
             showMessage(
-                "Login successful. Checking GAM profile...",
+                "Login successful. Opening dashboard...",
                 "success"
             );
 
+            setTimeout(
+                function() {
 
-            const userRef =
-                doc(
-                    db,
-                    "users",
-                    user.uid
-                );
+                    window.location.href =
+                        "dashboard.html";
 
-
-            const snapshot =
-                await getDocFromServer(
-                    userRef
-                );
-
-
-            if (!snapshot.exists()) {
-
-
-                showMessage(
-                    "SERVER: GAM profile not found for UID: " +
-                    user.uid,
-                    "error"
-                );
-
-
-                button.disabled =
-                    false;
-
-
-                button.textContent =
-                    "Login";
-
-
-                return;
-
-            }
-
-
-            const data =
-                snapshot.data();
-
-
-            const role =
-                data.role;
-
-
-            if (role === "owner") {
-
-
-                showMessage(
-                    "OWNER CONFIRMED. Opening Admin Dashboard...",
-                    "success"
-                );
-
-
-                setTimeout(
-                    function() {
-
-                        window.location.href =
-                            "admin.html";
-
-                    },
-                    800
-                );
-
-
-                return;
-
-            }
-
-
-            if (role === "admin") {
-
-
-                showMessage(
-                    "ADMIN CONFIRMED. Opening Admin Dashboard...",
-                    "success"
-                );
-
-
-                setTimeout(
-                    function() {
-
-                        window.location.href =
-                            "admin.html";
-
-                    },
-                    800
-                );
-
-
-                return;
-
-            }
-
-
-            if (role === "student") {
-
-
-                showMessage(
-                    "STUDENT ACCOUNT. Opening Student Dashboard...",
-                    "success"
-                );
-
-
-                setTimeout(
-                    function() {
-
-                        window.location.href =
-                            "dashboard.html";
-
-                    },
-                    800
-                );
-
-
-                return;
-
-            }
-
-
-            showMessage(
-                "Unknown GAM role: " +
-                role,
-                "error"
+                },
+                500
             );
-
-
-            button.disabled =
-                false;
-
-
-            button.textContent =
-                "Login";
 
 
         }
 
         catch (error) {
 
+            console.error(error);
 
-            console.error(
-                error
-            );
+            let text =
+                "Login failed.";
 
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                text =
+                    "Incorrect email or password.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                text =
+                    "Please enter a valid email address.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                text =
+                    "Too many attempts. Please try again later.";
+
+            }
 
             showMessage(
-                "Firestore error: " +
-                error.code +
-                " — " +
-                error.message,
+                text,
                 "error"
             );
 
-
             button.disabled =
                 false;
-
 
             button.textContent =
                 "Login";
@@ -578,9 +443,7 @@ form.addEventListener(
     }
 );
 
-
 </script>
 
 </body>
-
-      </html>
+    </html>
