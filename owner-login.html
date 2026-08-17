@@ -1,340 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GAM Firestore Test</title>
-
+<title>GAM Owner Test</title>
 <style>
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    padding: 25px;
-}
-
-.box {
-    max-width: 550px;
-    margin: 40px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.1);
-}
-
-h1 {
-    color: #063b75;
-}
-
-button {
-    width: 100%;
-    padding: 14px;
-    background: #ffd21f;
-    color: #063b75;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-.result {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f1f4f8;
-    border-radius: 8px;
-    word-break: break-all;
-    line-height: 1.7;
-}
-
-.success {
-    color: #087333;
-}
-
-.error {
-    color: #a40000;
-}
-
+body{font-family:Arial;background:#f4f7fb;padding:25px}
+.box{max-width:500px;margin:40px auto;background:white;padding:25px;border-radius:15px}
+button{width:100%;padding:14px;background:#ffd21f;border:0;border-radius:8px;font-weight:bold}
+#result{margin-top:20px;padding:15px;word-break:break-all;line-height:1.7}
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="box">
 
-<h1>
-GAM Firestore Connection Test
-</h1>
+<h2>GAM Owner Firestore Test</h2>
 
-<p>
-First log in to your Owner account.
-</p>
+<button id="test">Test Owner Account</button>
 
-<button id="test">
-Test Firestore
-</button>
-
-<div
-id="result"
-class="result">
-
-Waiting...
+<div id="result">Waiting...</div>
 
 </div>
-
-</div>
-
 
 <script type="module">
 
-
 import {
     initializeApp
-}
-
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
     getAuth,
     signInWithEmailAndPassword
-}
-
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
     initializeFirestore,
-    persistentLocalCache,
     doc,
     getDocFromServer
-}
-
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
 
-    apiKey:
-        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+    apiKey: "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
 
-    authDomain:
-        "gam-platform-59f1c.firebaseapp.com",
+    authDomain: "gam-platform-59f1c.firebaseapp.com",
 
-    projectId:
-        "gam-platform-59f1c",
+    projectId: "gam-platform-59f1c",
 
-    storageBucket:
-        "gam-platform-59f1c.firebasestorage.app",
+    storageBucket: "gam-platform-59f1c.firebasestorage.app",
 
-    messagingSenderId:
-        "423635446027",
+    messagingSenderId: "423635446027",
 
-    appId:
-        "1:423635446027:web:7b42cd097b928ed7671a0e"
+    appId: "1:423635446027:web:7b42cd097b928ed7671a0e"
 
 };
 
 
-const app =
-    initializeApp(
-        firebaseConfig
-    );
+const app = initializeApp(firebaseConfig);
 
-
-const auth =
-    getAuth(app);
+const auth = getAuth(app);
 
 
 /*
- * Explicitly initialize
- * the Firestore connection.
- */
+   EXPLICITLY USE THE DEFAULT FIRESTORE DATABASE
+*/
 
-const db =
-    initializeFirestore(
-        app,
-        {
-            localCache:
-                persistentLocalCache()
-        }
-    );
-
-
-const button =
-    document.getElementById(
-        "test"
-    );
+const db = initializeFirestore(
+    app,
+    {},
+    "(default)"
+);
 
 
 const result =
-    document.getElementById(
-        "result"
-    );
+    document.getElementById("result");
 
 
-button.addEventListener(
-    "click",
-    async function() {
+document
+.getElementById("test")
+.addEventListener("click", async () => {
 
+    try {
 
-        button.disabled =
-            true;
+        const email =
+            prompt("Enter Owner email:");
+
+        const password =
+            prompt("Enter Owner password:");
+
+        if (!email || !password) {
+            result.textContent =
+                "Login cancelled.";
+            return;
+        }
 
 
         result.textContent =
             "Signing in...";
 
 
-        try {
-
-
-            /*
-             * Ask for the Owner
-             * credentials.
-             */
-
-            const email =
-                prompt(
-                    "Enter your Owner email:"
-                );
-
-
-            const password =
-                prompt(
-                    "Enter your Owner password:"
-                );
-
-
-            const login =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email.trim(),
-                    password
-                );
-
-
-            const user =
-                login.user;
-
-
-            result.innerHTML =
-                "Authentication successful.<br><br>" +
-                "UID:<br>" +
-                user.uid +
-                "<br><br>" +
-                "Testing Firestore...";
-
-
-            const ref =
-                doc(
-                    db,
-                    "users",
-                    user.uid
-                );
-
-
-            const snapshot =
-                await getDocFromServer(
-                    ref
-                );
-
-
-            if (
-                snapshot.exists()
-            ) {
-
-
-                const data =
-                    snapshot.data();
-
-
-                result.className =
-                    "result success";
-
-
-                result.innerHTML =
-                    "<strong>🎉 SUCCESS!</strong><br><br>" +
-
-                    "Document found.<br><br>" +
-
-                    "<strong>UID:</strong><br>" +
-                    user.uid +
-
-                    "<br><br>" +
-
-                    "<strong>Name:</strong><br>" +
-                    (data.name || "") +
-
-                    "<br><br>" +
-
-                    "<strong>Email:</strong><br>" +
-                    (data.email || "") +
-
-                    "<br><br>" +
-
-                    "<strong>Role:</strong><br>" +
-                    (data.role || "");
-
-
-            }
-
-            else {
-
-
-                result.className =
-                    "result error";
-
-
-                result.innerHTML =
-                    "<strong>DOCUMENT NOT FOUND</strong><br><br>" +
-
-                    "Path tested:<br>" +
-
-                    "users/" +
-                    user.uid;
-
-            }
-
-
-        }
-
-        catch (error) {
-
-
-            console.error(
-                error
+        const login =
+            await signInWithEmailAndPassword(
+                auth,
+                email.trim(),
+                password
             );
 
 
-            result.className =
-                "result error";
+        const uid =
+            login.user.uid;
 
+
+        result.innerHTML =
+            "Authentication successful.<br><br>" +
+            "UID:<br>" +
+            uid +
+            "<br><br>Checking database (default)...";
+
+
+        const reference =
+            doc(
+                db,
+                "users",
+                uid
+            );
+
+
+        const snapshot =
+            await getDocFromServer(
+                reference
+            );
+
+
+        if (!snapshot.exists()) {
 
             result.innerHTML =
-                "<strong>ERROR</strong><br><br>" +
+                "<strong>DOCUMENT NOT FOUND</strong><br><br>" +
+                "Database: (default)<br>" +
+                "Collection: users<br>" +
+                "Document ID:<br>" +
+                uid;
 
-                error.code +
-                "<br><br>" +
-
-                error.message;
-
+            return;
         }
 
 
-        button.disabled =
-            false;
+        const data =
+            snapshot.data();
+
+
+        result.innerHTML =
+            "<strong>🎉 SUCCESS!</strong><br><br>" +
+            "Document found.<br><br>" +
+            "Name: " +
+            (data.name || "") +
+            "<br>" +
+            "Email: " +
+            (data.email || "") +
+            "<br>" +
+            "Role: " +
+            (data.role || "");
+
 
     }
-);
+
+    catch (error) {
+
+        result.innerHTML =
+            "<strong>ERROR</strong><br><br>" +
+            error.code +
+            "<br><br>" +
+            error.message;
+
+        console.error(error);
+
+    }
+
+});
 
 </script>
 
