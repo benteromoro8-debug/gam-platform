@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>GAM | Administration</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: #063b75;
+            color: white;
+            padding: 13px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            background: #ffd21f;
+            color: #063b75;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .brand h2 {
+            font-size: 18px;
+        }
+
+        .brand p {
+            font-size: 10px;
+            opacity: .85;
+        }
+
+        .logout {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .welcome {
+            background: linear-gradient(
+                135deg,
+                #063b75,
+                #0b5ca8
+            );
+
+            color: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #dbeaff;
+            font-size: 14px;
+        }
+
+        .owner-badge {
+            display: inline-block;
+            background: #ffd21f;
+            color: #063b75;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 23px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.07);
+            border-top: 4px solid #ffd21f;
+        }
+
+        .icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: #063b75;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #687386;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .card button {
+            background: #063b75;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .card button:hover {
+            background: #0b5ca8;
+        }
+
+        .account {
+            background: white;
+            margin-top: 25px;
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.07);
+        }
+
+        .account h3 {
+            color: #063b75;
+            margin-bottom: 12px;
+        }
+
+        .account p {
+            color: #687386;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .account strong {
+            color: #26364a;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 80px 20px;
+            color: #063b75;
+            font-weight: bold;
+        }
+
+        #denied {
+            display: none;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        #denied h1 {
+            color: #a40000;
+            margin-bottom: 10px;
+        }
+
+        #denied p {
+            color: #687386;
+            margin-bottom: 20px;
+        }
+
+        #denied a {
+            display: inline-block;
+            background: #063b75;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: 45px;
+            background: #03284f;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+        }
+
+        footer p {
+            color: #b9c9dc;
+            margin-top: 6px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div id="loading">
+    Verifying administrator access...
+</div>
+
+
+<div id="denied">
+
+    <h1>
+        Access Denied
+    </h1>
+
+    <p>
+        This area is restricted to GAM administrators.
+    </p>
+
+    <a href="login.html">
+        Return to Login
+    </a>
+
+</div>
+
+
+<div id="app" style="display:none;">
+
+
+    <nav>
+
+        <div class="brand">
+
+            <div class="logo">
+                GAM
+            </div>
+
+            <div>
+
+                <h2>
+                    GAM
+                </h2>
+
+                <p>
+                    Global Academy of Minds
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="logoutBtn"
+            class="logout">
+
+            Logout
+
+        </button>
+
+    </nav>
+
+
+
+    <main class="container">
+
+
+        <section class="welcome">
+
+            <h1>
+                Welcome, <span id="ownerName">Owner</span> 👑
+            </h1>
+
+            <p>
+                GAM Administration Centre
+            </p>
+
+            <span class="owner-badge">
+                FULL OWNER ACCESS
+            </span>
+
+        </section>
+
+
+
+        <section class="grid">
+
+
+            <div class="card">
+
+                <div class="icon">
+                    👥
+                </div>
+
+                <h3>
+                    Administrators
+                </h3>
+
+                <p>
+                    Add administrators and assign specific permissions.
+                </p>
+
+                <button>
+                    Manage Admins
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    📝
+                </div>
+
+                <h3>
+                    Contests
+                </h3>
+
+                <p>
+                    Create, edit and publish GAM competitions.
+                </p>
+
+                <button>
+                    Manage Contests
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    👁️
+                </div>
+
+                <h3>
+                    Live Monitoring
+                </h3>
+
+                <p>
+                    Monitor contestants during active competitions.
+                </p>
+
+                <button>
+                    Open Monitoring
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    📊
+                </div>
+
+                <h3>
+                    Results
+                </h3>
+
+                <p>
+                    View scores, rankings and contest analytics.
+                </p>
+
+                <button>
+                    View Results
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🏆
+                </div>
+
+                <h3>
+                    Certificates
+                </h3>
+
+                <p>
+                    Manage certificates issued to contestants.
+                </p>
+
+                <button>
+                    Manage Certificates
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    Platform Settings
+                </h3>
+
+                <p>
+                    Manage GAM platform configuration.
+                </p>
+
+                <button>
+                    Settings
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+
+        <section class="account">
+
+            <h3>
+                Owner Account
+            </h3>
+
+            <p>
+                <strong>Name:</strong>
+                <span id="accountName">
+                    Loading...
+                </span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <span id="accountEmail">
+                    Loading...
+                </span>
+            </p>
+
+            <p>
+                <strong>Role:</strong>
+                <span>
+                    Owner
+                </span>
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+
+        <strong>
+            GAM — Global Academy of Minds
+        </strong>
+
+        <p>
+            Learn • Compete • Excel
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+
+<script type="module">
+
+
+    import {
+        initializeApp
+    }
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signOut
+    }
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+    import {
+        getFirestore,
+        doc,
+        getDoc
+    }
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+
+        apiKey:
+            "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+        authDomain:
+            "gam-platform-59f1c.firebaseapp.com",
+
+        projectId:
+            "gam-platform-59f1c",
+
+        storageBucket:
+            "gam-platform-59f1c.firebasestorage.app",
+
+        messagingSenderId:
+            "423635446027",
+
+        appId:
+            "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+    };
+
+
+    const app =
+        initializeApp(firebaseConfig);
+
+
+    const auth =
+        getAuth(app);
+
+
+    const db =
+        getFirestore(app);
+
+
+    const loading =
+        document.getElementById("loading");
+
+
+    const appPage =
+        document.getElementById("app");
+
+
+    const denied =
+        document.getElementById("denied");
+
+
+    const ownerName =
+        document.getElementById("ownerName");
+
+
+    const accountName =
+        document.getElementById("accountName");
+
+
+    const accountEmail =
+        document.getElementById("accountEmail");
+
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+
+    onAuthStateChanged(
+        auth,
+        async function(user) {
+
+
+            if (!user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            try {
+
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const userSnapshot =
+                    await getDoc(userRef);
+
+
+                if (
+                    !userSnapshot.exists()
+                ) {
+
+                    loading.style.display =
+                        "none";
+
+                    denied.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                const userData =
+                    userSnapshot.data();
+
+
+                if (
+                    userData.role !== "owner"
+                ) {
+
+                    loading.style.display =
+                        "none";
+
+                    denied.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                const name =
+                    userData.name ||
+                    user.displayName ||
+                    "Owner";
+
+
+                ownerName.textContent =
+                    name;
+
+
+                accountName.textContent =
+                    name;
+
+
+                accountEmail.textContent =
+                    userData.email ||
+                    user.email ||
+                    "Not available";
+
+
+                loading.style.display =
+                    "none";
+
+
+                appPage.style.display =
+                    "block";
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Admin verification error:",
+                    error
+                );
+
+
+                loading.textContent =
+                    "Unable to verify administrator access.";
+
+            }
+
+        }
+    );
+
+
+    logoutBtn.addEventListener(
+        "click",
+        async function() {
+
+
+            await signOut(auth);
+
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+  </html>
