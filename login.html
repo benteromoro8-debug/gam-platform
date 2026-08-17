@@ -1,735 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>GAM | Login</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <title>GAM | Login</title>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    min-height: 100vh;
+}
 
-    <style>
+nav {
+    background: #063b75;
+    color: white;
+    padding: 14px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f8fc;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+.logo {
+    width: 44px;
+    height: 44px;
+    background: #ffd21f;
+    color: #063b75;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
 
-        nav {
-            background: #063b75;
-            color: white;
-            padding: 14px 6%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+.brand h2 {
+    font-size: 18px;
+}
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.brand p {
+    font-size: 10px;
+}
 
-        .logo {
-            width: 44px;
-            height: 44px;
-            background: #ffd21f;
-            color: #063b75;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
+.home {
+    color: white;
+    text-decoration: none;
+}
 
-        .brand h2 {
-            font-size: 18px;
-        }
+.container {
+    max-width: 450px;
+    margin: 55px auto;
+    padding: 20px;
+}
 
-        .brand p {
-            font-size: 10px;
-            opacity: .85;
-        }
+.card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
 
-        .home-link {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
+h1 {
+    color: #063b75;
+    text-align: center;
+    margin-bottom: 8px;
+}
 
-        .container {
-            width: 100%;
-            max-width: 450px;
-            margin: 55px auto;
-            padding: 0 20px;
-            flex: 1;
-        }
+.subtitle {
+    text-align: center;
+    color: #687386;
+    margin-bottom: 25px;
+}
 
-        .login-card {
-            background: white;
-            padding: 34px 27px;
-            border-radius: 16px;
-            box-shadow: 0 6px 25px rgba(0,0,0,.08);
-        }
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
 
-        .login-card h1 {
-            color: #063b75;
-            text-align: center;
-            margin-bottom: 8px;
-        }
+input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 17px;
+    border: 1px solid #ccd5e0;
+    border-radius: 8px;
+    font-size: 15px;
+}
 
-        .subtitle {
-            text-align: center;
-            color: #687386;
-            font-size: 14px;
-            margin-bottom: 26px;
-        }
+button {
+    width: 100%;
+    padding: 14px;
+    background: #ffd21f;
+    color: #063b75;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+}
 
-        label {
-            display: block;
-            color: #26364a;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 7px;
-        }
+#message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 7px;
+    display: none;
+}
 
-        input {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #ccd5e0;
-            border-radius: 8px;
-            font-size: 15px;
-            margin-bottom: 17px;
-            outline: none;
-        }
+.error {
+    display: block !important;
+    background: #ffe8e8;
+    color: #a40000;
+}
 
-        input:focus {
-            border-color: #063b75;
-        }
+.success {
+    display: block !important;
+    background: #e6f7ed;
+    color: #087333;
+}
 
-        .login-btn {
-            width: 100%;
-            border: none;
-            background: #ffd21f;
-            color: #063b75;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .login-btn:disabled {
-            opacity: .6;
-        }
-
-        .forgot {
-            display: block;
-            text-align: right;
-            margin-top: -8px;
-            margin-bottom: 20px;
-            color: #063b75;
-            font-size: 13px;
-            text-decoration: none;
-        }
-
-        .message {
-            display: none;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 17px;
-            font-size: 14px;
-        }
-
-        .error {
-            display: block;
-            background: #ffe8e8;
-            color: #a40000;
-        }
-
-        .success {
-            display: block;
-            background: #e6f7ed;
-            color: #087333;
-        }
-
-        .register-text {
-            text-align: center;
-            margin-top: 21px;
-            color: #687386;
-            font-size: 14px;
-        }
-
-        .register-text a {
-            color: #063b75;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        footer {
-            background: #03284f;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            font-size: 13px;
-        }
-
-        footer p {
-            color: #b9c9dc;
-            margin-top: 6px;
-        }
-
-    </style>
-
+footer {
+    background: #03284f;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+}
+</style>
 </head>
 
-
 <body>
-
 
 <nav>
 
     <div class="brand">
 
-        <div class="logo">
-            GAM
-        </div>
+        <div class="logo">GAM</div>
 
         <div>
-
-            <h2>
-                GAM
-            </h2>
-
-            <p>
-                Global Academy of Minds
-            </p>
-
+            <h2>GAM</h2>
+            <p>Global Academy of Minds</p>
         </div>
 
     </div>
 
-
-    <a
-        href="index.html"
-        class="home-link">
-
+    <a class="home" href="index.html">
         Home
-
     </a>
 
 </nav>
 
 
-
 <div class="container">
 
+<div class="card">
 
-    <div class="login-card">
+<h1>Welcome Back</h1>
 
+<p class="subtitle">
+Login to your GAM account
+</p>
 
-        <h1>
-            Welcome Back
-        </h1>
-
-
-        <p class="subtitle">
-            Login to your GAM account
-        </p>
+<div id="message"></div>
 
 
-        <div
-            id="message"
-            class="message">
-        </div>
+<form id="loginForm">
+
+<label>Email Address</label>
+
+<input
+    id="email"
+    type="email"
+    required
+    autocomplete="email"
+>
 
 
-        <form id="loginForm">
+<label>Password</label>
+
+<input
+    id="password"
+    type="password"
+    required
+    autocomplete="current-password"
+>
 
 
-            <label for="email">
-                Email Address
-            </label>
+<button id="loginButton" type="submit">
+Login
+</button>
 
+</form>
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                autocomplete="email"
-                required
-            >
-
-
-            <label for="password">
-                Password
-            </label>
-
-
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                autocomplete="current-password"
-                required
-            >
-
-
-            <a
-                href="#"
-                id="forgotPassword"
-                class="forgot">
-
-                Forgot password?
-
-            </a>
-
-
-            <button
-                type="submit"
-                id="loginBtn"
-                class="login-btn">
-
-                Login
-
-            </button>
-
-
-        </form>
-
-
-        <div class="register-text">
-
-            Don't have a GAM account?
-
-            <a href="register.html">
-                Create one
-            </a>
-
-        </div>
-
-
-    </div>
-
+</div>
 
 </div>
 
 
-
 <footer>
 
-    <strong>
-        GAM — Global Academy of Minds
-    </strong>
+<strong>
+GAM — Global Academy of Minds
+</strong>
 
-    <p>
-        Learn • Compete • Excel
-    </p>
+<p>
+Learn • Compete • Excel
+</p>
 
 </footer>
 
 
-
 <script type="module">
 
-
-    import {
-        initializeApp
-    }
-
-    from
-    "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
-    import {
-        getAuth,
-        signInWithEmailAndPassword,
-        sendPasswordResetEmail
-    }
-
-    from
-    "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-    import {
-        getFirestore,
-        doc,
-        getDoc
-    }
-
-    from
-    "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import {
+    getFirestore,
+    doc,
+    getDoc
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
+const firebaseConfig = {
 
-    /* FIREBASE CONFIG */
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
 
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
 
-    const firebaseConfig = {
+    projectId:
+        "gam-platform-59f1c",
 
-        apiKey:
-            "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
 
-        authDomain:
-            "gam-platform-59f1c.firebaseapp.com",
+    messagingSenderId:
+        "423635446027",
 
-        projectId:
-            "gam-platform-59f1c",
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
 
-        storageBucket:
-            "gam-platform-59f1c.firebasestorage.app",
-
-        messagingSenderId:
-            "423635446027",
-
-        appId:
-            "1:423635446027:web:7b42cd097b928ed7671a0e"
-
-    };
+};
 
 
-
-    const app =
-        initializeApp(firebaseConfig);
-
-
-    const auth =
-        getAuth(app);
+const app =
+    initializeApp(firebaseConfig);
 
 
-    const db =
-        getFirestore(app);
+const auth =
+    getAuth(app);
 
 
-
-    /* ELEMENTS */
-
-
-    const form =
-        document.getElementById("loginForm");
+const db =
+    getFirestore(app);
 
 
-    const email =
-        document.getElementById("email");
+const form =
+    document.getElementById("loginForm");
 
 
-    const password =
-        document.getElementById("password");
+const emailInput =
+    document.getElementById("email");
 
 
-    const loginBtn =
-        document.getElementById("loginBtn");
+const passwordInput =
+    document.getElementById("password");
 
 
-    const message =
-        document.getElementById("message");
+const button =
+    document.getElementById("loginButton");
 
 
-    const forgotPassword =
-        document.getElementById("forgotPassword");
+const message =
+    document.getElementById("message");
 
 
+function showMessage(text, type) {
 
-    function showMessage(
-        text,
-        type
-    ) {
+    message.textContent = text;
 
-        message.textContent =
-            text;
+    message.className = type;
 
-        message.className =
-            "message " + type;
-
-    }
+}
 
 
+form.addEventListener(
+    "submit",
+    async function(event) {
 
-    /* LOGIN */
+        event.preventDefault();
 
+        button.disabled = true;
 
-    form.addEventListener(
-        "submit",
-        async function(event) {
-
-
-            event.preventDefault();
-
-
-            const userEmail =
-                email.value.trim();
+        button.textContent =
+            "Checking...";
 
 
-            const userPassword =
-                password.value;
+        try {
+
+            const result =
+                await signInWithEmailAndPassword(
+                    auth,
+                    emailInput.value.trim(),
+                    passwordInput.value
+                );
 
 
-            if (
-                !userEmail ||
-                !userPassword
-            ) {
+            const user =
+                result.user;
+
+
+            showMessage(
+                "Login successful. Checking account role...",
+                "success"
+            );
+
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const snapshot =
+                await getDoc(userRef);
+
+
+            if (!snapshot.exists()) {
 
                 showMessage(
-                    "Please enter your email and password.",
+                    "Your Firebase account is valid, but your GAM profile was not found.",
                     "error"
                 );
+
+                button.disabled = false;
+
+                button.textContent =
+                    "Login";
 
                 return;
 
             }
 
 
-            loginBtn.disabled =
-                true;
+            const data =
+                snapshot.data();
 
 
-            loginBtn.textContent =
-                "Logging in...";
+            const role =
+                data.role;
 
 
-            try {
-
-
-                /* FIREBASE LOGIN */
-
-
-                const result =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        userEmail,
-                        userPassword
-                    );
-
-
-                const user =
-                    result.user;
-
-
-
-                /* GET USER PROFILE */
-
-
-                const userRef =
-                    doc(
-                        db,
-                        "users",
-                        user.uid
-                    );
-
-
-                const userSnapshot =
-                    await getDoc(
-                        userRef
-                    );
-
-
-
-                let role =
-                    "student";
-
-
-                if (
-                    userSnapshot.exists()
-                ) {
-
-                    const userData =
-                        userSnapshot.data();
-
-
-                    role =
-                        userData.role ||
-                        "student";
-
-                }
-
-
+            if (role === "owner") {
 
                 showMessage(
-                    "Login successful! Opening your account...",
+                    "Owner account confirmed. Opening Admin Dashboard...",
                     "success"
                 );
-
-
-
-                /* SEND USER TO CORRECT AREA */
 
 
                 setTimeout(
-                    function() {
+                    () => {
 
-
-                        if (
-                            role === "owner" ||
-                            role === "admin"
-                        ) {
-
-                            window.location.href =
-                                "admin.html";
-
-                        }
-
-                        else {
-
-                            window.location.href =
-                                "dashboard.html";
-
-                        }
-
+                        window.location.href =
+                            "admin.html";
 
                     },
-                    700
+                    800
                 );
 
-
-            }
-
-            catch (error) {
-
-
-                console.error(
-                    "Login error:",
-                    error
-                );
-
-
-                let errorMessage =
-                    "Login failed. Please try again.";
-
-
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
-
-                    errorMessage =
-                        "Incorrect email or password.";
-
-                }
-
-
-                else if (
-                    error.code ===
-                    "auth/invalid-email"
-                ) {
-
-                    errorMessage =
-                        "Please enter a valid email address.";
-
-                }
-
-
-                else if (
-                    error.code ===
-                    "auth/too-many-requests"
-                ) {
-
-                    errorMessage =
-                        "Too many attempts. Please try again later.";
-
-                }
-
-
-                showMessage(
-                    errorMessage,
-                    "error"
-                );
-
-
-                loginBtn.disabled =
-                    false;
-
-
-                loginBtn.textContent =
-                    "Login";
-
-            }
-
-        }
-    );
-
-
-
-    /* PASSWORD RESET */
-
-
-    forgotPassword.addEventListener(
-        "click",
-        async function(event) {
-
-
-            event.preventDefault();
-
-
-            const userEmail =
-                email.value.trim();
-
-
-            if (!userEmail) {
-
-                showMessage(
-                    "Enter your email address first.",
-                    "error"
-                );
-
-                email.focus();
 
                 return;
 
             }
 
 
-            try {
-
-
-                await sendPasswordResetEmail(
-                    auth,
-                    userEmail
-                );
-
+            if (role === "admin") {
 
                 showMessage(
-                    "Password reset email sent. Check your inbox.",
+                    "Administrator account confirmed. Opening Admin Dashboard...",
                     "success"
                 );
 
 
-            }
+                setTimeout(
+                    () => {
 
-            catch (error) {
+                        window.location.href =
+                            "admin.html";
 
-
-                console.error(
-                    error
+                    },
+                    800
                 );
 
+
+                return;
+
+            }
+
+
+            if (role === "student") {
 
                 showMessage(
-                    "Could not send the reset email. Check the email address.",
-                    "error"
+                    "Student account confirmed. Opening Student Dashboard...",
+                    "success"
                 );
+
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "dashboard.html";
+
+                    },
+                    800
+                );
+
+
+                return;
 
             }
 
-        }
-    );
 
+            showMessage(
+                "Your account has an unknown role: " + role,
+                "error"
+            );
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "Login";
+
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+
+            showMessage(
+                "Firebase error: " +
+                error.code +
+                " — " +
+                error.message,
+                "error"
+            );
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "Login";
+
+        }
+
+    }
+);
 
 </script>
 
-
 </body>
-
-    </html>
+</html>
