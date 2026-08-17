@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>GAM | Login</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -110,6 +115,10 @@ button {
     font-size: 16px;
 }
 
+button:disabled {
+    opacity: .6;
+}
+
 #message {
     margin-bottom: 15px;
     padding: 10px;
@@ -136,75 +145,113 @@ footer {
     padding: 25px;
     margin-top: 40px;
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <nav>
 
-    <div class="brand">
+<div class="brand">
 
-        <div class="logo">GAM</div>
+<div class="logo">
+GAM
+</div>
 
-        <div>
-            <h2>GAM</h2>
-            <p>Global Academy of Minds</p>
-        </div>
+<div>
 
-    </div>
+<h2>
+GAM
+</h2>
 
-    <a class="home" href="index.html">
-        Home
-    </a>
+<p>
+Global Academy of Minds
+</p>
+
+</div>
+
+</div>
+
+
+<a
+class="home"
+href="index.html">
+
+Home
+
+</a>
 
 </nav>
+
 
 
 <div class="container">
 
 <div class="card">
 
-<h1>Welcome Back</h1>
+
+<h1>
+Welcome Back
+</h1>
+
 
 <p class="subtitle">
 Login to your GAM account
 </p>
+
 
 <div id="message"></div>
 
 
 <form id="loginForm">
 
-<label>Email Address</label>
+
+<label>
+Email Address
+</label>
+
 
 <input
-    id="email"
-    type="email"
-    required
-    autocomplete="email"
+id="email"
+type="email"
+required
+autocomplete="email"
 >
 
 
-<label>Password</label>
+<label>
+Password
+</label>
+
 
 <input
-    id="password"
-    type="password"
-    required
-    autocomplete="current-password"
+id="password"
+type="password"
+required
+autocomplete="current-password"
 >
 
 
-<button id="loginButton" type="submit">
+<button
+id="loginButton"
+type="submit">
+
 Login
+
 </button>
+
 
 </form>
 
+
 </div>
 
 </div>
+
 
 
 <footer>
@@ -220,18 +267,24 @@ Learn • Compete • Excel
 </footer>
 
 
+
 <script type="module">
+
 
 import {
     initializeApp
-} from
+}
+
+from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
 import {
     getAuth,
     signInWithEmailAndPassword
-} from
+}
+
+from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
@@ -239,8 +292,14 @@ import {
     getFirestore,
     doc,
     getDoc
-} from
+}
+
+from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+
+/* FIREBASE CONFIG */
 
 
 const firebaseConfig = {
@@ -266,6 +325,7 @@ const firebaseConfig = {
 };
 
 
+
 const app =
     initializeApp(firebaseConfig);
 
@@ -278,48 +338,79 @@ const db =
     getFirestore(app);
 
 
+
+/* ELEMENTS */
+
+
 const form =
-    document.getElementById("loginForm");
+    document.getElementById(
+        "loginForm"
+    );
 
 
 const emailInput =
-    document.getElementById("email");
+    document.getElementById(
+        "email"
+    );
 
 
 const passwordInput =
-    document.getElementById("password");
+    document.getElementById(
+        "password"
+    );
 
 
 const button =
-    document.getElementById("loginButton");
+    document.getElementById(
+        "loginButton"
+    );
 
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
 
-function showMessage(text, type) {
 
-    message.textContent = text;
+function showMessage(
+    text,
+    type
+) {
 
-    message.className = type;
+    message.textContent =
+        text;
+
+    message.className =
+        type;
 
 }
+
+
+
+/* LOGIN */
 
 
 form.addEventListener(
     "submit",
     async function(event) {
 
+
         event.preventDefault();
 
-        button.disabled = true;
+
+        button.disabled =
+            true;
+
 
         button.textContent =
             "Checking...";
 
 
         try {
+
+
+            /* SIGN IN */
 
             const result =
                 await signInWithEmailAndPassword(
@@ -333,10 +424,12 @@ form.addEventListener(
                 result.user;
 
 
-            showMessage(
-                "Login successful. Checking account role...",
-                "success"
-            );
+            /*
+             * TEMPORARY DIAGNOSTIC
+             *
+             * This shows the exact UID
+             * Firebase gives the website.
+             */
 
 
             const userRef =
@@ -348,20 +441,28 @@ form.addEventListener(
 
 
             const snapshot =
-                await getDoc(userRef);
+                await getDoc(
+                    userRef
+                );
 
 
             if (!snapshot.exists()) {
 
+
                 showMessage(
-                    "Your Firebase account is valid, but your GAM profile was not found.",
+                    "PROFILE NOT FOUND. Website UID: " +
+                    user.uid,
                     "error"
                 );
 
-                button.disabled = false;
+
+                button.disabled =
+                    false;
+
 
                 button.textContent =
                     "Login";
+
 
                 return;
 
@@ -378,14 +479,15 @@ form.addEventListener(
 
             if (role === "owner") {
 
+
                 showMessage(
-                    "Owner account confirmed. Opening Admin Dashboard...",
+                    "OWNER CONFIRMED. Opening Admin Dashboard...",
                     "success"
                 );
 
 
                 setTimeout(
-                    () => {
+                    function() {
 
                         window.location.href =
                             "admin.html";
@@ -402,14 +504,15 @@ form.addEventListener(
 
             if (role === "admin") {
 
+
                 showMessage(
-                    "Administrator account confirmed. Opening Admin Dashboard...",
+                    "ADMIN CONFIRMED. Opening Admin Dashboard...",
                     "success"
                 );
 
 
                 setTimeout(
-                    () => {
+                    function() {
 
                         window.location.href =
                             "admin.html";
@@ -426,14 +529,15 @@ form.addEventListener(
 
             if (role === "student") {
 
+
                 showMessage(
-                    "Student account confirmed. Opening Student Dashboard...",
+                    "STUDENT ACCOUNT. Opening Student Dashboard...",
                     "success"
                 );
 
 
                 setTimeout(
-                    () => {
+                    function() {
 
                         window.location.href =
                             "dashboard.html";
@@ -449,12 +553,15 @@ form.addEventListener(
 
 
             showMessage(
-                "Your account has an unknown role: " + role,
+                "Unknown account role: " +
+                role,
                 "error"
             );
 
 
-            button.disabled = false;
+            button.disabled =
+                false;
+
 
             button.textContent =
                 "Login";
@@ -464,7 +571,10 @@ form.addEventListener(
 
         catch (error) {
 
-            console.error(error);
+
+            console.error(
+                error
+            );
 
 
             showMessage(
@@ -476,7 +586,9 @@ form.addEventListener(
             );
 
 
-            button.disabled = false;
+            button.disabled =
+                false;
+
 
             button.textContent =
                 "Login";
@@ -486,7 +598,10 @@ form.addEventListener(
     }
 );
 
+
 </script>
 
+
 </body>
+
 </html>
