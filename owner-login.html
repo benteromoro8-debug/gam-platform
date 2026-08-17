@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAM Owner Test</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    padding: 25px;
+}
+
+.box {
+    max-width: 500px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
+}
+
+h1 {
+    color: #063b75;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0 15px;
+    border: 1px solid #ccd5e0;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    background: #ffd21f;
+    color: #063b75;
+    border: 0;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f4f8;
+    border-radius: 8px;
+    word-break: break-all;
+    line-height: 1.7;
+}
+
+.error {
+    color: #a40000;
+}
+
+.success {
+    color: #087333;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>GAM Owner Test</h1>
+
+<label>Email</label>
+
+<input
+    id="email"
+    type="email"
+    placeholder="Owner email"
+>
+
+<label>Password</label>
+
+<input
+    id="password"
+    type="password"
+    placeholder="Owner password"
+>
+
+<button id="loginBtn">
+Test Owner Account
+</button>
+
+<div id="result" class="result">
+Waiting for test...
+</div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    signInWithEmailAndPassword
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDocFromServer
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+const email =
+    document.getElementById("email");
+
+const password =
+    document.getElementById("password");
+
+const button =
+    document.getElementById("loginBtn");
+
+const result =
+    document.getElementById("result");
+
+
+button.addEventListener(
+    "click",
+    async function() {
+
+        button.disabled = true;
+
+        button.textContent =
+            "Checking...";
+
+        result.className =
+            "result";
+
+        result.textContent =
+            "Signing in...";
+
+
+        try {
+
+            const login =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email.value.trim(),
+                    password.value
+                );
+
+
+            const user =
+                login.user;
+
+
+            result.innerHTML =
+                "<strong>Firebase Authentication:</strong> SUCCESS<br>" +
+                "<strong>Website UID:</strong> " +
+                user.uid +
+                "<br><strong>Email:</strong> " +
+                user.email +
+                "<br><br>Reading Firestore...";
+
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const snapshot =
+                await getDocFromServer(
+                    userRef
+                );
+
+
+            if (!snapshot.exists()) {
+
+                result.className =
+                    "result error";
+
+                result.innerHTML =
+                    "<strong>Firestore document:</strong> NOT FOUND<br><br>" +
+                    "<strong>Website UID:</strong><br>" +
+                    user.uid +
+                    "<br><br>" +
+                    "Firestore cannot find a document at:<br>" +
+                    "users/" +
+                    user.uid;
+
+                return;
+            }
+
+
+            const data =
+                snapshot.data();
+
+
+            result.className =
+                "result success";
+
+            result.innerHTML =
+                "<strong>🎉 FIRESTORE DOCUMENT FOUND!</strong><br><br>" +
+                "<strong>UID:</strong> " +
+                user.uid +
+                "<br>" +
+                "<strong>Name:</strong> " +
+                (data.name || "Not found") +
+                "<br>" +
+                "<strong>Email:</strong> " +
+                (data.email || "Not found") +
+                "<br>" +
+                "<strong>Role:</strong> " +
+                (data.role || "Not found");
+
+
+        }
+
+        catch (error) {
+
+            result.className =
+                "result error";
+
+            result.innerHTML =
+                "<strong>ERROR</strong><br><br>" +
+                error.code +
+                "<br>" +
+                error.message;
+
+            console.error(error);
+
+        }
+
+        finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Test Owner Account";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
