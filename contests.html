@@ -212,6 +212,13 @@ textarea {
     color: #a40000;
 }
 
+.loading {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+}
+
 footer {
     margin-top: 50px;
     background: #03284f;
@@ -366,7 +373,6 @@ min="1"
 
 </div>
 
-
 </div>
 
 
@@ -428,10 +434,8 @@ Your Contests
 id="contestList"
 class="contest-list">
 
-<div class="empty">
-
-No contests created yet.
-
+<div class="loading">
+Loading contests...
 </div>
 
 </div>
@@ -470,6 +474,18 @@ import {
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
 const firebaseConfig = {
 
     apiKey:
@@ -503,6 +519,10 @@ const auth =
     getAuth(app);
 
 
+const db =
+    getFirestore(app);
+
+
 const OWNER_UID =
     "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
 
@@ -525,9 +545,15 @@ const message =
     );
 
 
+let currentUser = null;
+
+
+
+/* AUTHENTICATION */
+
 onAuthStateChanged(
     auth,
-    function(user) {
+    async function(user) {
 
         if (!user) {
 
@@ -552,10 +578,17 @@ onAuthStateChanged(
 
         }
 
+
+        currentUser = user;
+
+        await loadContests();
+
     }
 );
 
 
+
+/* OPEN FORM */
 
 document
 .getElementById("showForm")
@@ -576,6 +609,8 @@ document
 
 
 
+/* CLOSE FORM */
+
 document
 .getElementById("cancelForm")
 .addEventListener(
@@ -590,11 +625,13 @@ document
 
 
 
+/* SAVE CONTEST */
+
 document
 .getElementById("saveContest")
 .addEventListener(
     "click",
-    function() {
+    async function() {
 
         const name =
             document
@@ -619,9 +656,11 @@ document
             .value;
 
         const duration =
-            document
-            .getElementById("duration")
-            .value;
+            Number(
+                document
+                .getElementById("duration")
+                .value
+            );
 
         const status =
             document
@@ -632,39 +671,393 @@ document
         if (
             !name ||
             !startDate ||
-            !startTime
+            !startTime ||
+            !duration
         ) {
 
-            message.className =
-                "message error";
-
-            message.textContent =
-                "Please enter the contest name, date and time.";
+            showMessage(
+                "Please complete the contest name, date, time and duration.",
+                "error"
+            );
 
             return;
 
         }
 
 
-        /*
-         * TEMPORARY STAGE
-         *
-         * We are validating the contest
-         * information first.
-         *
-         * Firestore saving will be connected
-         * after we confirm the interface works.
-         */
+        if (!currentUser) {
+
+            showMessage(
+                "Owner authentication is not ready. Please refresh the page.",
+                "error"
+            );
+
+            return;
+
+        }
 
 
-        message.className =
-            "message success";
+        try {
 
-        message.textContent =
-            "Contest information is ready. Firestore saving will be connected next.";
+            document
+            .getElementById("saveContest")
+            .disabled = true;
+
+
+            const contestData = {
+
+                name:
+                    name,
+
+                description:
+                    description,
+
+                startDate:
+                    startDate,
+
+                startTime:
+                    startTime,
+
+                duration:
+                    duration,
+
+                status:
+                    status,
+
+                createdBy:
+                    currentUser.uid,
+
+                createdByEmail:
+                    currentUser.email,
+
+                createdAt:
+                    serverTimestamp()
+
+            };
+
+
+            const contestRef =
+                await addDoc(
+                    collection(
+                        db,
+                        "contests"
+                    ),
+                    contestData
+                );
+
+
+            showMessage(
+                "✓ Contest saved successfully. ID: " +
+                contestRef.id,
+                "success"
+            );
+
+
+            document
+            .getElementById("contestName")
+            .value = "";
+
+            document
+            .getElementById("contestDescription")
+            .value = "";
+
+            document
+            .getElementById("startDate")
+            .value = "";
+
+            document
+            .getElementById("startTime")
+            .value = "";
+
+            document
+            .getElementById("duration")
+            .value = "120";
+
+            document
+            .getElementById("contestStatus")
+            .value = "draft";
+
+
+            await loadContests();
+
+        }
+
+        catch(error) {
+
+            console.error(
+                error
+            );
+
+            showMessage(
+                "Could not save contest: " +
+                error.message,
+                "error"
+            );
+
+        }
+
+        finally {
+
+            document
+            .getElementById("saveContest")
+            .disabled = false;
+
+        }
 
     }
 );
+
+
+
+/* LOAD CONTESTS */
+
+async function loadContests() {
+
+    try {
+
+        list.innerHTML =
+            '<div class="loading">Loading contests...</div>';
+
+
+        const contestsRef =
+            collection(
+                db,
+                "contests"
+            );
+
+
+        const snapshot =
+            await getDocs(
+                contestsRef
+            );
+
+
+        if (
+            snapshot.empty
+        ) {
+
+            list.innerHTML =
+                '<div class="empty">' +
+                'No contests created yet.' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        snapshot.forEach(
+            function(doc) {
+
+                const contest =
+                    doc.data();
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "contest";
+
+
+                card.innerHTML =
+
+                    "<h3>" +
+                    escapeHTML(
+                        contest.name ||
+                        "Unnamed Contest"
+                    ) +
+                    "</h3>" +
+
+                    "<span class='status'>" +
+                    escapeHTML(
+                        contest.status ||
+                        "draft"
+                    ) +
+                    "</span>" +
+
+                    "<p>" +
+                    escapeHTML(
+                        contest.description ||
+                        "No description."
+                    ) +
+                    "</p>" +
+
+                    "<p><strong>Date:</strong> " +
+                    escapeHTML(
+                        contest.startDate ||
+                        "-"
+                    ) +
+                    "</p>" +
+
+                    "<p><strong>Time:</strong> " +
+                    escapeHTML(
+                        contest.startTime ||
+                        "-"
+                    ) +
+                    "</p>" +
+
+                    "<p><strong>Duration:</strong> " +
+                    escapeHTML(
+                        String(
+                            contest.duration ||
+                            "-"
+                        )
+                    ) +
+                    " minutes</p>" +
+
+                    "<p><small>ID: " +
+                    escapeHTML(
+                        doc.id
+                    ) +
+                    "</small></p>" +
+
+                    "<div class='actions'>" +
+
+                    "<button class='button primary' " +
+                    "onclick=\"buildPaper('" +
+                    encodeURIComponent(
+                        doc.id
+                    ) +
+                    "')\">" +
+                    "Build Paper" +
+                    "</button>" +
+
+                    "<button class='button yellow' " +
+                    "onclick=\"previewContest('" +
+                    encodeURIComponent(
+                        doc.id
+                    ) +
+                    "')\">" +
+                    "Preview" +
+                    "</button>" +
+
+                    "</div>";
+
+
+                list.appendChild(
+                    card
+                );
+
+            }
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(
+            error
+        );
+
+        list.innerHTML =
+            '<div class="empty">' +
+            'Unable to load contests.<br><br>' +
+            escapeHTML(
+                error.message
+            ) +
+            '</div>';
+
+    }
+
+}
+
+
+
+/* MESSAGE */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.className =
+        "message " +
+        type;
+
+    message.textContent =
+        text;
+
+}
+
+
+
+/* SAFE HTML */
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+
+/* PAPER BUILDER - NEXT STAGE */
+
+window.buildPaper =
+    function(id) {
+
+        const contestId =
+            decodeURIComponent(
+                id
+            );
+
+        alert(
+            "Paper Builder for contest " +
+            contestId +
+            " will be connected next."
+        );
+
+    };
+
+
+
+/* PREVIEW - NEXT STAGE */
+
+window.previewContest =
+    function(id) {
+
+        const contestId =
+            decodeURIComponent(
+                id
+            );
+
+        alert(
+            "Contest Preview for " +
+            contestId +
+            " will be connected next."
+        );
+
+    };
 
 </script>
 
