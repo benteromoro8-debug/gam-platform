@@ -205,6 +205,18 @@ button.secondary {
     color: #087333;
 }
 
+.preview-box {
+    margin-top: 15px;
+    padding: 15px;
+    background: white;
+    border: 1px solid #dce2ea;
+    border-radius: 10px;
+}
+
+.preview-box strong {
+    color: #063b75;
+}
+
 footer {
     margin-top: 50px;
     background: #03284f;
@@ -469,8 +481,13 @@ Viewer
 
 
 <h3>
-Permissions
+Permissions Preview
 </h3>
+
+<p>
+The permissions below are automatically selected according to the administrator level.
+You can also change them manually.
+</p>
 
 
 <div class="permission-list">
@@ -479,6 +496,7 @@ Permissions
 <label class="permission">
 <input
 type="checkbox"
+id="permContests"
 value="contests"
 >
 Contests
@@ -488,6 +506,7 @@ Contests
 <label class="permission">
 <input
 type="checkbox"
+id="permUsers"
 value="users"
 >
 Users
@@ -497,6 +516,7 @@ Users
 <label class="permission">
 <input
 type="checkbox"
+id="permResults"
 value="results"
 >
 Results
@@ -506,6 +526,7 @@ Results
 <label class="permission">
 <input
 type="checkbox"
+id="permCertificates"
 value="certificates"
 >
 Certificates
@@ -515,6 +536,7 @@ Certificates
 <label class="permission">
 <input
 type="checkbox"
+id="permSecurity"
 value="security"
 >
 Security
@@ -524,11 +546,25 @@ Security
 <label class="permission">
 <input
 type="checkbox"
+id="permAnalytics"
 value="analytics"
 >
 Analytics
 </label>
 
+
+</div>
+
+
+<div
+class="preview-box"
+id="permissionSummary">
+
+<strong>
+Permissions:
+</strong>
+
+None selected.
 
 </div>
 
@@ -652,6 +688,164 @@ const adminMessage =
     );
 
 
+const adminLevel =
+    document.getElementById(
+        "adminLevel"
+    );
+
+
+const permissionSummary =
+    document.getElementById(
+        "permissionSummary"
+    );
+
+
+const permissionBoxes = {
+
+    contests:
+        document.getElementById(
+            "permContests"
+        ),
+
+    users:
+        document.getElementById(
+            "permUsers"
+        ),
+
+    results:
+        document.getElementById(
+            "permResults"
+        ),
+
+    certificates:
+        document.getElementById(
+            "permCertificates"
+        ),
+
+    security:
+        document.getElementById(
+            "permSecurity"
+        ),
+
+    analytics:
+        document.getElementById(
+            "permAnalytics"
+        )
+
+};
+
+
+/*
+ * Default permissions for
+ * each administrator level.
+ */
+
+const rolePermissions = {
+
+    super_admin: [
+        "contests",
+        "users",
+        "results",
+        "certificates",
+        "security",
+        "analytics"
+    ],
+
+    contest_admin: [
+        "contests"
+    ],
+
+    results_admin: [
+        "results",
+        "certificates"
+    ],
+
+    user_admin: [
+        "users"
+    ],
+
+    security_admin: [
+        "security"
+    ],
+
+    viewer: []
+
+};
+
+
+
+function updatePermissionPreview() {
+
+    const role =
+        adminLevel.value;
+
+    const permissions =
+        rolePermissions[role] || [];
+
+
+    Object.keys(
+        permissionBoxes
+    ).forEach(
+        function(permission) {
+
+            permissionBoxes[
+                permission
+            ].checked =
+                permissions.includes(
+                    permission
+                );
+
+        }
+    );
+
+
+    updateSummary();
+
+}
+
+
+
+function updateSummary() {
+
+    const selected =
+        Object.keys(
+            permissionBoxes
+        ).filter(
+            function(permission) {
+
+                return permissionBoxes[
+                    permission
+                ].checked;
+
+            }
+        );
+
+
+    permissionSummary.innerHTML =
+
+        "<strong>Permissions:</strong><br><br>" +
+
+        (
+            selected.length
+            ?
+            selected
+            .map(
+                function(item) {
+
+                    return "✓ " + item;
+
+                }
+            )
+            .join("<br>")
+
+            :
+
+            "None selected."
+        );
+
+}
+
+
 onAuthStateChanged(
     auth,
     function(user) {
@@ -699,6 +893,36 @@ showAdminForm.addEventListener(
         showAdminForm.style.display =
             "none";
 
+        updatePermissionPreview();
+
+    }
+);
+
+
+
+adminLevel.addEventListener(
+    "change",
+    function() {
+
+        updatePermissionPreview();
+
+    }
+);
+
+
+
+Object.keys(
+    permissionBoxes
+).forEach(
+    function(permission) {
+
+        permissionBoxes[
+            permission
+        ].addEventListener(
+            "change",
+            updateSummary
+        );
+
     }
 );
 
@@ -723,19 +947,20 @@ document
             .trim();
 
         const level =
-            document
-            .getElementById("adminLevel")
-            .value;
+            adminLevel.value;
 
 
         const permissions =
-            Array.from(
-                document.querySelectorAll(
-                    ".permission input:checked"
-                )
-            ).map(
-                checkbox =>
-                    checkbox.value
+            Object.keys(
+                permissionBoxes
+            ).filter(
+                function(permission) {
+
+                    return permissionBoxes[
+                        permission
+                    ].checked;
+
+                }
             );
 
 
@@ -756,23 +981,20 @@ document
 
 
         /*
-         * IMPORTANT:
+         * This is currently only
+         * a permission preview.
          *
-         * This currently does NOT create
-         * a Firebase Authentication account.
-         *
-         * It only validates the information.
-         *
-         * We will connect secure account
-         * creation in the next step.
+         * It does NOT create a
+         * Firebase Authentication
+         * account yet.
          */
-
 
         adminMessage.className =
             "message success";
 
         adminMessage.innerHTML =
-            "Administrator information ready.<br><br>" +
+
+            "<strong>Administrator configuration ready.</strong><br><br>" +
 
             "<strong>Name:</strong> " +
             name +
@@ -784,12 +1006,13 @@ document
             level +
 
             "<br><strong>Permissions:</strong> " +
+
             (
                 permissions.length
                 ?
                 permissions.join(", ")
                 :
-                "None selected"
+                "None"
             );
 
     }
