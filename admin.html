@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GAM | Admin Dashboard</title>
+<title>GAM | Owner Dashboard</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -21,7 +23,7 @@ body {
 header {
     background: #063b75;
     color: white;
-    padding: 16px 6%;
+    padding: 15px 6%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,9 +38,9 @@ header {
 .logo {
     width: 45px;
     height: 45px;
-    border-radius: 50%;
     background: #ffd21f;
     color: #063b75;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +68,7 @@ header {
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1150px;
     margin: 30px auto;
     padding: 0 20px;
 }
@@ -80,48 +82,127 @@ header {
 }
 
 .welcome h1 {
-    margin-top: 0;
     color: #063b75;
+    margin-top: 0;
+}
+
+.status {
+    margin-top: 15px;
+    padding: 12px;
+    background: #e6f7ed;
+    color: #087333;
+    border-radius: 8px;
+}
+
+.section {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+}
+
+.section h2 {
+    color: #063b75;
+    margin-top: 0;
 }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
     gap: 18px;
 }
 
 .card {
-    background: white;
-    padding: 22px;
-    border-radius: 14px;
-    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+    border: 1px solid #e1e6ed;
+    padding: 20px;
+    border-radius: 12px;
 }
 
 .card h3 {
-    margin-top: 0;
     color: #063b75;
+    margin-top: 0;
 }
 
-.card p {
-    color: #687386;
-}
-
-.card button {
+button.primary {
     background: #063b75;
     color: white;
     border: none;
-    padding: 11px 15px;
+    padding: 11px 16px;
     border-radius: 7px;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.status {
+button.secondary {
+    background: #ffd21f;
+    color: #063b75;
+    border: none;
+    padding: 11px 16px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.permission-list {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.permission {
+    padding: 12px;
+    border: 1px solid #dce2ea;
+    border-radius: 8px;
+}
+
+.permission input {
+    margin-right: 8px;
+}
+
+.admin-form {
+    display: none;
     margin-top: 20px;
-    padding: 15px;
+    padding: 20px;
+    background: #f7f9fc;
+    border-radius: 10px;
+}
+
+.admin-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.admin-form input,
+.admin-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccd5e0;
+    border-radius: 7px;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    display: none;
+}
+
+.error {
+    display: block;
+    background: #ffe8e8;
+    color: #a40000;
+}
+
+.success {
+    display: block;
     background: #e6f7ed;
     color: #087333;
-    border-radius: 8px;
 }
 
 footer {
@@ -131,10 +212,14 @@ footer {
     text-align: center;
     padding: 25px;
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -145,37 +230,62 @@ GAM
 </div>
 
 <div>
-<h2>GAM Administration</h2>
-<p>Global Academy of Minds</p>
-</div>
+
+<h2>GAM Owner Dashboard</h2>
+
+<p>
+Global Academy of Minds
+</p>
 
 </div>
 
-<button class="logout" id="logoutBtn">
+</div>
+
+
+<button
+class="logout"
+id="logoutBtn">
+
 Logout
+
 </button>
 
 </header>
 
 
+
 <div class="container">
+
 
 <div class="welcome">
 
 <h1>
-Owner Dashboard
+Welcome, Owner
 </h1>
 
 <p>
-Welcome to the GAM Platform administration area.
+You have full control of the GAM platform.
 </p>
 
-<div class="status" id="status">
-Checking your account...
-</div>
+<div
+class="status"
+id="status">
+
+Checking Owner account...
 
 </div>
 
+</div>
+
+
+
+<!-- PLATFORM MANAGEMENT -->
+
+<div class="section">
+
+<h2>
+Platform Management
+</h2>
 
 <div class="cards">
 
@@ -187,10 +297,10 @@ Checking your account...
 </h3>
 
 <p>
-Create, edit, publish and manage GAM contests.
+Create, edit, publish and manage contests.
 </p>
 
-<button>
+<button class="primary">
 Manage Contests
 </button>
 
@@ -204,10 +314,10 @@ Manage Contests
 </h3>
 
 <p>
-Manage contestants and administrator accounts.
+Manage students and registered users.
 </p>
 
-<button>
+<button class="primary">
 Manage Users
 </button>
 
@@ -221,28 +331,11 @@ Manage Users
 </h3>
 
 <p>
-View contest results, scores and performance.
+View results and performance analytics.
 </p>
 
-<button>
-View Results
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-🛡️ Security
-</h3>
-
-<p>
-Manage proctoring, anti-cheating and examination security.
-</p>
-
-<button>
-Security Settings
+<button class="primary">
+Manage Results
 </button>
 
 </div>
@@ -255,10 +348,10 @@ Security Settings
 </h3>
 
 <p>
-Manage GAM certificates and certificate verification.
+Manage GAM certificates.
 </p>
 
-<button>
+<button class="primary">
 Certificates
 </button>
 
@@ -268,15 +361,15 @@ Certificates
 <div class="card">
 
 <h3>
-⚙️ Administrators
+🔐 Security
 </h3>
 
 <p>
-Create administrators and assign different permission levels.
+Manage proctoring and examination security.
 </p>
 
-<button>
-Manage Administrators
+<button class="primary">
+Security
 </button>
 
 </div>
@@ -285,6 +378,187 @@ Manage Administrators
 </div>
 
 </div>
+
+
+
+<!-- ADMINISTRATORS -->
+
+<div class="section">
+
+<h2>
+🛡️ Administrator Management
+</h2>
+
+<p>
+Only the GAM Owner can create and manage administrators.
+</p>
+
+
+<button
+class="secondary"
+id="showAdminForm">
+
++ Add Administrator
+
+</button>
+
+
+<div
+class="admin-form"
+id="adminForm">
+
+
+<h3>
+New Administrator
+</h3>
+
+
+<label>
+Full Name
+</label>
+
+<input
+id="adminName"
+type="text"
+placeholder="Administrator name"
+>
+
+
+<label>
+Email Address
+</label>
+
+<input
+id="adminEmail"
+type="email"
+placeholder="administrator@example.com"
+>
+
+
+<label>
+Administrator Level
+</label>
+
+<select id="adminLevel">
+
+<option value="super_admin">
+Super Admin
+</option>
+
+<option value="contest_admin">
+Contest Admin
+</option>
+
+<option value="results_admin">
+Results Admin
+</option>
+
+<option value="user_admin">
+User Admin
+</option>
+
+<option value="security_admin">
+Security Admin
+</option>
+
+<option value="viewer">
+Viewer
+</option>
+
+</select>
+
+
+<h3>
+Permissions
+</h3>
+
+
+<div class="permission-list">
+
+
+<label class="permission">
+<input
+type="checkbox"
+value="contests"
+>
+Contests
+</label>
+
+
+<label class="permission">
+<input
+type="checkbox"
+value="users"
+>
+Users
+</label>
+
+
+<label class="permission">
+<input
+type="checkbox"
+value="results"
+>
+Results
+</label>
+
+
+<label class="permission">
+<input
+type="checkbox"
+value="certificates"
+>
+Certificates
+</label>
+
+
+<label class="permission">
+<input
+type="checkbox"
+value="security"
+>
+Security
+</label>
+
+
+<label class="permission">
+<input
+type="checkbox"
+value="analytics"
+>
+Analytics
+</label>
+
+
+</div>
+
+
+<br>
+
+
+<button
+class="primary"
+id="saveAdmin">
+
+Save Administrator
+
+</button>
+
+
+<div
+id="adminMessage"
+class="message">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
 
 
 <footer>
@@ -298,6 +572,7 @@ Learn • Compete • Excel
 </p>
 
 </footer>
+
 
 
 <script type="module">
@@ -349,10 +624,6 @@ const auth =
     getAuth(app);
 
 
-/*
- * Your verified Owner UID.
- */
-
 const OWNER_UID =
     "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
 
@@ -363,10 +634,27 @@ const status =
     );
 
 
+const adminForm =
+    document.getElementById(
+        "adminForm"
+    );
+
+
+const showAdminForm =
+    document.getElementById(
+        "showAdminForm"
+    );
+
+
+const adminMessage =
+    document.getElementById(
+        "adminMessage"
+    );
+
+
 onAuthStateChanged(
     auth,
     function(user) {
-
 
         if (!user) {
 
@@ -379,12 +667,13 @@ onAuthStateChanged(
 
 
         if (
-            user.uid === OWNER_UID
+            user.uid !== OWNER_UID
         ) {
 
-            status.textContent =
-                "✓ Owner authenticated: " +
-                user.email;
+            document.body.innerHTML =
+                "<h2 style='text-align:center;margin-top:100px;color:#a40000'>" +
+                "Access denied. Owner only." +
+                "</h2>";
 
             return;
 
@@ -392,10 +681,120 @@ onAuthStateChanged(
 
 
         status.textContent =
-            "Access denied. This account is not the GAM Owner.";
+            "✓ Owner authenticated: " +
+            user.email;
 
     }
 );
+
+
+
+showAdminForm.addEventListener(
+    "click",
+    function() {
+
+        adminForm.style.display =
+            "block";
+
+        showAdminForm.style.display =
+            "none";
+
+    }
+);
+
+
+
+document
+.getElementById("saveAdmin")
+.addEventListener(
+    "click",
+    function() {
+
+        const name =
+            document
+            .getElementById("adminName")
+            .value
+            .trim();
+
+        const email =
+            document
+            .getElementById("adminEmail")
+            .value
+            .trim();
+
+        const level =
+            document
+            .getElementById("adminLevel")
+            .value;
+
+
+        const permissions =
+            Array.from(
+                document.querySelectorAll(
+                    ".permission input:checked"
+                )
+            ).map(
+                checkbox =>
+                    checkbox.value
+            );
+
+
+        if (
+            !name ||
+            !email
+        ) {
+
+            adminMessage.className =
+                "message error";
+
+            adminMessage.textContent =
+                "Please enter the administrator's name and email.";
+
+            return;
+
+        }
+
+
+        /*
+         * IMPORTANT:
+         *
+         * This currently does NOT create
+         * a Firebase Authentication account.
+         *
+         * It only validates the information.
+         *
+         * We will connect secure account
+         * creation in the next step.
+         */
+
+
+        adminMessage.className =
+            "message success";
+
+        adminMessage.innerHTML =
+            "Administrator information ready.<br><br>" +
+
+            "<strong>Name:</strong> " +
+            name +
+
+            "<br><strong>Email:</strong> " +
+            email +
+
+            "<br><strong>Level:</strong> " +
+            level +
+
+            "<br><strong>Permissions:</strong> " +
+            (
+                permissions.length
+                ?
+                permissions.join(", ")
+                :
+                "None selected"
+            );
+
+    }
+);
+
 
 
 document
@@ -415,4 +814,4 @@ document
 </script>
 
 </body>
-</html>
+    </html>
