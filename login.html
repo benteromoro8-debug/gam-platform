@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>GAM | Login</title>
 
@@ -56,7 +59,7 @@
 
         .brand p {
             font-size: 10px;
-            opacity: 0.85;
+            opacity: .85;
         }
 
         .home-link {
@@ -77,7 +80,7 @@
             background: white;
             padding: 34px 27px;
             border-radius: 16px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 25px rgba(0,0,0,.08);
         }
 
         .login-card h1 {
@@ -128,7 +131,7 @@
         }
 
         .login-btn:disabled {
-            opacity: 0.6;
+            opacity: .6;
         }
 
         .forgot {
@@ -204,38 +207,61 @@
         </div>
 
         <div>
-            <h2>GAM</h2>
-            <p>Global Academy of Minds</p>
+
+            <h2>
+                GAM
+            </h2>
+
+            <p>
+                Global Academy of Minds
+            </p>
+
         </div>
 
     </div>
 
-    <a href="index.html" class="home-link">
+
+    <a
+        href="index.html"
+        class="home-link">
+
         Home
+
     </a>
 
 </nav>
 
 
+
 <div class="container">
+
 
     <div class="login-card">
 
-        <h1>Welcome Back</h1>
+
+        <h1>
+            Welcome Back
+        </h1>
+
 
         <p class="subtitle">
             Login to your GAM account
         </p>
 
 
-        <div id="message" class="message"></div>
+        <div
+            id="message"
+            class="message">
+        </div>
 
 
         <form id="loginForm">
 
+
             <label for="email">
                 Email Address
             </label>
+
 
             <input
                 type="email"
@@ -251,6 +277,7 @@
                 Password
             </label>
 
+
             <input
                 type="password"
                 id="password"
@@ -261,8 +288,13 @@
             >
 
 
-            <a href="#" id="forgotPassword" class="forgot">
+            <a
+                href="#"
+                id="forgotPassword"
+                class="forgot">
+
                 Forgot password?
+
             </a>
 
 
@@ -274,6 +306,7 @@
                 Login
 
             </button>
+
 
         </form>
 
@@ -288,9 +321,12 @@
 
         </div>
 
+
     </div>
 
+
 </div>
+
 
 
 <footer>
@@ -309,8 +345,13 @@
 
 <script type="module">
 
-    import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+    import {
+        initializeApp
+    }
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
     import {
@@ -318,53 +359,97 @@
         signInWithEmailAndPassword,
         sendPasswordResetEmail
     }
-    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+    import {
+        getFirestore,
+        doc,
+        getDoc
+    }
+
+    from
+    "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+
+    /* FIREBASE CONFIG */
 
 
     const firebaseConfig = {
 
-        apiKey: "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+        apiKey:
+            "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
 
-        authDomain: "gam-platform-59f1c.firebaseapp.com",
+        authDomain:
+            "gam-platform-59f1c.firebaseapp.com",
 
-        projectId: "gam-platform-59f1c",
+        projectId:
+            "gam-platform-59f1c",
 
-        storageBucket: "gam-platform-59f1c.firebasestorage.app",
+        storageBucket:
+            "gam-platform-59f1c.firebasestorage.app",
 
-        messagingSenderId: "423635446027",
+        messagingSenderId:
+            "423635446027",
 
-        appId: "1:423635446027:web:7b42cd097b928ed7671a0e"
+        appId:
+            "1:423635446027:web:7b42cd097b928ed7671a0e"
 
     };
 
 
-    const app = initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
+    const app =
+        initializeApp(firebaseConfig);
+
+
+    const auth =
+        getAuth(app);
+
+
+    const db =
+        getFirestore(app);
+
+
+
+    /* ELEMENTS */
 
 
     const form =
         document.getElementById("loginForm");
 
+
     const email =
         document.getElementById("email");
+
 
     const password =
         document.getElementById("password");
 
+
     const loginBtn =
         document.getElementById("loginBtn");
 
+
     const message =
         document.getElementById("message");
+
 
     const forgotPassword =
         document.getElementById("forgotPassword");
 
 
-    function showMessage(text, type) {
 
-        message.textContent = text;
+    function showMessage(
+        text,
+        type
+    ) {
+
+        message.textContent =
+            text;
 
         message.className =
             "message " + type;
@@ -372,167 +457,275 @@
     }
 
 
-    form.addEventListener("submit", async function(event) {
 
-        event.preventDefault();
-
-
-        const userEmail =
-            email.value.trim();
-
-        const userPassword =
-            password.value;
+    /* LOGIN */
 
 
-        if (!userEmail || !userPassword) {
-
-            showMessage(
-                "Please enter your email and password.",
-                "error"
-            );
-
-            return;
-
-        }
+    form.addEventListener(
+        "submit",
+        async function(event) {
 
 
-        loginBtn.disabled = true;
-
-        loginBtn.textContent =
-            "Logging in...";
+            event.preventDefault();
 
 
-        try {
-
-            await signInWithEmailAndPassword(
-                auth,
-                userEmail,
-                userPassword
-            );
+            const userEmail =
+                email.value.trim();
 
 
-            showMessage(
-                "Login successful! Redirecting...",
-                "success"
-            );
-
-
-            setTimeout(function() {
-
-                window.location.href =
-                    "dashboard.html";
-
-            }, 1000);
-
-
-        } catch (error) {
-
-            console.error("Firebase login error:", error);
-
-
-            let errorMessage =
-                "Login failed. Please try again.";
+            const userPassword =
+                password.value;
 
 
             if (
-                error.code ===
-                "auth/invalid-credential"
+                !userEmail ||
+                !userPassword
             ) {
 
-                errorMessage =
-                    "Incorrect email or password.";
+                showMessage(
+                    "Please enter your email and password.",
+                    "error"
+                );
+
+                return;
 
             }
 
 
-            else if (
-                error.code ===
-                "auth/invalid-email"
-            ) {
+            loginBtn.disabled =
+                true;
 
-                errorMessage =
-                    "Please enter a valid email address.";
-
-            }
-
-
-            else if (
-                error.code ===
-                "auth/too-many-requests"
-            ) {
-
-                errorMessage =
-                    "Too many login attempts. Please try again later.";
-
-            }
-
-
-            showMessage(
-                errorMessage,
-                "error"
-            );
-
-
-            loginBtn.disabled = false;
 
             loginBtn.textContent =
-                "Login";
+                "Logging in...";
+
+
+            try {
+
+
+                /* FIREBASE LOGIN */
+
+
+                const result =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        userEmail,
+                        userPassword
+                    );
+
+
+                const user =
+                    result.user;
+
+
+
+                /* GET USER PROFILE */
+
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const userSnapshot =
+                    await getDoc(
+                        userRef
+                    );
+
+
+
+                let role =
+                    "student";
+
+
+                if (
+                    userSnapshot.exists()
+                ) {
+
+                    const userData =
+                        userSnapshot.data();
+
+
+                    role =
+                        userData.role ||
+                        "student";
+
+                }
+
+
+
+                showMessage(
+                    "Login successful! Opening your account...",
+                    "success"
+                );
+
+
+
+                /* SEND USER TO CORRECT AREA */
+
+
+                setTimeout(
+                    function() {
+
+
+                        if (
+                            role === "owner" ||
+                            role === "admin"
+                        ) {
+
+                            window.location.href =
+                                "admin.html";
+
+                        }
+
+                        else {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        }
+
+
+                    },
+                    700
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                let errorMessage =
+                    "Login failed. Please try again.";
+
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    errorMessage =
+                        "Incorrect email or password.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
+
+                    errorMessage =
+                        "Please enter a valid email address.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/too-many-requests"
+                ) {
+
+                    errorMessage =
+                        "Too many attempts. Please try again later.";
+
+                }
+
+
+                showMessage(
+                    errorMessage,
+                    "error"
+                );
+
+
+                loginBtn.disabled =
+                    false;
+
+
+                loginBtn.textContent =
+                    "Login";
+
+            }
 
         }
-
-    });
-
-
-    forgotPassword.addEventListener("click", async function(event) {
-
-        event.preventDefault();
+    );
 
 
-        const userEmail =
-            email.value.trim();
+
+    /* PASSWORD RESET */
 
 
-        if (!userEmail) {
+    forgotPassword.addEventListener(
+        "click",
+        async function(event) {
 
-            showMessage(
-                "Enter your email address first.",
-                "error"
-            );
 
-            email.focus();
+            event.preventDefault();
 
-            return;
+
+            const userEmail =
+                email.value.trim();
+
+
+            if (!userEmail) {
+
+                showMessage(
+                    "Enter your email address first.",
+                    "error"
+                );
+
+                email.focus();
+
+                return;
+
+            }
+
+
+            try {
+
+
+                await sendPasswordResetEmail(
+                    auth,
+                    userEmail
+                );
+
+
+                showMessage(
+                    "Password reset email sent. Check your inbox.",
+                    "success"
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    error
+                );
+
+
+                showMessage(
+                    "Could not send the reset email. Check the email address.",
+                    "error"
+                );
+
+            }
 
         }
+    );
 
-
-        try {
-
-            await sendPasswordResetEmail(
-                auth,
-                userEmail
-            );
-
-
-            showMessage(
-                "Password reset email sent. Check your inbox.",
-                "success"
-            );
-
-
-        } catch (error) {
-
-            console.error(error);
-
-
-            showMessage(
-                "Could not send the reset email. Check the email address.",
-                "error"
-            );
-
-        }
-
-    });
 
 </script>
 
