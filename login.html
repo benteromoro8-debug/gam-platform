@@ -139,22 +139,25 @@ button:disabled {
     color: #a40000;
 }
 
+.info {
+    display: block !important;
+    background: #eef4fb;
+    color: #063b75;
+}
+
 footer {
     margin-top: 40px;
     background: #03284f;
     color: white;
     text-align: center;
     padding: 25px;
-    color: white;
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -178,7 +181,6 @@ Global Academy of Minds Africa
 
 </div>
 
-
 <a
 class="home"
 href="index.html">
@@ -188,7 +190,6 @@ Home
 </a>
 
 </header>
-
 
 
 <div class="container">
@@ -203,13 +204,9 @@ Welcome Back
 Login to your GAM Africa account
 </p>
 
-
-<div id="message">
-</div>
-
+<div id="message"></div>
 
 <form id="loginForm">
-
 
 <label>
 Email Address
@@ -222,7 +219,6 @@ required
 autocomplete="email"
 >
 
-
 <label>
 Password
 </label>
@@ -234,7 +230,6 @@ required
 autocomplete="current-password"
 >
 
-
 <button
 id="loginButton"
 type="submit">
@@ -243,13 +238,11 @@ Login
 
 </button>
 
-
 </form>
 
 </div>
 
 </div>
-
 
 
 <footer>
@@ -265,9 +258,7 @@ Learn • Connect • Compete • Excel
 </footer>
 
 
-
 <script type="module">
-
 
 import {
     initializeApp
@@ -293,7 +284,6 @@ from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-
 const firebaseConfig = {
 
     apiKey:
@@ -317,7 +307,6 @@ const firebaseConfig = {
 };
 
 
-
 const app =
     initializeApp(
         firebaseConfig
@@ -332,10 +321,8 @@ const db =
     getFirestore(app);
 
 
-
 const OWNER_UID =
     "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
-
 
 
 const form =
@@ -368,7 +355,6 @@ const message =
     );
 
 
-
 function showMessage(
     text,
     type
@@ -383,7 +369,6 @@ function showMessage(
 }
 
 
-
 /*
  * LOGIN
  */
@@ -394,10 +379,7 @@ form.addEventListener(
 
         event.preventDefault();
 
-
-        button.disabled =
-            true;
-
+        button.disabled = true;
 
         button.textContent =
             "Signing in...";
@@ -406,7 +388,7 @@ form.addEventListener(
         try {
 
             /*
-             * FIREBASE AUTHENTICATION
+             * AUTHENTICATE
              */
 
             const result =
@@ -421,9 +403,8 @@ form.addEventListener(
                 result.user;
 
 
-
             /*
-             * OWNER ROUTING
+             * OWNER
              */
 
             if (
@@ -446,16 +427,19 @@ form.addEventListener(
                     500
                 );
 
-
                 return;
-
             }
 
 
-
             /*
-             * GET USER PROFILE
+             * FIND USER PROFILE
              */
+
+            showMessage(
+                "Authentication successful. Checking GAM profile...",
+                "info"
+            );
+
 
             const userRef =
                 doc(
@@ -471,17 +455,23 @@ form.addEventListener(
                 );
 
 
-
             /*
-             * PROFILE NOT FOUND
+             * PROFILE DOES NOT EXIST
              */
 
             if (
                 !userSnapshot.exists()
             ) {
 
+                console.error(
+                    "GAM profile missing for UID:",
+                    user.uid
+                );
+
+
                 showMessage(
-                    "Your GAM profile could not be found. Please contact GAM support.",
+                    "Authentication worked, but your GAM profile was not found. UID: " +
+                    user.uid,
                     "error"
                 );
 
@@ -489,24 +479,27 @@ form.addEventListener(
                 button.disabled =
                     false;
 
-
                 button.textContent =
                     "Login";
 
-
                 return;
-
             }
 
 
+            /*
+             * READ PROFILE
+             */
 
             const profile =
                 userSnapshot.data();
 
 
             const role =
-                profile.role;
-
+                String(
+                    profile.role || ""
+                )
+                .trim()
+                .toLowerCase();
 
 
             /*
@@ -518,7 +511,7 @@ form.addEventListener(
             ) {
 
                 showMessage(
-                    "Student login successful. Opening your dashboard...",
+                    "Student login successful. Opening your GAM Africa dashboard...",
                     "success"
                 );
 
@@ -533,18 +526,12 @@ form.addEventListener(
                     500
                 );
 
-
                 return;
-
             }
-
 
 
             /*
              * TUTOR
-             *
-             * We will build tutor.html
-             * in the next stage.
              */
 
             if (
@@ -552,7 +539,7 @@ form.addEventListener(
             ) {
 
                 showMessage(
-                    "Tutor account detected. Tutor dashboard is coming next.",
+                    "Tutor account detected. Opening tutor dashboard...",
                     "success"
                 );
 
@@ -567,18 +554,12 @@ form.addEventListener(
                     500
                 );
 
-
                 return;
-
             }
 
 
-
             /*
-             * ADMINISTRATOR
-             *
-             * We will connect the different
-             * administrator levels later.
+             * ADMIN
              */
 
             if (
@@ -587,7 +568,7 @@ form.addEventListener(
             ) {
 
                 showMessage(
-                    "Administrator account detected.",
+                    "Administrator account detected. Opening dashboard...",
                     "success"
                 );
 
@@ -602,11 +583,38 @@ form.addEventListener(
                     500
                 );
 
-
                 return;
-
             }
 
+
+            /*
+             * OWNER ROLE IN FIRESTORE
+             *
+             * This is mainly a safety fallback.
+             */
+
+            if (
+                role === "owner"
+            ) {
+
+                showMessage(
+                    "Owner account detected. Opening dashboard...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "admin.html";
+
+                    },
+                    500
+                );
+
+                return;
+            }
 
 
             /*
@@ -614,14 +622,15 @@ form.addEventListener(
              */
 
             showMessage(
-                "Your account role is not recognized. Please contact GAM support.",
+                "Your GAM profile was found, but the role '" +
+                role +
+                "' is not recognized.",
                 "error"
             );
 
 
             button.disabled =
                 false;
-
 
             button.textContent =
                 "Login";
@@ -632,6 +641,7 @@ form.addEventListener(
         catch(error) {
 
             console.error(
+                "GAM LOGIN ERROR:",
                 error
             );
 
@@ -650,7 +660,6 @@ form.addEventListener(
 
             }
 
-
             else if (
                 error.code ===
                 "auth/invalid-email"
@@ -661,25 +670,45 @@ form.addEventListener(
 
             }
 
-
             else if (
                 error.code ===
                 "auth/too-many-requests"
             ) {
 
                 text =
-                    "Too many attempts. Please try again later.";
+                    "Too many login attempts. Please try again later.";
 
             }
 
-
             else if (
                 error.code ===
-                "permission-denied"
+                "permission-denied" ||
+                error.code ===
+                "firestore/permission-denied"
             ) {
 
                 text =
-                    "Your profile could not be accessed. Please check your account setup.";
+                    "Firebase authentication worked, but Firestore denied access to your GAM profile. Check the Firestore rules.";
+
+            }
+
+            else if (
+                error.code ===
+                "unavailable"
+            ) {
+
+                text =
+                    "GAM services are temporarily unavailable. Check your internet connection and try again.";
+
+            }
+
+            else if (
+                error.message
+            ) {
+
+                text =
+                    "GAM connection error: " +
+                    error.message;
 
             }
 
@@ -693,7 +722,6 @@ form.addEventListener(
             button.disabled =
                 false;
 
-
             button.textContent =
                 "Login";
 
@@ -702,10 +730,8 @@ form.addEventListener(
     }
 );
 
-
 </script>
-
 
 </body>
 
-    </html>
+</html>
