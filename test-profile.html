@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>GAM Africa | Profile Test</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    padding: 20px;
+    color: #172033;
+}
+
+.card {
+    max-width: 600px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+
+h1 {
+    color: #063b75;
+}
+
+.uid {
+    background: #eef4fb;
+    padding: 12px;
+    border-radius: 8px;
+    word-break: break-all;
+}
+
+.success {
+    background: #e6f7ed;
+    color: #087333;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.error {
+    background: #ffe8e8;
+    color: #a40000;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+pre {
+    background: #172033;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+button {
+    background: #063b75;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🔎 GAM Profile Diagnostic</h1>
+
+<p>
+This temporary page checks whether GAM can find
+your Firebase student profile.
+</p>
+
+<p><strong>Expected Student UID:</strong></p>
+
+<div class="uid">
+fUhkq7sg0YXq9I2WsENAhTr2Iwz1
+</div>
+
+<br>
+
+<div id="result">
+Checking Firebase...
+</div>
+
+<br>
+
+<div id="details"></div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    signInWithEmailAndPassword
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+const result =
+    document.getElementById(
+        "result"
+    );
+
+
+const details =
+    document.getElementById(
+        "details"
+    );
+
+
+const STUDENT_UID =
+    "fUhkq7sg0YXq9I2WsENAhTr2Iwz1";
+
+
+/*
+ * IMPORTANT
+ *
+ * We don't put the student's password
+ * into this page.
+ *
+ * Instead, Firebase will tell us whether
+ * the currently logged-in account can be
+ * checked.
+ */
+
+
+auth.onAuthStateChanged(
+    async function(user) {
+
+        if (!user) {
+
+            result.className =
+                "error";
+
+            result.innerHTML =
+                "❌ You are not logged in.";
+
+            details.innerHTML =
+                "<p>First login through the normal GAM login page, then open this diagnostic page.</p>";
+
+            return;
+
+        }
+
+
+        result.className =
+            "";
+
+        result.innerHTML =
+            "Authenticated. Checking Firestore...";
+
+
+        details.innerHTML =
+            "<p><strong>Logged-in UID:</strong></p>" +
+            "<pre>" +
+            escapeHTML(user.uid) +
+            "</pre>" +
+            "<p><strong>Expected UID:</strong></p>" +
+            "<pre>" +
+            STUDENT_UID +
+            "</pre>";
+
+
+        try {
+
+            const profileRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const profileSnapshot =
+                await getDoc(
+                    profileRef
+                );
+
+
+            if (
+                !profileSnapshot.exists()
+            ) {
+
+                result.className =
+                    "error";
+
+                result.innerHTML =
+                    "❌ Firestore document NOT FOUND";
+
+                details.innerHTML +=
+                    "<p>Firestore checked:</p>" +
+                    "<pre>users/" +
+                    escapeHTML(user.uid) +
+                    "</pre>" +
+                    "<p>The website is connected to the correct Firebase project, but Firestore returned no document at this exact path.</p>";
+
+                return;
+
+            }
+
+
+            const data =
+                profileSnapshot.data();
+
+
+            result.className =
+                "success";
+
+            result.innerHTML =
+                "✅ GAM PROFILE FOUND!";
+
+
+            details.innerHTML +=
+                "<p><strong>Firestore document:</strong></p>" +
+                "<pre>users/" +
+                escapeHTML(user.uid) +
+                "</pre>" +
+
+                "<p><strong>Profile data received:</strong></p>" +
+
+                "<pre>" +
+                escapeHTML(
+                    JSON.stringify(
+                        data,
+                        null,
+                        2
+                    )
+                ) +
+                "</pre>";
+
+
+        }
+
+        catch(error) {
+
+            result.className =
+                "error";
+
+            result.innerHTML =
+                "❌ Firestore ERROR";
+
+            details.innerHTML +=
+                "<pre>" +
+                escapeHTML(
+                    error.code ||
+                    ""
+                ) +
+                "\n\n" +
+                escapeHTML(
+                    error.message ||
+                    ""
+                ) +
+                "</pre>";
+
+        }
+
+    }
+);
+
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+</body>
+
+</html>
