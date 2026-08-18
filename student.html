@@ -1,5 +1,13 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GAM Africa | Student Dashboard</title><style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GAM Africa | Student Dashboard</title>
+
+<style>
 
 * {
     box-sizing: border-box;
@@ -103,8 +111,7 @@ header {
 
 .cards {
     display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 18px;
 }
 
@@ -134,6 +141,10 @@ header {
     border-radius: 7px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.card button:hover {
+    opacity: .9;
 }
 
 .tutor {
@@ -194,102 +205,226 @@ footer {
     padding: 25px;
 }
 
-</style></head><body><header><div class="brand"><div class="logo">
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<div class="brand">
+
+<div class="logo">
 GAM
-</div><div><h2>
+</div>
+
+<div>
+
+<h2>
 Global Academy of Minds Africa
-</h2><p>
+</h2>
+
+<p>
 Learn • Connect • Compete • Excel
-</p></div></div><button
+</p>
+
+</div>
+
+</div>
+
+<button
 class="logout"
 id="logoutBtn">
 
 Logout
 
-</button></header><div class="container"><div class="welcome"><h1 id="welcomeTitle">
+</button>
+
+</header>
+
+
+<div class="container">
+
+<div class="welcome">
+
+<h1 id="welcomeTitle">
 Welcome to GAM Africa
-</h1><p>
+</h1>
+
+<p>
 Your learning journey starts here.
-</p><span
+</p>
+
+<span
 class="status"
 id="accountStatus">
 
 Checking account...
 
-</span><div class="profile"><p>
+</span>
+
+
+<div class="profile">
+
+<p>
 <strong>Name:</strong>
 <span id="studentName">
 Loading...
 </span>
-</p><p>
+</p>
+
+<p>
 <strong>Email:</strong>
 <span id="studentEmail">
 Loading...
 </span>
-</p><p>
+</p>
+
+<p>
 <strong>Role:</strong>
 <span id="studentRole">
 Loading...
 </span>
-</p></div><div
+</p>
+
+</div>
+
+
+<div
 id="message"
 class="message">
-</div></div><div class="cards"><div class="card"><h2>
+</div>
+
+</div>
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h2>
 📚 My Learning
-</h2><p>
+</h2>
+
+<p>
 Access lessons, learning resources,
 practice activities and your learning journey.
-</p><button
+</p>
+
+<button
 id="learningBtn">
 
 My Learning
 
-</button></div><div class="card tutor"><h2>
+</button>
+
+</div>
+
+
+<div class="card tutor">
+
+<h2>
 👨‍🏫 Find a Tutor
-</h2><p>
+</h2>
+
+<p>
 Discover tutors and connect with people
 who can help you learn.
-</p><button
+</p>
+
+<button
 id="tutorBtn">
 
 Find a Tutor
 
-</button></div><div class="card contest"><h2>
+</button>
+
+</div>
+
+
+<div class="card contest">
+
+<h2>
 🏆 GAM Competitions
-</h2><p>
+</h2>
+
+<p>
 Take part in GAM academic competitions,
 assessments and challenges.
-</p><button
+</p>
+
+<button
 id="contestBtn">
 
 View Competitions
 
-</button></div><div class="card progress"><h2>
+</button>
+
+</div>
+
+
+<div class="card progress">
+
+<h2>
 📊 My Progress
-</h2><p>
+</h2>
+
+<p>
 Track your learning progress, results,
 achievements and certificates.
-</p><button
+</p>
+
+<button
 id="progressBtn">
 
 View Progress
 
-</button></div></div><div class="notice"><h2>
+</button>
+
+</div>
+
+</div>
+
+
+<div class="notice">
+
+<h2>
 🌍 Welcome to GAM Africa
-</h2><p>
+</h2>
+
+<p>
 Global Academy of Minds Africa is being
 built as a learning community where students
 can learn, connect with tutors, participate
 in competitions and grow together.
-</p><p>
+</p>
+
+<p>
 More learning features will appear here
 as GAM Africa develops.
-</p></div></div><footer><strong>
-GAM — Global Academy of Minds Africa
-</strong><p>
-Learn • Connect • Compete • Excel
-</p></footer><script type="module">
+</p>
 
+</div>
+
+</div>
+
+
+<footer>
+
+<strong>
+GAM — Global Academy of Minds Africa
+</strong>
+
+<p>
+Learn • Connect • Compete • Excel
+</p>
+
+</footer>
+
+
+<script type="module">
 
 import {
     initializeApp
@@ -316,7 +451,6 @@ from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-
 const firebaseConfig = {
 
     apiKey:
@@ -340,7 +474,6 @@ const firebaseConfig = {
 };
 
 
-
 const app =
     initializeApp(
         firebaseConfig
@@ -353,7 +486,6 @@ const auth =
 
 const db =
     getFirestore(app);
-
 
 
 const welcomeTitle =
@@ -390,7 +522,6 @@ const message =
     document.getElementById(
         "message"
     );
-
 
 
 /*
@@ -518,7 +649,6 @@ onAuthStateChanged(
 );
 
 
-
 /*
  * LOGOUT
  */
@@ -535,7 +665,6 @@ document
             auth
         );
 
-
         window.location.href =
             "login.html";
 
@@ -543,12 +672,10 @@ document
 );
 
 
-
 /*
  * MY LEARNING
  *
- * Opens the real GAM Africa
- * learning area.
+ * Opens learning.html
  */
 
 document
@@ -566,12 +693,8 @@ document
 );
 
 
-
 /*
  * FIND A TUTOR
- *
- * Temporary until the tutor
- * marketplace is built.
  */
 
 document
@@ -588,7 +711,6 @@ document
 
     }
 );
-
 
 
 /*
@@ -610,12 +732,8 @@ document
 );
 
 
-
 /*
  * PROGRESS
- *
- * Temporary until the GAM
- * progress system is built.
  */
 
 document
@@ -634,7 +752,6 @@ document
 );
 
 
-
 /*
  * ERROR MESSAGE
  */
@@ -651,5 +768,7 @@ function showError(
 
 }
 
+</script>
 
-</script></body></html>
+</body>
+    </html>
