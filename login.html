@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAM | Login</title>
+
+<title>GAM Africa | Login</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -57,6 +61,7 @@ header {
 .home {
     color: white;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .container {
@@ -140,47 +145,75 @@ footer {
     color: white;
     text-align: center;
     padding: 25px;
+    color: white;
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
 <div class="brand">
 
-<div class="logo">GAM</div>
+<div class="logo">
+GAM
+</div>
 
 <div>
-<h2>GAM</h2>
-<p>Global Academy of Minds</p>
-</div>
+
+<h2>
+GAM Africa
+</h2>
+
+<p>
+Global Academy of Minds Africa
+</p>
 
 </div>
 
-<a class="home" href="index.html">
+</div>
+
+
+<a
+class="home"
+href="index.html">
+
 Home
+
 </a>
 
 </header>
+
 
 
 <div class="container">
 
 <div class="card">
 
-<h1>Welcome Back</h1>
+<h1>
+Welcome Back
+</h1>
 
 <p class="subtitle">
-Login to your GAM account
+Login to your GAM Africa account
 </p>
 
-<div id="message"></div>
+
+<div id="message">
+</div>
+
 
 <form id="loginForm">
 
-<label>Email Address</label>
+
+<label>
+Email Address
+</label>
 
 <input
 id="email"
@@ -189,7 +222,10 @@ required
 autocomplete="email"
 >
 
-<label>Password</label>
+
+<label>
+Password
+</label>
 
 <input
 id="password"
@@ -198,9 +234,15 @@ required
 autocomplete="current-password"
 >
 
-<button id="loginButton" type="submit">
+
+<button
+id="loginButton"
+type="submit">
+
 Login
+
 </button>
+
 
 </form>
 
@@ -209,31 +251,47 @@ Login
 </div>
 
 
+
 <footer>
 
 <strong>
-GAM — Global Academy of Minds
+GAM — Global Academy of Minds Africa
 </strong>
 
 <p>
-Learn • Compete • Excel
+Learn • Connect • Compete • Excel
 </p>
 
 </footer>
 
 
+
 <script type="module">
+
 
 import {
     initializeApp
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
 
 import {
     getAuth,
     signInWithEmailAndPassword
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
 
 const firebaseConfig = {
@@ -259,17 +317,25 @@ const firebaseConfig = {
 };
 
 
+
 const app =
     initializeApp(
         firebaseConfig
     );
 
+
 const auth =
     getAuth(app);
 
 
+const db =
+    getFirestore(app);
+
+
+
 const OWNER_UID =
     "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
+
 
 
 const form =
@@ -277,25 +343,30 @@ const form =
         "loginForm"
     );
 
+
 const emailInput =
     document.getElementById(
         "email"
     );
+
 
 const passwordInput =
     document.getElementById(
         "password"
     );
 
+
 const button =
     document.getElementById(
         "loginButton"
     );
 
+
 const message =
     document.getElementById(
         "message"
     );
+
 
 
 function showMessage(
@@ -312,18 +383,31 @@ function showMessage(
 }
 
 
+
+/*
+ * LOGIN
+ */
+
 form.addEventListener(
     "submit",
     async function(event) {
 
         event.preventDefault();
 
-        button.disabled = true;
+
+        button.disabled =
+            true;
+
 
         button.textContent =
             "Signing in...";
 
+
         try {
+
+            /*
+             * FIREBASE AUTHENTICATION
+             */
 
             const result =
                 await signInWithEmailAndPassword(
@@ -332,12 +416,14 @@ form.addEventListener(
                     passwordInput.value
                 );
 
+
             const user =
                 result.user;
 
 
+
             /*
-             * OWNER
+             * OWNER ROUTING
              */
 
             if (
@@ -349,6 +435,7 @@ form.addEventListener(
                     "success"
                 );
 
+
                 setTimeout(
                     function() {
 
@@ -359,43 +446,199 @@ form.addEventListener(
                     500
                 );
 
+
                 return;
+
             }
 
 
+
             /*
-             * TEMPORARY ROUTING
+             * GET USER PROFILE
+             */
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const userSnapshot =
+                await getDoc(
+                    userRef
+                );
+
+
+
+            /*
+             * PROFILE NOT FOUND
+             */
+
+            if (
+                !userSnapshot.exists()
+            ) {
+
+                showMessage(
+                    "Your GAM profile could not be found. Please contact GAM support.",
+                    "error"
+                );
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "Login";
+
+
+                return;
+
+            }
+
+
+
+            const profile =
+                userSnapshot.data();
+
+
+            const role =
+                profile.role;
+
+
+
+            /*
+             * STUDENT
+             */
+
+            if (
+                role === "student"
+            ) {
+
+                showMessage(
+                    "Student login successful. Opening your dashboard...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "student.html";
+
+                    },
+                    500
+                );
+
+
+                return;
+
+            }
+
+
+
+            /*
+             * TUTOR
              *
-             * Other accounts go to the
-             * student dashboard until
-             * we install the administrator
-             * permission system.
+             * We will build tutor.html
+             * in the next stage.
+             */
+
+            if (
+                role === "tutor"
+            ) {
+
+                showMessage(
+                    "Tutor account detected. Tutor dashboard is coming next.",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "tutor.html";
+
+                    },
+                    500
+                );
+
+
+                return;
+
+            }
+
+
+
+            /*
+             * ADMINISTRATOR
+             *
+             * We will connect the different
+             * administrator levels later.
+             */
+
+            if (
+                role === "admin" ||
+                role === "administrator"
+            ) {
+
+                showMessage(
+                    "Administrator account detected.",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "admin.html";
+
+                    },
+                    500
+                );
+
+
+                return;
+
+            }
+
+
+
+            /*
+             * UNKNOWN ROLE
              */
 
             showMessage(
-                "Login successful. Opening dashboard...",
-                "success"
+                "Your account role is not recognized. Please contact GAM support.",
+                "error"
             );
 
-            setTimeout(
-                function() {
 
-                    window.location.href =
-                        "dashboard.html";
+            button.disabled =
+                false;
 
-                },
-                500
-            );
 
+            button.textContent =
+                "Login";
 
         }
 
-        catch (error) {
 
-            console.error(error);
+        catch(error) {
+
+            console.error(
+                error
+            );
+
 
             let text =
                 "Login failed.";
+
 
             if (
                 error.code ===
@@ -407,6 +650,7 @@ form.addEventListener(
 
             }
 
+
             else if (
                 error.code ===
                 "auth/invalid-email"
@@ -416,6 +660,7 @@ form.addEventListener(
                     "Please enter a valid email address.";
 
             }
+
 
             else if (
                 error.code ===
@@ -427,13 +672,27 @@ form.addEventListener(
 
             }
 
+
+            else if (
+                error.code ===
+                "permission-denied"
+            ) {
+
+                text =
+                    "Your profile could not be accessed. Please check your account setup.";
+
+            }
+
+
             showMessage(
                 text,
                 "error"
             );
 
+
             button.disabled =
                 false;
+
 
             button.textContent =
                 "Login";
@@ -443,7 +702,10 @@ form.addEventListener(
     }
 );
 
+
 </script>
 
+
 </body>
+
     </html>
