@@ -4,7 +4,8 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>GAM | Paper Builder</title>
 
@@ -28,7 +29,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
 }
 
 .brand {
@@ -72,17 +72,16 @@ header {
 }
 
 .top,
-.section,
-.question {
+.section-box {
     background: white;
+    padding: 25px;
     border-radius: 14px;
-    padding: 22px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     box-shadow: 0 3px 15px rgba(0,0,0,.07);
 }
 
-.top h1,
-.section h2 {
+h1,
+h2 {
     color: #063b75;
 }
 
@@ -110,8 +109,15 @@ header {
 }
 
 .gray {
-    background: #e7ebf0;
+    background: #e8edf3;
     color: #172033;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
 }
 
 input,
@@ -129,21 +135,22 @@ textarea {
     resize: vertical;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-top: 12px;
-    margin-bottom: 6px;
-}
-
 .grid {
     display: grid;
     grid-template-columns:
-        repeat(auto-fit, minmax(200px, 1fr));
+        repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
 }
 
-.section-header {
+.section-card {
+    border: 2px solid #dce2ea;
+    border-left: 6px solid #063b75;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.section-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -151,45 +158,24 @@ label {
     flex-wrap: wrap;
 }
 
-.section-rule {
-    background: #f4f7fb;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 15px 0;
-}
-
-.question {
-    border-left: 5px solid #063b75;
-    box-shadow: none;
+.question-card {
+    background: #f8fafc;
     border: 1px solid #dce2ea;
-    border-left: 5px solid #063b75;
+    border-radius: 10px;
+    padding: 18px;
+    margin-top: 15px;
 }
 
 .question-number {
     color: #063b75;
     font-weight: bold;
-    font-size: 18px;
-}
-
-.marks {
-    max-width: 150px;
-}
-
-.choice-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 12px;
-}
-
-.choice-row input {
-    width: auto;
+    font-size: 17px;
 }
 
 .actions {
     display: flex;
-    gap: 8px;
     flex-wrap: wrap;
+    gap: 8px;
     margin-top: 15px;
 }
 
@@ -218,18 +204,21 @@ label {
     color: #063b75;
 }
 
-.empty {
-    padding: 30px;
-    text-align: center;
-    color: #687386;
-}
-
-.total-box {
+.total {
     background: #063b75;
     color: white;
     padding: 18px;
-    border-radius: 12px;
+    border-radius: 10px;
     margin-top: 20px;
+    font-size: 18px;
+}
+
+.empty {
+    text-align: center;
+    padding: 30px;
+    color: #687386;
+    background: #f7f9fc;
+    border-radius: 10px;
 }
 
 footer {
@@ -286,50 +275,41 @@ href="contests.html">
 <div class="container">
 
 
-<div
-class="top">
+<div class="top">
 
 <h1>
 🏗️ Paper Builder
 </h1>
 
-<p
-id="contestTitle">
-
+<p id="contestTitle">
 Loading contest...
-
 </p>
 
 <div
 id="message"
 class="message">
-
 </div>
 
 </div>
 
 
 
-<!-- PAPER SETTINGS -->
-
-<div class="section">
+<div class="section-box">
 
 <h2>
 📋 Paper Settings
 </h2>
 
-
 <div class="grid">
-
 
 <div>
 
 <label>
-Total Duration (minutes)
+Duration (minutes)
 </label>
 
 <input
-id="paperDuration"
+id="duration"
 type="number"
 min="1"
 value="120"
@@ -358,7 +338,6 @@ Published
 
 </div>
 
-
 </div>
 
 
@@ -366,79 +345,58 @@ Published
 
 <button
 class="button primary"
-id="savePaper">
-
-💾 Save Paper
-
-</button>
-
-<button
-class="button yellow"
-id="previewPaper">
-
-👀 Preview
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- SECTIONS -->
-
-<div
-class="section">
-
-<div class="section-header">
-
-<h2>
-📚 Sections
-</h2>
-
-<button
-class="button primary"
-id="addSection">
+id="addSectionBtn">
 
 + Add Section
 
 </button>
 
+
+<button
+class="button yellow"
+id="savePaperBtn">
+
+💾 Save Paper
+
+</button>
+
+</div>
+
 </div>
 
 
+
 <div
-id="sections">
+class="section-box">
+
+<h2>
+📚 Paper Sections
+</h2>
+
+
+<div
+id="sectionsContainer">
 
 <div class="empty">
 
-No sections yet.<br>
-Click <strong>+ Add Section</strong> to begin.
+No sections created yet.<br><br>
+
+Tap <strong>+ Add Section</strong>
+to begin.
 
 </div>
 
 </div>
 
-</div>
 
+<div class="total">
 
-
-<!-- TOTAL -->
-
-<div
-class="total-box">
-
-<strong>
 Total Paper Marks:
+<strong id="totalMarks">
+0
 </strong>
 
-<span
-id="totalMarks">
-
-0
-
-</span>
+</div>
 
 </div>
 
@@ -465,14 +423,16 @@ Learn • Compete • Excel
 
 import {
     initializeApp
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
 import {
     getAuth,
     onAuthStateChanged
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
@@ -482,8 +442,10 @@ import {
     getDoc,
     setDoc,
     serverTimestamp
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
 
 const firebaseConfig = {
@@ -509,6 +471,7 @@ const firebaseConfig = {
 };
 
 
+
 const app =
     initializeApp(
         firebaseConfig
@@ -527,6 +490,7 @@ const OWNER_UID =
     "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
 
 
+
 const params =
     new URLSearchParams(
         window.location.search
@@ -539,19 +503,14 @@ const contestId =
     );
 
 
-let sections =
-    [];
 
+let sections = [];
 
-const contestTitle =
-    document.getElementById(
-        "contestTitle"
-    );
 
 
 const sectionsContainer =
     document.getElementById(
-        "sections"
+        "sectionsContainer"
     );
 
 
@@ -568,20 +527,9 @@ const message =
 
 
 
-/* CHECK CONTEST ID */
-
-if (!contestId) {
-
-    showMessage(
-        "No contest ID was provided.",
-        "error"
-    );
-
-}
-
-
-
-/* AUTH */
+/* ---------------------------
+   AUTHENTICATION
+--------------------------- */
 
 onAuthStateChanged(
     auth,
@@ -611,18 +559,28 @@ onAuthStateChanged(
         }
 
 
-        if (contestId) {
+        if (!contestId) {
 
-            await loadContest();
+            showMessage(
+                "No contest ID was provided.",
+                "error"
+            );
+
+            return;
 
         }
+
+
+        await loadContest();
 
     }
 );
 
 
 
-/* LOAD CONTEST */
+/* ---------------------------
+   LOAD CONTEST
+--------------------------- */
 
 async function loadContest() {
 
@@ -636,15 +594,13 @@ async function loadContest() {
             );
 
 
-        const contestSnap =
+        const snap =
             await getDoc(
                 contestRef
             );
 
 
-        if (
-            !contestSnap.exists()
-        ) {
+        if (!snap.exists()) {
 
             showMessage(
                 "Contest not found.",
@@ -657,16 +613,22 @@ async function loadContest() {
 
 
         const contest =
-            contestSnap.data();
+            snap.data();
 
 
-        contestTitle.textContent =
+        document
+        .getElementById(
+            "contestTitle"
+        )
+        .textContent =
             contest.name ||
             "GAM Contest";
 
 
         document
-        .getElementById("paperDuration")
+        .getElementById(
+            "duration"
+        )
         .value =
             contest.duration ||
             120;
@@ -678,9 +640,7 @@ async function loadContest() {
 
     catch(error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         showMessage(
             "Could not load contest: " +
@@ -694,7 +654,9 @@ async function loadContest() {
 
 
 
-/* LOAD PAPER */
+/* ---------------------------
+   LOAD PAPER
+--------------------------- */
 
 async function loadPaper() {
 
@@ -710,15 +672,13 @@ async function loadPaper() {
             );
 
 
-        const paperSnap =
+        const snap =
             await getDoc(
                 paperRef
             );
 
 
-        if (
-            !paperSnap.exists()
-        ) {
+        if (!snap.exists()) {
 
             renderSections();
 
@@ -727,26 +687,35 @@ async function loadPaper() {
         }
 
 
-        const paper =
-            paperSnap.data();
+        const data =
+            snap.data();
 
 
         sections =
-            paper.sections ||
+            Array.isArray(
+                data.sections
+            )
+            ?
+            data.sections
+            :
             [];
 
 
         document
-        .getElementById("paperDuration")
+        .getElementById(
+            "duration"
+        )
         .value =
-            paper.duration ||
+            data.duration ||
             120;
 
 
         document
-        .getElementById("paperStatus")
+        .getElementById(
+            "paperStatus"
+        )
         .value =
-            paper.status ||
+            data.status ||
             "draft";
 
 
@@ -756,9 +725,7 @@ async function loadPaper() {
 
     catch(error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         showMessage(
             "Could not load paper: " +
@@ -772,22 +739,30 @@ async function loadPaper() {
 
 
 
-/* ADD SECTION */
+/* ---------------------------
+   ADD SECTION
+--------------------------- */
 
 document
-.getElementById("addSection")
+.getElementById(
+    "addSectionBtn"
+)
 .addEventListener(
     "click",
     function() {
+
+        const letter =
+            String.fromCharCode(
+                65 +
+                sections.length
+            );
+
 
         sections.push({
 
             title:
                 "Section " +
-                String.fromCharCode(
-                    65 +
-                    sections.length
-                ),
+                letter,
 
             instructions:
                 "",
@@ -806,12 +781,19 @@ document
 
         renderSections();
 
+        window.scrollTo(
+            0,
+            document.body.scrollHeight
+        );
+
     }
 );
 
 
 
-/* RENDER SECTIONS */
+/* ---------------------------
+   RENDER SECTIONS
+--------------------------- */
 
 function renderSections() {
 
@@ -825,8 +807,8 @@ function renderSections() {
 
         sectionsContainer.innerHTML =
             '<div class="empty">' +
-            'No sections yet.<br>' +
-            'Click <strong>+ Add Section</strong> to begin.' +
+            'No sections created yet.<br><br>' +
+            'Tap <strong>+ Add Section</strong> to begin.' +
             '</div>';
 
         updateTotal();
@@ -839,27 +821,28 @@ function renderSections() {
     sections.forEach(
         function(section, sectionIndex) {
 
-            const box =
+            const card =
                 document.createElement(
                     "div"
                 );
 
-            box.className =
-                "section-rule";
+
+            card.className =
+                "section-card";
 
 
-            box.innerHTML =
+            card.innerHTML =
 
-                "<div class='section-header'>" +
+                "<div class='section-title'>" +
 
-                "<h3>Section " +
+                "<h2>" +
                 escapeHTML(
-                    section.title ||
-                    ""
+                    section.title
                 ) +
-                "</h3>" +
+                "</h2>" +
 
-                "<button class='button danger' " +
+                "<button " +
+                "class='button danger' " +
                 "data-remove-section='" +
                 sectionIndex +
                 "'>" +
@@ -867,6 +850,7 @@ function renderSections() {
                 "</button>" +
 
                 "</div>" +
+
 
                 "<label>Section Title</label>" +
 
@@ -876,10 +860,10 @@ function renderSections() {
                 "' " +
                 "value='" +
                 escapeAttribute(
-                    section.title ||
-                    ""
+                    section.title
                 ) +
                 "'>" +
+
 
                 "<label>Instructions</label>" +
 
@@ -888,14 +872,15 @@ function renderSections() {
                 sectionIndex +
                 "'>" +
                 escapeHTML(
-                    section.instructions ||
-                    ""
+                    section.instructions
                 ) +
                 "</textarea>" +
 
+
                 "<label>Answer Rule</label>" +
 
-                "<select data-answer-mode='" +
+                "<select " +
+                "data-answer-mode='" +
                 sectionIndex +
                 "'>" +
 
@@ -907,7 +892,9 @@ function renderSections() {
                     :
                     ""
                 ) +
-                ">Answer ALL questions</option>" +
+                ">" +
+                "Answer ALL questions" +
+                "</option>" +
 
                 "<option value='choose' " +
                 (
@@ -917,11 +904,17 @@ function renderSections() {
                     :
                     ""
                 ) +
-                ">Choose a specified number</option>" +
+                ">" +
+                "Answer ANY specified number" +
+                "</option>" +
 
                 "</select>" +
 
+
                 "<div " +
+                "data-required-box='" +
+                sectionIndex +
+                "' " +
                 "style='display:" +
                 (
                     section.answerMode === "choose"
@@ -932,7 +925,7 @@ function renderSections() {
                 ) +
                 ";'>" +
 
-                "<label>Number of questions to answer</label>" +
+                "<label>Number to Answer</label>" +
 
                 "<input " +
                 "type='number' " +
@@ -949,9 +942,11 @@ function renderSections() {
 
                 "</div>" +
 
+
                 "<div class='actions'>" +
 
-                "<button class='button primary' " +
+                "<button " +
+                "class='button primary' " +
                 "data-add-question='" +
                 sectionIndex +
                 "'>" +
@@ -960,7 +955,9 @@ function renderSections() {
 
                 "</div>" +
 
-                "<div id='questions-" +
+
+                "<div " +
+                "data-questions='" +
                 sectionIndex +
                 "'>" +
 
@@ -968,7 +965,7 @@ function renderSections() {
 
 
             sectionsContainer.appendChild(
-                box
+                card
             );
 
 
@@ -989,7 +986,9 @@ function renderSections() {
 
 
 
-/* RENDER QUESTIONS */
+/* ---------------------------
+   RENDER QUESTIONS
+--------------------------- */
 
 function renderQuestions(
     section,
@@ -997,9 +996,10 @@ function renderQuestions(
 ) {
 
     const container =
-        document.getElementById(
-            "questions-" +
-            sectionIndex
+        document.querySelector(
+            "[data-questions='" +
+            sectionIndex +
+            "']"
         );
 
 
@@ -1010,7 +1010,7 @@ function renderQuestions(
 
         container.innerHTML =
             '<div class="empty">' +
-            'No questions in this section.' +
+            'No questions yet.' +
             '</div>';
 
         return;
@@ -1018,31 +1018,31 @@ function renderQuestions(
     }
 
 
-    container.innerHTML =
-        "";
-
-
     section.questions.forEach(
         function(question, questionIndex) {
 
-            const q =
+            const card =
                 document.createElement(
                     "div"
                 );
 
-            q.className =
-                "question";
+
+            card.className =
+                "question-card";
 
 
-            q.innerHTML =
+            card.innerHTML =
 
                 "<div class='question-number'>" +
+
                 "Question " +
                 (
                     questionIndex +
                     1
                 ) +
+
                 "</div>" +
+
 
                 "<label>Question Text</label>" +
 
@@ -1058,13 +1058,15 @@ function renderQuestions(
                 ) +
                 "</textarea>" +
 
+
                 "<div class='grid'>" +
 
                 "<div>" +
 
                 "<label>Question Type</label>" +
 
-                "<select data-question-type='" +
+                "<select " +
+                "data-question-type='" +
                 sectionIndex +
                 "-" +
                 questionIndex +
@@ -1078,7 +1080,9 @@ function renderQuestions(
                     :
                     ""
                 ) +
-                ">Written Answer</option>" +
+                ">" +
+                "Written Answer" +
+                "</option>" +
 
                 "<option value='multiple_choice' " +
                 (
@@ -1088,18 +1092,20 @@ function renderQuestions(
                     :
                     ""
                 ) +
-                ">Multiple Choice</option>" +
+                ">" +
+                "Multiple Choice" +
+                "</option>" +
 
                 "</select>" +
 
                 "</div>" +
+
 
                 "<div>" +
 
                 "<label>Marks</label>" +
 
                 "<input " +
-                "class='marks' " +
                 "type='number' " +
                 "min='0' " +
                 "step='0.5' " +
@@ -1119,50 +1125,26 @@ function renderQuestions(
 
                 "</div>" +
 
-                (
-                    question.type ===
-                    "multiple_choice"
-                    ?
-
-                    "<label>Options (one per line)</label>" +
-
-                    "<textarea " +
-                    "data-question-options='" +
-                    sectionIndex +
-                    "-" +
-                    questionIndex +
-                    "'>" +
-
-                    escapeHTML(
-                        (
-                            question.options ||
-                            []
-                        ).join("\n")
-                    ) +
-
-                    "</textarea>"
-
-                    :
-
-                    ""
-                ) +
 
                 "<div class='actions'>" +
 
-                "<button class='button danger' " +
+                "<button " +
+                "class='button danger' " +
                 "data-remove-question='" +
                 sectionIndex +
                 "-" +
                 questionIndex +
                 "'>" +
+
                 "Remove Question" +
+
                 "</button>" +
 
                 "</div>";
 
 
             container.appendChild(
-                q
+                card
             );
 
         }
@@ -1175,7 +1157,9 @@ function renderQuestions(
 
 
 
-/* SECTION EVENTS */
+/* ---------------------------
+   SECTION EVENTS
+--------------------------- */
 
 function attachSectionEvents() {
 
@@ -1186,14 +1170,12 @@ function attachSectionEvents() {
     .forEach(
         function(button) {
 
-            button.addEventListener(
-                "click",
+            button.onclick =
                 function() {
 
                     const index =
                         Number(
-                            button
-                            .dataset
+                            button.dataset
                             .removeSection
                         );
 
@@ -1206,8 +1188,7 @@ function attachSectionEvents() {
 
                     renderSections();
 
-                }
-            );
+                };
 
         }
     );
@@ -1220,30 +1201,14 @@ function attachSectionEvents() {
     .forEach(
         function(button) {
 
-            button.addEventListener(
-                "click",
+            button.onclick =
                 function() {
 
                     const index =
                         Number(
-                            button
-                            .dataset
+                            button.dataset
                             .addQuestion
                         );
-
-
-                    if (
-                        !sections[
-                            index
-                        ].questions
-                    ) {
-
-                        sections[
-                            index
-                        ].questions =
-                            [];
-
-                    }
 
 
                     sections[
@@ -1257,18 +1222,14 @@ function attachSectionEvents() {
                             "written",
 
                         marks:
-                            1,
-
-                        options:
-                            []
+                            1
 
                     });
 
 
                     renderSections();
 
-                }
-            );
+                };
 
         }
     );
@@ -1281,18 +1242,57 @@ function attachSectionEvents() {
     .forEach(
         function(input) {
 
-            input.addEventListener(
-                "input",
+            input.oninput =
                 function() {
 
                     const index =
                         Number(
-                            input
-                            .dataset
+                            input.dataset
                             .sectionTitle
                         );
 
 
                     sections[
                         index
-                    ].t
+                    ].title =
+                        input.value;
+
+                };
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        "[data-section-instructions]"
+    )
+    .forEach(
+        function(input) {
+
+            input.oninput =
+                function() {
+
+                    const index =
+                        Number(
+                            input.dataset
+                            .sectionInstructions
+                        );
+
+
+                    sections[
+                        index
+                    ].instructions =
+                        input.value;
+
+                };
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        "[data-answer-mode]"
+    )
+    .
