@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GAM Africa | Student Dashboard</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
+
+header {
+    background: #063b75;
+    color: white;
+    padding: 14px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    background: #ffd21f;
+    color: #063b75;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.brand h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.brand p {
+    margin: 3px 0 0;
+    font-size: 11px;
+}
+
+.logout {
+    border: none;
+    background: white;
+    color: #063b75;
+    padding: 10px 14px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1150px;
+    margin: 25px auto;
+    padding: 0 20px;
+}
+
+.welcome {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+}
+
+.welcome h1 {
+    color: #063b75;
+    margin-top: 0;
+}
+
+.status {
+    display: inline-block;
+    background: #e6f7ed;
+    color: #087333;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.profile {
+    background: #eef4fb;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 18px;
+}
+
+.profile p {
+    margin: 7px 0;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+    border-top: 5px solid #063b75;
+}
+
+.card h2 {
+    color: #063b75;
+    margin-top: 0;
+}
+
+.card p {
+    line-height: 1.5;
+    color: #596579;
+}
+
+.card button {
+    border: none;
+    background: #063b75;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tutor {
+    border-top-color: #ffd21f;
+}
+
+.tutor button {
+    background: #ffd21f;
+    color: #063b75;
+}
+
+.contest {
+    border-top-color: #087333;
+}
+
+.contest button {
+    background: #087333;
+}
+
+.progress {
+    border-top-color: #7b3fb5;
+}
+
+.progress button {
+    background: #7b3fb5;
+}
+
+.notice {
+    margin-top: 22px;
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+}
+
+.notice h2 {
+    color: #063b75;
+}
+
+.message {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.error {
+    display: block;
+    background: #ffe8e8;
+    color: #a40000;
+}
+
+footer {
+    margin-top: 45px;
+    background: #03284f;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="brand">
+
+<div class="logo">
+GAM
+</div>
+
+<div>
+
+<h2>
+Global Academy of Minds Africa
+</h2>
+
+<p>
+Learn • Connect • Compete • Excel
+</p>
+
+</div>
+
+</div>
+
+
+<button
+class="logout"
+id="logoutBtn">
+
+Logout
+
+</button>
+
+</header>
+
+
+
+<div class="container">
+
+
+<div class="welcome">
+
+<h1 id="welcomeTitle">
+Welcome to GAM Africa
+</h1>
+
+<p>
+Your learning journey starts here.
+</p>
+
+
+<span
+class="status"
+id="accountStatus">
+
+Checking account...
+
+</span>
+
+
+<div class="profile">
+
+<p>
+<strong>Name:</strong>
+<span id="studentName">
+Loading...
+</span>
+</p>
+
+
+<p>
+<strong>Email:</strong>
+<span id="studentEmail">
+Loading...
+</span>
+</p>
+
+
+<p>
+<strong>Role:</strong>
+<span id="studentRole">
+Loading...
+</span>
+</p>
+
+</div>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+</div>
+
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h2>
+📚 My Learning
+</h2>
+
+<p>
+Access lessons, learning resources,
+practice activities and your learning journey.
+</p>
+
+<button
+id="learningBtn">
+
+My Learning
+
+</button>
+
+</div>
+
+
+
+<div class="card tutor">
+
+<h2>
+👨‍🏫 Find a Tutor
+</h2>
+
+<p>
+Discover tutors and connect with people
+who can help you learn.
+</p>
+
+<button
+id="tutorBtn">
+
+Find a Tutor
+
+</button>
+
+</div>
+
+
+
+<div class="card contest">
+
+<h2>
+🏆 GAM Competitions
+</h2>
+
+<p>
+Take part in GAM academic competitions,
+assessments and challenges.
+</p>
+
+<button
+id="contestBtn">
+
+View Competitions
+
+</button>
+
+</div>
+
+
+
+<div class="card progress">
+
+<h2>
+📊 My Progress
+</h2>
+
+<p>
+Track your learning progress, results,
+achievements and certificates.
+</p>
+
+<button
+id="progressBtn">
+
+View Progress
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="notice">
+
+<h2>
+🌍 Welcome to GAM Africa
+</h2>
+
+<p>
+Global Academy of Minds Africa is being
+built as a learning community where students
+can learn, connect with tutors, participate
+in competitions and grow together.
+</p>
+
+<p>
+More learning features will appear here
+as GAM Africa develops.
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+<strong>
+GAM — Global Academy of Minds Africa
+</strong>
+
+<p>
+Learn • Connect • Compete • Excel
+</p>
+
+</footer>
+
+
+
+<script type="module">
+
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+const welcomeTitle =
+    document.getElementById(
+        "welcomeTitle"
+    );
+
+
+const accountStatus =
+    document.getElementById(
+        "accountStatus"
+    );
+
+
+const studentName =
+    document.getElementById(
+        "studentName"
+    );
+
+
+const studentEmail =
+    document.getElementById(
+        "studentEmail"
+    );
+
+
+const studentRole =
+    document.getElementById(
+        "studentRole"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+
+/*
+ * CHECK LOGIN
+ */
+
+onAuthStateChanged(
+    auth,
+    async function(user) {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        try {
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const userSnapshot =
+                await getDoc(
+                    userRef
+                );
+
+
+            if (
+                !userSnapshot.exists()
+            ) {
+
+                showError(
+                    "Your student profile could not be found."
+                );
+
+                return;
+
+            }
+
+
+            const data =
+                userSnapshot.data();
+
+
+            /*
+             * STUDENT ROLE CHECK
+             */
+
+            if (
+                data.role !== "student"
+            ) {
+
+                document.body.innerHTML =
+                    "<h2 style='text-align:center;margin-top:100px;color:#a40000'>" +
+                    "Access denied. Student account required." +
+                    "</h2>";
+
+                return;
+
+            }
+
+
+            /*
+             * DISPLAY PROFILE
+             */
+
+            const name =
+                data.name ||
+                "Student";
+
+
+            const email =
+                data.email ||
+                user.email ||
+                "";
+
+
+            welcomeTitle.textContent =
+                "Welcome, " +
+                name +
+                "! 👋";
+
+
+            studentName.textContent =
+                name;
+
+
+            studentEmail.textContent =
+                email;
+
+
+            studentRole.textContent =
+                "Student";
+
+
+            accountStatus.textContent =
+                "✓ Student account verified";
+
+        }
+
+        catch(error) {
+
+            console.error(
+                error
+            );
+
+
+            showError(
+                "Could not load your student profile: " +
+                error.message
+            );
+
+        }
+
+    }
+);
+
+
+
+/*
+ * LOGOUT
+ */
+
+document
+.getElementById(
+    "logoutBtn"
+)
+.addEventListener(
+    "click",
+    async function() {
+
+        await signOut(
+            auth
+        );
+
+
+        window.location.href =
+            "login.html";
+
+    }
+);
+
+
+
+/*
+ * TEMPORARY NAVIGATION
+ *
+ * These buttons will be connected
+ * to the real GAM Africa systems
+ * as we build them.
+ */
+
+document
+.getElementById(
+    "learningBtn"
+)
+.addEventListener(
+    "click",
+    function() {
+
+        alert(
+            "GAM Learning will be connected next."
+        );
+
+    }
+);
+
+
+document
+.getElementById(
+    "tutorBtn"
+)
+.addEventListener(
+    "click",
+    function() {
+
+        alert(
+            "Tutor connection will be connected next."
+        );
+
+    }
+);
+
+
+document
+.getElementById(
+    "contestBtn"
+)
+.addEventListener(
+    "click",
+    function() {
+
+        window.location.href =
+            "contests-student.html";
+
+    }
+);
+
+
+document
+.getElementById(
+    "progressBtn"
+)
+.addEventListener(
+    "click",
+    function() {
+
+        alert(
+            "Student progress will be connected next."
+        );
+
+    }
+);
+
+
+
+/*
+ * ERROR MESSAGE
+ */
+
+function showError(
+    text
+) {
+
+    message.className =
+        "message error";
+
+    message.textContent =
+        text;
+
+}
+
+
+</script>
+
+
+</body>
+
+  </html>
