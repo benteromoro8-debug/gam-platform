@@ -479,8 +479,6 @@ import {
     collection,
     addDoc,
     getDocs,
-    query,
-    orderBy,
     serverTimestamp
 } from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
@@ -1021,7 +1019,7 @@ function escapeHTML(
 
 
 
-/* PAPER BUILDER - NEXT STAGE */
+/* OPEN PAPER BUILDER */
 
 window.buildPaper =
     function(id) {
@@ -1031,11 +1029,11 @@ window.buildPaper =
                 id
             );
 
-        alert(
-            "Paper Builder for contest " +
-            contestId +
-            " will be connected next."
-        );
+        window.location.href =
+            "paper-builder.html?contestId=" +
+            encodeURIComponent(
+                contestId
+            );
 
     };
 
