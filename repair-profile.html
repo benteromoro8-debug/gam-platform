@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>GAM Africa | Profile Repair</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
+
+.card {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+h1 {
+    color: #063b75;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #ffd21f;
+    color: #063b75;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+}
+
+.success {
+    display: block !important;
+    background: #e6f7ed;
+    color: #087333;
+}
+
+.error {
+    display: block !important;
+    background: #ffe8e8;
+    color: #a40000;
+}
+
+pre {
+    background: #172033;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🔧 GAM Africa Profile Repair</h1>
+
+<p>
+This will create your GAM student profile
+using your authenticated Firebase UID.
+</p>
+
+<p>
+<strong>Do not use this page for the Owner account.</strong>
+</p>
+
+<button id="repairBtn">
+Create / Repair My Student Profile
+</button>
+
+<div id="result"></div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+const OWNER_UID =
+    "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
+
+
+const button =
+    document.getElementById(
+        "repairBtn"
+    );
+
+
+const result =
+    document.getElementById(
+        "result"
+    );
+
+
+let currentUser = null;
+
+
+onAuthStateChanged(
+    auth,
+    function(user) {
+
+        currentUser = user;
+
+        if (!user) {
+
+            result.className =
+                "error";
+
+            result.textContent =
+                "You are not logged in. Please log in first.";
+
+        }
+
+    }
+);
+
+
+button.addEventListener(
+    "click",
+    async function() {
+
+        if (!currentUser) {
+
+            showResult(
+                "You are not logged in. Open login.html first.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            currentUser.uid === OWNER_UID
+        ) {
+
+            showResult(
+                "This is the Owner account. Do not use this repair page for the Owner.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Repairing profile...";
+
+
+        try {
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                );
+
+
+            const existing =
+                await getDoc(
+                    userRef
+                );
+
+
+            if (
+                existing.exists()
+            ) {
+
+                showResult(
+                    "The profile already exists. Nothing needed to be repaired.",
+                    "success"
+                );
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "Create / Repair My Student Profile";
+
+                return;
+
+            }
+
+
+            const profileData = {
+
+                name:
+                    currentUser.displayName ||
+                    "Student",
+
+                email:
+                    currentUser.email ||
+                    "",
+
+                role:
+                    "student",
+
+                uid:
+                    currentUser.uid,
+
+                createdAt:
+                    serverTimestamp()
+
+            };
+
+
+            await setDoc(
+                userRef,
+                profileData
+            );
+
+
+            showResult(
+                "✓ Student profile created successfully! You can now open your GAM dashboard.",
+                "success"
+            );
+
+
+            button.textContent =
+                "Profile Created";
+
+
+        }
+
+        catch(error) {
+
+            console.error(error);
+
+            showResult(
+                "Profile repair failed:\n\n" +
+                error.code +
+                "\n" +
+                error.message,
+                "error"
+            );
+
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Create / Repair My Student Profile";
+
+        }
+
+    }
+);
+
+
+function showResult(
+    text,
+    type
+) {
+
+    result.className =
+        type;
+
+    result.textContent =
+        text;
+
+}
+
+</script>
+
+</body>
+
+</html>
