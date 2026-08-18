@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GAM | Paper Builder</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
+
+header {
+    background: #063b75;
+    color: white;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    background: #ffd21f;
+    color: #063b75;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.brand h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.brand p {
+    margin: 3px 0 0;
+    font-size: 11px;
+}
+
+.back {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1150px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.top,
+.section,
+.question {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+}
+
+.top h1,
+.section h2 {
+    color: #063b75;
+}
+
+.button {
+    border: none;
+    padding: 11px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary {
+    background: #063b75;
+    color: white;
+}
+
+.yellow {
+    background: #ffd21f;
+    color: #063b75;
+}
+
+.danger {
+    background: #c62828;
+    color: white;
+}
+
+.gray {
+    background: #e7ebf0;
+    color: #172033;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccd5e0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.section-rule {
+    background: #f4f7fb;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.question {
+    border-left: 5px solid #063b75;
+    box-shadow: none;
+    border: 1px solid #dce2ea;
+    border-left: 5px solid #063b75;
+}
+
+.question-number {
+    color: #063b75;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.marks {
+    max-width: 150px;
+}
+
+.choice-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.choice-row input {
+    width: auto;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.message {
+    display: none;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.success {
+    display: block;
+    background: #e6f7ed;
+    color: #087333;
+}
+
+.error {
+    display: block;
+    background: #ffe8e8;
+    color: #a40000;
+}
+
+.info {
+    display: block;
+    background: #eaf2ff;
+    color: #063b75;
+}
+
+.empty {
+    padding: 30px;
+    text-align: center;
+    color: #687386;
+}
+
+.total-box {
+    background: #063b75;
+    color: white;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+footer {
+    margin-top: 50px;
+    background: #03284f;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="brand">
+
+<div class="logo">
+GAM
+</div>
+
+<div>
+
+<h2>
+GAM Paper Builder
+</h2>
+
+<p>
+Global Academy of Minds
+</p>
+
+</div>
+
+</div>
+
+
+<a
+class="back"
+href="contests.html">
+
+← Contest Management
+
+</a>
+
+</header>
+
+
+
+<div class="container">
+
+
+<div
+class="top">
+
+<h1>
+🏗️ Paper Builder
+</h1>
+
+<p
+id="contestTitle">
+
+Loading contest...
+
+</p>
+
+<div
+id="message"
+class="message">
+
+</div>
+
+</div>
+
+
+
+<!-- PAPER SETTINGS -->
+
+<div class="section">
+
+<h2>
+📋 Paper Settings
+</h2>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>
+Total Duration (minutes)
+</label>
+
+<input
+id="paperDuration"
+type="number"
+min="1"
+value="120"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Paper Status
+</label>
+
+<select id="paperStatus">
+
+<option value="draft">
+Draft
+</option>
+
+<option value="published">
+Published
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="button primary"
+id="savePaper">
+
+💾 Save Paper
+
+</button>
+
+<button
+class="button yellow"
+id="previewPaper">
+
+👀 Preview
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SECTIONS -->
+
+<div
+class="section">
+
+<div class="section-header">
+
+<h2>
+📚 Sections
+</h2>
+
+<button
+class="button primary"
+id="addSection">
+
++ Add Section
+
+</button>
+
+</div>
+
+
+<div
+id="sections">
+
+<div class="empty">
+
+No sections yet.<br>
+Click <strong>+ Add Section</strong> to begin.
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- TOTAL -->
+
+<div
+class="total-box">
+
+<strong>
+Total Paper Marks:
+</strong>
+
+<span
+id="totalMarks">
+
+0
+
+</span>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+<strong>
+GAM — Global Academy of Minds
+</strong>
+
+<p>
+Learn • Compete • Excel
+</p>
+
+</footer>
+
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+const OWNER_UID =
+    "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
+
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const contestId =
+    params.get(
+        "contestId"
+    );
+
+
+let sections =
+    [];
+
+
+const contestTitle =
+    document.getElementById(
+        "contestTitle"
+    );
+
+
+const sectionsContainer =
+    document.getElementById(
+        "sections"
+    );
+
+
+const totalMarks =
+    document.getElementById(
+        "totalMarks"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+
+/* CHECK CONTEST ID */
+
+if (!contestId) {
+
+    showMessage(
+        "No contest ID was provided.",
+        "error"
+    );
+
+}
+
+
+
+/* AUTH */
+
+onAuthStateChanged(
+    auth,
+    async function(user) {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        if (
+            user.uid !== OWNER_UID
+        ) {
+
+            document.body.innerHTML =
+                "<h2 style='text-align:center;margin-top:100px;color:#a40000'>" +
+                "Access denied. Owner only." +
+                "</h2>";
+
+            return;
+
+        }
+
+
+        if (contestId) {
+
+            await loadContest();
+
+        }
+
+    }
+);
+
+
+
+/* LOAD CONTEST */
+
+async function loadContest() {
+
+    try {
+
+        const contestRef =
+            doc(
+                db,
+                "contests",
+                contestId
+            );
+
+
+        const contestSnap =
+            await getDoc(
+                contestRef
+            );
+
+
+        if (
+            !contestSnap.exists()
+        ) {
+
+            showMessage(
+                "Contest not found.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const contest =
+            contestSnap.data();
+
+
+        contestTitle.textContent =
+            contest.name ||
+            "GAM Contest";
+
+
+        document
+        .getElementById("paperDuration")
+        .value =
+            contest.duration ||
+            120;
+
+
+        await loadPaper();
+
+    }
+
+    catch(error) {
+
+        console.error(
+            error
+        );
+
+        showMessage(
+            "Could not load contest: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+
+/* LOAD PAPER */
+
+async function loadPaper() {
+
+    try {
+
+        const paperRef =
+            doc(
+                db,
+                "contests",
+                contestId,
+                "paper",
+                "main"
+            );
+
+
+        const paperSnap =
+            await getDoc(
+                paperRef
+            );
+
+
+        if (
+            !paperSnap.exists()
+        ) {
+
+            renderSections();
+
+            return;
+
+        }
+
+
+        const paper =
+            paperSnap.data();
+
+
+        sections =
+            paper.sections ||
+            [];
+
+
+        document
+        .getElementById("paperDuration")
+        .value =
+            paper.duration ||
+            120;
+
+
+        document
+        .getElementById("paperStatus")
+        .value =
+            paper.status ||
+            "draft";
+
+
+        renderSections();
+
+    }
+
+    catch(error) {
+
+        console.error(
+            error
+        );
+
+        showMessage(
+            "Could not load paper: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+
+/* ADD SECTION */
+
+document
+.getElementById("addSection")
+.addEventListener(
+    "click",
+    function() {
+
+        sections.push({
+
+            title:
+                "Section " +
+                String.fromCharCode(
+                    65 +
+                    sections.length
+                ),
+
+            instructions:
+                "",
+
+            answerMode:
+                "all",
+
+            required:
+                0,
+
+            questions:
+                []
+
+        });
+
+
+        renderSections();
+
+    }
+);
+
+
+
+/* RENDER SECTIONS */
+
+function renderSections() {
+
+    sectionsContainer.innerHTML =
+        "";
+
+
+    if (
+        sections.length === 0
+    ) {
+
+        sectionsContainer.innerHTML =
+            '<div class="empty">' +
+            'No sections yet.<br>' +
+            'Click <strong>+ Add Section</strong> to begin.' +
+            '</div>';
+
+        updateTotal();
+
+        return;
+
+    }
+
+
+    sections.forEach(
+        function(section, sectionIndex) {
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+            box.className =
+                "section-rule";
+
+
+            box.innerHTML =
+
+                "<div class='section-header'>" +
+
+                "<h3>Section " +
+                escapeHTML(
+                    section.title ||
+                    ""
+                ) +
+                "</h3>" +
+
+                "<button class='button danger' " +
+                "data-remove-section='" +
+                sectionIndex +
+                "'>" +
+                "Remove Section" +
+                "</button>" +
+
+                "</div>" +
+
+                "<label>Section Title</label>" +
+
+                "<input " +
+                "data-section-title='" +
+                sectionIndex +
+                "' " +
+                "value='" +
+                escapeAttribute(
+                    section.title ||
+                    ""
+                ) +
+                "'>" +
+
+                "<label>Instructions</label>" +
+
+                "<textarea " +
+                "data-section-instructions='" +
+                sectionIndex +
+                "'>" +
+                escapeHTML(
+                    section.instructions ||
+                    ""
+                ) +
+                "</textarea>" +
+
+                "<label>Answer Rule</label>" +
+
+                "<select data-answer-mode='" +
+                sectionIndex +
+                "'>" +
+
+                "<option value='all' " +
+                (
+                    section.answerMode === "all"
+                    ?
+                    "selected"
+                    :
+                    ""
+                ) +
+                ">Answer ALL questions</option>" +
+
+                "<option value='choose' " +
+                (
+                    section.answerMode === "choose"
+                    ?
+                    "selected"
+                    :
+                    ""
+                ) +
+                ">Choose a specified number</option>" +
+
+                "</select>" +
+
+                "<div " +
+                "style='display:" +
+                (
+                    section.answerMode === "choose"
+                    ?
+                    "block"
+                    :
+                    "none"
+                ) +
+                ";'>" +
+
+                "<label>Number of questions to answer</label>" +
+
+                "<input " +
+                "type='number' " +
+                "min='1' " +
+                "data-required='" +
+                sectionIndex +
+                "' " +
+                "value='" +
+                (
+                    section.required ||
+                    1
+                ) +
+                "'>" +
+
+                "</div>" +
+
+                "<div class='actions'>" +
+
+                "<button class='button primary' " +
+                "data-add-question='" +
+                sectionIndex +
+                "'>" +
+                "+ Add Question" +
+                "</button>" +
+
+                "</div>" +
+
+                "<div id='questions-" +
+                sectionIndex +
+                "'>" +
+
+                "</div>";
+
+
+            sectionsContainer.appendChild(
+                box
+            );
+
+
+            renderQuestions(
+                section,
+                sectionIndex
+            );
+
+        }
+    );
+
+
+    attachSectionEvents();
+
+    updateTotal();
+
+}
+
+
+
+/* RENDER QUESTIONS */
+
+function renderQuestions(
+    section,
+    sectionIndex
+) {
+
+    const container =
+        document.getElementById(
+            "questions-" +
+            sectionIndex
+        );
+
+
+    if (
+        !section.questions ||
+        section.questions.length === 0
+    ) {
+
+        container.innerHTML =
+            '<div class="empty">' +
+            'No questions in this section.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        "";
+
+
+    section.questions.forEach(
+        function(question, questionIndex) {
+
+            const q =
+                document.createElement(
+                    "div"
+                );
+
+            q.className =
+                "question";
+
+
+            q.innerHTML =
+
+                "<div class='question-number'>" +
+                "Question " +
+                (
+                    questionIndex +
+                    1
+                ) +
+                "</div>" +
+
+                "<label>Question Text</label>" +
+
+                "<textarea " +
+                "data-question-text='" +
+                sectionIndex +
+                "-" +
+                questionIndex +
+                "'>" +
+                escapeHTML(
+                    question.text ||
+                    ""
+                ) +
+                "</textarea>" +
+
+                "<div class='grid'>" +
+
+                "<div>" +
+
+                "<label>Question Type</label>" +
+
+                "<select data-question-type='" +
+                sectionIndex +
+                "-" +
+                questionIndex +
+                "'>" +
+
+                "<option value='written' " +
+                (
+                    question.type === "written"
+                    ?
+                    "selected"
+                    :
+                    ""
+                ) +
+                ">Written Answer</option>" +
+
+                "<option value='multiple_choice' " +
+                (
+                    question.type === "multiple_choice"
+                    ?
+                    "selected"
+                    :
+                    ""
+                ) +
+                ">Multiple Choice</option>" +
+
+                "</select>" +
+
+                "</div>" +
+
+                "<div>" +
+
+                "<label>Marks</label>" +
+
+                "<input " +
+                "class='marks' " +
+                "type='number' " +
+                "min='0' " +
+                "step='0.5' " +
+                "data-question-marks='" +
+                sectionIndex +
+                "-" +
+                questionIndex +
+                "' " +
+                "value='" +
+                (
+                    question.marks ||
+                    1
+                ) +
+                "'>" +
+
+                "</div>" +
+
+                "</div>" +
+
+                (
+                    question.type ===
+                    "multiple_choice"
+                    ?
+
+                    "<label>Options (one per line)</label>" +
+
+                    "<textarea " +
+                    "data-question-options='" +
+                    sectionIndex +
+                    "-" +
+                    questionIndex +
+                    "'>" +
+
+                    escapeHTML(
+                        (
+                            question.options ||
+                            []
+                        ).join("\n")
+                    ) +
+
+                    "</textarea>"
+
+                    :
+
+                    ""
+                ) +
+
+                "<div class='actions'>" +
+
+                "<button class='button danger' " +
+                "data-remove-question='" +
+                sectionIndex +
+                "-" +
+                questionIndex +
+                "'>" +
+                "Remove Question" +
+                "</button>" +
+
+                "</div>";
+
+
+            container.appendChild(
+                q
+            );
+
+        }
+    );
+
+
+    attachQuestionEvents();
+
+}
+
+
+
+/* SECTION EVENTS */
+
+function attachSectionEvents() {
+
+    document
+    .querySelectorAll(
+        "[data-remove-section]"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const index =
+                        Number(
+                            button
+                            .dataset
+                            .removeSection
+                        );
+
+
+                    sections.splice(
+                        index,
+                        1
+                    );
+
+
+                    renderSections();
+
+                }
+            );
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        "[data-add-question]"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const index =
+                        Number(
+                            button
+                            .dataset
+                            .addQuestion
+                        );
+
+
+                    if (
+                        !sections[
+                            index
+                        ].questions
+                    ) {
+
+                        sections[
+                            index
+                        ].questions =
+                            [];
+
+                    }
+
+
+                    sections[
+                        index
+                    ].questions.push({
+
+                        text:
+                            "",
+
+                        type:
+                            "written",
+
+                        marks:
+                            1,
+
+                        options:
+                            []
+
+                    });
+
+
+                    renderSections();
+
+                }
+            );
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        "[data-section-title]"
+    )
+    .forEach(
+        function(input) {
+
+            input.addEventListener(
+                "input",
+                function() {
+
+                    const index =
+                        Number(
+                            input
+                            .dataset
+                            .sectionTitle
+                        );
+
+
+                    sections[
+                        index
+                    ].t
