@@ -2,369 +2,489 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>GAM | Register</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>GAM Africa | Register</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f8fc;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        nav {
-            background: #063b75;
-            color: white;
-            padding: 14px 6%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f8fc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+nav {
+    background: #063b75;
+    color: white;
+    padding: 14px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-        .logo {
-            width: 44px;
-            height: 44px;
-            background: #ffd21f;
-            color: #063b75;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .brand h2 {
-            font-size: 18px;
-        }
+.logo {
+    width: 44px;
+    height: 44px;
+    background: #ffd21f;
+    color: #063b75;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
 
-        .brand p {
-            font-size: 10px;
-            opacity: .85;
-        }
+.brand h2 {
+    font-size: 18px;
+}
 
-        .home-link {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
+.brand p {
+    font-size: 10px;
+    opacity: .85;
+}
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            margin: 45px auto;
-            padding: 0 20px;
-            flex: 1;
-        }
+.home-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
 
-        .register-card {
-            background: white;
-            padding: 32px 26px;
-            border-radius: 16px;
-            box-shadow: 0 6px 25px rgba(0,0,0,.08);
-        }
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 45px auto;
+    padding: 0 20px;
+    flex: 1;
+}
 
-        .register-card h1 {
-            color: #063b75;
-            text-align: center;
-            margin-bottom: 8px;
-        }
+.register-card {
+    background: white;
+    padding: 32px 26px;
+    border-radius: 16px;
+    box-shadow: 0 6px 25px rgba(0,0,0,.08);
+}
 
-        .subtitle {
-            text-align: center;
-            color: #687386;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
+.register-card h1 {
+    color: #063b75;
+    text-align: center;
+    margin-bottom: 8px;
+}
 
-        label {
-            display: block;
-            color: #26364a;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 7px;
-        }
+.subtitle {
+    text-align: center;
+    color: #687386;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
 
-        input {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #ccd5e0;
-            border-radius: 8px;
-            font-size: 15px;
-            margin-bottom: 17px;
-            outline: none;
-        }
+label {
+    display: block;
+    color: #26364a;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
 
-        input:focus {
-            border-color: #063b75;
-        }
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccd5e0;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: 17px;
+    outline: none;
+}
 
-        .register-btn {
-            width: 100%;
-            border: none;
-            background: #ffd21f;
-            color: #063b75;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+input:focus {
+    border-color: #063b75;
+}
 
-        .register-btn:hover {
-            background: #f4c600;
-        }
+.register-btn {
+    width: 100%;
+    border: none;
+    background: #ffd21f;
+    color: #063b75;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .register-btn:disabled {
-            opacity: .6;
-            cursor: not-allowed;
-        }
+.register-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
 
-        .message {
-            display: none;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 17px;
-            font-size: 14px;
-        }
+.message {
+    display: none;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 17px;
+    font-size: 14px;
+}
 
-        .error {
-            display: block;
-            background: #ffe8e8;
-            color: #a40000;
-        }
+.error {
+    display: block;
+    background: #ffe8e8;
+    color: #a40000;
+}
 
-        .success {
-            display: block;
-            background: #e6f7ed;
-            color: #087333;
-        }
+.success {
+    display: block;
+    background: #e6f7ed;
+    color: #087333;
+}
 
-        .login-text {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #687386;
-        }
+.login-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #687386;
+}
 
-        .login-text a {
-            color: #063b75;
-            font-weight: bold;
-            text-decoration: none;
-        }
+.login-text a {
+    color: #063b75;
+    font-weight: bold;
+    text-decoration: none;
+}
 
-        footer {
-            background: #03284f;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            font-size: 13px;
-        }
+footer {
+    background: #03284f;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 13px;
+}
 
-        footer p {
-            color: #b9c9dc;
-            margin-top: 6px;
-        }
+footer p {
+    color: #b9c9dc;
+    margin-top: 6px;
+}
 
-    </style>
+</style>
 
 </head>
+
 
 <body>
 
 
 <nav>
 
-    <div class="brand">
+<div class="brand">
 
-        <div class="logo">
-            GAM
-        </div>
+<div class="logo">
+GAM
+</div>
 
-        <div>
-            <h2>GAM</h2>
-            <p>Global Academy of Minds</p>
-        </div>
+<div>
 
-    </div>
+<h2>
+GAM Africa
+</h2>
 
-    <a href="index.html" class="home-link">
-        Home
-    </a>
+<p>
+Global Academy of Minds Africa
+</p>
 
-</nav>
-
-
-<div class="container">
-
-    <div class="register-card">
-
-        <h1>Create Account</h1>
-
-        <p class="subtitle">
-            Join Global Academy of Minds
-        </p>
-
-
-        <div id="message" class="message"></div>
-
-
-        <form id="registerForm">
-
-            <label for="fullName">
-                Full Name
-            </label>
-
-            <input
-                type="text"
-                id="fullName"
-                placeholder="Enter your full name"
-                required
-            >
-
-
-            <label for="email">
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                required
-            >
-
-
-            <label for="password">
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Create a password"
-                minlength="6"
-                required
-            >
-
-
-            <label for="confirmPassword">
-                Confirm Password
-            </label>
-
-            <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Enter password again"
-                minlength="6"
-                required
-            >
-
-
-            <button
-                type="submit"
-                id="registerBtn"
-                class="register-btn">
-
-                Create Account
-
-            </button>
-
-        </form>
-
-
-        <div class="login-text">
-
-            Already have an account?
-
-            <a href="login.html">
-                Login
-            </a>
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
 
+<a
+href="index.html"
+class="home-link">
+
+Home
+
+</a>
+
+</nav>
+
+
+
+<div class="container">
+
+<div class="register-card">
+
+<h1>
+Create Account
+</h1>
+
+<p class="subtitle">
+Join Global Academy of Minds Africa
+</p>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+
+<form id="registerForm">
+
+
+<label for="fullName">
+Full Name
+</label>
+
+<input
+type="text"
+id="fullName"
+placeholder="Enter your full name"
+required
+>
+
+
+<label for="email">
+Email Address
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required
+>
+
+
+<label for="password">
+Password
+</label>
+
+<input
+type="password"
+id="password"
+placeholder="Create a password"
+minlength="6"
+required
+>
+
+
+<label for="confirmPassword">
+Confirm Password
+</label>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Enter password again"
+minlength="6"
+required
+>
+
+
+<button
+type="submit"
+id="registerBtn"
+class="register-btn">
+
+Create Student Account
+
+</button>
+
+</form>
+
+
+<div class="login-text">
+
+Already have an account?
+
+<a href="login.html">
+Login
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
 <footer>
 
-    <strong>
-        GAM — Global Academy of Minds
-    </strong>
+<strong>
+GAM — Global Academy of Minds Africa
+</strong>
 
-    <p>
-        Learn • Compete • Excel
-    </p>
+<p>
+Learn • Connect • Compete • Excel
+</p>
 
 </footer>
 
 
+
 <script type="module">
 
-    import {
-        getAuth,
-        createUserWithEmailAndPassword,
-        updateProfile
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-    import { app } from "./firebase-config.js";
+/*
+ * FIREBASE
+ */
 
-
-    const auth = getAuth(app);
-
-
-    const form = document.getElementById("registerForm");
-
-    const fullName =
-        document.getElementById("fullName");
-
-    const email =
-        document.getElementById("email");
-
-    const password =
-        document.getElementById("password");
-
-    const confirmPassword =
-        document.getElementById("confirmPassword");
-
-    const message =
-        document.getElementById("message");
-
-    const registerBtn =
-        document.getElementById("registerBtn");
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
-    function showMessage(text, type) {
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-        message.textContent = text;
 
-        message.className =
-            "message " + type;
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-    }
 
 
-    form.addEventListener("submit", async function(event) {
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/*
+ * ELEMENTS
+ */
+
+const form =
+    document.getElementById(
+        "registerForm"
+    );
+
+
+const fullName =
+    document.getElementById(
+        "fullName"
+    );
+
+
+const email =
+    document.getElementById(
+        "email"
+    );
+
+
+const password =
+    document.getElementById(
+        "password"
+    );
+
+
+const confirmPassword =
+    document.getElementById(
+        "confirmPassword"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const registerBtn =
+    document.getElementById(
+        "registerBtn"
+    );
+
+
+
+/*
+ * MESSAGE
+ */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message " +
+        type;
+
+}
+
+
+
+/*
+ * REGISTRATION
+ */
+
+form.addEventListener(
+    "submit",
+    async function(event) {
 
         event.preventDefault();
 
@@ -372,17 +492,27 @@
         const name =
             fullName.value.trim();
 
+
         const userEmail =
             email.value.trim();
 
+
         const userPassword =
             password.value;
+
 
         const confirmedPassword =
             confirmPassword.value;
 
 
-        if (name.length < 2) {
+
+        /*
+         * VALIDATION
+         */
+
+        if (
+            name.length < 2
+        ) {
 
             showMessage(
                 "Please enter your full name.",
@@ -390,10 +520,13 @@
             );
 
             return;
+
         }
 
 
-        if (userPassword.length < 6) {
+        if (
+            userPassword.length < 6
+        ) {
 
             showMessage(
                 "Password must be at least 6 characters.",
@@ -401,10 +534,14 @@
             );
 
             return;
+
         }
 
 
-        if (userPassword !== confirmedPassword) {
+        if (
+            userPassword !==
+            confirmedPassword
+        ) {
 
             showMessage(
                 "Passwords do not match.",
@@ -412,16 +549,26 @@
             );
 
             return;
+
         }
 
 
-        registerBtn.disabled = true;
+
+        registerBtn.disabled =
+            true;
+
 
         registerBtn.textContent =
             "Creating Account...";
 
 
+
         try {
+
+
+            /*
+             * CREATE FIREBASE AUTH ACCOUNT
+             */
 
             const userCredential =
                 await createUserWithEmailAndPassword(
@@ -431,44 +578,110 @@
                 );
 
 
+            const user =
+                userCredential.user;
+
+
+
+            /*
+             * SAVE DISPLAY NAME
+             */
+
             await updateProfile(
-                userCredential.user,
+                user,
                 {
-                    displayName: name
+                    displayName:
+                        name
                 }
             );
 
 
+
+            /*
+             * CREATE FIRESTORE STUDENT PROFILE
+             *
+             * IMPORTANT:
+             *
+             * The document ID is the
+             * Firebase Authentication UID.
+             */
+
+            await setDoc(
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                ),
+                {
+
+                    name:
+                        name,
+
+                    email:
+                        userEmail,
+
+                    role:
+                        "student",
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+
+            /*
+             * SUCCESS
+             */
+
             showMessage(
-                "Account created successfully! Redirecting...",
+                "✓ Student account created successfully! Opening your dashboard...",
                 "success"
             );
 
 
-            setTimeout(function() {
 
-                window.location.href =
-                    "dashboard.html";
+            /*
+             * SEND STUDENT TO
+             * STUDENT DASHBOARD
+             */
 
-            }, 1200);
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "student.html";
+
+                },
+                1200
+            );
 
 
-        } catch (error) {
+        }
 
-            console.error(error);
+        catch(error) {
+
+            console.error(
+                error
+            );
 
 
             let errorMessage =
                 "Unable to create account.";
 
 
-            if (error.code ===
-                "auth/email-already-in-use") {
+            if (
+                error.code ===
+                "auth/email-already-in-use"
+            ) {
 
                 errorMessage =
                     "This email is already registered.";
 
-            } else if (
+            }
+
+            else if (
                 error.code ===
                 "auth/invalid-email"
             ) {
@@ -476,13 +689,25 @@
                 errorMessage =
                     "Please enter a valid email address.";
 
-            } else if (
+            }
+
+            else if (
                 error.code ===
                 "auth/weak-password"
             ) {
 
                 errorMessage =
                     "Your password is too weak.";
+
+            }
+
+            else if (
+                error.code ===
+                "permission-denied"
+            ) {
+
+                errorMessage =
+                    "Account created, but the student profile could not be saved. Please check the Firestore rules.";
 
             }
 
@@ -493,14 +718,18 @@
             );
 
 
-            registerBtn.disabled = false;
+            registerBtn.disabled =
+                false;
+
 
             registerBtn.textContent =
-                "Create Account";
+                "Create Student Account";
 
         }
 
-    });
+    }
+);
+
 
 </script>
 
