@@ -163,6 +163,11 @@ nav{
     cursor:pointer;
 }
 
+.action:disabled{
+    opacity:.75;
+    cursor:not-allowed;
+}
+
 .join{
     background:#087333;
     color:white;
@@ -451,6 +456,23 @@ nav{
 }
 
 
+/* CONNECTION STATUS */
+
+.connection-status{
+    margin-top:10px;
+    font-size:11px;
+    color:#687386;
+}
+
+.connection-status.success{
+    color:#087333;
+}
+
+.connection-status.error{
+    color:#a40000;
+}
+
+
 /* FOOTER */
 
 footer{
@@ -574,6 +596,12 @@ class="action report"
 id="reportBtn">
 🚩 Report
 </button>
+
+<div
+id="connectionStatus"
+class="connection-status">
+Checking GAM account...
+</div>
 
 </div>
 
@@ -1081,20 +1109,87 @@ Submit Report
 </div>
 
 
-<script>
+<!-- FIREBASE -->
 
-/*
- * READ COMMUNITY FROM URL
- */
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+/* =========================
+   GAM FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =========================
+   COMMUNITY
+========================= */
 
 const params =
-new URLSearchParams(
-window.location.search
-);
+    new URLSearchParams(
+        window.location.search
+    );
+
 
 const community =
-params.get("community") ||
-"mathematics";
+    params.get("community") ||
+    "mathematics";
 
 
 const communityData = {
@@ -1149,250 +1244,292 @@ communityData[community] ||
 communityData.mathematics;
 
 
+/* =========================
+   DISPLAY COMMUNITY
+========================= */
+
 document.getElementById(
-"communityTitle"
+    "communityTitle"
 ).textContent =
-selected.title;
+    selected.title;
 
 
 document.getElementById(
-"communityIcon"
+    "communityIcon"
 ).textContent =
-selected.icon;
+    selected.icon;
 
 
 document.getElementById(
-"communityDescription"
+    "communityDescription"
 ).textContent =
-selected.description;
+    selected.description;
 
 
-/*
- * JOIN
- */
+/* =========================
+   ELEMENTS
+========================= */
 
-document.getElementById(
-"joinBtn"
-).addEventListener(
-"click",
-function(){
-
-    this.textContent =
-    "✓ Joined Community";
-
-    this.style.background =
-    "#063b75";
-
-    alert(
-    "You have joined the " +
-    selected.title +
-    " community."
+const joinBtn =
+    document.getElementById(
+        "joinBtn"
     );
 
-});
 
+const connectionStatus =
+    document.getElementById(
+        "connectionStatus"
+    );
 
-/*
- * ASK QUESTION
- */
 
 const askModal =
-document.getElementById(
-"askModal"
-);
-
-document.getElementById(
-"askBtn"
-).addEventListener(
-"click",
-function(){
-
-    askModal.style.display =
-    "flex";
-
-});
-
-
-document.getElementById(
-"cancelAsk"
-).addEventListener(
-"click",
-function(){
-
-    askModal.style.display =
-    "none";
-
-});
-
-
-document.getElementById(
-"submitAsk"
-).addEventListener(
-"click",
-function(){
-
-    const text =
     document.getElementById(
-    "questionText"
-    ).value.trim();
-
-
-    if(!text){
-
-        alert(
-        "Please write your question first."
-        );
-
-        return;
-
-    }
-
-
-    alert(
-    "Your question is ready to be submitted to the GAM community."
+        "askModal"
     );
 
-
-    document.getElementById(
-    "questionText"
-    ).value =
-    "";
-
-
-    askModal.style.display =
-    "none";
-
-});
-
-
-/*
- * REPORT
- */
 
 const reportModal =
-document.getElementById(
-"reportModal"
-);
-
-document.getElementById(
-"reportBtn"
-).addEventListener(
-"click",
-function(){
-
-    reportModal.style.display =
-    "flex";
-
-});
-
-
-document.getElementById(
-"cancelReport"
-).addEventListener(
-"click",
-function(){
-
-    reportModal.style.display =
-    "none";
-
-});
-
-
-document.getElementById(
-"submitReport"
-).addEventListener(
-"click",
-function(){
-
-    const text =
     document.getElementById(
-    "reportText"
-    ).value.trim();
-
-
-    if(!text){
-
-        alert(
-        "Please describe the concern."
-        );
-
-        return;
-
-    }
-
-
-    alert(
-    "Your report has been prepared for GAM moderation."
+        "reportModal"
     );
 
 
-    document.getElementById(
-    "reportText"
-    ).value =
-    "";
+let currentUser =
+    null;
 
 
-    reportModal.style.display =
-    "none";
+/* =========================
+   PUBLIC GAM NAME
+========================= */
 
-});
+function createPublicName(
+    data,
+    user
+){
+
+    /*
+     * If GAM has already created
+     * a public name, use it.
+     */
+
+    if(
+        data.publicName
+    ){
+
+        return data.publicName;
+
+    }
 
 
-/*
- * EVENT ENROLMENT
- */
+    const fullName =
+        data.name ||
+        user.displayName ||
+        "Student";
 
-document
-.querySelectorAll(".event button")
-.forEach(
-function(button){
 
-    button.addEventListener(
-    "click",
-    function(){
+    const parts =
+        fullName
+        .trim()
+        .split(/\s+/);
 
-        this.textContent =
-        "✓ Enrolled";
 
-        this.style.background =
-        "#063b75";
+    const firstName =
+        parts[0] ||
+        "Student";
 
-        alert(
-        "You have been enrolled for this GAM session."
+
+    /*
+     * Example:
+     *
+     * Bruce Jaylex
+     * becomes
+     * Bruce.J
+     *
+     * The full surname is never
+     * shown publicly.
+     */
+
+    if(
+        parts.length > 1
+    ){
+
+        const lastInitial =
+            parts[
+                parts.length - 1
+            ]
+            .charAt(0)
+            .toUpperCase();
+
+
+        return (
+            firstName +
+            "." +
+            lastInitial
         );
 
-    });
-
-});
-
-
-/*
- * CLOSE MODALS WHEN
- * CLICKING OUTSIDE
- */
-
-window.addEventListener(
-"click",
-function(event){
-
-    if(event.target === askModal){
-
-        askModal.style.display =
-        "none";
-
     }
 
-    if(event.target === reportModal){
 
-        reportModal.style.display =
-        "none";
+    return firstName;
 
-    }
+}
 
-});
 
-</script>
+/* =========================
+   AUTHENTICATION
+========================= */
 
-</body>
+onAuthStateChanged(
+    auth,
+    async function(user){
 
-  </html>
+        if(!user){
+
+            currentUser =
+                null;
+
+
+            joinBtn.textContent =
+                "Login to Join";
+
+
+            joinBtn.onclick =
+            function(){
+
+                window.location.href =
+                    "login.html";
+
+            };
+
+
+            connectionStatus.textContent =
+                "You must be logged in to join this community.";
+
+
+            connectionStatus.className =
+                "connection-status error";
+
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        connectionStatus.textContent =
+            "✓ GAM account connected";
+
+
+        connectionStatus.className =
+            "connection-status success";
+
+
+        try{
+
+            /*
+             * Get private GAM profile.
+             */
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const userSnapshot =
+                await getDoc(
+                    userRef
+                );
+
+
+            if(
+                !userSnapshot.exists()
+            ){
+
+                joinBtn.textContent =
+                    "Profile Required";
+
+
+                joinBtn.disabled =
+                    true;
+
+
+                connectionStatus.textContent =
+                    "Your GAM student profile could not be found.";
+
+
+                connectionStatus.className =
+                    "connection-status error";
+
+
+                return;
+
+            }
+
+
+            const data =
+                userSnapshot.data();
+
+
+            /*
+             * Only the public identity
+             * will be stored in the
+             * community membership.
+             */
+
+            const publicName =
+                createPublicName(
+                    data,
+                    user
+                );
+
+
+            /*
+             * Community membership.
+             */
+
+            const memberRef =
+                doc(
+                    db,
+                    "communities",
+                    community,
+                    "members",
+                    user.uid
+                );
+
+
+            const memberSnapshot =
+                await getDoc(
+                    memberRef
+                );
+
+
+            if(
+                memberSnapshot.exists()
+            ){
+
+                joinBtn.textContent =
+                    "✓ Joined Community";
+
+
+                joinBtn.style.background =
+                    "#063b75";
+
+
+                connectionStatus.textContent =
+                    "✓ You are already a member of this community";
+
+
+                connectionStatus.className =
+                    "connection-status success";
+
+
+                /*
+                 * Don't allow duplicate
+                 * membership.
+        
