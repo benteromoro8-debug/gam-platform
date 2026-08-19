@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GAM Africa | Create Session</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+nav{
+    background:#063b75;
+    color:white;
+    padding:13px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#ffd21f;
+    color:#063b75;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.brand h2{
+    margin:0;
+    font-size:17px;
+}
+
+.brand p{
+    margin:3px 0 0;
+    font-size:10px;
+}
+
+.back{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.container{
+    max-width:760px;
+    margin:35px auto;
+    padding:0 20px 70px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 5px 25px rgba(0,0,0,.08);
+}
+
+.card h1{
+    color:#063b75;
+    margin-top:0;
+}
+
+.subtitle{
+    color:#687386;
+    line-height:1.5;
+}
+
+.notice{
+    background:#eef4fb;
+    color:#063b75;
+    padding:14px;
+    border-radius:10px;
+    margin:20px 0;
+    font-size:13px;
+    line-height:1.5;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    color:#26364a;
+    margin:18px 0 7px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccd5e0;
+    border-radius:8px;
+    font-size:14px;
+    outline:none;
+    font-family:inherit;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#063b75;
+}
+
+.capacity-box{
+    background:#f8fafc;
+    padding:16px;
+    border-radius:10px;
+    margin-top:18px;
+}
+
+.capacity-box strong{
+    color:#063b75;
+}
+
+.create-btn{
+    width:100%;
+    margin-top:25px;
+    padding:14px;
+    border:0;
+    border-radius:9px;
+    background:#063b75;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.create-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.message{
+    display:none;
+    padding:13px;
+    border-radius:9px;
+    margin-top:18px;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.success{
+    display:block;
+    background:#e6f7ed;
+    color:#087333;
+}
+
+.error{
+    display:block;
+    background:#ffe8e8;
+    color:#a40000;
+}
+
+footer{
+    background:#03284f;
+    color:white;
+    text-align:center;
+    padding:28px 20px;
+}
+
+footer p{
+    color:#b9c9dc;
+    font-size:12px;
+}
+
+@media(max-width:600px){
+    .card{
+        padding:22px 18px;
+    }
+
+    nav{
+        padding:11px 4%;
+    }
+
+    .brand h2{
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="brand">
+
+<div class="logo">GAM</div>
+
+<div>
+<h2>GAM Africa</h2>
+<p>Global Academy of Minds Africa</p>
+</div>
+
+</div>
+
+<a href="student.html" class="back">
+← Dashboard
+</a>
+
+</nav>
+
+
+<div class="container">
+
+<div class="card">
+
+<h1>📅 Create a GAM Session</h1>
+
+<p class="subtitle">
+Organize a learning session for your GAM community.
+Students will be able to discover the session and enrol.
+</p>
+
+<div class="notice">
+<strong>GAM Learning Principle</strong><br>
+Sessions should be created to genuinely help learners.
+Normal learning sessions are limited to 20 participants.
+Larger GAM Halls will require appropriate authorization.
+</div>
+
+
+<form id="eventForm">
+
+
+<label for="community">
+Learning Community
+</label>
+
+<select id="community" required>
+
+<option value="">
+Select a community
+</option>
+
+<option value="Mathematics">
+🔢 Mathematics
+</option>
+
+<option value="Science">
+🧪 Science
+</option>
+
+<option value="Coding">
+💻 Coding & Technology
+</option>
+
+<option value="English">
+📖 English
+</option>
+
+<option value="Business">
+💼 Business
+</option>
+
+<option value="Humanities">
+🌍 Humanities
+</option>
+
+</select>
+
+
+<label for="title">
+Session Title
+</label>
+
+<input
+type="text"
+id="title"
+placeholder="e.g. Algebra Problem Solving"
+maxlength="100"
+required
+>
+
+
+<label for="description">
+What will learners do?
+</label>
+
+<textarea
+id="description"
+placeholder="Describe what learners will learn, discuss or practice..."
+maxlength="1000"
+required></textarea>
+
+
+<label for="date">
+Session Date
+</label>
+
+<input
+type="date"
+id="date"
+required
+>
+
+
+<label for="time">
+Start Time
+</label>
+
+<input
+type="time"
+id="time"
+required
+>
+
+
+<label for="duration">
+Duration
+</label>
+
+<select id="duration" required>
+
+<option value="30">
+30 minutes
+</option>
+
+<option value="45">
+45 minutes
+</option>
+
+<option value="60" selected>
+1 hour
+</option>
+
+<option value="90">
+1 hour 30 minutes
+</option>
+
+<option value="120">
+2 hours
+</option>
+
+</select>
+
+
+<div class="capacity-box">
+
+<strong>👥 Participant Capacity</strong>
+
+<p>
+Normal GAM learning sessions can have up to
+<strong>20 learners</strong>.
+</p>
+
+<select id="capacity">
+
+<option value="5">5 participants</option>
+<option value="10">10 participants</option>
+<option value="15">15 participants</option>
+<option value="20" selected>20 participants</option>
+
+</select>
+
+</div>
+
+
+<button
+type="submit"
+class="create-btn"
+id="createBtn">
+
+📢 Publish GAM Session
+
+</button>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+
+</form>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<strong>
+GAM — Global Academy of Minds Africa
+</strong>
+
+<p>
+Learn • Connect • Compete • Excel
+</p>
+
+</footer>
+
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    addDoc,
+    serverTimestamp,
+    Timestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+const form =
+    document.getElementById("eventForm");
+
+const createBtn =
+    document.getElementById("createBtn");
+
+const message =
+    document.getElementById("message");
+
+
+let currentUser = null;
+let currentProfile = null;
+
+
+/*
+ * CHECK AUTHENTICATION
+ */
+
+onAuthStateChanged(
+    auth,
+    async function(user){
+
+        if(!user){
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+        currentUser = user;
+
+
+        try{
+
+            const profileRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const profileSnapshot =
+                await getDoc(
+                    profileRef
+                );
+
+
+            if(
+                !profileSnapshot.exists()
+            ){
+
+                showMessage(
+                    "Your GAM profile could not be found.",
+                    "error"
+                );
+
+                createBtn.disabled =
+                    true;
+
+                return;
+
+            }
+
+
+            currentProfile =
+                profileSnapshot.data();
+
+
+            /*
+             * IMPORTANT
+             *
+             * Only tutor-type accounts
+             * can publish sessions.
+             */
+
+            const allowedRoles = [
+                "tutor",
+                "peer_tutor",
+                "head_tutor",
+                "admin"
+            ];
+
+
+            if(
+                !allowedRoles.includes(
+                    currentProfile.role
+                )
+            ){
+
+                showMessage(
+                    "Your account is not currently authorized to create GAM sessions.",
+                    "error"
+                );
+
+                createBtn.disabled =
+                    true;
+
+            }
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            showMessage(
+                "Unable to verify your GAM profile.",
+                "error"
+            );
+
+            createBtn.disabled =
+                true;
+
+        }
+
+    }
+);
+
+
+/*
+ * CREATE SESSION
+ */
+
+form.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        if(
+            !currentUser ||
+            !currentProfile
+        ){
+
+            return;
+
+        }
+
+
+        const community =
+            document.getElementById(
+                "community"
+            ).value;
+
+
+        const title =
+            document.getElementById(
+                "title"
+            ).value.trim();
+
+
+        const description =
+            document.getElementById(
+                "description"
+            ).value.trim();
+
+
+        const date =
+            document.getElementById(
+                "date"
+            ).value;
+
+
+        const time =
+            document.getElementById(
+                "time"
+            ).value;
+
+
+        const duration =
+            Number(
+                document.getElementById(
+                    "duration"
+                ).value
+            );
+
+
+        const capacity =
+            Number(
+                document.getElementById(
+                    "capacity"
+                ).value
+            );
+
+
+        if(
+            !community ||
+            !title ||
+            !description ||
+            !date ||
+            !time
+        ){
+
+            showMessage(
+                "Please complete all required fields.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * Build scheduled date/time
+         */
+
+        const startDate =
+            new Date(
+                date +
+                "T" +
+                time
+            );
+
+
+        if(
+            isNaN(
+                startDate.getTime()
+            )
+        ){
+
+            showMessage(
+                "The selected date or time is invalid.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            startDate <= new Date()
+        ){
+
+            showMessage(
+                "Please choose a future date and time.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        createBtn.disabled =
+            true;
+
+        createBtn.textContent =
+            "Publishing Session...";
+
+
+        try{
+
+
+            /*
+             * Create Firestore event
+             */
+
+            await addDoc(
+                collection(
+                    db,
+                    "events"
+                ),
+                {
+
+                    title:
+                        title,
+
+                    description:
+                        description,
+
+                    community:
+                        community,
+
+                    hostId:
+                        currentUser.uid,
+
+                    hostName:
+                        createPublicName(
+                            currentProfile.name ||
+                            currentUser.displayName ||
+                            "GAM Tutor"
+                        ),
+
+                    hostRole:
+                        currentProfile.role,
+
+                    startTime:
+                        Timestamp.fromDate(
+                            startDate
+                        ),
+
+                    durationMinutes:
+                        duration,
+
+                    capacity:
+                        capacity,
+
+                    enrolledCount:
+                        0,
+
+                    status:
+                        "published",
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            showMessage(
+                "✓ Your GAM session has been published successfully!",
+                "success"
+            );
+
+
+            form.reset();
+
+
+            setTimeout(
+                function(){
+
+                    window.location.href =
+                        "events.html";
+
+                },
+                1500
+            );
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            showMessage(
+                "Unable to publish the session: " +
+                error.message,
+                "error"
+            );
+
+
+            createBtn.disabled =
+                false;
+
+            createBtn.textContent =
+                "📢 Publish GAM Session";
+
+        }
+
+    }
+);
+
+
+/*
+ * PUBLIC NAME
+ *
+ * GAM should not expose a
+ * member's full surname publicly.
+ *
+ * Example:
+ * Bruce Jaylex
+ * becomes:
+ * Bruce.J
+ */
+
+function createPublicName(name){
+
+    const parts =
+        String(name)
+        .trim()
+        .split(/\s+/);
+
+
+    if(
+        parts.length === 1
+    ){
+
+        return parts[0];
+
+    }
+
+
+    return (
+        parts[0] +
+        "." +
+        parts[parts.length - 1]
+        .charAt(0)
+    );
+
+}
+
+
+/*
+ * MESSAGE
+ */
+
+function showMessage(
+    text,
+    type
+){
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message " +
+        type;
+
+}
+
+</script>
+
+</body>
+  </html>
