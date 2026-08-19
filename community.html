@@ -51,9 +51,7 @@ nav{
     font-size:12px;
 }
 
-.brand h2{
-    font-size:17px;
-}
+.brand h2{font-size:17px;}
 
 .brand p{
     font-size:10px;
@@ -111,25 +109,6 @@ nav{
     padding:25px 20px 70px;
 }
 
-.layout{
-    display:grid;
-    grid-template-columns:minmax(0,2fr) minmax(260px,1fr);
-    gap:20px;
-}
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:21px;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
-    margin-bottom:18px;
-}
-
-.card h2{
-    color:#063b75;
-    margin-bottom:12px;
-}
-
 .actions{
     display:flex;
     gap:10px;
@@ -146,7 +125,7 @@ nav{
 }
 
 .action:disabled{
-    opacity:.65;
+    opacity:.75;
     cursor:not-allowed;
 }
 
@@ -165,22 +144,23 @@ nav{
     color:#a40000;
 }
 
-.connection-status{
-    width:100%;
-    font-size:12px;
-    color:#687386;
+.layout{
+    display:grid;
+    grid-template-columns:minmax(0,2fr) minmax(260px,1fr);
+    gap:20px;
 }
 
-.connection-status.success{
-    color:#087333;
+.card{
+    background:white;
+    border-radius:16px;
+    padding:21px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    margin-bottom:18px;
 }
 
-.connection-status.error{
-    color:#a40000;
-}
-
-.connection-status.loading{
-    color:#705700;
+.card h2{
+    color:#063b75;
+    margin-bottom:12px;
 }
 
 .post{
@@ -373,6 +353,25 @@ nav{
     line-height:1.5;
 }
 
+.connection-status{
+    width:100%;
+    font-size:12px;
+    color:#687386;
+    padding-left:3px;
+}
+
+.connection-status.success{
+    color:#087333;
+}
+
+.connection-status.error{
+    color:#a40000;
+}
+
+.connection-status.warning{
+    color:#705700;
+}
+
 .modal{
     display:none;
     position:fixed;
@@ -445,7 +444,6 @@ footer p{
 }
 
 @media(max-width:760px){
-
     .layout{
         grid-template-columns:1fr;
     }
@@ -457,10 +455,6 @@ footer p{
     .brand h2{
         font-size:14px;
     }
-
-    .stats{
-        grid-template-columns:repeat(3,1fr);
-    }
 }
 </style>
 </head>
@@ -470,14 +464,12 @@ footer p{
 <nav>
 
 <div class="brand">
-
 <div class="logo">GAM</div>
 
 <div>
 <h2>GAM Africa</h2>
 <p>Global Academy of Minds Africa</p>
 </div>
-
 </div>
 
 <a href="communities.html" class="back">
@@ -486,21 +478,17 @@ footer p{
 
 </nav>
 
-
 <section class="hero">
 
 <div class="hero-inner">
 
-<div class="community-icon" id="communityIcon">
-🔢
-</div>
+<div class="community-icon" id="communityIcon">🔢</div>
 
-<h1 id="communityTitle">
-Mathematics
-</h1>
+<h1 id="communityTitle">Mathematics</h1>
 
 <p id="communityDescription">
-Explore mathematics together.
+A place for learners to explore mathematics,
+ask questions, solve problems and learn together.
 </p>
 
 <div class="community-status">
@@ -510,7 +498,6 @@ Explore mathematics together.
 </div>
 
 </section>
-
 
 <div class="container">
 
@@ -528,17 +515,15 @@ Explore mathematics together.
 🚩 Report
 </button>
 
-<div id="connectionStatus" class="connection-status loading">
-Checking GAM account...
+<div id="connectionStatus" class="connection-status">
+Connecting to GAM...
 </div>
 
 </div>
-
 
 <div class="layout">
 
 <main>
-
 
 <div class="card">
 
@@ -549,15 +534,11 @@ Ask questions, explain ideas, share useful
 knowledge and learn respectfully from one another.
 </p>
 
-
 <div class="post">
 
 <div class="post-header">
-
 <span class="user">Alex.K</span>
-
 <span class="role">Peer Tutor</span>
-
 </div>
 
 <p>
@@ -567,28 +548,17 @@ to use?
 </p>
 
 <div class="post-actions">
-
-<button class="small-btn">
-💬 Reply
-</button>
-
-<button class="small-btn">
-👍 Helpful
-</button>
-
+<button class="small-btn">💬 Reply</button>
+<button class="small-btn">👍 Helpful</button>
 </div>
 
 </div>
-
 
 <div class="post">
 
 <div class="post-header">
-
 <span class="user">Mary.W</span>
-
 <span class="role">Student</span>
-
 </div>
 
 <p>
@@ -597,28 +567,17 @@ Which topics should I practise first?
 </p>
 
 <div class="post-actions">
-
-<button class="small-btn">
-💬 Reply
-</button>
-
-<button class="small-btn">
-👍 Helpful
-</button>
-
+<button class="small-btn">💬 Reply</button>
+<button class="small-btn">👍 Helpful</button>
 </div>
 
 </div>
-
 
 <div class="post">
 
 <div class="post-header">
-
 <span class="user">Tutor.J</span>
-
 <span class="role">Approved Tutor</span>
-
 </div>
 
 <p>
@@ -627,21 +586,13 @@ Check the upcoming sessions section to enrol.
 </p>
 
 <div class="post-actions">
-
-<button class="small-btn">
-💬 Reply
-</button>
-
-<button class="small-btn">
-👍 Helpful
-</button>
-
+<button class="small-btn">💬 Reply</button>
+<button class="small-btn">👍 Helpful</button>
 </div>
 
 </div>
 
 </div>
-
 
 <div class="card">
 
@@ -657,19 +608,11 @@ is looking for help from other members.
 </p>
 
 <div class="post-actions">
-
-<button class="small-btn">
-Answer
-</button>
-
-<button class="small-btn">
-View Question
-</button>
-
+<button class="small-btn">Answer</button>
+<button class="small-btn">View Question</button>
 </div>
 
 </div>
-
 
 <div class="question-box">
 
@@ -681,21 +624,13 @@ proofs?
 </p>
 
 <div class="post-actions">
-
-<button class="small-btn">
-Answer
-</button>
-
-<button class="small-btn">
-View Question
-</button>
-
+<button class="small-btn">Answer</button>
+<button class="small-btn">View Question</button>
 </div>
 
 </div>
 
 </div>
-
 
 <div class="card">
 
@@ -705,31 +640,27 @@ View Question
 Sessions organised by approved tutors and peer tutors.
 </p>
 
-
 <div class="event">
 
 <h3>Algebra Problem-Solving Session</h3>
 
 <p>👨‍🏫 Tutor.J • Tomorrow • 5:00 PM</p>
-
 <p>👥 12 / 20 enrolled</p>
 
-<button class="enrolBtn">
+<button class="enrol-btn">
 Enrol
 </button>
 
 </div>
-
 
 <div class="event">
 
 <h3>KCSE Mathematics Revision</h3>
 
 <p>👨‍🏫 Alex.K • Saturday • 3:00 PM</p>
-
 <p>👥 18 / 20 enrolled</p>
 
-<button class="enrolBtn">
+<button class="enrol-btn">
 Enrol
 </button>
 
@@ -739,9 +670,7 @@ Enrol
 
 </main>
 
-
 <aside>
-
 
 <div class="card">
 
@@ -768,39 +697,29 @@ Enrol
 
 </div>
 
-
 <div class="card">
 
 <h2>🏅 Divisions</h2>
 
 <div class="division">
-
 <strong>Division 1</strong>
-
 <p>
 Advanced learners and experienced contributors.
 </p>
-
 </div>
 
 <div class="division">
-
 <strong>Division 2</strong>
-
 <p>
 Developing learners building strong foundations.
 </p>
-
 </div>
 
 <div class="division">
-
 <strong>Division 3</strong>
-
 <p>
 Learners building their understanding.
 </p>
-
 </div>
 
 <p style="margin-top:12px;color:#687386;font-size:11px;">
@@ -809,7 +728,6 @@ GAM assessments and demonstrated performance.
 </p>
 
 </div>
-
 
 <div class="card">
 
@@ -820,36 +738,28 @@ GAM assessments and demonstrated performance.
 <div class="avatar">TJ</div>
 
 <div>
-
 <div class="tutor-name">Tutor.J</div>
-
 <div class="tutor-type">
 Approved Mathematics Tutor
 </div>
-
 </div>
 
 </div>
-
 
 <div class="tutor">
 
 <div class="avatar">AK</div>
 
 <div>
-
 <div class="tutor-name">Alex.K</div>
-
 <div class="tutor-type">
 Peer Tutor • Division 1
 </div>
-
 </div>
 
 </div>
 
 </div>
-
 
 <div class="safety">
 
@@ -869,7 +779,6 @@ or unsafe links. Report concerns to GAM moderators.
 
 </div>
 
-
 <footer>
 
 <strong>
@@ -881,9 +790,6 @@ Learn • Connect • Compete • Excel
 </p>
 
 </footer>
-
-
-<!-- ASK MODAL -->
 
 <div class="modal" id="askModal">
 
@@ -912,9 +818,6 @@ Post Question
 
 </div>
 
-
-<!-- REPORT MODAL -->
-
 <div class="modal" id="reportModal">
 
 <div class="modal-box">
@@ -942,17 +845,20 @@ Submit Report
 
 </div>
 
-
 <script type="module">
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
     getAuth,
     onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
     getFirestore,
@@ -960,12 +866,14 @@ import {
     getDoc,
     setDoc,
     serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-/* =========================================
-   GAM FIREBASE
-========================================= */
+/* =========================
+   FIREBASE
+========================= */
 
 const firebaseConfig = {
 
@@ -999,9 +907,9 @@ const db =
     getFirestore(app);
 
 
-/* =========================================
+/* =========================
    COMMUNITY
-========================================= */
+========================= */
 
 const params =
     new URLSearchParams(
@@ -1056,7 +964,6 @@ const communityData = {
         description:
         "Explore history, geography, society, culture and the world around us."
     }
-
 };
 
 
@@ -1065,9 +972,9 @@ const selected =
     communityData.mathematics;
 
 
-/* =========================================
-   DISPLAY COMMUNITY
-========================================= */
+/* =========================
+   DISPLAY
+========================= */
 
 document.getElementById(
     "communityTitle"
@@ -1085,16 +992,16 @@ document.getElementById(
     selected.description;
 
 
-/* =========================================
+/* =========================
    ELEMENTS
-========================================= */
+========================= */
 
 const joinBtn =
     document.getElementById(
         "joinBtn"
     );
 
-const connectionStatus =
+const status =
     document.getElementById(
         "connectionStatus"
     );
@@ -1111,207 +1018,138 @@ const reportModal =
 
 
 let currentUser = null;
+let publicName = "Student";
+let profileData = {};
 
-let currentProfile = null;
+
+/* =========================
+   STATUS HELPER
+========================= */
+
+function showStatus(
+    message,
+    type=""
+){
+
+    status.textContent =
+        message;
+
+    status.className =
+        "connection-status " +
+        type;
+}
 
 
-/* =========================================
-   PUBLIC GAM NAME
-========================================= */
+/* =========================
+   SAFE PUBLIC NAME
+========================= */
 
-function createPublicName(
+function makePublicName(
     data,
     user
 ){
 
-    if(
-        data &&
-        data.publicName
-    ){
-
+    if(data.publicName){
         return data.publicName;
     }
 
-
-    const fullName =
-        (
-            data &&
-            data.name
-        ) ||
+    const name =
+        data.name ||
         user.displayName ||
         "Student";
 
-
     const parts =
-        fullName
-        .trim()
-        .split(/\s+/);
+        name.trim().split(/\s+/);
 
+    if(parts.length >= 2){
 
-    const firstName =
-        parts[0] ||
-        "Student";
-
-
-    if(
-        parts.length > 1
-    ){
+        const first =
+            parts[0];
 
         const lastInitial =
-            parts[
-                parts.length - 1
-            ]
+            parts[parts.length - 1]
             .charAt(0)
             .toUpperCase();
 
-
-        return (
-            firstName +
+        return first +
             "." +
-            lastInitial
-        );
+            lastInitial;
     }
 
-
-    return firstName;
+    return parts[0] ||
+        "Student";
 }
 
 
-/* =========================================
-   SAFE ERROR MESSAGE
-========================================= */
+/* =========================
+   DEFAULT LOGIN STATE
+========================= */
 
-function showFirebaseError(
-    error
-){
+joinBtn.disabled = true;
 
-    console.error(
-        "GAM Firebase error:",
-        error
-    );
+showStatus(
+    "Connecting to GAM account..."
+);
 
 
-    let message =
-        "GAM account connection problem.";
-
-
-    if(
-        error &&
-        error.code ===
-        "permission-denied"
-    ){
-
-        message =
-        "GAM account connected, but community access is not yet permitted.";
-
-    }
-    else if(
-        error &&
-        error.code ===
-        "unavailable"
-    ){
-
-        message =
-        "GAM services are temporarily unavailable. Please try again.";
-
-    }
-
-
-    connectionStatus.textContent =
-        message;
-
-    connectionStatus.className =
-        "connection-status error";
-}
-
-
-/* =========================================
-   LOGIN STATE
-========================================= */
+/* =========================
+   AUTH CHECK
+========================= */
 
 onAuthStateChanged(
     auth,
     async function(user){
 
-        /*
-         * IMPORTANT:
-         *
-         * Firebase can take time to restore
-         * the login session.
-         *
-         * The page itself is already usable.
-         * We therefore do not block the page.
-         */
+        currentUser =
+            user || null;
+
+
+        /* ---------------------
+           NOT LOGGED IN
+        --------------------- */
 
         if(!user){
-
-            currentUser =
-                null;
-
-            currentProfile =
-                null;
-
 
             joinBtn.disabled =
                 false;
 
-
             joinBtn.textContent =
                 "Login to Join";
 
-
-            joinBtn.onclick =
-            function(){
-
-                window.location.href =
-                    "login.html";
-
-            };
-
-
-            connectionStatus.textContent =
-                "Not logged in • Login to join this community";
-
-            connectionStatus.className =
-                "connection-status error";
-
+            showStatus(
+                "Please log in to join this community.",
+                "warning"
+            );
 
             return;
         }
 
 
-        /*
-         * User is authenticated.
-         */
-
-        currentUser =
-            user;
-
-
-        connectionStatus.textContent =
-            "✓ GAM account connected";
-
-        connectionStatus.className =
-            "connection-status success";
-
-
-        /*
-         * Temporary safe state while
-         * profile is being checked.
-         */
+        /* ---------------------
+           AUTHENTICATED
+        --------------------- */
 
         joinBtn.disabled =
-            true;
+            false;
 
         joinBtn.textContent =
-            "Checking membership...";
+            "+ Join Community";
 
+        showStatus(
+            "✓ GAM account connected",
+            "success"
+        );
+
+
+        /*
+         * IMPORTANT:
+         *
+         * The community page does NOT
+         * stop working if Firestore
+         * profile loading fails.
+         */
 
         try{
-
-            /*
-             * Read GAM profile.
-             */
 
             const userRef =
                 doc(
@@ -1321,52 +1159,119 @@ onAuthStateChanged(
                 );
 
 
-            const userSnapshot =
-                await getDoc(
-                    userRef
+            const snapshot =
+                await Promise.race([
+
+                    getDoc(userRef),
+
+                    new Promise(
+                        function(_,reject){
+
+                            setTimeout(
+                                function(){
+
+                                    reject(
+                                        new Error(
+                                            "Profile timeout"
+                                        )
+                                    );
+
+                                },
+                                5000
+                            );
+
+                        }
+                    )
+
+                ]);
+
+
+            if(snapshot.exists()){
+
+                profileData =
+                    snapshot.data();
+
+                publicName =
+                    makePublicName(
+                        profileData,
+                        user
+                    );
+
+                showStatus(
+                    "✓ GAM account connected • " +
+                    publicName,
+                    "success"
                 );
-
-
-            /*
-             * Profile doesn't exist.
-             *
-             * We still allow the community
-             * page to work instead of freezing.
-             */
-
-            if(
-                !userSnapshot.exists()
-            ){
-
-                currentProfile = {
-
-                    publicName:
-                        createPublicName(
-                            {},
-                            user
-                        )
-
-                };
 
             }
             else{
 
-                currentProfile =
-                    userSnapshot.data();
+                /*
+                 * The user can still use
+                 * the community.
+                 */
 
-            }
+                publicName =
+                    makePublicName(
+                        {},
+                        user
+                    );
 
-
-            const publicName =
-                createPublicName(
-                    currentProfile,
-                    user
+                showStatus(
+                    "✓ GAM account connected",
+                    "success"
                 );
+            }
 
 
             /*
              * Check membership.
              */
 
-            const memberRef =
-   
+            await checkMembership();
+
+
+        }
+        catch(error){
+
+            console.log(
+                "GAM profile check:",
+                error
+            );
+
+
+            /*
+             * Never leave the user
+             * stuck on Checking...
+             */
+
+            publicName =
+                makePublicName(
+                    {},
+                    user
+                );
+
+            showStatus(
+                "✓ GAM account connected",
+                "success"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CHECK MEMBERSHIP
+========================= */
+
+async function checkMembership(){
+
+    if(!currentUser){
+        return;
+    }
+
+    try{
+
+        const me
