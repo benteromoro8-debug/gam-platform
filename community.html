@@ -19,6 +19,7 @@ body{
     color:#172033;
 }
 
+/* NAV */
 nav{
     background:#063b75;
     color:white;
@@ -51,7 +52,9 @@ nav{
     font-size:12px;
 }
 
-.brand h2{font-size:17px;}
+.brand h2{
+    font-size:17px;
+}
 
 .brand p{
     font-size:10px;
@@ -66,6 +69,7 @@ nav{
     font-weight:bold;
 }
 
+/* HERO */
 .hero{
     background:linear-gradient(120deg,#063b75,#087333);
     color:white;
@@ -103,12 +107,34 @@ nav{
     font-size:12px;
 }
 
+/* LAYOUT */
 .container{
     max-width:1100px;
     margin:auto;
     padding:25px 20px 70px;
 }
 
+.layout{
+    display:grid;
+    grid-template-columns:minmax(0,2fr) minmax(260px,1fr);
+    gap:20px;
+}
+
+/* CARDS */
+.card{
+    background:white;
+    border-radius:16px;
+    padding:21px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    margin-bottom:18px;
+}
+
+.card h2{
+    color:#063b75;
+    margin-bottom:12px;
+}
+
+/* ACTIONS */
 .actions{
     display:flex;
     gap:10px;
@@ -125,7 +151,7 @@ nav{
 }
 
 .action:disabled{
-    opacity:.75;
+    opacity:.7;
     cursor:not-allowed;
 }
 
@@ -144,25 +170,23 @@ nav{
     color:#a40000;
 }
 
-.layout{
-    display:grid;
-    grid-template-columns:minmax(0,2fr) minmax(260px,1fr);
-    gap:20px;
+/* CONNECTION */
+.connection-status{
+    width:100%;
+    font-size:11px;
+    color:#687386;
+    padding:2px 0;
 }
 
-.card{
-    background:white;
-    border-radius:16px;
-    padding:21px;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
-    margin-bottom:18px;
+.connection-status.success{
+    color:#087333;
 }
 
-.card h2{
-    color:#063b75;
-    margin-bottom:12px;
+.connection-status.error{
+    color:#a40000;
 }
 
+/* DISCUSSION */
 .post{
     border:1px solid #e2e7ee;
     border-radius:12px;
@@ -211,6 +235,7 @@ nav{
     cursor:pointer;
 }
 
+/* QUESTION */
 .question-box{
     background:#f5f8fc;
     border-radius:12px;
@@ -229,6 +254,7 @@ nav{
     line-height:1.5;
 }
 
+/* DIVISIONS */
 .division{
     border:1px solid #e0e5ec;
     border-radius:11px;
@@ -246,6 +272,7 @@ nav{
     margin-top:4px;
 }
 
+/* TUTORS */
 .tutor{
     display:flex;
     align-items:center;
@@ -279,6 +306,7 @@ nav{
     margin-top:3px;
 }
 
+/* EVENTS */
 .event{
     border-left:4px solid #087333;
     background:#f7faf8;
@@ -310,6 +338,7 @@ nav{
     cursor:pointer;
 }
 
+/* STATS */
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -335,6 +364,7 @@ nav{
     font-size:10px;
 }
 
+/* SAFETY */
 .safety{
     background:#fff8df;
     border:1px solid #f1dc87;
@@ -353,25 +383,7 @@ nav{
     line-height:1.5;
 }
 
-.connection-status{
-    width:100%;
-    font-size:12px;
-    color:#687386;
-    padding-left:3px;
-}
-
-.connection-status.success{
-    color:#087333;
-}
-
-.connection-status.error{
-    color:#a40000;
-}
-
-.connection-status.warning{
-    color:#705700;
-}
-
+/* MODAL */
 .modal{
     display:none;
     position:fixed;
@@ -430,6 +442,29 @@ nav{
     color:white;
 }
 
+/* TOAST */
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%) translateY(100px);
+    background:#063b75;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:13px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    z-index:200;
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* FOOTER */
 footer{
     background:#03284f;
     color:white;
@@ -443,7 +478,9 @@ footer p{
     margin-top:5px;
 }
 
+/* MOBILE */
 @media(max-width:760px){
+
     .layout{
         grid-template-columns:1fr;
     }
@@ -455,21 +492,32 @@ footer p{
     .brand h2{
         font-size:14px;
     }
+
+    .hero{
+        padding:32px 18px;
+    }
+
+    .container{
+        padding:20px 14px 60px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
 
 <div class="brand">
+
 <div class="logo">GAM</div>
 
 <div>
 <h2>GAM Africa</h2>
 <p>Global Academy of Minds Africa</p>
 </div>
+
 </div>
 
 <a href="communities.html" class="back">
@@ -478,13 +526,19 @@ footer p{
 
 </nav>
 
+
+<!-- HERO -->
 <section class="hero">
 
 <div class="hero-inner">
 
-<div class="community-icon" id="communityIcon">🔢</div>
+<div class="community-icon" id="communityIcon">
+🔢
+</div>
 
-<h1 id="communityTitle">Mathematics</h1>
+<h1 id="communityTitle">
+Mathematics
+</h1>
 
 <p id="communityDescription">
 A place for learners to explore mathematics,
@@ -499,8 +553,10 @@ ask questions, solve problems and learn together.
 
 </section>
 
+
 <div class="container">
 
+<!-- ACTIONS -->
 <div class="actions">
 
 <button class="action join" id="joinBtn">
@@ -516,15 +572,18 @@ ask questions, solve problems and learn together.
 </button>
 
 <div id="connectionStatus" class="connection-status">
-Connecting to GAM...
+Community ready
 </div>
 
 </div>
+
 
 <div class="layout">
 
+<!-- MAIN -->
 <main>
 
+<!-- DISCUSSION -->
 <div class="card">
 
 <h2>💬 Community Discussion</h2>
@@ -534,11 +593,15 @@ Ask questions, explain ideas, share useful
 knowledge and learn respectfully from one another.
 </p>
 
+
 <div class="post">
 
 <div class="post-header">
+
 <span class="user">Alex.K</span>
+
 <span class="role">Peer Tutor</span>
+
 </div>
 
 <p>
@@ -548,17 +611,28 @@ to use?
 </p>
 
 <div class="post-actions">
-<button class="small-btn">💬 Reply</button>
-<button class="small-btn">👍 Helpful</button>
+
+<button class="small-btn reply-btn">
+💬 Reply
+</button>
+
+<button class="small-btn helpful-btn">
+👍 Helpful
+</button>
+
 </div>
 
 </div>
+
 
 <div class="post">
 
 <div class="post-header">
+
 <span class="user">Mary.W</span>
+
 <span class="role">Student</span>
+
 </div>
 
 <p>
@@ -567,17 +641,28 @@ Which topics should I practise first?
 </p>
 
 <div class="post-actions">
-<button class="small-btn">💬 Reply</button>
-<button class="small-btn">👍 Helpful</button>
+
+<button class="small-btn reply-btn">
+💬 Reply
+</button>
+
+<button class="small-btn helpful-btn">
+👍 Helpful
+</button>
+
 </div>
 
 </div>
+
 
 <div class="post">
 
 <div class="post-header">
+
 <span class="user">Tutor.J</span>
+
 <span class="role">Approved Tutor</span>
+
 </div>
 
 <p>
@@ -586,14 +671,23 @@ Check the upcoming sessions section to enrol.
 </p>
 
 <div class="post-actions">
-<button class="small-btn">💬 Reply</button>
-<button class="small-btn">👍 Helpful</button>
-</div>
+
+<button class="small-btn reply-btn">
+💬 Reply
+</button>
+
+<button class="small-btn helpful-btn">
+👍 Helpful
+</button>
 
 </div>
 
 </div>
 
+</div>
+
+
+<!-- QUESTIONS -->
 <div class="card">
 
 <h2>❓ Questions From Members</h2>
@@ -608,11 +702,19 @@ is looking for help from other members.
 </p>
 
 <div class="post-actions">
-<button class="small-btn">Answer</button>
-<button class="small-btn">View Question</button>
+
+<button class="small-btn answer-btn">
+Answer
+</button>
+
+<button class="small-btn">
+View Question
+</button>
+
 </div>
 
 </div>
+
 
 <div class="question-box">
 
@@ -624,28 +726,46 @@ proofs?
 </p>
 
 <div class="post-actions">
-<button class="small-btn">Answer</button>
-<button class="small-btn">View Question</button>
-</div>
+
+<button class="small-btn answer-btn">
+Answer
+</button>
+
+<button class="small-btn">
+View Question
+</button>
 
 </div>
 
 </div>
 
+</div>
+
+
+<!-- EVENTS -->
 <div class="card">
 
 <h2>📅 Upcoming GAM Sessions</h2>
 
 <p style="color:#687386;font-size:13px;">
-Sessions organised by approved tutors and peer tutors.
+Sessions organised by approved tutors and
+peer tutors.
 </p>
+
 
 <div class="event">
 
-<h3>Algebra Problem-Solving Session</h3>
+<h3>
+Algebra Problem-Solving Session
+</h3>
 
-<p>👨‍🏫 Tutor.J • Tomorrow • 5:00 PM</p>
-<p>👥 12 / 20 enrolled</p>
+<p>
+👨‍🏫 Tutor.J • Tomorrow • 5:00 PM
+</p>
+
+<p>
+👥 12 / 20 enrolled
+</p>
 
 <button class="enrol-btn">
 Enrol
@@ -653,12 +773,20 @@ Enrol
 
 </div>
 
+
 <div class="event">
 
-<h3>KCSE Mathematics Revision</h3>
+<h3>
+KCSE Mathematics Revision
+</h3>
 
-<p>👨‍🏫 Alex.K • Saturday • 3:00 PM</p>
-<p>👥 18 / 20 enrolled</p>
+<p>
+👨‍🏫 Alex.K • Saturday • 3:00 PM
+</p>
+
+<p>
+👥 18 / 20 enrolled
+</p>
 
 <button class="enrol-btn">
 Enrol
@@ -670,8 +798,11 @@ Enrol
 
 </main>
 
+
+<!-- SIDEBAR -->
 <aside>
 
+<!-- STATS -->
 <div class="card">
 
 <h2>👥 Community</h2>
@@ -697,70 +828,97 @@ Enrol
 
 </div>
 
+
+<!-- DIVISIONS -->
 <div class="card">
 
 <h2>🏅 Divisions</h2>
 
 <div class="division">
+
 <strong>Division 1</strong>
+
 <p>
 Advanced learners and experienced contributors.
 </p>
+
 </div>
 
 <div class="division">
+
 <strong>Division 2</strong>
+
 <p>
 Developing learners building strong foundations.
 </p>
+
 </div>
 
 <div class="division">
+
 <strong>Division 3</strong>
+
 <p>
 Learners building their understanding.
 </p>
+
 </div>
 
 <p style="margin-top:12px;color:#687386;font-size:11px;">
-Division placement will eventually be based on
+Division placement can eventually be based on
 GAM assessments and demonstrated performance.
 </p>
 
 </div>
 
+
+<!-- TUTORS -->
 <div class="card">
 
 <h2>👨‍🏫 Community Tutors</h2>
+
 
 <div class="tutor">
 
 <div class="avatar">TJ</div>
 
 <div>
-<div class="tutor-name">Tutor.J</div>
+
+<div class="tutor-name">
+Tutor.J
+</div>
+
 <div class="tutor-type">
 Approved Mathematics Tutor
 </div>
+
 </div>
 
 </div>
+
 
 <div class="tutor">
 
 <div class="avatar">AK</div>
 
 <div>
-<div class="tutor-name">Alex.K</div>
+
+<div class="tutor-name">
+Alex.K
+</div>
+
 <div class="tutor-type">
 Peer Tutor • Division 1
 </div>
-</div>
 
 </div>
 
 </div>
 
+</div>
+
+
+<!-- SAFETY -->
 <div class="safety">
 
 <h3>🛡️ GAM Safety</h3>
@@ -776,8 +934,8 @@ or unsafe links. Report concerns to GAM moderators.
 </aside>
 
 </div>
-
 </div>
+
 
 <footer>
 
@@ -791,6 +949,8 @@ Learn • Connect • Compete • Excel
 
 </footer>
 
+
+<!-- ASK MODAL -->
 <div class="modal" id="askModal">
 
 <div class="modal-box">
@@ -799,8 +959,7 @@ Learn • Connect • Compete • Excel
 
 <textarea
 id="questionText"
-placeholder="Write your question here...">
-</textarea>
+placeholder="Write your question here..."></textarea>
 
 <div class="modal-actions">
 
@@ -818,6 +977,8 @@ Post Question
 
 </div>
 
+
+<!-- REPORT MODAL -->
 <div class="modal" id="reportModal">
 
 <div class="modal-box">
@@ -826,8 +987,7 @@ Post Question
 
 <textarea
 id="reportText"
-placeholder="Tell GAM what you are reporting...">
-</textarea>
+placeholder="Tell GAM what you are reporting..."></textarea>
 
 <div class="modal-actions">
 
@@ -845,81 +1005,28 @@ Submit Report
 
 </div>
 
-<script type="module">
 
-import {
-    initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-import {
-    getAuth,
-    onAuthStateChanged
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc,
-    serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
 
 
-/* =========================
-   FIREBASE
-========================= */
+<script>
 
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
-
-    authDomain:
-        "gam-platform-59f1c.firebaseapp.com",
-
-    projectId:
-        "gam-platform-59f1c",
-
-    storageBucket:
-        "gam-platform-59f1c.firebasestorage.app",
-
-    messagingSenderId:
-        "423635446027",
-
-    appId:
-        "1:423635446027:web:7b42cd097b928ed7671a0e"
-};
-
-
-const app =
-    initializeApp(firebaseConfig);
-
-const auth =
-    getAuth(app);
-
-const db =
-    getFirestore(app);
-
-
-/* =========================
-   COMMUNITY
-========================= */
+/* =========================================
+   GAM COMMUNITY CORE
+   ========================================= */
 
 const params =
-    new URLSearchParams(
-        window.location.search
-    );
+new URLSearchParams(
+window.location.search
+);
 
 const community =
-    params.get("community") ||
-    "mathematics";
+params.get("community") ||
+"mathematics";
 
+
+/* COMMUNITY DATA */
 
 const communityData = {
 
@@ -964,314 +1071,350 @@ const communityData = {
         description:
         "Explore history, geography, society, culture and the world around us."
     }
+
 };
 
 
 const selected =
-    communityData[community] ||
-    communityData.mathematics;
+communityData[community] ||
+communityData.mathematics;
 
 
-/* =========================
-   DISPLAY
-========================= */
+/* DISPLAY */
 
 document.getElementById(
-    "communityTitle"
+"communityTitle"
 ).textContent =
-    selected.title;
+selected.title;
 
 document.getElementById(
-    "communityIcon"
+"communityIcon"
 ).textContent =
-    selected.icon;
+selected.icon;
 
 document.getElementById(
-    "communityDescription"
+"communityDescription"
 ).textContent =
-    selected.description;
+selected.description;
 
 
-/* =========================
-   ELEMENTS
-========================= */
+/* ELEMENTS */
 
 const joinBtn =
-    document.getElementById(
-        "joinBtn"
-    );
+document.getElementById("joinBtn");
 
-const status =
-    document.getElementById(
-        "connectionStatus"
-    );
+const connectionStatus =
+document.getElementById("connectionStatus");
 
 const askModal =
-    document.getElementById(
-        "askModal"
-    );
+document.getElementById("askModal");
 
 const reportModal =
-    document.getElementById(
-        "reportModal"
-    );
+document.getElementById("reportModal");
+
+const toast =
+document.getElementById("toast");
 
 
 let currentUser = null;
-let publicName = "Student";
-let profileData = {};
 
 
-/* =========================
-   STATUS HELPER
-========================= */
+/* =========================================
+   TOAST
+   ========================================= */
 
-function showStatus(
-    message,
-    type=""
-){
+function showToast(message){
 
-    status.textContent =
-        message;
+    toast.textContent = message;
 
-    status.className =
-        "connection-status " +
-        type;
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },3000);
+
 }
 
 
-/* =========================
-   SAFE PUBLIC NAME
-========================= */
+/* =========================================
+   LOCAL COMMUNITY MEMBERSHIP
+   =========================================
+   
+   This allows the community to work even
+   before Firebase account integration is
+   completely configured.
+   ========================================= */
 
-function makePublicName(
-    data,
-    user
-){
-
-    if(data.publicName){
-        return data.publicName;
-    }
-
-    const name =
-        data.name ||
-        user.displayName ||
-        "Student";
-
-    const parts =
-        name.trim().split(/\s+/);
-
-    if(parts.length >= 2){
-
-        const first =
-            parts[0];
-
-        const lastInitial =
-            parts[parts.length - 1]
-            .charAt(0)
-            .toUpperCase();
-
-        return first +
-            "." +
-            lastInitial;
-    }
-
-    return parts[0] ||
-        "Student";
-}
+const localMemberKey =
+"gam_community_member_" + community;
 
 
-/* =========================
-   DEFAULT LOGIN STATE
-========================= */
+function checkLocalMembership(){
 
-joinBtn.disabled = true;
-
-showStatus(
-    "Connecting to GAM account..."
-);
-
-
-/* =========================
-   AUTH CHECK
-========================= */
-
-onAuthStateChanged(
-    auth,
-    async function(user){
-
-        currentUser =
-            user || null;
-
-
-        /* ---------------------
-           NOT LOGGED IN
-        --------------------- */
-
-        if(!user){
-
-            joinBtn.disabled =
-                false;
-
-            joinBtn.textContent =
-                "Login to Join";
-
-            showStatus(
-                "Please log in to join this community.",
-                "warning"
-            );
-
-            return;
-        }
-
-
-        /* ---------------------
-           AUTHENTICATED
-        --------------------- */
-
-        joinBtn.disabled =
-            false;
+    if(
+        localStorage.getItem(
+            localMemberKey
+        ) === "true"
+    ){
 
         joinBtn.textContent =
-            "+ Join Community";
+            "✓ Joined Community";
 
-        showStatus(
-            "✓ GAM account connected",
-            "success"
+        joinBtn.style.background =
+            "#063b75";
+
+        connectionStatus.textContent =
+            "✓ Community available";
+
+        connectionStatus.className =
+            "connection-status success";
+
+        return true;
+    }
+
+    return false;
+}
+
+
+function joinCommunity(){
+
+    localStorage.setItem(
+        localMemberKey,
+        "true"
+    );
+
+    joinBtn.textContent =
+        "✓ Joined Community";
+
+    joinBtn.style.background =
+        "#063b75";
+
+    connectionStatus.textContent =
+        "✓ You are a member of this community";
+
+    connectionStatus.className =
+        "connection-status success";
+
+    showToast(
+        "You joined the " +
+        selected.title +
+        " community."
+    );
+
+}
+
+
+checkLocalMembership();
+
+
+/* =========================================
+   JOIN BUTTON
+   ========================================= */
+
+joinBtn.addEventListener(
+"click",
+function(){
+
+    if(
+        localStorage.getItem(
+            localMemberKey
+        ) === "true"
+    ){
+
+        showToast(
+            "You are already a member."
         );
 
-
-        /*
-         * IMPORTANT:
-         *
-         * The community page does NOT
-         * stop working if Firestore
-         * profile loading fails.
-         */
-
-        try{
-
-            const userRef =
-                doc(
-                    db,
-                    "users",
-                    user.uid
-                );
-
-
-            const snapshot =
-                await Promise.race([
-
-                    getDoc(userRef),
-
-                    new Promise(
-                        function(_,reject){
-
-                            setTimeout(
-                                function(){
-
-                                    reject(
-                                        new Error(
-                                            "Profile timeout"
-                                        )
-                                    );
-
-                                },
-                                5000
-                            );
-
-                        }
-                    )
-
-                ]);
-
-
-            if(snapshot.exists()){
-
-                profileData =
-                    snapshot.data();
-
-                publicName =
-                    makePublicName(
-                        profileData,
-                        user
-                    );
-
-                showStatus(
-                    "✓ GAM account connected • " +
-                    publicName,
-                    "success"
-                );
-
-            }
-            else{
-
-                /*
-                 * The user can still use
-                 * the community.
-                 */
-
-                publicName =
-                    makePublicName(
-                        {},
-                        user
-                    );
-
-                showStatus(
-                    "✓ GAM account connected",
-                    "success"
-                );
-            }
-
-
-            /*
-             * Check membership.
-             */
-
-            await checkMembership();
-
-
-        }
-        catch(error){
-
-            console.log(
-                "GAM profile check:",
-                error
-            );
-
-
-            /*
-             * Never leave the user
-             * stuck on Checking...
-             */
-
-            publicName =
-                makePublicName(
-                    {},
-                    user
-                );
-
-            showStatus(
-                "✓ GAM account connected",
-                "success"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   CHECK MEMBERSHIP
-========================= */
-
-async function checkMembership(){
-
-    if(!currentUser){
         return;
     }
 
-    try{
 
-        const me
+    joinCommunity();
+
+});
+
+
+/* =========================================
+   ASK QUESTION
+   ========================================= */
+
+document.getElementById(
+"askBtn"
+).addEventListener(
+"click",
+function(){
+
+    askModal.style.display =
+        "flex";
+
+});
+
+
+document.getElementById(
+"cancelAsk"
+).addEventListener(
+"click",
+function(){
+
+    askModal.style.display =
+        "none";
+
+});
+
+
+document.getElementById(
+"submitAsk"
+).addEventListener(
+"click",
+function(){
+
+    const text =
+        document.getElementById(
+            "questionText"
+        ).value.trim();
+
+
+    if(!text){
+
+        showToast(
+            "Please write your question first."
+        );
+
+        return;
+    }
+
+
+    /*
+     * Temporary local storage.
+     *
+     * Later this will become a
+     * Firestore community question.
+     */
+
+    const questions =
+        JSON.parse(
+            localStorage.getItem(
+                "gam_questions_" + community
+            ) || "[]"
+        );
+
+
+    questions.push({
+
+        text:text,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+
+    localStorage.setItem(
+        "gam_questions_" + community,
+        JSON.stringify(questions)
+    );
+
+
+    document.getElementById(
+        "questionText"
+    ).value = "";
+
+
+    askModal.style.display =
+        "none";
+
+
+    showToast(
+        "Your question has been saved for the GAM community."
+    );
+
+});
+
+
+/* =========================================
+   REPORT
+   ========================================= */
+
+document.getElementById(
+"reportBtn"
+).addEventListener(
+"click",
+function(){
+
+    reportModal.style.display =
+        "flex";
+
+});
+
+
+document.getElementById(
+"cancelReport"
+).addEventListener(
+"click",
+function(){
+
+    reportModal.style.display =
+        "none";
+
+});
+
+
+document.getElementById(
+"submitReport"
+).addEventListener(
+"click",
+function(){
+
+    const text =
+        document.getElementById(
+            "reportText"
+        ).value.trim();
+
+
+    if(!text){
+
+        showToast(
+            "Please describe the concern."
+        );
+
+        return;
+    }
+
+
+    /*
+     * Temporary local report storage.
+     *
+     * Later this will connect to
+     * GAM moderation tools.
+     */
+
+    const reports =
+        JSON.parse(
+            localStorage.getItem(
+                "gam_reports"
+            ) || "[]"
+        );
+
+
+    reports.push({
+
+        community:community,
+
+        report:text,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+
+    localStorage.setItem(
+        "gam_reports",
+        JSON.stringify(reports)
+    );
+
+
+    document.getElementById(
+     
