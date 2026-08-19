@@ -1,28 +1,39 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GAM Africa | My Learning</title><style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GAM Africa | Learning Hub</title>
+
+<style>
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f8fc;
     color: #172033;
 }
 
+/* NAV */
 
-/* HEADER */
-
-header {
+nav {
     background: #063b75;
     color: white;
-    padding: 14px 6%;
+    padding: 13px 6%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .brand {
@@ -32,98 +43,99 @@ header {
 }
 
 .logo {
-    width: 45px;
-    height: 45px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
     background: #ffd21f;
     color: #063b75;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .brand h2 {
-    margin: 0;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .brand p {
-    margin: 3px 0 0;
     font-size: 10px;
+    opacity: .85;
 }
 
 .back {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 13px;
 }
-
-
-/* MAIN */
-
-.container {
-    max-width: 1150px;
-    margin: 25px auto;
-    padding: 0 20px;
-}
-
 
 /* HERO */
 
 .hero {
-    background: linear-gradient(
-        135deg,
-        #063b75,
-        #0a579c
-    );
-
+    background:
+        linear-gradient(120deg,#063b75,#087333);
     color: white;
+    padding: 55px 20px;
+}
 
-    padding: 30px;
+.hero-inner {
+    max-width: 1100px;
+    margin: auto;
+}
 
-    border-radius: 18px;
-
-    margin-bottom: 22px;
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.08);
+.hero-badge {
+    display: inline-block;
+    background: #ffd21f;
+    color: #063b75;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
 }
 
 .hero h1 {
-    margin: 0 0 8px;
+    font-size: clamp(32px,5vw,52px);
+    margin-bottom: 10px;
 }
 
 .hero p {
-    margin: 0;
-    line-height: 1.5;
-    color: #e8f1fb;
+    max-width: 650px;
+    color: #e3f0f8;
 }
 
+/* CONTAINER */
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 20px 70px;
+}
 
 /* SEARCH */
 
 .search-box {
     background: white;
-    padding: 18px;
-    border-radius: 14px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 22px rgba(0,0,0,.07);
+    margin-bottom: 35px;
+}
 
-    margin-bottom: 22px;
-
-    box-shadow:
-        0 3px 15px rgba(0,0,0,.07);
+.search-box label {
+    display: block;
+    font-weight: bold;
+    color: #063b75;
+    margin-bottom: 8px;
 }
 
 .search-box input {
     width: 100%;
     padding: 13px;
-
     border: 1px solid #ccd5e0;
-
     border-radius: 8px;
-
     font-size: 15px;
-
     outline: none;
 }
 
@@ -131,428 +143,710 @@ header {
     border-color: #063b75;
 }
 
-
 /* SECTION */
 
 .section-title {
     color: #063b75;
-    margin-bottom: 14px;
+    margin-bottom: 17px;
 }
 
+.section-title span {
+    color: #687386;
+    font-size: 13px;
+    font-weight: normal;
+}
 
 /* SUBJECTS */
 
 .subjects {
     display: grid;
-
     grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(210px, 1fr)
-        );
-
-    gap: 17px;
+        repeat(auto-fit,minmax(230px,1fr));
+    gap: 18px;
 }
-
 
 .subject {
     background: white;
-
-    padding: 22px;
-
-    border-radius: 15px;
-
-    box-shadow:
-        0 3px 15px rgba(0,0,0,.07);
-
+    padding: 23px;
+    border-radius: 16px;
     border-top: 5px solid #063b75;
-
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    transition: .25s;
     cursor: pointer;
-
-    transition:
-        transform .2s,
-        box-shadow .2s;
 }
-
 
 .subject:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 7px 20px rgba(0,0,0,.11);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.1);
 }
 
-
-.subject .icon {
-    font-size: 35px;
-    margin-bottom: 10px;
-}
-
-
-.subject h3 {
-    color: #063b75;
-    margin: 0 0 7px;
-}
-
-
-.subject p {
-    color: #596579;
-    line-height: 1.4;
-    margin: 0;
-}
-
-
-.math {
-    border-top-color: #063b75;
-}
-
-.science {
+.subject:nth-child(2) {
     border-top-color: #087333;
 }
 
-.english {
+.subject:nth-child(3) {
+    border-top-color: #ffd21f;
+}
+
+.subject:nth-child(4) {
     border-top-color: #7b3fb5;
 }
 
-.computer {
-    border-top-color: #e28a00;
+.subject:nth-child(5) {
+    border-top-color: #e86f25;
 }
 
-.business {
-    border-top-color: #d34b4b;
+.subject:nth-child(6) {
+    border-top-color: #1485a5;
 }
 
-.general {
-    border-top-color: #008c95;
+.icon {
+    font-size: 38px;
+    margin-bottom: 10px;
 }
 
-
-/* LEARNING AREAS */
-
-.features {
-    margin-top: 28px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(240px, 1fr)
-        );
-
-    gap: 17px;
-}
-
-
-.feature {
-    background: white;
-
-    padding: 22px;
-
-    border-radius: 15px;
-
-    box-shadow:
-        0 3px 15px rgba(0,0,0,.07);
-}
-
-
-.feature h3 {
+.subject h3 {
     color: #063b75;
+    margin-bottom: 7px;
 }
 
-
-.feature p {
-    color: #596579;
-    line-height: 1.5;
+.subject p {
+    color: #687386;
+    font-size: 14px;
+    min-height: 45px;
 }
 
-
-.feature button {
-    background: #063b75;
-
-    color: white;
-
-    border: none;
-
-    padding: 10px 15px;
-
+.open-btn {
+    margin-top: 15px;
+    display: inline-block;
+    padding: 9px 13px;
     border-radius: 7px;
-
+    background: #063b75;
+    color: white;
+    font-size: 12px;
     font-weight: bold;
-
-    cursor: pointer;
 }
 
+/* LEARNING PATH */
 
-/* MESSAGE */
+.path-section {
+    margin-top: 45px;
+}
 
-#message {
-    display: none;
+.paths {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+    gap: 18px;
+}
 
-    background: #eef4fb;
+.path {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
 
+.path h3 {
     color: #063b75;
+    margin-bottom: 7px;
+}
 
-    padding: 15px;
+.path p {
+    color: #687386;
+    font-size: 14px;
+}
 
-    border-radius: 10px;
-
-    margin-top: 22px;
-
+.path span {
+    display: inline-block;
+    margin-top: 13px;
+    background: #eef4fb;
+    color: #063b75;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 11px;
     font-weight: bold;
 }
 
+/* FREE */
+
+.free {
+    margin-top: 45px;
+    background:
+        linear-gradient(135deg,#fff8c9,#fffdf0);
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.free h2 {
+    color: #063b75;
+}
+
+.free p {
+    color: #596579;
+    max-width: 650px;
+    margin: 8px auto 18px;
+}
+
+.free-items {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.free-item {
+    background: white;
+    color: #063b75;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
 
 /* FOOTER */
 
 footer {
-    margin-top: 45px;
-
     background: #03284f;
-
     color: white;
-
     text-align: center;
-
-    padding: 25px;
+    padding: 28px 20px;
 }
 
 footer p {
     color: #b9c9dc;
+    font-size: 12px;
+    margin-top: 5px;
 }
 
-</style></head><body><header><div class="brand"><div class="logo">
+/* HIDDEN */
+
+.hidden {
+    display: none;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    nav {
+        padding: 11px 4%;
+    }
+
+    .brand h2 {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 45px 20px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .free {
+        padding: 28px 18px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="brand">
+
+<div class="logo">
 GAM
-</div><div><h2>
+</div>
+
+<div>
+
+<h2>
 GAM Africa
-</h2><p>
+</h2>
+
+<p>
 Global Academy of Minds Africa
-</p></div></div><a
+</p>
+
+</div>
+
+</div>
+
+
+<a
 href="student.html"
 class="back">
 
-← Dashboard
+← Student Dashboard
 
-</a></header><div class="container"><!-- HERO --><div class="hero"><h1>
-📚 My Learning
-</h1><p>
-Welcome to the GAM Africa Learning Hub.
-Explore subjects, discover lessons, practise
-your skills and build your knowledge.
-</p></div><!-- SEARCH --><div class="search-box"><input
+</a>
+
+</nav>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<div class="hero-badge">
+📚 GAM LEARNING
+</div>
+
+<h1>
+Learn. Understand. Grow.
+</h1>
+
+<p>
+Explore subjects, build your knowledge,
+practice what you learn and grow together
+with the GAM Africa learning community.
+</p>
+
+</div>
+
+</section>
+
+
+
+<div class="container">
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<label for="search">
+🔎 Find a subject
+</label>
+
+<input
+id="search"
 type="search"
-id="searchInput"
-placeholder="🔍 Search subjects or learning resources..."
+placeholder="Search Mathematics, Science, Coding..."
+>
 
-«»
+</div>
 
-</div><!-- SUBJECTS --><h2 class="section-title">
-Explore Subjects
-</h2><div class="subjects"
-id="subjects"><div
-class="subject math"
-data-name="mathematics"><div class="icon">
-📐
-</div><h3>
+
+
+<!-- SUBJECTS -->
+
+<h2 class="section-title">
+
+📚 Explore Subjects
+
+<span>
+Choose a subject to begin learning.
+</span>
+
+</h2>
+
+
+<div
+class="subjects"
+id="subjects">
+
+
+<!-- MATHEMATICS -->
+
+<div
+class="subject"
+data-name="mathematics">
+
+<div class="icon">
+🔢
+</div>
+
+<h3>
 Mathematics
-</h3><p>
+</h3>
+
+<p>
 Numbers, algebra, geometry,
-statistics and problem solving.
-</p></div><div
-class="subject science"
-data-name="science chemistry biology physics"><div class="icon">
-🔬
-</div><h3>
+trigonometry and problem solving.
+</p>
+
+<span class="open-btn">
+Open Mathematics →
+</span>
+
+</div>
+
+
+<!-- SCIENCE -->
+
+<div
+class="subject"
+data-name="science sciences physics chemistry biology">
+
+<div class="icon">
+🧪
+</div>
+
+<h3>
 Sciences
-</h3><p>
+</h3>
+
+<p>
 Explore Biology, Chemistry,
 Physics and scientific thinking.
-</p></div><div
-class="subject english"
-data-name="english languages communication"><div class="icon">
+</p>
+
+<span class="open-btn">
+Explore Sciences →
+</span>
+
+</div>
+
+
+<!-- ENGLISH -->
+
+<div
+class="subject"
+data-name="english language grammar writing">
+
+<div class="icon">
 📖
-</div><h3>
+</div>
+
+<h3>
 English
-</h3><p>
+</h3>
+
+<p>
 Improve grammar, comprehension,
 writing and communication.
-</p></div><div
-class="subject computer"
-data-name="computer coding technology ict"><div class="icon">
+</p>
+
+<span class="open-btn">
+Open English →
+</span>
+
+</div>
+
+
+<!-- CODING -->
+
+<div
+class="subject"
+data-name="coding technology programming computer">
+
+<div class="icon">
 💻
-</div><h3>
-Computer & Coding
-</h3><p>
-Learn programming, technology,
-ICT and digital skills.
-</p></div><div
-class="subject business"
-data-name="business entrepreneurship economics"><div class="icon">
-💼
-</div><h3>
-Business
-</h3><p>
-Business studies, entrepreneurship,
-economics and financial skills.
-</p></div><div
-class="subject general"
-data-name="general knowledge critical thinking"><div class="icon">
+</div>
+
+<h3>
+Technology & Coding
+</h3>
+
+<p>
+Learn programming, digital skills
+and technology.
+</p>
+
+<span class="open-btn">
+Start Coding →
+</span>
+
+</div>
+
+
+<!-- HUMANITIES -->
+
+<div
+class="subject"
+data-name="humanities history geography social studies">
+
+<div class="icon">
 🌍
-</div><h3>
-General Knowledge
-</h3><p>
-Discover the world and develop
-critical thinking skills.
-</p></div></div><!-- LEARNING FEATURES --><h2 class="section-title"
-style="margin-top:30px;">Learning Tools
+</div>
 
-</h2><div class="features"><div class="feature"><h3>
-📖 Lessons
-</h3><p>
-Follow structured lessons designed
-to help you understand concepts
-step by step.
-</p><button
-onclick="showMessage('GAM Lessons will be connected next.')">
+<h3>
+Humanities
+</h3>
 
-Explore Lessons
+<p>
+Explore History, Geography,
+society and the world.
+</p>
 
-</button></div><div class="feature"><h3>
-📝 Practice
-</h3><p>
-Test your understanding with
-practice questions and activities.
-</p><button
-onclick="showMessage('GAM Practice will be connected next.')">
+<span class="open-btn">
+Explore Humanities →
+</span>
 
-Start Practice
+</div>
 
-</button></div><div class="feature"><h3>
-🎯 My Progress
-</h3><p>
-Track the subjects you study,
-your activities and your achievements.
-</p><button
-onclick="showMessage('Your learning progress system will be connected next.')">
 
-View Progress
+<!-- BUSINESS -->
 
-</button></div><div class="feature"><h3>
-👨‍🏫 Tutor Help
-</h3><p>
-Need help? Connect with a GAM tutor
-when you get stuck.
-</p><button
-onclick="window.location.href='student.html'">
+<div
+class="subject"
+data-name="business entrepreneurship commerce">
 
-Find a Tutor
+<div class="icon">
+💼
+</div>
 
-</button></div></div><div id="message"></div></div><footer><strong>
+<h3>
+Business
+</h3>
+
+<p>
+Develop business knowledge,
+entrepreneurship and practical skills.
+</p>
+
+<span class="open-btn">
+Explore Business →
+</span>
+
+</div>
+
+</div>
+
+
+
+<!-- LEARNING PATHS -->
+
+<div class="path-section">
+
+<h2 class="section-title">
+🎯 Learning Paths
+
+<span>
+Choose the way you want to learn.
+</span>
+</h2>
+
+
+<div class="paths">
+
+
+<div class="path">
+
+<h3>
+📖 School Revision
+</h3>
+
+<p>
+Strengthen your understanding of
+school subjects through structured
+revision and practice.
+</p>
+
+<span>
+KCSE • School Learning
+</span>
+
+</div>
+
+
+<div class="path">
+
+<h3>
+🧠 Skills Development
+</h3>
+
+<p>
+Build practical skills such as
+coding, communication and problem solving.
+</p>
+
+<span>
+Future Skills
+</span>
+
+</div>
+
+
+<div class="path">
+
+<h3>
+🏆 Competition Preparation
+</h3>
+
+<p>
+Prepare yourself for academic
+competitions and challenges.
+</p>
+
+<span>
+GAM Competitions
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- FREE -->
+
+<div class="free">
+
+<h2>
+🌍 GAM Africa Learning is FREE
+</h2>
+
+<p>
+Our goal is to make learning opportunities
+accessible to students across Africa.
+Create your account and start exploring.
+</p>
+
+
+<div class="free-items">
+
+<div class="free-item">
+🆓 Free Registration
+</div>
+
+<div class="free-item">
+📚 Learning Resources
+</div>
+
+<div class="free-item">
+🧠 Practice
+</div>
+
+<div class="free-item">
+🌍 Community
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<footer>
+
+<strong>
 GAM — Global Academy of Minds Africa
-</strong><p>
-Learn • Connect • Compete • Excel
-</p></footer><script>
+</strong>
 
+<p>
+Learn • Connect • Compete • Excel
+</p>
+
+</footer>
+
+
+
+<script>
 
 /*
- * SEARCH
+ * SUBJECT SEARCH
  */
 
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
-
+const search =
+document.getElementById("search");
 
 const subjects =
-    document.querySelectorAll(
-        ".subject"
-    );
+document.querySelectorAll(".subject");
 
 
-searchInput.addEventListener(
-    "input",
-    function() {
+search.addEventListener(
+"input",
+function() {
 
-        const search =
-            searchInput.value
-            .toLowerCase()
-            .trim();
-
-
-        subjects.forEach(
-            function(subject) {
-
-                const name =
-                    subject
-                    .dataset
-                    .name
-                    .toLowerCase();
+    const query =
+    search.value
+    .toLowerCase()
+    .trim();
 
 
-                const text =
-                    subject
-                    .textContent
-                    .toLowerCase();
+    subjects.forEach(
+    function(subject) {
+
+        const name =
+        subject
+        .dataset
+        .name
+        .toLowerCase();
 
 
-                if (
-                    name.includes(search)
-                    ||
-                    text.includes(search)
-                ) {
+        if (
+            name.includes(query)
+        ) {
 
-                    subject.style.display =
-                        "";
+            subject.classList
+            .remove("hidden");
 
-                }
+        }
 
-                else {
+        else {
 
-                    subject.style.display =
-                        "none";
+            subject.classList
+            .add("hidden");
 
-                }
+        }
 
-            }
-        );
+    });
 
-    }
-);
+});
 
 
 /*
- * MESSAGE
+ * SUBJECT CLICK
+ *
+ * Mathematics will be connected
+ * first. Other subject pages will
+ * be added as we build them.
  */
 
-function showMessage(
-    text
-) {
+subjects.forEach(
+function(subject) {
 
-    const message =
-        document.getElementById(
-            "message"
+    subject.addEventListener(
+    "click",
+    function() {
+
+        const name =
+        subject
+        .dataset
+        .name;
+
+
+        if (
+            name.includes("mathematics")
+        ) {
+
+            window.location.href =
+            "mathematics.html";
+
+            return;
+
+        }
+
+
+        alert(
+            "This GAM Africa subject area is being prepared. Mathematics will be connected first."
         );
 
+    });
 
-    message.textContent =
-        text;
+});
 
+</script>
 
-    message.style.display =
-        "block";
-
-
-    window.scrollTo(
-        {
-            top:
-                document.body.scrollHeight,
-
-            behavior:
-                "smooth"
-        }
-    );
-
-}
-
-</script></body></html>
+</body>
+    </html>
