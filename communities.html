@@ -8,6 +8,7 @@
 <title>GAM Africa | Communities</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -20,8 +21,6 @@ body{
     color:#172033;
 }
 
-/* NAVIGATION */
-
 nav{
     background:#063b75;
     color:white;
@@ -32,7 +31,7 @@ nav{
     gap:15px;
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:20;
 }
 
 .brand{
@@ -51,6 +50,7 @@ nav{
     align-items:center;
     justify-content:center;
     font-weight:900;
+    font-size:12px;
 }
 
 .brand h2{
@@ -60,41 +60,27 @@ nav{
 .brand p{
     font-size:10px;
     opacity:.85;
+    margin-top:3px;
 }
 
-.nav-links{
-    display:flex;
-    gap:10px;
-    align-items:center;
-}
-
-.nav-links a{
+.back{
     color:white;
     text-decoration:none;
     font-size:13px;
     font-weight:bold;
 }
 
-.logout{
-    border:none;
-    background:white;
-    color:#063b75;
-    padding:9px 13px;
-    border-radius:7px;
-    font-weight:bold;
-    cursor:pointer;
-}
 
 /* HERO */
 
 .hero{
     background:linear-gradient(120deg,#063b75,#087333);
     color:white;
-    padding:48px 20px;
+    padding:50px 20px;
 }
 
 .hero-inner{
-    max-width:1150px;
+    max-width:1100px;
     margin:auto;
 }
 
@@ -102,45 +88,33 @@ nav{
     display:inline-block;
     background:#ffd21f;
     color:#063b75;
-    padding:6px 12px;
+    padding:7px 12px;
     border-radius:20px;
     font-size:12px;
     font-weight:bold;
-    margin-bottom:12px;
+    margin-bottom:14px;
 }
 
 .hero h1{
-    font-size:clamp(30px,5vw,50px);
-    margin-bottom:10px;
+    font-size:clamp(32px,5vw,50px);
+    margin-bottom:12px;
 }
 
 .hero p{
     max-width:700px;
-    color:#e3f0f8;
     line-height:1.6;
+    color:#e6f0f8;
 }
 
-/* MAIN */
+
+/* CONTAINER */
 
 .container{
-    max-width:1150px;
+    max-width:1100px;
     margin:auto;
     padding:30px 20px 70px;
 }
 
-/* WELCOME */
-
-.welcome{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
-    margin-bottom:25px;
-}
-
-.welcome strong{
-    color:#063b75;
-}
 
 /* SEARCH */
 
@@ -148,7 +122,7 @@ nav{
     background:white;
     padding:20px;
     border-radius:15px;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    box-shadow:0 4px 20px rgba(0,0,0,.07);
     margin-bottom:30px;
 }
 
@@ -172,11 +146,12 @@ nav{
     border-color:#063b75;
 }
 
+
 /* SECTION */
 
 .section-title{
     color:#063b75;
-    margin-bottom:15px;
+    margin-bottom:16px;
 }
 
 .section-title span{
@@ -185,37 +160,12 @@ nav{
     font-weight:normal;
 }
 
-/* CATEGORIES */
-
-.categories{
-    display:flex;
-    gap:9px;
-    flex-wrap:wrap;
-    margin-bottom:25px;
-}
-
-.category{
-    border:none;
-    background:white;
-    color:#063b75;
-    padding:9px 13px;
-    border-radius:20px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 3px 12px rgba(0,0,0,.05);
-}
-
-.category.active{
-    background:#063b75;
-    color:white;
-}
 
 /* COMMUNITIES */
 
 .communities{
     display:grid;
-    grid-template-columns:
-        repeat(auto-fit,minmax(270px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:18px;
 }
 
@@ -223,14 +173,15 @@ nav{
     background:white;
     border-radius:17px;
     padding:22px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
     border-top:5px solid #063b75;
     transition:.2s;
+    cursor:pointer;
 }
 
 .community:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 28px rgba(0,0,0,.1);
+    transform:translateY(-5px);
+    box-shadow:0 12px 28px rgba(0,0,0,.10);
 }
 
 .community:nth-child(2){
@@ -238,109 +189,143 @@ nav{
 }
 
 .community:nth-child(3){
-    border-top-color:#ffd21f;
-}
-
-.community:nth-child(4){
     border-top-color:#7b3fb5;
 }
 
-.community:nth-child(5){
+.community:nth-child(4){
     border-top-color:#e86f25;
 }
 
-.community:nth-child(6){
+.community:nth-child(5){
     border-top-color:#1485a5;
 }
 
-.community:nth-child(7){
-    border-top-color:#087333;
+.community:nth-child(6){
+    border-top-color:#d19a00;
 }
 
-.community:nth-child(8){
-    border-top-color:#063b75;
-}
-
-.community-icon{
+.icon{
     font-size:38px;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 .community h3{
     color:#063b75;
-    margin-bottom:7px;
+    margin-bottom:8px;
 }
 
-.community-description{
+.community p{
     color:#687386;
     font-size:14px;
     line-height:1.5;
-    min-height:63px;
+    min-height:65px;
 }
 
-.stats{
+.tags{
     display:flex;
-    gap:12px;
     flex-wrap:wrap;
-    margin:14px 0;
+    gap:6px;
+    margin-top:14px;
 }
 
-.stat{
+.tag{
     background:#eef4fb;
     color:#063b75;
-    padding:6px 9px;
+    padding:5px 8px;
     border-radius:15px;
-    font-size:11px;
+    font-size:10px;
     font-weight:bold;
 }
 
 .join{
+    margin-top:16px;
     width:100%;
-    border:none;
+    padding:10px;
+    border:0;
+    border-radius:8px;
     background:#063b75;
     color:white;
-    padding:11px;
-    border-radius:8px;
     font-weight:bold;
     cursor:pointer;
 }
 
-.join.joined{
+.community:nth-child(2) .join{
     background:#087333;
 }
+
+.community:nth-child(3) .join{
+    background:#7b3fb5;
+}
+
 
 /* INFO */
 
 .info{
     margin-top:35px;
-    background:linear-gradient(135deg,#fff8c9,#fffdf0);
-    padding:28px;
-    border-radius:18px;
-    text-align:center;
+    background:white;
+    border-radius:17px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
 .info h2{
     color:#063b75;
-    margin-bottom:8px;
+    margin-bottom:12px;
 }
 
 .info p{
     color:#596579;
     line-height:1.6;
-    max-width:700px;
-    margin:auto;
+    margin-bottom:10px;
 }
 
-/* EMPTY */
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+    margin-top:18px;
+}
 
-.empty{
-    display:none;
-    background:white;
-    padding:35px;
-    border-radius:15px;
-    text-align:center;
+.feature{
+    background:#f5f8fc;
+    padding:15px;
+    border-radius:10px;
+}
+
+.feature strong{
+    color:#063b75;
+    display:block;
+    margin-bottom:5px;
+}
+
+.feature span{
+    font-size:12px;
     color:#687386;
 }
+
+
+/* MESSAGE */
+
+.message{
+    display:none;
+    margin-top:20px;
+    padding:13px;
+    border-radius:9px;
+    font-size:14px;
+}
+
+.success{
+    display:block;
+    background:#e6f7ed;
+    color:#087333;
+}
+
+.error{
+    display:block;
+    background:#ffe8e8;
+    color:#a40000;
+}
+
 
 /* FOOTER */
 
@@ -353,13 +338,10 @@ footer{
 
 footer p{
     color:#b9c9dc;
-    margin-top:6px;
     font-size:12px;
+    margin-top:5px;
 }
 
-.hidden{
-    display:none;
-}
 
 /* MOBILE */
 
@@ -373,24 +355,23 @@ footer p{
         font-size:14px;
     }
 
-    .nav-links a{
-        display:none;
-    }
-
     .hero{
-        padding:40px 20px;
+        padding:42px 20px;
     }
 
-    .container{
-        padding-left:15px;
-        padding-right:15px;
-    }
 }
+
+.hidden{
+    display:none;
+}
+
 </style>
 
 </head>
 
+
 <body>
+
 
 <nav>
 
@@ -407,23 +388,11 @@ GAM
 
 </div>
 
-<div class="nav-links">
-
-<a href="student.html">
-Dashboard
+<a
+href="student.html"
+class="back">
+← Dashboard
 </a>
-
-<a href="learning.html">
-Learning
-</a>
-
-<button
-class="logout"
-id="logoutBtn">
-Logout
-</button>
-
-</div>
 
 </nav>
 
@@ -433,18 +402,17 @@ Logout
 <div class="hero-inner">
 
 <div class="badge">
-🌍 GAM AFRICA COMMUNITIES
+🌍 GAM LEARNING COMMUNITIES
 </div>
 
 <h1>
-Learn Together.
-Grow Together.
+Find Your Community.
 </h1>
 
 <p>
-Join communities where students, peer tutors and
-trusted tutors learn from one another, ask questions,
-share knowledge, organize events and build skills.
+Learning becomes stronger when people learn together.
+Join a community around something you genuinely want
+to understand, practise, discuss or build.
 </p>
 
 </div>
@@ -455,74 +423,25 @@ share knowledge, organize events and build skills.
 <div class="container">
 
 
-<div class="welcome">
-
-Welcome back,
-<strong id="studentName">Student</strong> 👋
-
-<br>
-
-<span style="color:#687386;font-size:13px;">
-Find a community that matches what you want to learn,
-practice or teach.
-</span>
-
-</div>
-
-
 <div class="search">
 
 <label for="search">
-🔎 Find a GAM community
+🔎 Find a community
 </label>
 
 <input
 id="search"
 type="search"
-placeholder="Search Mathematics, Chemistry, Coding, KCSE..."
+placeholder="Try Mathematics, Algebra, Coding, Chemistry..."
 >
 
 </div>
 
 
 <h2 class="section-title">
-
-🌍 Explore Communities
-
-<span>
-Choose an area you're interested in.
-</span>
-
+🌟 Explore Communities
+<span>Choose an area you're interested in.</span>
 </h2>
-
-
-<div class="categories">
-
-<button
-class="category active"
-data-category="all">
-All
-</button>
-
-<button
-class="category"
-data-category="academic">
-Academic
-</button>
-
-<button
-class="category"
-data-category="skills">
-Skills
-</button>
-
-<button
-class="category"
-data-category="competition">
-Competitions
-</button>
-
-</div>
 
 
 <div
@@ -534,10 +453,9 @@ id="communities">
 
 <div
 class="community"
-data-category="academic"
-data-search="mathematics maths algebra geometry trigonometry kcse">
+data-search="mathematics algebra geometry trigonometry calculus">
 
-<div class="community-icon">
+<div class="icon">
 🔢
 </div>
 
@@ -545,31 +463,24 @@ data-search="mathematics maths algebra geometry trigonometry kcse">
 Mathematics
 </h3>
 
-<p class="community-description">
-A community for learners who want to understand
-Mathematics, solve problems and help one another.
+<p>
+Explore mathematics communities from
+foundations and algebra to geometry,
+trigonometry and advanced problem solving.
 </p>
 
-<div class="stats">
-
-<span class="stat">
-👥 Community
-</span>
-
-<span class="stat">
-👨‍🏫 Tutors
-</span>
-
-<span class="stat">
-🏆 Challenges
-</span>
-
+<div class="tags">
+<span class="tag">Algebra</span>
+<span class="tag">Geometry</span>
+<span class="tag">Problem Solving</span>
 </div>
 
 <button
 class="join"
 data-community="mathematics">
-Join Community
+
+Explore Mathematics →
+
 </button>
 
 </div>
@@ -579,10 +490,9 @@ Join Community
 
 <div
 class="community"
-data-category="academic"
-data-search="science chemistry physics biology science kcse">
+data-search="science physics chemistry biology">
 
-<div class="community-icon">
+<div class="icon">
 🧪
 </div>
 
@@ -590,72 +500,24 @@ data-search="science chemistry physics biology science kcse">
 Sciences
 </h3>
 
-<p class="community-description">
-Connect with learners interested in Chemistry,
-Physics, Biology and scientific thinking.
+<p>
+Connect with learners interested in
+Biology, Chemistry, Physics and scientific
+thinking.
 </p>
 
-<div class="stats">
-
-<span class="stat">
-🧪 Chemistry
-</span>
-
-<span class="stat">
-⚛️ Physics
-</span>
-
-<span class="stat">
-🧬 Biology
-</span>
-
+<div class="tags">
+<span class="tag">Biology</span>
+<span class="tag">Chemistry</span>
+<span class="tag">Physics</span>
 </div>
 
 <button
 class="join"
-data-community="sciences">
-Join Community
-</button>
+data-community="science">
 
-</div>
+Explore Sciences →
 
-
-<!-- ENGLISH -->
-
-<div
-class="community"
-data-category="academic"
-data-search="english language grammar writing comprehension">
-
-<div class="community-icon">
-📖
-</div>
-
-<h3>
-English & Communication
-</h3>
-
-<p class="community-description">
-Improve communication, writing, grammar,
-comprehension and confidence.
-</p>
-
-<div class="stats">
-
-<span class="stat">
-✍️ Writing
-</span>
-
-<span class="stat">
-📚 Reading
-</span>
-
-</div>
-
-<button
-class="join"
-data-community="english">
-Join Community
 </button>
 
 </div>
@@ -665,10 +527,9 @@ Join Community
 
 <div
 class="community"
-data-category="skills"
-data-search="coding programming technology computer python web">
+data-search="coding programming technology computer software web development">
 
-<div class="community-icon">
+<div class="icon">
 💻
 </div>
 
@@ -676,31 +537,60 @@ data-search="coding programming technology computer python web">
 Coding & Technology
 </h3>
 
-<p class="community-description">
-Learn programming, technology and digital skills
-with other learners and experienced members.
+<p>
+Learn together, build projects, solve
+coding problems and share ideas about technology.
 </p>
 
-<div class="stats">
-
-<span class="stat">
-🐍 Programming
-</span>
-
-<span class="stat">
-🌐 Web
-</span>
-
-<span class="stat">
-💡 Projects
-</span>
-
+<div class="tags">
+<span class="tag">Programming</span>
+<span class="tag">Web</span>
+<span class="tag">Projects</span>
 </div>
 
 <button
 class="join"
 data-community="coding">
-Join Community
+
+Explore Coding →
+
+</button>
+
+</div>
+
+
+<!-- ENGLISH -->
+
+<div
+class="community"
+data-search="english language grammar writing communication">
+
+<div class="icon">
+📖
+</div>
+
+<h3>
+English & Communication
+</h3>
+
+<p>
+A community for learners who want to
+improve language, writing, comprehension
+and communication.
+</p>
+
+<div class="tags">
+<span class="tag">Grammar</span>
+<span class="tag">Writing</span>
+<span class="tag">Speaking</span>
+</div>
+
+<button
+class="join"
+data-community="english">
+
+Explore English →
+
 </button>
 
 </div>
@@ -710,10 +600,9 @@ Join Community
 
 <div
 class="community"
-data-category="skills"
-data-search="business entrepreneurship commerce money">
+data-search="business entrepreneurship commerce finance">
 
-<div class="community-icon">
+<div class="icon">
 💼
 </div>
 
@@ -721,27 +610,23 @@ data-search="business entrepreneurship commerce money">
 Business & Entrepreneurship
 </h3>
 
-<p class="community-description">
-Explore entrepreneurship, business ideas,
-financial skills and practical projects.
+<p>
+Discuss business ideas, entrepreneurship,
+finance and practical skills for the future.
 </p>
 
-<div class="stats">
-
-<span class="stat">
-💡 Ideas
-</span>
-
-<span class="stat">
-🚀 Projects
-</span>
-
+<div class="tags">
+<span class="tag">Business</span>
+<span class="tag">Ideas</span>
+<span class="tag">Entrepreneurship</span>
 </div>
 
 <button
 class="join"
 data-community="business">
-Join Community
+
+Explore Business →
+
 </button>
 
 </div>
@@ -751,120 +636,33 @@ Join Community
 
 <div
 class="community"
-data-category="academic"
-data-search="history geography humanities social studies">
+data-search="humanities history geography society social studies">
 
-<div class="community-icon">
+<div class="icon">
 🌍
 </div>
 
 <h3>
-Humanities
+Humanities & Society
 </h3>
 
-<p class="community-description">
-Discuss History, Geography, society,
+<p>
+Explore history, geography, society,
 culture and the world around us.
 </p>
 
-<div class="stats">
-
-<span class="stat">
-📜 History
-</span>
-
-<span class="stat">
-🗺️ Geography
-</span>
-
+<div class="tags">
+<span class="tag">History</span>
+<span class="tag">Geography</span>
+<span class="tag">Society</span>
 </div>
 
 <button
 class="join"
 data-community="humanities">
-Join Community
-</button>
 
-</div>
+Explore Humanities →
 
-
-<!-- COMPETITIONS -->
-
-<div
-class="community"
-data-category="competition"
-data-search="competition olympiad mathematics challenge gam">
-
-<div class="community-icon">
-🏆
-</div>
-
-<h3>
-GAM Competitions
-</h3>
-
-<p class="community-description">
-Prepare for academic challenges, competitions,
-problem-solving events and GAM contests.
-</p>
-
-<div class="stats">
-
-<span class="stat">
-🏆 Challenges
-</span>
-
-<span class="stat">
-🥇 Rankings
-</span>
-
-</div>
-
-<button
-class="join"
-data-community="competitions">
-Join Community
-</button>
-
-</div>
-
-
-<!-- PROJECTS -->
-
-<div
-class="community"
-data-category="skills"
-data-search="projects school project science technology coding">
-
-<div class="community-icon">
-🛠️
-</div>
-
-<h3>
-Projects & Innovation
-</h3>
-
-<p class="community-description">
-Find people to learn with, build projects,
-exchange ideas and solve real-world problems.
-</p>
-
-<div class="stats">
-
-<span class="stat">
-💡 Ideas
-</span>
-
-<span class="stat">
-🛠️ Projects
-</span>
-
-</div>
-
-<button
-class="join"
-data-community="projects">
-Join Community
 </button>
 
 </div>
@@ -873,32 +671,64 @@ Join Community
 
 
 <div
-class="empty"
-id="empty">
-
-<h3>
-No community found
-</h3>
-
-<p>
-Try another search or explore another category.
-</p>
-
+id="message"
+class="message">
 </div>
 
 
 <div class="info">
 
 <h2>
-🤝 GAM is powered by people
+🤝 What happens inside a community?
 </h2>
 
 <p>
-Students can learn from students. Peer tutors can
-help fellow learners. Trusted tutors can organize
-events and share resources. Everyone has something
-to contribute.
+GAM communities are designed around people,
+not just lessons. Members can ask questions,
+discuss ideas, learn from one another and join
+sessions organized by approved tutors and peer tutors.
 </p>
+
+<p>
+As GAM grows, communities can develop smaller
+specialized groups and learning divisions based
+on experience and demonstrated performance.
+</p>
+
+
+<div class="features">
+
+<div class="feature">
+<strong>💬 Discussions</strong>
+<span>Ask questions and exchange ideas.</span>
+</div>
+
+<div class="feature">
+<strong>🧑‍🎓 Peer Learning</strong>
+<span>Students can help students.</span>
+</div>
+
+<div class="feature">
+<strong>👨‍🏫 Tutors</strong>
+<span>Approved tutors can organize sessions.</span>
+</div>
+
+<div class="feature">
+<strong>🏆 Progress</strong>
+<span>Build experience and earn opportunities.</span>
+</div>
+
+<div class="feature">
+<strong>📅 Events</strong>
+<span>Join live learning sessions.</span>
+</div>
+
+<div class="feature">
+<strong>🛡️ Safe Community</strong>
+<span>GAM moderation protects members.</span>
+</div>
+
+</div>
 
 </div>
 
@@ -920,129 +750,8 @@ Learn • Connect • Compete • Excel
 
 <script type="module">
 
-import {
-    initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-import {
-    getAuth,
-    onAuthStateChanged,
-    signOut
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc,
-    serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
-
-    authDomain:
-        "gam-platform-59f1c.firebaseapp.com",
-
-    projectId:
-        "gam-platform-59f1c",
-
-    storageBucket:
-        "gam-platform-59f1c.firebasestorage.app",
-
-    messagingSenderId:
-        "423635446027",
-
-    appId:
-        "1:423635446027:web:7b42cd097b928ed7671a0e"
-
-};
-
-
-const app =
-initializeApp(firebaseConfig);
-
-const auth =
-getAuth(app);
-
-const db =
-getFirestore(app);
-
-
-let currentUser = null;
-
-
 /*
- * AUTHENTICATION
- */
-
-onAuthStateChanged(
-auth,
-async function(user){
-
-    if(!user){
-
-        window.location.href =
-        "login.html";
-
-        return;
-
-    }
-
-    currentUser = user;
-
-    try{
-
-        const userRef =
-        doc(
-            db,
-            "users",
-            user.uid
-        );
-
-        const snapshot =
-        await getDoc(userRef);
-
-        if(
-            snapshot.exists()
-        ){
-
-            const data =
-            snapshot.data();
-
-            document
-            .getElementById(
-                "studentName"
-            )
-            .textContent =
-            data.name ||
-            "Student";
-
-        }
-
-        await loadMemberships();
-
-    }
-    catch(error){
-
-        console.error(error);
-
-    }
-
-});
-
-
-/*
- * SEARCH
+ * COMMUNITY SEARCH
  */
 
 const search =
@@ -1051,173 +760,51 @@ document.getElementById("search");
 const communities =
 document.querySelectorAll(".community");
 
-const empty =
-document.getElementById("empty");
-
-
-function filterCommunities(){
-
-    const query =
-    search.value
-    .toLowerCase()
-    .trim();
-
-    let visible = 0;
-
-    communities.forEach(
-    function(card){
-
-        const text =
-        card.dataset.search
-        .toLowerCase();
-
-        if(
-            text.includes(query) &&
-            !card.classList.contains("category-hidden")
-        ){
-
-            card.classList.remove("hidden");
-
-            visible++;
-
-        }
-        else{
-
-            card.classList.add("hidden");
-
-        }
-
-    });
-
-    empty.style.display =
-    visible === 0
-    ? "block"
-    : "none";
-
-}
-
 
 search.addEventListener(
 "input",
-filterCommunities
-);
+function(){
+
+    const query =
+        search.value
+        .toLowerCase()
+        .trim();
 
 
-/*
- * CATEGORY FILTER
- */
+    communities.forEach(
+        function(item){
 
-document
-.querySelectorAll(".category")
-.forEach(
-function(button){
+            const text =
+                item.dataset.search
+                .toLowerCase();
 
-    button.addEventListener(
-    "click",
-    function(){
-
-        document
-        .querySelectorAll(".category")
-        .forEach(
-        function(btn){
-            btn.classList.remove("active");
-        });
-
-        button.classList.add("active");
-
-        const category =
-        button.dataset.category;
-
-        communities.forEach(
-        function(card){
 
             if(
-                category === "all" ||
-                card.dataset.category === category
+                text.includes(query)
             ){
 
-                card.classList.remove(
-                    "category-hidden"
-                );
+                item.classList
+                .remove("hidden");
 
-            }
-            else{
+            }else{
 
-                card.classList.add(
-                    "category-hidden"
-                );
+                item.classList
+                .add("hidden");
 
             }
 
-        });
-
-        filterCommunities();
-
-    });
+        }
+    );
 
 });
 
 
 /*
- * LOAD MEMBERSHIPS
- */
-
-async function loadMemberships(){
-
-    if(!currentUser)
-        return;
-
-    for(
-        const button
-        of document.querySelectorAll(".join")
-    ){
-
-        const community =
-        button.dataset.community;
-
-        try{
-
-            const membershipRef =
-            doc(
-                db,
-                "users",
-                currentUser.uid,
-                "communities",
-                community
-            );
-
-            const membershipSnapshot =
-            await getDoc(
-                membershipRef
-            );
-
-            if(
-                membershipSnapshot.exists()
-            ){
-
-                button.textContent =
-                "✓ Joined";
-
-                button.classList.add(
-                    "joined"
-                );
-
-            }
-
-        }
-        catch(error){
-
-            console.error(error);
-
-        }
-
-    }
-
-}
-
-
-/*
- * JOIN COMMUNITY
+ * OPEN COMMUNITY
+ *
+ * Mathematics is connected first.
+ * The other community rooms will
+ * be built using the same structure.
  */
 
 document
@@ -1227,103 +814,29 @@ function(button){
 
     button.addEventListener(
     "click",
-    async function(){
-
-        if(!currentUser){
-
-            alert(
-                "Please login first."
-            );
-
-            return;
-
-        }
+    function(){
 
         const community =
-        button.dataset.community;
+            button.dataset.community;
 
-        button.disabled =
-        true;
 
-        button.textContent =
-        "Joining...";
+        /*
+         * Every community will
+         * eventually have its own
+         * dynamic room.
+         */
 
-        try{
-
-            const membershipRef =
-            doc(
-                db,
-                "users",
-                currentUser.uid,
-                "communities",
+        window.location.href =
+            "community.html?community=" +
+            encodeURIComponent(
                 community
             );
-
-            await setDoc(
-                membershipRef,
-                {
-                    community:
-                        community,
-
-                    joinedAt:
-                        serverTimestamp(),
-
-                    status:
-                        "member"
-                },
-                {
-                    merge:true
-                }
-            );
-
-            button.textContent =
-            "✓ Joined";
-
-            button.classList.add(
-                "joined"
-            );
-
-        }
-        catch(error){
-
-            console.error(error);
-
-            alert(
-                "Could not join this community. Please try again."
-            );
-
-            button.textContent =
-            "Join Community";
-
-        }
-
-        button.disabled =
-        false;
 
     });
 
 });
 
-
-/*
- * LOGOUT
- */
-
-document
-.getElementById("logoutBtn")
-.addEventListener(
-"click",
-async function(){
-
-    await signOut(auth);
-
-    window.location.href =
-    "login.html";
-
-});
-
-
 </script>
 
 </body>
-  </html>
+    </html>
