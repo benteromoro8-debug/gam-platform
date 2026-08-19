@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GAM Africa | Mathematics</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+nav{
+    background:#063b75;
+    color:white;
+    padding:13px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#ffd21f;
+    color:#063b75;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+}
+
+.brand h2{font-size:17px}
+.brand p{font-size:10px;opacity:.85}
+
+.back{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.hero{
+    background:linear-gradient(120deg,#063b75,#087333);
+    color:white;
+    padding:45px 20px;
+}
+
+.hero-inner{
+    max-width:1100px;
+    margin:auto;
+}
+
+.badge{
+    display:inline-block;
+    background:#ffd21f;
+    color:#063b75;
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.hero h1{
+    font-size:clamp(30px,5vw,48px);
+    margin-bottom:10px;
+}
+
+.hero p{
+    max-width:680px;
+    color:#e3f0f8;
+    line-height:1.6;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 20px 70px;
+}
+
+.student-bar{
+    background:white;
+    padding:18px 20px;
+    border-radius:14px;
+    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    margin-bottom:28px;
+}
+
+.student-bar strong{
+    color:#063b75;
+}
+
+.section-title{
+    color:#063b75;
+    margin-bottom:16px;
+}
+
+.levels{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+    margin-bottom:35px;
+}
+
+.level{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    border-top:5px solid #063b75;
+}
+
+.level:nth-child(2){border-top-color:#087333}
+.level:nth-child(3){border-top-color:#ffd21f}
+
+.level h3{
+    color:#063b75;
+    margin-bottom:8px;
+}
+
+.level p{
+    color:#687386;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.level button{
+    margin-top:14px;
+    border:none;
+    background:#063b75;
+    color:white;
+    padding:10px 14px;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.topics{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;
+}
+
+.topic{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+.topic:hover{
+    transform:translateY(-4px);
+}
+
+.topic-icon{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.topic h3{
+    color:#063b75;
+    margin-bottom:7px;
+}
+
+.topic p{
+    color:#687386;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.topic button{
+    margin-top:14px;
+    width:100%;
+    border:none;
+    background:#063b75;
+    color:white;
+    padding:11px;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.feature{
+    margin-top:35px;
+    background:linear-gradient(135deg,#fff8c9,#fffdf0);
+    padding:28px;
+    border-radius:18px;
+    text-align:center;
+}
+
+.feature h2{
+    color:#063b75;
+    margin-bottom:8px;
+}
+
+.feature p{
+    color:#596579;
+    line-height:1.6;
+}
+
+.free{
+    margin-top:25px;
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+.free h2{
+    color:#087333;
+}
+
+.free p{
+    color:#687386;
+    margin-top:8px;
+}
+
+footer{
+    background:#03284f;
+    color:white;
+    text-align:center;
+    padding:28px 20px;
+}
+
+footer p{
+    color:#b9c9dc;
+    margin-top:6px;
+    font-size:12px;
+}
+
+@media(max-width:600px){
+    nav{padding:11px 4%}
+    .brand h2{font-size:14px}
+    .hero{padding:38px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="brand">
+<div class="logo">GAM</div>
+
+<div>
+<h2>GAM Africa</h2>
+<p>Global Academy of Minds Africa</p>
+</div>
+</div>
+
+<a href="learning.html" class="back">
+← Learning Hub
+</a>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<div class="badge">
+🔢 GAM MATHEMATICS
+</div>
+
+<h1>
+Mathematics
+</h1>
+
+<p>
+Build strong mathematical thinking through lessons,
+examples, practice and problem solving — from
+school revision to competition preparation.
+</p>
+
+</div>
+
+</section>
+
+
+<div class="container">
+
+
+<div class="student-bar">
+
+Welcome,
+<strong id="studentName">Student</strong> 👋
+
+<br>
+
+<span style="color:#687386;font-size:13px;">
+Your mathematics learning journey starts here.
+</span>
+
+</div>
+
+
+<h2 class="section-title">
+🎓 Choose Your Learning Level
+</h2>
+
+
+<div class="levels">
+
+<div class="level">
+
+<h3>📘 Primary Mathematics</h3>
+
+<p>
+Build strong foundations in numbers,
+fractions, geometry, measurement and
+problem solving.
+</p>
+
+<button onclick="openLevel('primary')">
+Explore Primary
+</button>
+
+</div>
+
+
+<div class="level">
+
+<h3>📗 Junior Secondary</h3>
+
+<p>
+Develop algebra, geometry, statistics,
+ratio, equations and mathematical reasoning.
+</p>
+
+<button onclick="openLevel('junior')">
+Explore Junior Secondary
+</button>
+
+</div>
+
+
+<div class="level">
+
+<h3>📕 Senior Secondary</h3>
+
+<p>
+Master advanced mathematics including
+algebra, trigonometry, calculus and statistics.
+</p>
+
+<button onclick="openLevel('senior')">
+Explore Senior Secondary
+</button>
+
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+🧠 Mathematics Topics
+</h2>
+
+
+<div class="topics">
+
+
+<div class="topic">
+
+<div class="topic-icon">🔢</div>
+
+<h3>Numbers</h3>
+
+<p>
+Integers, fractions, decimals,
+percentages, ratios and more.
+</p>
+
+<button onclick="openTopic('numbers')">
+Start Topic
+</button>
+
+</div>
+
+
+<div class="topic">
+
+<div class="topic-icon">✖️</div>
+
+<h3>Algebra</h3>
+
+<p>
+Expressions, equations, inequalities
+and algebraic problem solving.
+</p>
+
+<button onclick="openTopic('algebra')">
+Start Topic
+</button>
+
+</div>
+
+
+<div class="topic">
+
+<div class="topic-icon">📐</div>
+
+<h3>Geometry</h3>
+
+<p>
+Angles, shapes, constructions,
+areas, volumes and similarity.
+</p>
+
+<button onclick="openTopic('geometry')">
+Start Topic
+</button>
+
+</div>
+
+
+<div class="topic">
+
+<div class="topic-icon">📊</div>
+
+<h3>Statistics</h3>
+
+<p>
+Data, averages, charts,
+probability and interpretation.
+</p>
+
+<button onclick="openTopic('statistics')">
+Start Topic
+</button>
+
+</div>
+
+
+<div class="topic">
+
+<div class="topic-icon">📈</div>
+
+<h3>Trigonometry</h3>
+
+<p>
+Explore trigonometric ratios,
+identities and applications.
+</p>
+
+<button onclick="openTopic('trigonometry')">
+Start Topic
+</button>
+
+</div>
+
+
+<div class="topic">
+
+<div class="topic-icon">🧩</div>
+
+<h3>Problem Solving</h3>
+
+<p>
+Develop logical thinking and
+competition-style problem solving.
+</p>
+
+<button onclick="openTopic('problem-solving')">
+Start Practice
+</button>
+
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<h2>🏆 GAM Mathematics Challenge</h2>
+
+<p>
+Think beyond memorising formulas. GAM Mathematics
+will help you develop reasoning, creativity and
+problem-solving skills for school and competitions.
+</p>
+
+</div>
+
+
+<div class="free">
+
+<h2>🆓 Mathematics Learning is FREE</h2>
+
+<p>
+GAM Africa is committed to making quality learning
+opportunities accessible to students across Africa.
+</p>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<strong>
+GAM — Global Academy of Minds Africa
+</strong>
+
+<p>
+Learn • Connect • Compete • Excel
+</p>
+
+</footer>
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+
+onAuthStateChanged(
+auth,
+async function(user){
+
+    if(!user){
+
+        window.location.href =
+        "login.html";
+
+        return;
+    }
+
+    try{
+
+        const ref =
+        doc(
+            db,
+            "users",
+            user.uid
+        );
+
+        const snapshot =
+        await getDoc(ref);
+
+        if(
+            snapshot.exists()
+        ){
+
+            const data =
+            snapshot.data();
+
+            document
+            .getElementById(
+                "studentName"
+            )
+            .textContent =
+            data.name ||
+            "Student";
+
+        }
+
+    }
+    catch(error){
+
+        console.error(error);
+
+    }
+
+});
+
+
+function openLevel(level){
+
+    alert(
+        "GAM " +
+        level +
+        " mathematics lessons will be connected here next."
+    );
+
+}
+
+
+function openTopic(topic){
+
+    alert(
+        "The " +
+        topic.replace("-", " ") +
+        learning area is being prepared."
+    );
+
+}
+
+</script>
+
+</body>
+  </html>
