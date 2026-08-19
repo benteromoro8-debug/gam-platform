@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GAM Africa | Events</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
+
+nav {
+    background: #063b75;
+    color: white;
+    padding: 13px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffd21f;
+    color: #063b75;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.brand h2 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.brand p {
+    margin: 3px 0 0;
+    font-size: 10px;
+    opacity: .85;
+}
+
+.back {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.hero {
+    background: linear-gradient(120deg,#063b75,#087333);
+    color: white;
+    padding: 45px 20px;
+}
+
+.hero-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.badge {
+    display: inline-block;
+    background: #ffd21f;
+    color: #063b75;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    margin: 0 0 10px;
+    font-size: clamp(30px,5vw,48px);
+}
+
+.hero p {
+    max-width: 700px;
+    color: #e4edf5;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px 70px;
+}
+
+.toolbar {
+    background: white;
+    padding: 18px;
+    border-radius: 15px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.07);
+    margin-bottom: 28px;
+}
+
+.toolbar label {
+    display: block;
+    font-weight: bold;
+    color: #063b75;
+    margin-bottom: 8px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+}
+
+.section-title {
+    color: #063b75;
+    margin: 30px 0 16px;
+}
+
+.events {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(270px,1fr));
+    gap: 18px;
+}
+
+.event {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    border-top: 5px solid #063b75;
+}
+
+.event.community-mathematics {
+    border-top-color: #063b75;
+}
+
+.event.community-science {
+    border-top-color: #087333;
+}
+
+.event.community-coding {
+    border-top-color: #7b3fb5;
+}
+
+.event.community-english {
+    border-top-color: #e86f25;
+}
+
+.event.community-business {
+    border-top-color: #1485a5;
+}
+
+.event h3 {
+    color: #063b75;
+    margin: 0 0 9px;
+}
+
+.event-description {
+    color: #687386;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.meta {
+    margin-top: 15px;
+}
+
+.meta div {
+    margin: 7px 0;
+    font-size: 13px;
+}
+
+.capacity {
+    margin-top: 15px;
+}
+
+.capacity-bar {
+    height: 8px;
+    background: #e5eaf0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.capacity-fill {
+    height: 100%;
+    background: #087333;
+}
+
+.capacity-text {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #687386;
+}
+
+.event-actions {
+    margin-top: 18px;
+}
+
+.enrol-btn,
+.join-btn {
+    width: 100%;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.enrol-btn {
+    background: #063b75;
+    color: white;
+}
+
+.enrol-btn:hover {
+    background: #052f5e;
+}
+
+.join-btn {
+    background: #087333;
+    color: white;
+}
+
+.enrolled {
+    background: #e6f7ed;
+    color: #087333;
+    padding: 9px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.full {
+    background: #ffe8e8;
+    color: #a40000;
+    padding: 9px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.empty {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: #687386;
+}
+
+.notice {
+    background: #fff8c9;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 35px;
+}
+
+.notice h2 {
+    color: #063b75;
+    margin-top: 0;
+}
+
+.notice p {
+    color: #596579;
+    line-height: 1.5;
+}
+
+footer {
+    background: #03284f;
+    color: white;
+    text-align: center;
+    padding: 28px 20px;
+}
+
+footer p {
+    color: #b9c9dc;
+    font-size: 12px;
+}
+
+.loading {
+    text-align: center;
+    padding: 30px;
+    color: #687386;
+}
+
+@media(max-width:600px) {
+
+    nav {
+        padding: 11px 4%;
+    }
+
+    .brand h2 {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 40px 20px;
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="brand">
+
+<div class="logo">
+GAM
+</div>
+
+<div>
+<h2>GAM Africa</h2>
+<p>Global Academy of Minds Africa</p>
+</div>
+
+</div>
+
+<a href="student.html" class="back">
+← Dashboard
+</a>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<div class="badge">
+📅 GAM EVENTS
+</div>
+
+<h1>
+Learn Together. Grow Together.
+</h1>
+
+<p>
+Discover live learning sessions, workshops,
+revision programs, coding projects and community
+events organized by GAM tutors and trusted learners.
+</p>
+
+</div>
+
+</section>
+
+
+<div class="container">
+
+
+<div class="toolbar">
+
+<label for="communityFilter">
+🔎 Explore by community
+</label>
+
+<select id="communityFilter">
+
+<option value="all">
+All GAM Communities
+</option>
+
+<option value="Mathematics">
+Mathematics
+</option>
+
+<option value="Science">
+Science
+</option>
+
+<option value="Coding">
+Coding & Technology
+</option>
+
+<option value="English">
+English
+</option>
+
+<option value="Business">
+Business
+</option>
+
+</select>
+
+</div>
+
+
+<h2 class="section-title">
+🚀 Upcoming GAM Sessions
+</h2>
+
+
+<div id="events" class="events">
+
+<div class="loading">
+Loading GAM events...
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+📌 My Enrolled Sessions
+</h2>
+
+
+<div id="myEvents" class="events">
+
+<div class="loading">
+Checking your enrolments...
+</div>
+
+</div>
+
+
+<div class="notice">
+
+<h2>
+🌍 Learn from one another
+</h2>
+
+<p>
+GAM Africa is built around real people learning
+together. Tutors can organize sessions, students
+can ask questions, peer tutors can help others,
+and communities can create learning programs.
+</p>
+
+<p>
+Normal learning sessions can accommodate up to
+20 participants. Larger GAM halls can be created
+for authorized community events and masterclasses.
+</p>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<strong>
+GAM — Global Academy of Minds Africa
+</strong>
+
+<p>
+Learn • Connect • Compete • Excel
+</p>
+
+</footer>
+
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    orderBy,
+    getDocs,
+    getDoc,
+    doc,
+    setDoc,
+    deleteDoc,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+
+    authDomain:
+        "gam-platform-59f1c.firebaseapp.com",
+
+    projectId:
+        "gam-platform-59f1c",
+
+    storageBucket:
+        "gam-platform-59f1c.firebasestorage.app",
+
+    messagingSenderId:
+        "423635446027",
+
+    appId:
+        "1:423635446027:web:7b42cd097b928ed7671a0e"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+const eventsContainer =
+    document.getElementById("events");
+
+const myEventsContainer =
+    document.getElementById("myEvents");
+
+const filter =
+    document.getElementById("communityFilter");
+
+
+let currentUser = null;
+let allEvents = [];
+
+
+/*
+ * AUTHENTICATION
+ */
+
+onAuthStateChanged(
+    auth,
+    async function(user) {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+        currentUser = user;
+
+        await loadEvents();
+
+    }
+);
+
+
+/*
+ * LOAD EVENTS
+ */
+
+async function loadEvents() {
+
+    eventsContainer.innerHTML =
+        '<div class="loading">Loading GAM events...</div>';
+
+    try {
+
+        const eventsQuery =
+            query(
+                collection(db,"events"),
+                orderBy("startTime","asc")
+            );
+
+        const snapshot =
+            await getDocs(eventsQuery);
+
+        allEvents = [];
+
+        snapshot.forEach(
+            function(docSnapshot) {
+
+                allEvents.push({
+
+                    id:
+                        docSnapshot.id,
+
+                    ...docSnapshot.data()
+
+                });
+
+            }
+        );
+
+
+        renderEvents();
+
+        await loadMyEvents();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        eventsContainer.innerHTML =
+
+            '<div class="empty">' +
+
+            'Unable to load GAM events.' +
+
+            '<br><br>' +
+
+            error.message +
+
+            '</div>';
+
+    }
+
+}
+
+
+/*
+ * RENDER EVENTS
+ */
+
+function renderEvents() {
+
+    const selected =
+        filter.value;
+
+
+    let filtered =
+        allEvents.filter(
+            function(event) {
+
+                if (
+                    selected === "all"
+                ) {
+
+                    return true;
+
+                }
+
+                return (
+                    event.community ===
+                    selected
+                );
+
+            }
+        );
+
+
+    if (
+        filtered.length === 0
+    ) {
+
+        eventsContainer.innerHTML =
+
+            '<div class="empty">' +
+
+            'No upcoming sessions found for this community yet.' +
+
+            '</div>';
+
+        return;
+
+    }
+
+
+    eventsContainer.innerHTML = "";
+
+
+    filtered.forEach(
+        function(event) {
+
+            eventsContainer.appendChild(
+                createEventCard(event)
+            );
+
+        }
+    );
+
+}
+
+
+/*
+ * EVENT CARD
+ */
+
+function createEventCard(event) {
+
+    const card =
+        document.createElement("div");
+
+    const communityClass =
+        String(
+            event.community || ""
+        )
+        .toLowerCase()
+        .replace(/\s+/g,"-");
+
+    card.className =
+        "event community-" +
+        communityClass;
+
+
+    const capacity =
+        Number(
+            event.capacity || 20
+        );
+
+
+    const enrolled =
+        Number(
+            event.enrolledCount || 0
+        );
+
+
+    const percentage =
+        Math.min(
+            100,
+            (enrolled / capacity) * 100
+        );
+
+
+    let dateText =
+        "Date to be announced";
+
+
+    if (
+        event.startTime
+    ) {
+
+        const date =
+            event.startTime.toDate
+            ? event.startTime.toDate()
+            : new Date(event.startTime);
+
+        dateText =
+            date.toLocaleString();
+
+    }
+
+
+    card.innerHTML = `
+
+        <h3>
+            ${escapeHTML(event.title || "GAM Learning Session")}
+        </h3>
+
+        <div class="event-description">
+            ${escapeHTML(event.description || "GAM community learning session.")}
+        </div>
+
+        <div class="meta">
+
+            <div>
+                📚 <strong>Community:</strong>
+                ${escapeHTML(event.community || "GAM Africa")}
+            </div>
+
+            <div>
+                👨‍🏫 <strong>Host:</strong>
+                ${escapeHTML(event.hostName || "GAM Tutor")}
+            </div>
+
+            <div>
+                📅 <strong>When:</strong>
+                ${escapeHTML(dateText)}
+            </div>
+
+        </div>
+
+        <div class="capacity">
+
+            <div class="capacity-bar">
+
+                <div
+                    class="capacity-fill"
+                    style="width:${percentage}%">
+                </div>
+
+            </div>
+
+            <div class="capacity-text">
+
+                ${enrolled} / ${capacity}
+                participants enrolled
+
+            </div>
+
+        </div>
+
+        <div class="event-actions"
+             id="actions-${event.id}">
+
+            <button class="enrol-btn">
+                Enrol for this session
+            </button>
+
+        </div>
+
+    `;
+
+
+    const button =
+        card.querySelector(".enrol-btn");
+
+
+    button.addEventListener(
+        "click",
+        function() {
+
+            enrolInEvent(event);
+
+        }
+    );
+
+
+    return card;
+
+}
+
+
+/*
+ * ENROL
+ */
+
+async function enrolInEvent(event) {
+
+    if (!currentUser) {
+
+        return;
+
+    }
+
+
+    const capacity =
+        Number(
+            event.capacity || 20
+        );
+
+
+    const enrolled =
+        Number(
+            event.enrolledCount || 0
+        );
+
+
+    if (
+        enrolled >= capacity
+    ) {
+
+        alert(
+            "This session is already full."
+        );
+
+        return;
+
+    }
+
+
+    const enrolmentId =
+        event.id +
+        "_" +
+        currentUser.uid;
+
+
+    try {
+
+        const existing =
+            await getDoc(
+                doc(
+                    db,
+                    "eventEnrollments",
+                    enrolmentId
+                )
+            );
+
+
+        if (
+            existing.exists()
+        ) {
+
+            alert(
+                "You are already enrolled in this session."
+            );
+
+            return;
+
+        }
+
+
+        await setDoc(
+            doc(
+                db,
+                "eventEnrollments",
+                enrolmentId
+            ),
+            {
+
+                eventId:
+                    event.id,
+
+                userId:
+                    currentUser.uid,
+
+                enrolledAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        alert(
+            "✓ You are enrolled! The session has been added to your GAM events."
+        );
+
+
+        await loadEvents();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to enrol: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/*
+ * MY EVENTS
+ */
+
+async function loadMyEvents() {
+
+    myEventsContainer.innerHTML =
+        '<div class="loading">Loading your sessions...</div>';
+
+    try {
+
+        const q =
+            query(
+                collection(db,"eventEnrollments"),
+                where(
+                    "userId",
+                    "==",
+                    currentUser.uid
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        const enrolledIds = [];
+
+
+        snapshot.forEach(
+            function(item) {
+
+                enrolledIds.push(
+                    item.data().eventId
+                );
+
+            }
+        );
+
+
+        const myEvents =
+            allEvents.filter(
+                function(event) {
+
+                    return enrolledIds.includes(
+                        event.id
+                    );
+
+                }
+            );
+
+
+        if (
+            myEvents.length === 0
+        ) {
+
+            myEventsContainer.innerHTML =
+
+                '<div class="empty">' +
+
+                'You have not enrolled in a session yet.' +
+
+                '<br><br>' +
+
+                'Explore the upcoming GAM sessions above.' +
+
+                '</div>';
+
+            return;
+
+        }
+
+
+        myEventsContainer.innerHTML = "";
+
+
+        myEvents.forEach(
+            function(event) {
+
+                const card =
+                    createMyEventCard(event);
+
+                myEventsContainer.appendChild(card);
+
+            }
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        myEventsContainer.innerHTML =
+
+            '<div class="empty">' +
+
+            'Unable to load your enrolled sessions.' +
+
+            '</div>';
+
+    }
+
+}
+
+
+/*
+ * MY EVENT CARD
+ */
+
+function createMyEventCard(event) {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "event";
+
+
+    let dateText =
+        "Scheduled soon";
+
+
+    if (
+        event.startTime
+    ) {
+
+        const date =
+            event.startTime.toDate
+            ? event.startTime.toDate()
+            : new Date(event.startTime);
+
+        dateText =
+            date.toLocaleString();
+
+    }
+
+
+    card.innerHTML = `
+
+        <h3>
+            ${escapeHTML(event.title || "GAM Session")}
+        </h3>
+
+        <div class="event-description">
+
+            ${escapeHTML(
+                event.description ||
+                "GAM learning session."
+            )}
+
+        </div>
+
+        <div class="meta">
+
+            <div>
+                📚 ${escapeHTML(
+                    event.community ||
+                    "GAM Africa"
+                )}
+            </div>
+
+            <div>
+                📅 ${escapeHTML(dateText)}
+            </div>
+
+        </div>
+
+        <div class="event-actions">
+
+            <div class="enrolled">
+                ✓ You are enrolled
+            </div>
+
+            <br>
+
+            <button
+                class="join-btn"
+                onclick="joinEvent('${event.id}')">
+
+                🚀 Join GAM Live Room
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/*
+ * JOIN EVENT
+ */
+
+window.joinEvent =
+function(eventId) {
+
+    alert(
+        "The GAM Live Room for this session will open here when we build the live learning system."
+    );
+
+};
+
+
+/*
+ * FILTER
+ */
+
+filter.addEventListener(
+    "change",
+    function() {
+
+        renderEvents();
+
+    }
+);
+
+
+/*
+ * BASIC HTML ESCAPE
+ */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+  </html>
