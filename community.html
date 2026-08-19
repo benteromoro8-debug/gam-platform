@@ -19,6 +19,15 @@ body{
     color:#172033;
 }
 
+button,
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+button{
+    font-family:inherit;
+}
+
 /* NAV */
 nav{
     background:#063b75;
@@ -107,7 +116,7 @@ nav{
     font-size:12px;
 }
 
-/* LAYOUT */
+/* CONTAINER */
 .container{
     max-width:1100px;
     margin:auto;
@@ -120,20 +129,6 @@ nav{
     gap:20px;
 }
 
-/* CARDS */
-.card{
-    background:white;
-    border-radius:16px;
-    padding:21px;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
-    margin-bottom:18px;
-}
-
-.card h2{
-    color:#063b75;
-    margin-bottom:12px;
-}
-
 /* ACTIONS */
 .actions{
     display:flex;
@@ -144,15 +139,15 @@ nav{
 
 .action{
     border:0;
-    border-radius:8px;
-    padding:10px 14px;
+    border-radius:9px;
+    padding:11px 15px;
     font-weight:bold;
     cursor:pointer;
+    transition:.2s;
 }
 
-.action:disabled{
-    opacity:.7;
-    cursor:not-allowed;
+.action:hover{
+    transform:translateY(-1px);
 }
 
 .join{
@@ -170,23 +165,36 @@ nav{
     color:#a40000;
 }
 
-/* CONNECTION */
-.connection-status{
-    width:100%;
-    font-size:11px;
+.account-pill{
+    padding:10px 13px;
+    border-radius:9px;
+    background:#eaf1f8;
+    color:#063b75;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* CARDS */
+.card{
+    background:white;
+    border-radius:16px;
+    padding:21px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    margin-bottom:18px;
+}
+
+.card h2{
+    color:#063b75;
+    margin-bottom:12px;
+}
+
+.muted{
     color:#687386;
-    padding:2px 0;
+    font-size:13px;
+    line-height:1.5;
 }
 
-.connection-status.success{
-    color:#087333;
-}
-
-.connection-status.error{
-    color:#a40000;
-}
-
-/* DISCUSSION */
+/* POSTS */
 .post{
     border:1px solid #e2e7ee;
     border-radius:12px;
@@ -197,6 +205,7 @@ nav{
 .post-header{
     display:flex;
     justify-content:space-between;
+    align-items:center;
     gap:10px;
     margin-bottom:8px;
 }
@@ -224,6 +233,7 @@ nav{
     margin-top:11px;
     display:flex;
     gap:12px;
+    flex-wrap:wrap;
 }
 
 .small-btn{
@@ -233,9 +243,14 @@ nav{
     font-size:12px;
     font-weight:bold;
     cursor:pointer;
+    padding:4px 0;
 }
 
-/* QUESTION */
+.small-btn:hover{
+    text-decoration:underline;
+}
+
+/* QUESTIONS */
 .question-box{
     background:#f5f8fc;
     border-radius:12px;
@@ -252,6 +267,68 @@ nav{
     margin-top:7px;
     font-size:14px;
     line-height:1.5;
+}
+
+/* EVENTS */
+.event{
+    border-left:4px solid #087333;
+    background:#f7faf8;
+    padding:14px;
+    margin-top:10px;
+    border-radius:8px;
+}
+
+.event h3{
+    color:#063b75;
+    font-size:15px;
+}
+
+.event p{
+    color:#687386;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.event button{
+    margin-top:9px;
+    border:0;
+    background:#087333;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.event button.enrolled{
+    background:#063b75;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.stat{
+    background:#f5f8fc;
+    padding:13px 8px;
+    text-align:center;
+    border-radius:9px;
+}
+
+.stat strong{
+    display:block;
+    color:#063b75;
+    font-size:20px;
+}
+
+.stat span{
+    color:#687386;
+    font-size:10px;
 }
 
 /* DIVISIONS */
@@ -306,64 +383,6 @@ nav{
     margin-top:3px;
 }
 
-/* EVENTS */
-.event{
-    border-left:4px solid #087333;
-    background:#f7faf8;
-    padding:13px;
-    margin-top:10px;
-    border-radius:8px;
-}
-
-.event h3{
-    color:#063b75;
-    font-size:15px;
-}
-
-.event p{
-    color:#687386;
-    font-size:12px;
-    margin-top:5px;
-}
-
-.event button{
-    margin-top:9px;
-    border:0;
-    background:#087333;
-    color:white;
-    padding:7px 10px;
-    border-radius:6px;
-    font-size:11px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* STATS */
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-top:15px;
-}
-
-.stat{
-    background:#f5f8fc;
-    padding:13px 8px;
-    text-align:center;
-    border-radius:9px;
-}
-
-.stat strong{
-    display:block;
-    color:#063b75;
-    font-size:20px;
-}
-
-.stat span{
-    color:#687386;
-    font-size:10px;
-}
-
 /* SAFETY */
 .safety{
     background:#fff8df;
@@ -388,53 +407,91 @@ nav{
     display:none;
     position:fixed;
     inset:0;
-    background:#00000080;
-    z-index:100;
+    background:rgba(0,0,0,.55);
+    z-index:200;
     align-items:center;
     justify-content:center;
     padding:20px;
 }
 
+.modal.show{
+    display:flex;
+}
+
 .modal-box{
     background:white;
     width:100%;
-    max-width:500px;
-    border-radius:15px;
+    max-width:520px;
+    border-radius:16px;
     padding:22px;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
+    animation:modalIn .18s ease;
+}
+
+@keyframes modalIn{
+    from{
+        transform:translateY(15px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
 }
 
 .modal-box h2{
     color:#063b75;
-    margin-bottom:12px;
+    margin-bottom:8px;
 }
 
-.modal-box textarea{
+.modal-box .modal-description{
+    color:#687386;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:14px;
+}
+
+.modal-box textarea,
+.modal-box input,
+.modal-box select{
     width:100%;
-    min-height:120px;
-    resize:vertical;
     padding:12px;
     border:1px solid #ccd5e0;
     border-radius:8px;
     font-family:Arial;
+    font-size:14px;
+    outline:none;
+}
+
+.modal-box textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+.modal-box textarea:focus,
+.modal-box input:focus,
+.modal-box select:focus{
+    border-color:#063b75;
 }
 
 .modal-actions{
     display:flex;
     justify-content:flex-end;
     gap:10px;
-    margin-top:12px;
+    margin-top:14px;
 }
 
 .modal-actions button{
     border:0;
-    padding:9px 13px;
-    border-radius:7px;
+    padding:10px 14px;
+    border-radius:8px;
     font-weight:bold;
     cursor:pointer;
 }
 
 .cancel{
     background:#edf0f4;
+    color:#333;
 }
 
 .submit{
@@ -447,21 +504,37 @@ nav{
     position:fixed;
     left:50%;
     bottom:25px;
-    transform:translateX(-50%) translateY(100px);
+    transform:translate(-50%,20px);
     background:#063b75;
     color:white;
-    padding:12px 18px;
-    border-radius:10px;
+    padding:12px 17px;
+    border-radius:9px;
     font-size:13px;
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
-    z-index:200;
+    font-weight:bold;
     opacity:0;
-    transition:.3s;
+    pointer-events:none;
+    transition:.25s;
+    z-index:500;
+    text-align:center;
+    max-width:90%;
 }
 
 .toast.show{
     opacity:1;
-    transform:translateX(-50%) translateY(0);
+    transform:translate(-50%,0);
+}
+
+/* TUTOR APPLICATION */
+.apply-tutor{
+    width:100%;
+    border:0;
+    background:#063b75;
+    color:white;
+    padding:10px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:13px;
 }
 
 /* FOOTER */
@@ -493,12 +566,38 @@ footer p{
         font-size:14px;
     }
 
+    .brand p{
+        display:none;
+    }
+
+    .back{
+        font-size:11px;
+    }
+
     .hero{
         padding:32px 18px;
     }
 
     .container{
-        padding:20px 14px 60px;
+        padding:18px 14px 50px;
+    }
+
+    .card{
+        padding:17px;
+    }
+
+    .actions{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .action{
+        width:100%;
+    }
+
+    .account-pill{
+        grid-column:1 / -1;
+        text-align:center;
     }
 }
 </style>
@@ -509,20 +608,22 @@ footer p{
 <!-- NAV -->
 <nav>
 
-<div class="brand">
+    <div class="brand">
 
-<div class="logo">GAM</div>
+        <div class="logo">
+            GAM
+        </div>
 
-<div>
-<h2>GAM Africa</h2>
-<p>Global Academy of Minds Africa</p>
-</div>
+        <div>
+            <h2>GAM Africa</h2>
+            <p>Global Academy of Minds Africa</p>
+        </div>
 
-</div>
+    </div>
 
-<a href="communities.html" class="back">
-← Communities
-</a>
+    <a href="communities.html" class="back">
+        ← Communities
+    </a>
 
 </nav>
 
@@ -530,891 +631,443 @@ footer p{
 <!-- HERO -->
 <section class="hero">
 
-<div class="hero-inner">
+    <div class="hero-inner">
 
-<div class="community-icon" id="communityIcon">
-🔢
-</div>
+        <div class="community-icon" id="communityIcon">
+            🔢
+        </div>
 
-<h1 id="communityTitle">
-Mathematics
-</h1>
+        <h1 id="communityTitle">
+            Mathematics
+        </h1>
 
-<p id="communityDescription">
-A place for learners to explore mathematics,
-ask questions, solve problems and learn together.
-</p>
+        <p id="communityDescription">
+            Explore mathematics together, ask questions,
+            solve problems and learn from one another.
+        </p>
 
-<div class="community-status">
-🌍 GAM Community • Safe Learning Space
-</div>
+        <div class="community-status">
+            🌍 GAM Community • Safe Learning Space
+        </div>
 
-</div>
+    </div>
 
 </section>
 
 
 <div class="container">
 
-<!-- ACTIONS -->
-<div class="actions">
+    <!-- ACTIONS -->
+    <div class="actions">
 
-<button class="action join" id="joinBtn">
-+ Join Community
-</button>
+        <button class="action join" id="joinBtn">
+            + Join Community
+        </button>
 
-<button class="action ask" id="askBtn">
-❓ Ask a Question
-</button>
+        <button class="action ask" id="askBtn">
+            ❓ Ask a Question
+        </button>
 
-<button class="action report" id="reportBtn">
-🚩 Report
-</button>
+        <button class="action report" id="reportBtn">
+            🚩 Report
+        </button>
 
-<div id="connectionStatus" class="connection-status">
-Community ready
-</div>
+        <div class="account-pill" id="accountStatus">
+            ✓ GAM Community Ready
+        </div>
 
-</div>
+    </div>
 
 
-<div class="layout">
+    <div class="layout">
 
-<!-- MAIN -->
-<main>
+        <!-- MAIN -->
+        <main>
 
-<!-- DISCUSSION -->
-<div class="card">
+            <!-- DISCUSSION -->
+            <div class="card">
 
-<h2>💬 Community Discussion</h2>
+                <h2>
+                    💬 Community Discussion
+                </h2>
 
-<p style="color:#687386;font-size:13px;">
-Ask questions, explain ideas, share useful
-knowledge and learn respectfully from one another.
-</p>
+                <p class="muted">
+                    Ask questions, explain ideas, share knowledge
+                    and learn respectfully from one another.
+                </p>
 
 
-<div class="post">
+                <div class="post">
 
-<div class="post-header">
+                    <div class="post-header">
 
-<span class="user">Alex.K</span>
+                        <span class="user">
+                            Alex.K
+                        </span>
 
-<span class="role">Peer Tutor</span>
+                        <span class="role">
+                            Peer Tutor
+                        </span>
 
-</div>
+                    </div>
 
-<p>
-Can someone explain how they approach a difficult
-algebra problem when they don't know which method
-to use?
-</p>
+                    <p>
+                        Can someone explain how they approach
+                        a difficult algebra problem when they
+                        don't know which method to use?
+                    </p>
 
-<div class="post-actions">
+                    <div class="post-actions">
 
-<button class="small-btn reply-btn">
-💬 Reply
-</button>
+                        <button class="small-btn reply-btn">
+                            💬 Reply
+                        </button>
 
-<button class="small-btn helpful-btn">
-👍 Helpful
-</button>
+                        <button class="small-btn helpful-btn">
+                            👍 Helpful <span class="help-count">0</span>
+                        </button>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
-<div class="post">
+                <div class="post">
 
-<div class="post-header">
+                    <div class="post-header">
 
-<span class="user">Mary.W</span>
+                        <span class="user">
+                            Mary.W
+                        </span>
 
-<span class="role">Student</span>
+                        <span class="role">
+                            Student
+                        </span>
 
-</div>
+                    </div>
 
-<p>
-I'm preparing for an upcoming mathematics assessment.
-Which topics should I practise first?
-</p>
+                    <p>
+                        I'm preparing for an upcoming mathematics
+                        assessment. Which topics should I practise first?
+                    </p>
 
-<div class="post-actions">
+                    <div class="post-actions">
 
-<button class="small-btn reply-btn">
-💬 Reply
-</button>
+                        <button class="small-btn reply-btn">
+                            💬 Reply
+                        </button>
 
-<button class="small-btn helpful-btn">
-👍 Helpful
-</button>
+                        <button class="small-btn helpful-btn">
+                            👍 Helpful <span class="help-count">0</span>
+                        </button>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
-<div class="post">
+                <div class="post">
 
-<div class="post-header">
+                    <div class="post-header">
 
-<span class="user">Tutor.J</span>
+                        <span class="user">
+                            Tutor.J
+                        </span>
 
-<span class="role">Approved Tutor</span>
+                        <span class="role">
+                            Approved Tutor
+                        </span>
 
-</div>
+                    </div>
 
-<p>
-We'll be holding a problem-solving session this week.
-Check the upcoming sessions section to enrol.
-</p>
+                    <p>
+                        We'll be holding a problem-solving session
+                        this week. Check the upcoming sessions section
+                        to enrol.
+                    </p>
 
-<div class="post-actions">
+                    <div class="post-actions">
 
-<button class="small-btn reply-btn">
-💬 Reply
-</button>
+                        <button class="small-btn reply-btn">
+                            💬 Reply
+                        </button>
 
-<button class="small-btn helpful-btn">
-👍 Helpful
-</button>
+                        <button class="small-btn helpful-btn">
+                            👍 Helpful <span class="help-count">0</span>
+                        </button>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
 
-<!-- QUESTIONS -->
-<div class="card">
+            <!-- QUESTIONS -->
+            <div class="card">
 
-<h2>❓ Questions From Members</h2>
+                <h2>
+                    ❓ Questions From Members
+                </h2>
 
-<div class="question-box">
+                <div class="question-box">
 
-<strong>Algebra question</strong>
+                    <strong>
+                        Algebra question
+                    </strong>
 
-<p>
-A student is stuck on an algebra problem and
-is looking for help from other members.
-</p>
+                    <p>
+                        A student is stuck on an algebra problem
+                        and is looking for help from other members.
+                    </p>
 
-<div class="post-actions">
+                    <div class="post-actions">
 
-<button class="small-btn answer-btn">
-Answer
-</button>
+                        <button class="small-btn answer-btn">
+                            Answer
+                        </button>
 
-<button class="small-btn">
-View Question
-</button>
+                        <button class="small-btn view-btn">
+                            View Question
+                        </button>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
-<div class="question-box">
+                <div class="question-box">
 
-<strong>Geometry question</strong>
+                    <strong>
+                        Geometry question
+                    </strong>
 
-<p>
-How can I improve my understanding of geometry
-proofs?
-</p>
+                    <p>
+                        How can I improve my understanding
+                        of geometry proofs?
+                    </p>
 
-<div class="post-actions">
+                    <div class="post-actions">
 
-<button class="small-btn answer-btn">
-Answer
-</button>
+                        <button class="small-btn answer-btn">
+                            Answer
+                        </button>
 
-<button class="small-btn">
-View Question
-</button>
+                        <button class="small-btn view-btn">
+                            View Question
+                        </button>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
 
-<!-- EVENTS -->
-<div class="card">
+            <!-- EVENTS -->
+            <div class="card">
 
-<h2>📅 Upcoming GAM Sessions</h2>
+                <h2>
+                    📅 Upcoming GAM Sessions
+                </h2>
 
-<p style="color:#687386;font-size:13px;">
-Sessions organised by approved tutors and
-peer tutors.
-</p>
+                <p class="muted">
+                    Sessions organised by approved tutors
+                    and trusted peer tutors.
+                </p>
 
 
-<div class="event">
+                <div class="event">
 
-<h3>
-Algebra Problem-Solving Session
-</h3>
+                    <h3>
+                        Algebra Problem-Solving Session
+                    </h3>
 
-<p>
-👨‍🏫 Tutor.J • Tomorrow • 5:00 PM
-</p>
+                    <p>
+                        👨‍🏫 Tutor.J • Tomorrow • 5:00 PM
+                    </p>
 
-<p>
-👥 12 / 20 enrolled
-</p>
+                    <p>
+                        👥 <span class="event-count">12</span> / 20 enrolled
+                    </p>
 
-<button class="enrol-btn">
-Enrol
-</button>
+                    <button class="enrol-btn">
+                        Enrol
+                    </button>
 
-</div>
+                </div>
 
 
-<div class="event">
+                <div class="event">
 
-<h3>
-KCSE Mathematics Revision
-</h3>
+                    <h3>
+                        KCSE Mathematics Revision
+                    </h3>
 
-<p>
-👨‍🏫 Alex.K • Saturday • 3:00 PM
-</p>
+                    <p>
+                        👨‍🏫 Alex.K • Saturday • 3:00 PM
+                    </p>
 
-<p>
-👥 18 / 20 enrolled
-</p>
+                    <p>
+                        👥 <span class="event-count">18</span> / 20 enrolled
+                    </p>
 
-<button class="enrol-btn">
-Enrol
-</button>
+                    <button class="enrol-btn">
+                        Enrol
+                    </button>
 
-</div>
+                </div>
 
-</div>
 
-</main>
+                <div class="event">
 
+                    <h3>
+                        Beginner Mathematics Support
+                    </h3>
 
-<!-- SIDEBAR -->
-<aside>
+                    <p>
+                        👨‍🏫 GAM Peer Tutor • Sunday • 2:00 PM
+                    </p>
 
-<!-- STATS -->
-<div class="card">
+                    <p>
+                        👥 <span class="event-count">7</span> / 20 enrolled
+                    </p>
 
-<h2>👥 Community</h2>
+                    <button class="enrol-btn">
+                        Enrol
+                    </button>
 
-<div class="stats">
+                </div>
 
-<div class="stat">
-<strong>428</strong>
-<span>Members</span>
-</div>
+            </div>
 
-<div class="stat">
-<strong>86</strong>
-<span>Active</span>
-</div>
 
-<div class="stat">
-<strong>24</strong>
-<span>Tutors</span>
-</div>
+            <!-- LEARNING TOGETHER -->
+            <div class="card">
 
-</div>
+                <h2>
+                    🌍 Learn From Each Other
+                </h2>
 
-</div>
+                <p class="muted">
+                    GAM is designed so learning does not only come
+                    from traditional teachers. A student who is strong
+                    in a particular subject can become a trusted peer
+                    tutor and help others.
+                </p>
 
+                <div class="question-box">
 
-<!-- DIVISIONS -->
-<div class="card">
+                    <strong>
+                        Student → Peer Tutor
+                    </strong>
 
-<h2>🏅 Divisions</h2>
+                    <p>
+                        Strong performance, good conduct and community
+                        trust can open opportunities to assist other
+                        learners.
+                    </p>
 
-<div class="division">
+                </div>
 
-<strong>Division 1</strong>
+                <div class="question-box">
 
-<p>
-Advanced learners and experienced contributors.
-</p>
+                    <strong>
+                        Tutor → Session Organiser
+                    </strong>
 
-</div>
+                    <p>
+                        Approved tutors can eventually organise GAM
+                        sessions, revision programmes, projects and
+                        subject-specific activities.
+                    </p>
 
-<div class="division">
+                </div>
 
-<strong>Division 2</strong>
+            </div>
 
-<p>
-Developing learners building strong foundations.
-</p>
+        </main>
 
-</div>
 
-<div class="division">
+        <!-- SIDEBAR -->
+        <aside>
 
-<strong>Division 3</strong>
+            <!-- COMMUNITY -->
+            <div class="card">
 
-<p>
-Learners building their understanding.
-</p>
+                <h2>
+                    👥 Community
+                </h2>
 
-</div>
+                <div class="stats">
 
-<p style="margin-top:12px;color:#687386;font-size:11px;">
-Division placement can eventually be based on
-GAM assessments and demonstrated performance.
-</p>
+                    <div class="stat">
+                        <strong id="memberCount">428</strong>
+                        <span>Members</span>
+                    </div>
 
-</div>
+                    <div class="stat">
+                        <strong>86</strong>
+                        <span>Active</span>
+                    </div>
 
+                    <div class="stat">
+                        <strong>24</strong>
+                        <span>Tutors</span>
+                    </div>
 
-<!-- TUTORS -->
-<div class="card">
+                </div>
 
-<h2>👨‍🏫 Community Tutors</h2>
+            </div>
 
 
-<div class="tutor">
+            <!-- DIVISIONS -->
+            <div class="card">
 
-<div class="avatar">TJ</div>
+                <h2>
+                    🏅 Divisions
+                </h2>
 
-<div>
+                <div class="division">
 
-<div class="tutor-name">
-Tutor.J
-</div>
+                    <strong>
+                        Division 1
+                    </strong>
 
-<div class="tutor-type">
-Approved Mathematics Tutor
-</div>
+                    <p>
+                        Advanced learners and highly performing
+                        community contributors.
+                    </p>
 
-</div>
+                </div>
 
-</div>
+                <div class="division">
 
+                    <strong>
+                        Division 2
+                    </strong>
 
-<div class="tutor">
+                    <p>
+                        Developing learners building strong
+                        understanding and skills.
+                    </p>
 
-<div class="avatar">AK</div>
+                </div>
 
-<div>
+                <div class="division">
 
-<div class="tutor-name">
-Alex.K
-</div>
+                    <strong>
+                        Division 3
+                    </strong>
 
-<div class="tutor-type">
-Peer Tutor • Division 1
-</div>
+                    <p>
+                        Learners building their foundations
+                        with additional support.
+                    </p>
 
-</div>
+                </div>
 
-</div>
-
-</div>
-
-
-<!-- SAFETY -->
-<div class="safety">
-
-<h3>🛡️ GAM Safety</h3>
-
-<p>
-Keep discussions respectful. Do not share phone
-numbers, private contact information, passwords
-or unsafe links. Report concerns to GAM moderators.
-</p>
-
-</div>
-
-</aside>
-
-</div>
-</div>
-
-
-<footer>
-
-<strong>
-GAM — Global Academy of Minds Africa
-</strong>
-
-<p>
-Learn • Connect • Compete • Excel
-</p>
-
-</footer>
-
-
-<!-- ASK MODAL -->
-<div class="modal" id="askModal">
-
-<div class="modal-box">
-
-<h2>❓ Ask the Community</h2>
-
-<textarea
-id="questionText"
-placeholder="Write your question here..."></textarea>
-
-<div class="modal-actions">
-
-<button class="cancel" id="cancelAsk">
-Cancel
-</button>
-
-<button class="submit" id="submitAsk">
-Post Question
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- REPORT MODAL -->
-<div class="modal" id="reportModal">
-
-<div class="modal-box">
-
-<h2>🚩 Report a Concern</h2>
-
-<textarea
-id="reportText"
-placeholder="Tell GAM what you are reporting..."></textarea>
-
-<div class="modal-actions">
-
-<button class="cancel" id="cancelReport">
-Cancel
-</button>
-
-<button class="submit" id="submitReport">
-Submit Report
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
-
-
-<script>
-
-/* =========================================
-   GAM COMMUNITY CORE
-   ========================================= */
-
-const params =
-new URLSearchParams(
-window.location.search
-);
-
-const community =
-params.get("community") ||
-"mathematics";
-
-
-/* COMMUNITY DATA */
-
-const communityData = {
-
-    mathematics:{
-        title:"Mathematics",
-        icon:"🔢",
-        description:
-        "Explore mathematics together — from foundations, algebra and geometry to advanced problem solving."
-    },
-
-    science:{
-        title:"Sciences",
-        icon:"🧪",
-        description:
-        "Connect with learners interested in Biology, Chemistry, Physics and scientific thinking."
-    },
-
-    coding:{
-        title:"Coding & Technology",
-        icon:"💻",
-        description:
-        "Build projects, solve coding problems and learn technology together."
-    },
-
-    english:{
-        title:"English & Communication",
-        icon:"📖",
-        description:
-        "Improve language, writing, comprehension and communication through community learning."
-    },
-
-    business:{
-        title:"Business & Entrepreneurship",
-        icon:"💼",
-        description:
-        "Explore business, entrepreneurship, finance and practical skills."
-    },
-
-    humanities:{
-        title:"Humanities & Society",
-        icon:"🌍",
-        description:
-        "Explore history, geography, society, culture and the world around us."
-    }
-
-};
-
-
-const selected =
-communityData[community] ||
-communityData.mathematics;
-
-
-/* DISPLAY */
-
-document.getElementById(
-"communityTitle"
-).textContent =
-selected.title;
-
-document.getElementById(
-"communityIcon"
-).textContent =
-selected.icon;
-
-document.getElementById(
-"communityDescription"
-).textContent =
-selected.description;
-
-
-/* ELEMENTS */
-
-const joinBtn =
-document.getElementById("joinBtn");
-
-const connectionStatus =
-document.getElementById("connectionStatus");
-
-const askModal =
-document.getElementById("askModal");
-
-const reportModal =
-document.getElementById("reportModal");
-
-const toast =
-document.getElementById("toast");
-
-
-let currentUser = null;
-
-
-/* =========================================
-   TOAST
-   ========================================= */
-
-function showToast(message){
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    setTimeout(function(){
-
-        toast.classList.remove("show");
-
-    },3000);
-
-}
-
-
-/* =========================================
-   LOCAL COMMUNITY MEMBERSHIP
-   =========================================
-   
-   This allows the community to work even
-   before Firebase account integration is
-   completely configured.
-   ========================================= */
-
-const localMemberKey =
-"gam_community_member_" + community;
-
-
-function checkLocalMembership(){
-
-    if(
-        localStorage.getItem(
-            localMemberKey
-        ) === "true"
-    ){
-
-        joinBtn.textContent =
-            "✓ Joined Community";
-
-        joinBtn.style.background =
-            "#063b75";
-
-        connectionStatus.textContent =
-            "✓ Community available";
-
-        connectionStatus.className =
-            "connection-status success";
-
-        return true;
-    }
-
-    return false;
-}
-
-
-function joinCommunity(){
-
-    localStorage.setItem(
-        localMemberKey,
-        "true"
-    );
-
-    joinBtn.textContent =
-        "✓ Joined Community";
-
-    joinBtn.style.background =
-        "#063b75";
-
-    connectionStatus.textContent =
-        "✓ You are a member of this community";
-
-    connectionStatus.className =
-        "connection-status success";
-
-    showToast(
-        "You joined the " +
-        selected.title +
-        " community."
-    );
-
-}
-
-
-checkLocalMembership();
-
-
-/* =========================================
-   JOIN BUTTON
-   ========================================= */
-
-joinBtn.addEventListener(
-"click",
-function(){
-
-    if(
-        localStorage.getItem(
-            localMemberKey
-        ) === "true"
-    ){
-
-        showToast(
-            "You are already a member."
-        );
-
-        return;
-    }
-
-
-    joinCommunity();
-
-});
-
-
-/* =========================================
-   ASK QUESTION
-   ========================================= */
-
-document.getElementById(
-"askBtn"
-).addEventListener(
-"click",
-function(){
-
-    askModal.style.display =
-        "flex";
-
-});
-
-
-document.getElementById(
-"cancelAsk"
-).addEventListener(
-"click",
-function(){
-
-    askModal.style.display =
-        "none";
-
-});
-
-
-document.getElementById(
-"submitAsk"
-).addEventListener(
-"click",
-function(){
-
-    const text =
-        document.getElementById(
-            "questionText"
-        ).value.trim();
-
-
-    if(!text){
-
-        showToast(
-            "Please write your question first."
-        );
-
-        return;
-    }
-
-
-    /*
-     * Temporary local storage.
-     *
-     * Later this will become a
-     * Firestore community question.
-     */
-
-    const questions =
-        JSON.parse(
-            localStorage.getItem(
-                "gam_questions_" + community
-            ) || "[]"
-        );
-
-
-    questions.push({
-
-        text:text,
-
-        createdAt:
-            new Date().toISOString()
-
-    });
-
-
-    localStorage.setItem(
-        "gam_questions_" + community,
-        JSON.stringify(questions)
-    );
-
-
-    document.getElementById(
-        "questionText"
-    ).value = "";
-
-
-    askModal.style.display =
-        "none";
-
-
-    showToast(
-        "Your question has been saved for the GAM community."
-    );
-
-});
-
-
-/* =========================================
-   REPORT
-   ========================================= */
-
-document.getElementById(
-"reportBtn"
-).addEventListener(
-"click",
-function(){
-
-    reportModal.style.display =
-        "flex";
-
-});
-
-
-document.getElementById(
-"cancelReport"
-).addEventListener(
-"click",
-function(){
-
-    reportModal.style.display =
-        "none";
-
-});
-
-
-document.getElementById(
-"submitReport"
-).addEventListener(
-"click",
-function(){
-
-    const text =
-        document.getElementById(
-            "reportText"
-        ).value.trim();
-
-
-    if(!text){
-
-        showToast(
-            "Please describe the concern."
-        );
-
-        return;
-    }
-
-
-    /*
-     * Temporary local report storage.
-     *
-     * Later this will connect to
-     * GAM moderation tools.
-     */
-
-    const reports =
-        JSON.parse(
-            localStorage.getItem(
-                "gam_reports"
-            ) || "[]"
-        );
-
-
-    reports.push({
-
-        community:community,
-
-        report:text,
-
-        createdAt:
-            new Date().toISOString()
-
-    });
-
-
-    localStorage.setItem(
-        "gam_reports",
-        JSON.stringify(reports)
-    );
-
-
-    document.getElementById(
-     
+                <p style="margin-top:12px;color:#687386;font-size:11px;">
+                    Future GAM assessments can help determine
+                    suitable division placement.
+      
