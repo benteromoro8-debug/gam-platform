@@ -3,257 +3,673 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GAM Africa | Community</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#f4f7fb;
-color:#172033;
-line-height:1.5
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
 }
 
-nav{
-background:#063b75;
-color:#fff;
-padding:12px 5%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:20
-}
-
-.brand{display:flex;align-items:center;gap:10px}
-
-.logo{
-width:43px;height:43px;border-radius:50%;
-background:#ffd21f;color:#063b75;
-display:flex;align-items:center;justify-content:center;
-font-weight:900;font-size:12px
-}
-
-.brand h2{font-size:17px}
-.brand p{font-size:10px;opacity:.8}
-
-.back{
-color:#fff;text-decoration:none;font-size:13px;font-weight:bold
-}
-
-.hero{
-background:linear-gradient(120deg,#063b75,#087333);
-color:white;padding:40px 20px
-}
-
-.hero-inner{max-width:1100px;margin:auto}
-
-.icon{font-size:42px}
-.hero h1{font-size:clamp(30px,6vw,48px);margin:5px 0}
-.hero p{max-width:720px;color:#e7eef7}
-
-.container{
-max-width:1100px;margin:auto;padding:25px 20px 70px
-}
-
-.actions{
-display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px
+button,input,textarea{
+    font-family:inherit;
 }
 
 button{
-border:0;cursor:pointer;font-weight:bold
+    cursor:pointer;
+}
+
+nav{
+    background:#063b75;
+    color:white;
+    padding:13px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#ffd21f;
+    color:#063b75;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:12px;
+}
+
+.brand h2{
+    font-size:17px;
+}
+
+.brand p{
+    font-size:10px;
+    opacity:.85;
+    margin-top:3px;
+}
+
+.back{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.hero{
+    background:linear-gradient(120deg,#063b75,#087333);
+    color:white;
+    padding:45px 20px;
+}
+
+.hero-inner{
+    max-width:1100px;
+    margin:auto;
+}
+
+.community-icon{
+    font-size:45px;
+    margin-bottom:8px;
+}
+
+.hero h1{
+    font-size:clamp(30px,6vw,48px);
+    margin-bottom:10px;
+}
+
+.hero p{
+    max-width:760px;
+    line-height:1.6;
+    color:#e6eef7;
+}
+
+.community-status{
+    display:inline-block;
+    margin-top:15px;
+    background:#ffffff20;
+    border:1px solid #ffffff40;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 20px 70px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
 }
 
 .action{
-padding:11px 15px;border-radius:8px
+    border:0;
+    padding:11px 15px;
+    border-radius:9px;
+    font-weight:bold;
 }
 
-.join{background:#087333;color:white}
-.ask{background:#063b75;color:white}
-.report{background:#fff0f0;color:#a40000}
+.join{
+    background:#087333;
+    color:white;
+}
+
+.ask{
+    background:#063b75;
+    color:white;
+}
+
+.report{
+    background:#fff0f0;
+    color:#a40000;
+}
+
+.status{
+    width:100%;
+    font-size:12px;
+    color:#687386;
+}
 
 .layout{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:20px
+    display:grid;
+    grid-template-columns:minmax(0,2fr) minmax(260px,1fr);
+    gap:20px;
 }
 
 .card{
-background:white;
-border-radius:16px;
-padding:20px;
-margin-bottom:18px;
-box-shadow:0 5px 20px #0000000c
+    background:white;
+    border-radius:16px;
+    padding:21px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    margin-bottom:18px;
 }
 
-.card h2{color:#063b75;margin-bottom:10px}
+.card h2{
+    color:#063b75;
+    margin-bottom:10px;
+}
 
-.post,.question,.event,.tutor,.division{
-border:1px solid #e1e6ed;
-border-radius:12px;
-padding:14px;
-margin-top:12px
+.muted{
+    color:#687386;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.post{
+    border:1px solid #e1e6ed;
+    border-radius:12px;
+    padding:15px;
+    margin-top:12px;
 }
 
 .post-header{
-display:flex;
-justify-content:space-between;
-gap:10px
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:8px;
 }
 
-.user,.question strong,.event h3,.tutor-name,.division strong{
-color:#063b75;font-weight:bold
+.user{
+    color:#063b75;
+    font-weight:bold;
 }
 
 .role{
-font-size:10px;
-background:#eef4fb;
-padding:4px 7px;
-border-radius:20px
+    font-size:10px;
+    background:#eef4fb;
+    color:#063b75;
+    padding:4px 7px;
+    border-radius:12px;
 }
 
-.post p,.question p,.event p,.division p,.tutor-type{
-font-size:13px;color:#687386;margin-top:6px
+.post p{
+    color:#596579;
+    line-height:1.5;
+    font-size:14px;
 }
 
 .post-actions{
-display:flex;gap:12px;margin-top:10px
+    display:flex;
+    gap:12px;
+    margin-top:11px;
 }
 
 .small-btn{
-background:none;color:#063b75;font-size:12px
+    border:0;
+    background:none;
+    color:#063b75;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.question-box{
+    background:#f5f8fc;
+    border-radius:12px;
+    padding:15px;
+    margin-top:12px;
+}
+
+.question-box strong{
+    color:#063b75;
+}
+
+.question-box p{
+    margin-top:7px;
+    color:#596579;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.question-file{
+    margin-top:9px;
+    font-size:12px;
+    color:#087333;
+    font-weight:bold;
 }
 
 .event{
-border-left:4px solid #087333;
-background:#f7faf8
+    border:1px solid #dce8e1;
+    border-left:5px solid #087333;
+    background:#f7faf8;
+    padding:15px;
+    margin-top:12px;
+    border-radius:9px;
+}
+
+.event h3{
+    color:#063b75;
+    font-size:16px;
+}
+
+.event p{
+    color:#687386;
+    font-size:12px;
+    margin-top:6px;
+}
+
+.event-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:11px;
 }
 
 .event button{
-margin-top:10px;
-background:#087333;
-color:white;
-padding:8px 12px;
-border-radius:7px
+    border:0;
+    padding:8px 11px;
+    border-radius:7px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.enrol-btn{
+    background:#087333;
+    color:white;
+}
+
+.room-btn{
+    background:#063b75;
+    color:white;
+}
+
+.disenrol-btn{
+    background:#eef0f4;
+    color:#a40000;
+}
+
+.full{
+    color:#a40000 !important;
+    font-weight:bold;
+}
+
+.tool-box{
+    background:#eef7f1;
+    border:1px solid #cfe4d6;
+    border-radius:11px;
+    padding:13px;
+    margin-top:10px;
+}
+
+.tool-box strong{
+    color:#087333;
+}
+
+.tool-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:9px;
+}
+
+.tool{
+    background:white;
+    border:1px solid #d6e3da;
+    padding:7px 9px;
+    border-radius:7px;
+    color:#063b75;
+    font-size:11px;
+    font-weight:bold;
 }
 
 .stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:14px;
 }
 
 .stat{
-background:#f5f8fc;
-padding:12px;text-align:center;border-radius:9px
+    background:#f5f8fc;
+    text-align:center;
+    padding:13px 5px;
+    border-radius:9px;
 }
 
 .stat strong{
-display:block;color:#063b75;font-size:20px
+    display:block;
+    color:#063b75;
+    font-size:20px;
 }
 
-.stat span{font-size:10px;color:#687386}
+.stat span{
+    font-size:10px;
+    color:#687386;
+}
 
-.avatar{
-width:40px;height:40px;border-radius:50%;
-background:#eef4fb;color:#063b75;
-display:flex;align-items:center;justify-content:center;
-font-weight:bold
+.division{
+    border:1px solid #e0e5ec;
+    border-radius:10px;
+    padding:12px;
+    margin-top:9px;
+}
+
+.division strong{
+    color:#063b75;
+}
+
+.division p{
+    color:#687386;
+    font-size:11px;
+    margin-top:4px;
 }
 
 .tutor{
-display:flex;align-items:center;gap:12px
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid #e1e6ed;
+    padding:11px;
+    border-radius:10px;
+    margin-top:9px;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#eef4fb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#063b75;
+    font-weight:bold;
+}
+
+.tutor-name{
+    color:#063b75;
+    font-weight:bold;
+}
+
+.tutor-type{
+    color:#687386;
+    font-size:11px;
+    margin-top:3px;
 }
 
 .safety{
-background:#fff8df;
-border:1px solid #f1dc87;
-padding:15px;border-radius:12px
+    background:#fff8df;
+    border:1px solid #f1dc87;
+    border-radius:12px;
+    padding:15px;
 }
 
-.safety h3{color:#705700}
-.safety p{font-size:12px;color:#6d6137;margin-top:5px}
+.safety h3{
+    color:#705700;
+    margin-bottom:7px;
+}
+
+.safety p{
+    color:#6d6137;
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* MODAL */
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-background:#0008;
-z-index:100;
-align-items:center;
-justify-content:center;
-padding:20px
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.62);
+    z-index:200;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
 }
 
-.modal.show{display:flex}
+.modal.show{
+    display:flex;
+}
 
 .modal-box{
-background:white;
-width:100%;
-max-width:520px;
-border-radius:15px;
-padding:22px
+    width:100%;
+    max-width:520px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:17px;
+    padding:22px;
 }
 
-.modal-box h2{color:#063b75;margin-bottom:12px}
-
-textarea,input,select{
-width:100%;
-padding:12px;
-border:1px solid #ccd5e0;
-border-radius:8px;
-font-family:Arial;
-margin-top:8px
+.modal-box h2{
+    color:#063b75;
+    margin-bottom:14px;
 }
 
-textarea{min-height:130px;resize:vertical}
+.modal-box textarea{
+    width:100%;
+    min-height:130px;
+    resize:vertical;
+    padding:12px;
+    border:1px solid #ccd5e0;
+    border-radius:9px;
+    outline:none;
+}
+
+.modal-box textarea:focus{
+    border-color:#063b75;
+}
+
+.file-area{
+    margin-top:12px;
+    padding:14px;
+    border:2px dashed #ccd7e3;
+    border-radius:10px;
+    background:#f8fafc;
+}
+
+.file-area label{
+    display:block;
+    color:#063b75;
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.file-area input{
+    width:100%;
+}
+
+.file-info{
+    margin-top:8px;
+    font-size:11px;
+    color:#687386;
+}
 
 .modal-actions{
-display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-top:12px
+    display:flex;
+    justify-content:flex-end;
+    gap:9px;
+    margin-top:14px;
+}
+
+.modal-actions button{
+    border:0;
+    padding:10px 14px;
+    border-radius:8px;
+    font-weight:bold;
 }
 
 .cancel{
-background:#edf0f4;
-padding:9px 14px;
-border-radius:7px
+    background:#edf0f4;
 }
 
 .submit{
-background:#063b75;
-color:white;
-padding:9px 14px;
-border-radius:7px
+    background:#063b75;
+    color:white;
 }
 
 .notice{
-padding:12px;
-background:#eef7ff;
-border-radius:9px;
-color:#063b75;
-font-size:12px;
-margin-bottom:15px
+    background:#eef4fb;
+    color:#36516f;
+    padding:11px;
+    border-radius:8px;
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:12px;
+}
+
+/* LIVE ROOM */
+
+.room{
+    display:none;
+}
+
+.room.show{
+    display:block;
+}
+
+.room-header{
+    background:linear-gradient(120deg,#063b75,#087333);
+    color:white;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+.room-header h2{
+    margin-bottom:6px;
+}
+
+.room-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:15px;
+}
+
+.live-screen{
+    min-height:260px;
+    border-radius:13px;
+    background:#071c31;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+}
+
+.live-screen div{
+    max-width:400px;
+}
+
+.live-screen .big{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.room-panel{
+    background:#f5f8fc;
+    border-radius:13px;
+    padding:15px;
+}
+
+.room-panel h3{
+    color:#063b75;
+    margin-bottom:10px;
+}
+
+.room-action{
+    width:100%;
+    border:0;
+    background:white;
+    border:1px solid #dce3eb;
+    padding:11px;
+    border-radius:8px;
+    text-align:left;
+    margin-bottom:8px;
+    color:#063b75;
+    font-weight:bold;
+}
+
+.leave-room{
+    background:#a40000;
+    color:white;
+    border:0;
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    font-weight:bold;
+    margin-top:8px;
 }
 
 footer{
-background:#03284f;
-color:white;
-text-align:center;
-padding:28px
+    background:#03284f;
+    color:white;
+    text-align:center;
+    padding:28px 20px;
 }
 
 footer p{
-font-size:12px;color:#b9c9dc;margin-top:5px
+    color:#b9c9dc;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.toast{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#063b75;
+    color:white;
+    padding:12px 17px;
+    border-radius:9px;
+    font-size:12px;
+    display:none;
+    z-index:500;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+.toast.show{
+    display:block;
 }
 
 @media(max-width:760px){
-.layout{grid-template-columns:1fr}
-nav{padding:11px 4%}
-.brand h2{font-size:14px}
+
+    .layout,
+    .room-grid{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        padding:11px 4%;
+    }
+
+    .brand h2{
+        font-size:14px;
+    }
+
+    .brand p{
+        display:none;
+    }
+
+    .back{
+        font-size:11px;
+    }
 }
 </style>
 </head>
@@ -261,34 +677,46 @@ nav{padding:11px 4%}
 <body>
 
 <nav>
+
 <div class="brand">
-<div class="logo">GAM</div>
-<div>
-<h2>GAM Africa</h2>
-<p>Global Academy of Minds Africa</p>
-</div>
+    <div class="logo">GAM</div>
+
+    <div>
+        <h2>GAM Africa</h2>
+        <p>Global Academy of Minds Africa</p>
+    </div>
 </div>
 
-<a href="communities.html" class="back">← Communities</a>
+<a href="communities.html" class="back">
+← Communities
+</a>
+
 </nav>
 
+
 <section class="hero">
+
 <div class="hero-inner">
-<div class="icon" id="communityIcon">🔢</div>
+
+<div class="community-icon" id="communityIcon">🔢</div>
+
 <h1 id="communityTitle">Mathematics</h1>
+
 <p id="communityDescription">
-Explore mathematics, ask questions, solve problems and learn together.
+Explore mathematics together — from foundations,
+algebra and geometry to advanced problem solving.
 </p>
+
+<div class="community-status">
+🌍 GAM Community • Safe Learning Space
 </div>
+
+</div>
+
 </section>
 
-<div class="container">
 
-<div class="notice">
-🛡️ <strong>GAM Safe Learning Space:</strong>
-Use your GAM public name. Do not post phone numbers, passwords,
-private contact information, abusive content or unsafe links.
-</div>
+<div class="container">
 
 <div class="actions">
 
@@ -304,37 +732,103 @@ private contact information, abusive content or unsafe links.
 🚩 Report
 </button>
 
+<div class="status" id="status">
+✓ Community is ready. You can participate without waiting for account verification.
 </div>
+
+</div>
+
+
+<!-- LIVE ROOM -->
+
+<div class="card room" id="liveRoom">
+
+<div class="room-header">
+
+<h2 id="roomTitle">
+🔴 GAM Live Learning Room
+</h2>
+
+<p id="roomSubtitle">
+Your GAM session will appear here.
+</p>
+
+</div>
+
+<div class="room-grid">
+
+<div class="live-screen">
+
+<div>
+
+<div class="big">🎓</div>
+
+<h2>GAM Live Room</h2>
+
+<p style="margin-top:8px;color:#c8d7e6;font-size:13px;">
+The tutor's live lesson area will appear here.
+</p>
+
+</div>
+
+</div>
+
+<div class="room-panel">
+
+<h3>Session Tools</h3>
+
+<div id="roomTools"></div>
+
+<button class="leave-room" id="leaveRoom">
+Leave Live Room
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="layout">
 
 <main>
 
+
+<!-- DISCUSSION -->
+
 <div class="card">
+
 <h2>💬 Community Discussion</h2>
 
-<p style="color:#687386;font-size:13px">
-Discuss ideas, explain solutions and help other learners respectfully.
+<p class="muted">
+Ask questions, explain ideas, share useful knowledge
+and learn respectfully with other GAM members.
 </p>
 
+
 <div class="post">
+
 <div class="post-header">
 <span class="user">Alex.K</span>
 <span class="role">Peer Tutor</span>
 </div>
 
 <p>
-Can someone explain how to approach a difficult algebra problem
-when you don't know which method to use?
+Can someone explain how they approach a difficult
+algebra problem when they don't know which method to use?
 </p>
 
 <div class="post-actions">
-<button class="small-btn" onclick="replyTo('Alex.K')">💬 Reply</button>
-<button class="small-btn" onclick="helpful(this)">👍 Helpful</button>
-</div>
+<button class="small-btn">💬 Reply</button>
+<button class="small-btn">👍 Helpful</button>
 </div>
 
+</div>
+
+
 <div class="post">
+
 <div class="post-header">
 <span class="user">Mary.W</span>
 <span class="role">Student</span>
@@ -346,12 +840,15 @@ Which topics should I practise first?
 </p>
 
 <div class="post-actions">
-<button class="small-btn" onclick="replyTo('Mary.W')">💬 Reply</button>
-<button class="small-btn" onclick="helpful(this)">👍 Helpful</button>
-</div>
+<button class="small-btn">💬 Reply</button>
+<button class="small-btn">👍 Helpful</button>
 </div>
 
+</div>
+
+
 <div class="post">
+
 <div class="post-header">
 <span class="user">Tutor.J</span>
 <span class="role">Approved Tutor</span>
@@ -363,87 +860,176 @@ Check the upcoming sessions section to enrol.
 </p>
 
 <div class="post-actions">
-<button class="small-btn" onclick="replyTo('Tutor.J')">💬 Reply</button>
-<button class="small-btn" onclick="helpful(this)">👍 Helpful</button>
-</div>
+<button class="small-btn">💬 Reply</button>
+<button class="small-btn">👍 Helpful</button>
 </div>
 
 </div>
+
+</div>
+
+
+<!-- QUESTIONS -->
 
 <div class="card">
+
 <h2>❓ Questions From Members</h2>
 
-<div id="questions">
+<div id="questionsList">
 
-<div class="question">
+<div class="question-box">
+
 <strong>Algebra question</strong>
+
 <p>
-How do I know which method to use when solving an algebra problem?
+A student is stuck on an algebra problem and is looking
+for help from other members.
 </p>
 
 <div class="post-actions">
-<button class="small-btn" onclick="answerQuestion('Algebra')">
-Answer
-</button>
-
-<button class="small-btn" onclick="viewQuestion('Algebra')">
-View Question
-</button>
-</div>
+<button class="small-btn">Answer</button>
+<button class="small-btn">View Question</button>
 </div>
 
-<div class="question">
+</div>
+
+
+<div class="question-box">
+
 <strong>Geometry question</strong>
+
 <p>
 How can I improve my understanding of geometry proofs?
 </p>
 
 <div class="post-actions">
-<button class="small-btn" onclick="answerQuestion('Geometry')">
-Answer
-</button>
-
-<button class="small-btn" onclick="viewQuestion('Geometry')">
-View Question
-</button>
-</div>
+<button class="small-btn">Answer</button>
+<button class="small-btn">View Question</button>
 </div>
 
 </div>
+
 </div>
+
+</div>
+
+
+<!-- SESSIONS -->
 
 <div class="card">
+
 <h2>📅 Upcoming GAM Sessions</h2>
 
-<p style="color:#687386;font-size:13px">
-Approved tutors can create sessions. Members can enrol
-and join the GAM live room at the scheduled time.
+<p class="muted">
+Approved tutors can create learning sessions. Members
+can enrol and join the GAM live room at the scheduled time.
 </p>
 
-<div class="event">
+
+<div class="event" data-session="algebra">
+
 <h3>Algebra Problem-Solving Session</h3>
+
 <p>👨‍🏫 Tutor.J • Tomorrow • 5:00 PM</p>
-<p>👥 <span class="count">12</span> / 20 enrolled</p>
-<button onclick="enrol(this)">Enrol</button>
+
+<p class="capacity">
+👥 <span class="count">12</span> / 20 enrolled
+</p>
+
+<div class="event-buttons">
+
+<button class="enrol-btn enrol">
+Enrol
+</button>
+
+<button class="disenrol-btn disenrol" style="display:none;">
+Disenrol
+</button>
+
+<button class="room-btn room">
+Open Live Room
+</button>
+
 </div>
 
-<div class="event">
+<div class="tool-box">
+
+<strong>🔢 Mathematics Session Tools</strong>
+
+<div class="tool-list">
+
+<span class="tool">🧮 Calculator</span>
+<span class="tool">✏️ Whiteboard</span>
+<span class="tool">📐 Geometry Tools</span>
+<span class="tool">📊 Graphing</span>
+<span class="tool">📝 Working Area</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="event" data-session="kcse">
+
 <h3>KCSE Mathematics Revision</h3>
+
 <p>👨‍🏫 Alex.K • Saturday • 3:00 PM</p>
-<p>👥 <span class="count">18</span> / 20 enrolled</p>
-<button onclick="enrol(this)">Enrol</button>
+
+<p class="capacity">
+👥 <span class="count">18</span> / 20 enrolled
+</p>
+
+<div class="event-buttons">
+
+<button class="enrol-btn enrol">
+Enrol
+</button>
+
+<button class="disenrol-btn disenrol" style="display:none;">
+Disenrol
+</button>
+
+<button class="room-btn room">
+Open Live Room
+</button>
+
+</div>
+
+<div class="tool-box">
+
+<strong>🎯 Revision Tools</strong>
+
+<div class="tool-list">
+
+<span class="tool">📚 Revision Paper</span>
+<span class="tool">🧮 Calculator</span>
+<span class="tool">✏️ Working Area</span>
+<span class="tool">⏱️ Timer</span>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
 
 </main>
 
+
 <aside>
 
+
+<!-- STATS -->
+
 <div class="card">
+
 <h2>👥 Community</h2>
 
 <div class="stats">
+
 <div class="stat">
 <strong>428</strong>
 <span>Members</span>
@@ -458,154 +1044,212 @@ and join the GAM live room at the scheduled time.
 <strong>24</strong>
 <span>Tutors</span>
 </div>
-</div>
+
 </div>
 
+</div>
+
+
+<!-- DIVISIONS -->
+
 <div class="card">
+
 <h2>🏅 Divisions</h2>
 
 <div class="division">
+
 <strong>Division 1</strong>
-<p>Advanced learners and experienced contributors.</p>
+
+<p>
+Advanced learners and experienced contributors.
+</p>
+
 </div>
 
 <div class="division">
+
 <strong>Division 2</strong>
-<p>Developing learners building strong foundations.</p>
+
+<p>
+Developing learners building strong foundations.
+</p>
+
 </div>
 
 <div class="division">
+
 <strong>Division 3</strong>
-<p>Learners building their understanding.</p>
+
+<p>
+Learners building their understanding.
+</p>
+
 </div>
+
+<p class="muted" style="margin-top:12px;font-size:11px;">
+Division placement can eventually be based on GAM
+assessments and demonstrated performance.
+</p>
+
 </div>
+
+
+<!-- TUTORS -->
 
 <div class="card">
+
 <h2>👨‍🏫 Community Tutors</h2>
 
 <div class="tutor">
+
 <div class="avatar">TJ</div>
+
 <div>
 <div class="tutor-name">Tutor.J</div>
 <div class="tutor-type">Approved Mathematics Tutor</div>
 </div>
+
 </div>
 
+
 <div class="tutor">
+
 <div class="avatar">AK</div>
+
 <div>
 <div class="tutor-name">Alex.K</div>
 <div class="tutor-type">Peer Tutor • Division 1</div>
 </div>
-</div>
+
 </div>
 
+</div>
+
+
+<!-- SAFETY -->
+
 <div class="safety">
+
 <h3>🛡️ GAM Safety</h3>
+
 <p>
-GAM moderators can review reports and take appropriate
-action against accounts that violate community rules.
-AI may assist moderators with detection, but important
-moderation decisions remain under GAM's moderation system.
+Keep discussions respectful. Do not share passwords,
+private contact information or unsafe links. Report
+concerns to GAM moderators.
 </p>
+
 </div>
 
 </aside>
 
 </div>
+
 </div>
 
+
 <footer>
+
 <strong>GAM — Global Academy of Minds Africa</strong>
-<p>Learn • Connect • Compete • Excel</p>
+
+<p>
+Learn • Connect • Compete • Excel
+</p>
+
 </footer>
 
 
 <!-- ASK MODAL -->
 
 <div class="modal" id="askModal">
+
 <div class="modal-box">
 
 <h2>❓ Ask the Community</h2>
 
-<p style="font-size:12px;color:#687386">
-Your question will use your GAM public identity.
-Private account information is not displayed.
-</p>
+<div class="notice">
+You can ask using text, or attach a photo/image or PDF
+if the question is easier to show than type.
+</div>
 
 <textarea
 id="questionText"
 placeholder="Write your question here..."></textarea>
 
+
+<div class="file-area">
+
+<label>📎 Attach a question</label>
+
+<input
+type="file"
+id="questionFile"
+accept="image/*,.pdf">
+
+<div class="file-info" id="fileInfo">
+Accepted: images and PDF files.
+</div>
+
+</div>
+
+
 <div class="modal-actions">
-<button class="cancel" onclick="closeModal('askModal')">
+
+<button class="cancel" id="cancelAsk">
 Cancel
 </button>
 
-<button class="submit" onclick="postQuestion()">
+<button class="submit" id="submitAsk">
 Post Question
 </button>
+
 </div>
 
 </div>
+
 </div>
 
 
 <!-- REPORT MODAL -->
 
 <div class="modal" id="reportModal">
+
 <div class="modal-box">
 
 <h2>🚩 Report a Concern</h2>
 
 <textarea
 id="reportText"
-placeholder="Describe the concern. Do not include passwords or private information."></textarea>
+placeholder="Tell GAM what you are reporting..."></textarea>
 
 <div class="modal-actions">
-<button class="cancel" onclick="closeModal('reportModal')">
+
+<button class="cancel" id="cancelReport">
 Cancel
 </button>
 
-<button class="submit" onclick="submitReport()">
+<button class="submit" id="submitReport">
 Submit Report
 </button>
+
+</div>
+
 </div>
 
 </div>
-</div>
 
 
-<!-- ANSWER MODAL -->
-
-<div class="modal" id="answerModal">
-<div class="modal-box">
-
-<h2 id="answerTitle">Answer Question</h2>
-
-<textarea
-id="answerText"
-placeholder="Write a helpful explanation..."></textarea>
-
-<div class="modal-actions">
-<button class="cancel" onclick="closeModal('answerModal')">
-Cancel
-</button>
-
-<button class="submit" onclick="submitAnswer()">
-Post Answer
-</button>
-</div>
-
-</div>
-</div>
+<div class="toast" id="toast"></div>
 
 
 <script>
 
-/* =========================
-   COMMUNITY SELECTION
-========================= */
+/* =====================================================
+   GAM COMMUNITY ENGINE
+   No Firebase authentication required for this page.
+===================================================== */
+
+
+/* COMMUNITY DATA */
 
 const params =
 new URLSearchParams(window.location.search);
@@ -613,355 +1257,84 @@ new URLSearchParams(window.location.search);
 const community =
 params.get("community") || "mathematics";
 
+
 const communityData = {
 
-mathematics:{
-title:"Mathematics",
-icon:"🔢",
-description:
-"Explore mathematics together — from foundations, algebra and geometry to advanced problem solving."
-},
-
-science:{
-title:"Sciences",
-icon:"🧪",
-description:
-"Connect with learners interested in Biology, Chemistry, Physics and scientific thinking."
-},
-
-coding:{
-title:"Coding & Technology",
-icon:"💻",
-description:
-"Build projects, solve coding problems and learn technology together."
-},
-
-english:{
-title:"English & Communication",
-icon:"📖",
-description:
-"Improve language, writing, comprehension and communication."
-},
-
-business:{
-title:"Business & Entrepreneurship",
-icon:"💼",
-description:
-"Explore business, entrepreneurship, finance and practical skills."
-},
-
-humanities:{
-title:"Humanities & Society",
-icon:"🌍",
-description:
-"Explore history, geography, society, culture and the world around us."
-}
-};
-
-const selected =
-communityData[community] ||
-communityData.mathematics;
-
-document.getElementById("communityTitle").textContent =
-selected.title;
-
-document.getElementById("communityIcon").textContent =
-selected.icon;
-
-document.getElementById("communityDescription").textContent =
-selected.description;
-
-
-/* =========================
-   JOIN
-========================= */
-
-document.getElementById("joinBtn").onclick =
-function(){
-
-this.textContent = "✓ Joined Community";
-this.style.background = "#063b75";
-
-alert(
-"You have joined the " +
-selected.title +
-" community."
-);
-
-};
-
-
-/* =========================
-   ASK QUESTION
-========================= */
-
-document.getElementById("askBtn").onclick =
-function(){
-
-document.getElementById("askModal")
-.classList.add("show");
-
-document.getElementById("questionText")
-.focus();
-
-};
-
-
-function postQuestion(){
-
-const text =
-document.getElementById("questionText")
-.value.trim();
-
-if(!text){
-
-alert("Please write your question first.");
-return;
-
-}
-
-const box =
-document.createElement("div");
-
-box.className = "question";
-
-box.innerHTML = `
-<strong>New community question</strong>
-<p>${escapeHTML(text)}</p>
-<div class="post-actions">
-<button class="small-btn"
-onclick="answerQuestion('Community question')">
-Answer
-</button>
-</div>
-`;
-
-document.getElementById("questions")
-.prepend(box);
-
-document.getElementById("questionText")
-.value = "";
-
-closeModal("askModal");
-
-alert("Question posted to this community view.");
-
-}
-
-
-/* =========================
-   REPORT
-========================= */
-
-document.getElementById("reportBtn").onclick =
-function(){
-
-document.getElementById("reportModal")
-.classList.add("show");
-
-document.getElementById("reportText")
-.focus();
-
-};
-
-
-function submitReport(){
-
-const text =
-document.getElementById("reportText")
-.value.trim();
-
-if(!text){
-
-alert("Please describe the concern first.");
-return;
-
-}
-
-document.getElementById("reportText").value = "";
-
-closeModal("reportModal");
-
-alert(
-"Report received by the GAM moderation interface."
-);
-
-}
-
-
-/* =========================
-   ANSWERS
-========================= */
-
-let answeringQuestion = "";
-
-function answerQuestion(name){
-
-answeringQuestion = name;
-
-document.getElementById("answerTitle")
-.textContent =
-"Answer: " + name;
-
-document.getElementById("answerModal")
-.classList.add("show");
-
-document.getElementById("answerText")
-.focus();
-
-}
-
-function submitAnswer(){
-
-const text =
-document.getElementById("answerText")
-.value.trim();
-
-if(!text){
-
-alert("Please write an answer first.");
-return;
-
-}
-
-document.getElementById("answerText").value = "";
-
-closeModal("answerModal");
-
-alert("Your answer has been added to the discussion.");
-
-}
-
-
-/* =========================
-   VIEW QUESTION
-========================= */
-
-function viewQuestion(name){
-
-alert(
-"Opening " + name +
-" question. Full question discussion will appear here."
-);
-
-}
-
-
-/* =========================
-   REPLIES
-========================= */
-
-function replyTo(name){
-
-document.getElementById("askModal")
-.classList.add("show");
-
-document.getElementById("questionText").value =
-"Reply to " + name + ": ";
-
-document.getElementById("questionText").focus();
-
-}
-
-
-/* =========================
-   HELPFUL
-========================= */
-
-function helpful(button){
-
-button.textContent = "✓ Helpful";
-button.disabled = true;
-
-}
-
-
-/* =========================
-   SESSION ENROLMENT
-========================= */
-
-function enrol(button){
-
-const event =
-button.closest(".event");
-
-const count =
-event.querySelector(".count");
-
-let number =
-parseInt(count.textContent);
-
-if(button.textContent === "✓ Enrolled"){
-return;
-}
-
-if(number >= 20){
-
-alert("This session is full.");
-return;
-
-}
-
-number++;
-
-count.textContent = number;
-
-button.textContent = "✓ Enrolled";
-button.style.background = "#063b75";
-
-alert(
-"You are enrolled. GAM will show the live room when the session is available."
-);
-
-}
-
-
-/* =========================
-   MODAL CLOSE
-========================= */
-
-function closeModal(id){
-
-document.getElementById(id)
-.classList.remove("show");
-
-}
-
-
-/* =========================
-   OUTSIDE CLICK
-========================= */
-
-document.querySelectorAll(".modal")
-.forEach(function(modal){
-
-modal.addEventListener("click",function(e){
-
-if(e.target === modal){
-modal.classList.remove("show");
-}
-
-});
-
-});
-
-
-/* =========================
-   SECURITY
-========================= */
-
-function escapeHTML(text){
-
-const div =
-document.createElement("div");
-
-div.textContent = text;
-
-return div.innerHTML;
-
-}
-
-</script>
-
-</body>
-    </html>
+    mathematics:{
+        title:"Mathematics",
+        icon:"🔢",
+        description:
+        "Explore mathematics together — from foundations, algebra and geometry to advanced problem solving.",
+        tools:[
+            "🧮 Calculator",
+            "✏️ Whiteboard",
+            "📐 Geometry Tools",
+            "📊 Graphing",
+            "📝 Working Area"
+        ]
+    },
+
+    science:{
+        title:"Sciences",
+        icon:"🧪",
+        description:
+        "Connect with learners interested in Biology, Chemistry, Physics and scientific thinking.",
+        tools:[
+            "🔬 Virtual Lab",
+            "📊 Data Table",
+            "🧪 Science Notes",
+            "📈 Graphing",
+            "📝 Working Area"
+        ]
+    },
+
+    coding:{
+        title:"Coding & Technology",
+        icon:"💻",
+        description:
+        "Build projects, solve coding problems and learn technology together.",
+        tools:[
+            "💻 Code Editor",
+            "▶️ Run Code",
+            "🐞 Debugger",
+            "📁 Project Files",
+            "🧠 Coding Challenge"
+        ]
+    },
+
+    english:{
+        title:"English & Communication",
+        icon:"📖",
+        description:
+        "Improve language, writing, comprehension and communication through community learning.",
+        tools:[
+            "📝 Writing Area",
+            "📚 Reading Text",
+            "🎤 Speaking Practice",
+            "🔤 Grammar Tools",
+            "💬 Discussion"
+        ]
+    },
+
+    business:{
+        title:"Business & Entrepreneurship",
+        icon:"💼",
+        description:
+        "Explore business, entrepreneurship, finance and practical skills.",
+        tools:[
+            "📊 Business Calculator",
+            "📈 Charts",
+            "💰 Finance Tools",
+            "📝 Business Plan",
+            "💡 Idea Board"
+        ]
+    },
+
+    humanities:{
+        title:"Humanities & Society",
+        icon:"🌍",
+        description:
+        "Explore history, geography, society, culture and the world around us.",
+        tools:[
+            "🗺️ Maps",
+   
