@@ -19,10 +19,7 @@ body{
     color:#172033;
 }
 
-button{
-    font-family:inherit;
-}
-
+/* NAVIGATION */
 nav{
     background:#063b75;
     color:white;
@@ -33,7 +30,7 @@ nav{
     gap:15px;
     position:sticky;
     top:0;
-    z-index:20;
+    z-index:100;
 }
 
 .brand{
@@ -61,7 +58,7 @@ nav{
 
 .brand p{
     font-size:10px;
-    opacity:.85;
+    opacity:.8;
     margin-top:3px;
 }
 
@@ -72,6 +69,7 @@ nav{
     font-weight:bold;
 }
 
+/* HERO */
 .hero{
     background:linear-gradient(120deg,#063b75,#087333);
     color:white;
@@ -84,7 +82,7 @@ nav{
 }
 
 .community-icon{
-    font-size:42px;
+    font-size:45px;
     margin-bottom:8px;
 }
 
@@ -102,19 +100,27 @@ nav{
 .status{
     display:inline-block;
     margin-top:15px;
-    padding:7px 12px;
+    padding:8px 13px;
     border-radius:20px;
     background:#ffffff20;
     border:1px solid #ffffff40;
     font-size:12px;
 }
 
+/* MAIN */
 .container{
     max-width:1100px;
     margin:auto;
-    padding:25px 18px 70px;
+    padding:25px 20px 70px;
 }
 
+.layout{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+}
+
+/* ACTIONS */
 .actions{
     display:flex;
     flex-wrap:wrap;
@@ -124,15 +130,15 @@ nav{
 
 .action{
     border:0;
-    padding:11px 15px;
     border-radius:9px;
+    padding:11px 15px;
     font-weight:bold;
     cursor:pointer;
-    transition:.2s;
+    font-size:13px;
 }
 
-.action:hover{
-    transform:translateY(-1px);
+.action:active{
+    transform:scale(.97);
 }
 
 .join{
@@ -146,16 +152,11 @@ nav{
 }
 
 .report{
-    background:#f1f3f6;
+    background:#fff0f0;
     color:#a00000;
 }
 
-.layout{
-    display:grid;
-    grid-template-columns:minmax(0,2fr) minmax(260px,1fr);
-    gap:20px;
-}
-
+/* CARDS */
 .card{
     background:white;
     border-radius:16px;
@@ -169,17 +170,18 @@ nav{
     margin-bottom:10px;
 }
 
-.description{
+.muted{
     color:#687386;
     font-size:13px;
     line-height:1.5;
 }
 
+/* POSTS */
 .post{
     border:1px solid #e1e6ed;
     border-radius:12px;
     padding:15px;
-    margin-top:13px;
+    margin-top:12px;
 }
 
 .post-header{
@@ -191,70 +193,70 @@ nav{
 }
 
 .user{
-    color:#063b75;
     font-weight:bold;
+    color:#063b75;
 }
 
 .role{
+    font-size:10px;
+    padding:4px 7px;
+    border-radius:12px;
     background:#eef4fb;
     color:#063b75;
-    border-radius:15px;
-    padding:4px 8px;
-    font-size:10px;
 }
 
-.post p{
+.post-text{
     color:#596579;
+    line-height:1.5;
     font-size:14px;
-    line-height:1.55;
 }
 
 .post-actions{
     display:flex;
-    flex-wrap:wrap;
-    gap:8px;
+    gap:15px;
     margin-top:12px;
 }
 
 .small-btn{
     border:0;
-    background:#eef4fb;
+    background:none;
     color:#063b75;
-    border-radius:7px;
-    padding:7px 10px;
-    font-size:12px;
     font-weight:bold;
     cursor:pointer;
+    font-size:12px;
 }
 
-.small-btn:hover{
-    background:#dce9f7;
-}
-
-.question-box{
+/* QUESTIONS */
+.question{
     background:#f5f8fc;
     border-radius:12px;
     padding:15px;
     margin-top:12px;
 }
 
-.question-box strong{
+.question-title{
     color:#063b75;
+    font-weight:bold;
 }
 
-.question-box p{
-    color:#687386;
+.question p{
+    color:#596579;
     font-size:13px;
     line-height:1.5;
     margin-top:6px;
 }
 
+.question button{
+    margin-top:10px;
+}
+
+/* EVENTS */
 .event{
-    background:#f7faf8;
     border-left:4px solid #087333;
-    border-radius:9px;
-    padding:14px;
+    background:#f7faf8;
+    padding:15px;
     margin-top:12px;
+    border-radius:9px;
 }
 
 .event h3{
@@ -269,16 +271,17 @@ nav{
 }
 
 .event button{
-    margin-top:10px;
     border:0;
     background:#087333;
     color:white;
-    padding:8px 12px;
+    padding:9px 13px;
     border-radius:7px;
+    margin-top:10px;
     font-weight:bold;
     cursor:pointer;
 }
 
+/* STATS */
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -289,25 +292,26 @@ nav{
 .stat{
     background:#f5f8fc;
     padding:12px 5px;
-    border-radius:9px;
     text-align:center;
+    border-radius:9px;
 }
 
 .stat strong{
     display:block;
-    color:#063b75;
     font-size:20px;
+    color:#063b75;
 }
 
 .stat span{
-    color:#687386;
     font-size:10px;
+    color:#687386;
 }
 
+/* DIVISIONS */
 .division{
     border:1px solid #e0e5ec;
     border-radius:10px;
-    padding:12px;
+    padding:13px;
     margin-top:10px;
 }
 
@@ -321,12 +325,13 @@ nav{
     margin-top:4px;
 }
 
+/* TUTORS */
 .tutor{
     display:flex;
     align-items:center;
-    gap:12px;
-    border:1px solid #e1e6ed;
+    gap:10px;
     padding:11px;
+    border:1px solid #e1e6ed;
     border-radius:10px;
     margin-top:10px;
 }
@@ -354,11 +359,12 @@ nav{
     margin-top:3px;
 }
 
+/* SAFETY */
 .safety{
     background:#fff8df;
-    border:1px solid #f1dc87;
-    border-radius:12px;
+    border:1px solid #f0dc8a;
     padding:15px;
+    border-radius:12px;
 }
 
 .safety h3{
@@ -372,15 +378,16 @@ nav{
     line-height:1.5;
 }
 
+/* MODAL */
 .modal{
     display:none;
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.65);
-    z-index:100;
+    z-index:1000;
     align-items:center;
     justify-content:center;
-    padding:18px;
+    padding:20px;
 }
 
 .modal.show{
@@ -390,34 +397,34 @@ nav{
 .modal-box{
     background:white;
     width:100%;
-    max-width:500px;
+    max-width:520px;
     border-radius:16px;
     padding:22px;
-    max-height:90vh;
-    overflow:auto;
+    box-shadow:0 15px 50px rgba(0,0,0,.25);
 }
 
 .modal-box h2{
     color:#063b75;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 .modal-box p{
     color:#687386;
     font-size:13px;
     line-height:1.5;
+    margin-bottom:12px;
 }
 
 textarea,
 input,
 select{
     width:100%;
+    padding:12px;
     border:1px solid #ccd5e0;
     border-radius:8px;
-    padding:11px;
-    margin-top:10px;
     font-family:Arial;
     font-size:14px;
+    outline:none;
 }
 
 textarea{
@@ -425,45 +432,66 @@ textarea{
     resize:vertical;
 }
 
+textarea:focus,
+input:focus,
+select:focus{
+    border-color:#063b75;
+}
+
 .modal-actions{
     display:flex;
     justify-content:flex-end;
-    gap:8px;
-    margin-top:13px;
+    gap:10px;
+    margin-top:12px;
 }
 
-.modal-actions button{
+.modal-btn{
     border:0;
+    padding:10px 15px;
     border-radius:8px;
-    padding:10px 14px;
     font-weight:bold;
     cursor:pointer;
 }
 
 .cancel{
     background:#edf0f4;
+    color:#172033;
 }
 
-.confirm{
+.primary{
     background:#063b75;
     color:white;
 }
 
-.success-box{
+.green{
+    background:#087333;
+    color:white;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%) translateY(100px);
+    background:#063b75;
+    color:white;
+    padding:12px 18px;
+    border-radius:25px;
+    font-size:13px;
+    z-index:2000;
+    opacity:0;
+    transition:.3s;
+    max-width:90%;
     text-align:center;
-    padding:10px;
 }
 
-.success-icon{
-    font-size:45px;
-    margin-bottom:8px;
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
 }
 
-.success-box h3{
-    color:#063b75;
-    margin-bottom:7px;
-}
-
+/* FOOTER */
 footer{
     background:#03284f;
     color:white;
@@ -474,9 +502,10 @@ footer{
 footer p{
     color:#b9c9dc;
     font-size:12px;
-    margin-top:5px;
+    margin-top:6px;
 }
 
+/* MOBILE */
 @media(max-width:760px){
 
     .layout{
@@ -495,24 +524,38 @@ footer p{
         display:none;
     }
 
+    .back{
+        font-size:12px;
+    }
+
     .hero{
         padding:35px 18px;
     }
+
+    .container{
+        padding:20px 15px 60px;
+    }
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAVIGATION -->
 <nav>
 
     <div class="brand">
-        <div class="logo">GAM</div>
+
+        <div class="logo">
+            GAM
+        </div>
 
         <div>
             <h2>GAM Africa</h2>
             <p>Global Academy of Minds Africa</p>
         </div>
+
     </div>
 
     <a href="communities.html" class="back">
@@ -521,17 +564,22 @@ footer p{
 
 </nav>
 
+
+<!-- HERO -->
 <section class="hero">
 
     <div class="hero-inner">
 
-        <div class="community-icon" id="communityIcon">🔢</div>
+        <div class="community-icon" id="communityIcon">
+            🔢
+        </div>
 
-        <h1 id="communityTitle">Mathematics</h1>
+        <h1 id="communityTitle">
+            Mathematics
+        </h1>
 
         <p id="communityDescription">
-            Explore mathematics together, ask questions,
-            solve problems and learn from one another.
+            Learn, discuss, ask questions and help one another.
         </p>
 
         <div class="status">
@@ -542,44 +590,59 @@ footer p{
 
 </section>
 
+
 <div class="container">
 
+    <!-- ACTION BUTTONS -->
     <div class="actions">
 
-        <button class="action join" id="joinBtn">
+        <button
+            type="button"
+            class="action join"
+            id="joinBtn">
             + Join Community
         </button>
 
-        <button class="action ask" id="askBtn">
+        <button
+            type="button"
+            class="action ask"
+            id="askBtn">
             ❓ Ask a Question
         </button>
 
-        <button class="action report" id="reportBtn">
+        <button
+            type="button"
+            class="action report"
+            id="reportBtn">
             🚩 Report
         </button>
 
     </div>
 
+
     <div class="layout">
 
+        <!-- MAIN -->
         <main>
 
             <!-- DISCUSSION -->
-
             <div class="card">
 
                 <h2>💬 Community Discussion</h2>
 
-                <p class="description">
-                    Ask questions, explain ideas, share knowledge
-                    and learn respectfully from other members.
+                <p class="muted">
+                    A place where GAM members can discuss this field,
+                    explain concepts and learn from one another.
                 </p>
+
 
                 <div class="post">
 
                     <div class="post-header">
 
-                        <span class="user">Alex.K</span>
+                        <span class="user">
+                            Alex.K
+                        </span>
 
                         <span class="role">
                             Peer Tutor
@@ -587,22 +650,23 @@ footer p{
 
                     </div>
 
-                    <p>
-                        Can someone explain how they approach
-                        a difficult algebra problem when they
-                        don't know which method to use?
+                    <p class="post-text">
+                        Can someone explain how they approach a difficult
+                        algebra problem when they don't know which method
+                        to use?
                     </p>
 
                     <div class="post-actions">
 
                         <button
-                            class="small-btn reply-btn"
-                            data-user="Alex.K">
+                            type="button"
+                            class="small-btn replyBtn">
                             💬 Reply
                         </button>
 
                         <button
-                            class="small-btn helpful-btn">
+                            type="button"
+                            class="small-btn helpfulBtn">
                             👍 Helpful
                         </button>
 
@@ -610,11 +674,14 @@ footer p{
 
                 </div>
 
+
                 <div class="post">
 
                     <div class="post-header">
 
-                        <span class="user">Mary.W</span>
+                        <span class="user">
+                            Mary.W
+                        </span>
 
                         <span class="role">
                             Student
@@ -622,7 +689,7 @@ footer p{
 
                     </div>
 
-                    <p>
+                    <p class="post-text">
                         I'm preparing for an upcoming mathematics
                         assessment. Which topics should I practise first?
                     </p>
@@ -630,13 +697,14 @@ footer p{
                     <div class="post-actions">
 
                         <button
-                            class="small-btn reply-btn"
-                            data-user="Mary.W">
+                            type="button"
+                            class="small-btn replyBtn">
                             💬 Reply
                         </button>
 
                         <button
-                            class="small-btn helpful-btn">
+                            type="button"
+                            class="small-btn helpfulBtn">
                             👍 Helpful
                         </button>
 
@@ -644,11 +712,14 @@ footer p{
 
                 </div>
 
+
                 <div class="post">
 
                     <div class="post-header">
 
-                        <span class="user">Tutor.J</span>
+                        <span class="user">
+                            Tutor.J
+                        </span>
 
                         <span class="role">
                             Approved Tutor
@@ -656,22 +727,22 @@ footer p{
 
                     </div>
 
-                    <p>
-                        We'll be holding a problem-solving session
-                        this week. Check the upcoming sessions
-                        section to enrol.
+                    <p class="post-text">
+                        We'll be holding a problem-solving session this
+                        week. Check the sessions section to enrol.
                     </p>
 
                     <div class="post-actions">
 
                         <button
-                            class="small-btn reply-btn"
-                            data-user="Tutor.J">
+                            type="button"
+                            class="small-btn replyBtn">
                             💬 Reply
                         </button>
 
                         <button
-                            class="small-btn helpful-btn">
+                            type="button"
+                            class="small-btn helpfulBtn">
                             👍 Helpful
                         </button>
 
@@ -681,74 +752,64 @@ footer p{
 
             </div>
 
-            <!-- QUESTIONS -->
 
+            <!-- QUESTIONS -->
             <div class="card">
 
                 <h2>❓ Questions From Members</h2>
 
-                <div class="question-box">
+                <div class="question">
 
-                    <strong>Algebra Question</strong>
+                    <div class="question-title">
+                        Algebra Question
+                    </div>
 
                     <p>
-                        A student is stuck on an algebra problem
-                        and is looking for help from other members.
+                        A learner is stuck on an algebra problem
+                        and needs help from other members.
                     </p>
 
-                    <div class="post-actions">
-
-                        <button
-                            class="small-btn answer-btn">
-                            Answer
-                        </button>
-
-                        <button
-                            class="small-btn view-btn">
-                            View Question
-                        </button>
-
-                    </div>
+                    <button
+                        type="button"
+                        class="small-btn answerBtn">
+                        ✍️ Answer Question
+                    </button>
 
                 </div>
 
-                <div class="question-box">
 
-                    <strong>Geometry Question</strong>
+                <div class="question">
+
+                    <div class="question-title">
+                        Geometry Question
+                    </div>
 
                     <p>
-                        How can I improve my understanding
-                        of geometry proofs?
+                        How can I improve my understanding of
+                        geometry proofs?
                     </p>
 
-                    <div class="post-actions">
-
-                        <button
-                            class="small-btn answer-btn">
-                            Answer
-                        </button>
-
-                        <button
-                            class="small-btn view-btn">
-                            View Question
-                        </button>
-
-                    </div>
+                    <button
+                        type="button"
+                        class="small-btn answerBtn">
+                        ✍️ Answer Question
+                    </button>
 
                 </div>
 
             </div>
 
-            <!-- EVENTS -->
 
+            <!-- EVENTS -->
             <div class="card">
 
                 <h2>📅 Upcoming GAM Sessions</h2>
 
-                <p class="description">
-                    Sessions organised by approved tutors
-                    and trusted peer tutors.
+                <p class="muted">
+                    Sessions organised by approved tutors and
+                    trusted peer tutors.
                 </p>
+
 
                 <div class="event">
 
@@ -757,18 +818,25 @@ footer p{
                     </h3>
 
                     <p>
-                        👨‍🏫 Tutor.J • Tomorrow • 5:00 PM
+                        👨‍🏫 Tutor.J
                     </p>
 
                     <p>
-                        👥 <span class="count">12</span> / 20 enrolled
+                        🕐 Tomorrow • 5:00 PM
                     </p>
 
-                    <button class="enrol-btn">
+                    <p>
+                        👥 <span class="spots">12</span> / 20 enrolled
+                    </p>
+
+                    <button
+                        type="button"
+                        class="enrolBtn">
                         Enrol
                     </button>
 
                 </div>
+
 
                 <div class="event">
 
@@ -777,14 +845,20 @@ footer p{
                     </h3>
 
                     <p>
-                        👨‍🏫 Alex.K • Saturday • 3:00 PM
+                        👨‍🏫 Alex.K
                     </p>
 
                     <p>
-                        👥 <span class="count">18</span> / 20 enrolled
+                        🕐 Saturday • 3:00 PM
                     </p>
 
-                    <button class="enrol-btn">
+                    <p>
+                        👥 <span class="spots">18</span> / 20 enrolled
+                    </p>
+
+                    <button
+                        type="button"
+                        class="enrolBtn">
                         Enrol
                     </button>
 
@@ -794,10 +868,11 @@ footer p{
 
         </main>
 
+
+        <!-- SIDEBAR -->
         <aside>
 
             <!-- STATS -->
-
             <div class="card">
 
                 <h2>👥 Community</h2>
@@ -823,51 +898,71 @@ footer p{
 
             </div>
 
-            <!-- DIVISIONS -->
 
+            <!-- DIVISIONS -->
             <div class="card">
 
                 <h2>🏅 Divisions</h2>
 
                 <div class="division">
-                    <strong>Division 1</strong>
+
+                    <strong>
+                        Division 1
+                    </strong>
+
                     <p>
-                        Advanced learners and experienced contributors.
+                        Advanced learners and strong contributors.
                     </p>
+
                 </div>
+
 
                 <div class="division">
-                    <strong>Division 2</strong>
+
+                    <strong>
+                        Division 2
+                    </strong>
+
                     <p>
-                        Developing learners building strong foundations.
+                        Developing learners strengthening their skills.
                     </p>
+
                 </div>
+
 
                 <div class="division">
-                    <strong>Division 3</strong>
+
+                    <strong>
+                        Division 3
+                    </strong>
+
                     <p>
-                        Learners building their understanding.
+                        Learners building strong foundations.
                     </p>
+
                 </div>
 
-                <p class="description" style="margin-top:12px;">
-                    Placement will eventually be based on
-                    GAM assessments and demonstrated performance.
+                <p class="muted" style="margin-top:12px;font-size:11px;">
+                    GAM can later use assessments and performance
+                    to place members into suitable divisions.
                 </p>
 
             </div>
 
-            <!-- TUTORS -->
 
+            <!-- TUTORS -->
             <div class="card">
 
                 <h2>👨‍🏫 Community Tutors</h2>
 
                 <div class="tutor">
 
-                    <div class="avatar">TJ</div>
+                    <div class="avatar">
+                        TJ
+                    </div>
 
                     <div>
+
                         <div class="tutor-name">
                             Tutor.J
                         </div>
@@ -875,15 +970,20 @@ footer p{
                         <div class="tutor-type">
                             Approved Mathematics Tutor
                         </div>
+
                     </div>
 
                 </div>
 
+
                 <div class="tutor">
 
-                    <div class="avatar">AK</div>
+                    <div class="avatar">
+                        AK
+                    </div>
 
                     <div>
+
                         <div class="tutor-name">
                             Alex.K
                         </div>
@@ -891,23 +991,25 @@ footer p{
                         <div class="tutor-type">
                             Peer Tutor • Division 1
                         </div>
+
                     </div>
 
                 </div>
 
             </div>
 
-            <!-- SAFETY -->
 
+            <!-- SAFETY -->
             <div class="safety">
 
-                <h3>🛡️ GAM Safety</h3>
+                <h3>
+                    🛡️ GAM Safety
+                </h3>
 
                 <p>
-                    Keep discussions respectful. Never share
-                    phone numbers, passwords or private contact
-                    information. Unsafe content and abuse can
-                    be reported to GAM moderators.
+                    Keep discussions respectful. Never share phone
+                    numbers, passwords or private contact details.
+                    Report harmful content to GAM moderators.
                 </p>
 
             </div>
@@ -918,6 +1020,8 @@ footer p{
 
 </div>
 
+
+<!-- FOOTER -->
 <footer>
 
     <strong>
@@ -932,34 +1036,36 @@ footer p{
 
 
 <!-- ASK MODAL -->
-
 <div class="modal" id="askModal">
 
     <div class="modal-box">
 
-        <h2>❓ Ask the Community</h2>
+        <h2>
+            ❓ Ask the Community
+        </h2>
 
         <p>
-            Ask your question and other GAM members
+            Ask your question and members of this community
             can help you.
         </p>
 
         <textarea
             id="questionText"
-            placeholder="Write your question here...">
-        </textarea>
+            placeholder="Write your question here..."></textarea>
 
         <div class="modal-actions">
 
             <button
-                class="cancel"
-                id="cancelAsk">
+                type="button"
+                class="modal-btn cancel"
+                data-close="askModal">
                 Cancel
             </button>
 
             <button
-                class="confirm"
-                id="submitAsk">
+                type="button"
+                class="modal-btn primary"
+                id="postQuestion">
                 Post Question
             </button>
 
@@ -971,103 +1077,21 @@ footer p{
 
 
 <!-- REPORT MODAL -->
-
 <div class="modal" id="reportModal">
 
     <div class="modal-box">
 
-        <h2>🚩 Report a Concern</h2>
+        <h2>
+            🚩 Report a Concern
+        </h2>
 
         <p>
-            GAM moderators will review reports and
-            take appropriate action.
+            Tell GAM moderators what happened. Do not include
+            private information such as passwords.
         </p>
 
         <textarea
             id="reportText"
-            placeholder="Describe the concern...">
-        </textarea>
+            placeholder="Describe the concern..."></textarea>
 
-        <div class="modal-actions">
-
-            <button
-                class="cancel"
-                id="cancelReport">
-                Cancel
-            </button>
-
-            <button
-                class="confirm"
-                id="submitReport">
-                Submit Report
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- GENERAL MODAL -->
-
-<div class="modal" id="generalModal">
-
-    <div class="modal-box">
-
-        <div class="success-box">
-
-            <div
-                class="success-icon"
-                id="generalIcon">
-                ✓
-            </div>
-
-            <h3 id="generalTitle">
-                GAM Community
-            </h3>
-
-            <p id="generalMessage">
-                Action completed.
-            </p>
-
-            <div class="modal-actions">
-
-                <button
-                    class="confirm"
-                    id="closeGeneral">
-                    OK
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<script>
-
-/* =========================================
-   GAM COMMUNITY
-   STANDALONE VERSION
-   NO FIREBASE REQUIRED
-========================================= */
-
-
-/* -----------------------------------------
-   COMMUNITY DATA
------------------------------------------ */
-
-const communityData = {
-
-    mathematics:{
-        title:"Mathematics",
-        icon:"🔢",
-        description:
-        "Explore mathematics together — from foundations, algebra and geometry to advanced problem solving."
-    },
-
-    
+        <div class="modal-act
