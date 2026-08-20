@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,23 +21,12 @@ body{
     color:#172033;
 }
 
-button,
-textarea{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
+/* NAV */
 
 nav{
     background:#063b75;
     color:white;
-    padding:13px 6%;
+    padding:13px 5%;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -84,14 +72,12 @@ nav{
     font-weight:bold;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
     background:linear-gradient(120deg,#063b75,#087333);
     color:white;
-    padding:42px 20px;
+    padding:45px 20px;
 }
 
 .hero-inner{
@@ -100,34 +86,32 @@ nav{
 }
 
 .community-icon{
-    font-size:42px;
+    font-size:45px;
     margin-bottom:8px;
 }
 
 .hero h1{
     font-size:clamp(30px,5vw,48px);
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .hero p{
-    max-width:720px;
+    max-width:750px;
     color:#e5eef7;
     line-height:1.6;
 }
 
 .community-status{
     display:inline-block;
-    margin-top:15px;
+    margin-top:16px;
     background:#ffffff20;
     border:1px solid #ffffff40;
-    padding:7px 12px;
+    padding:8px 13px;
     border-radius:20px;
     font-size:12px;
 }
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 .container{
     max-width:1100px;
@@ -141,39 +125,26 @@ nav{
     gap:20px;
 }
 
-/* =========================
-   CARDS
-========================= */
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:21px;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
-    margin-bottom:18px;
-}
-
-.card h2{
-    color:#063b75;
-    margin-bottom:12px;
-}
-
-/* =========================
-   ACTIONS
-========================= */
+/* ACTIONS */
 
 .actions{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .action{
     border:0;
-    border-radius:8px;
-    padding:10px 14px;
+    border-radius:9px;
+    padding:11px 15px;
     font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.action:hover{
+    transform:translateY(-1px);
 }
 
 .join{
@@ -187,33 +158,26 @@ nav{
 }
 
 .report{
-    background:#f3f4f6;
+    background:#f1f3f6;
     color:#a40000;
 }
 
-.action:hover{
-    opacity:.9;
-    transform:translateY(-1px);
+/* CARDS */
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:21px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    margin-bottom:18px;
 }
 
-.connection-status{
-    width:100%;
-    font-size:11px;
-    color:#687386;
-    padding-top:2px;
+.card h2{
+    color:#063b75;
+    margin-bottom:10px;
 }
 
-.connection-status.success{
-    color:#087333;
-}
-
-.connection-status.error{
-    color:#a40000;
-}
-
-/* =========================
-   POSTS
-========================= */
+/* DISCUSSION */
 
 .post{
     border:1px solid #e2e7ee;
@@ -225,7 +189,6 @@ nav{
 .post-header{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     gap:10px;
     margin-bottom:8px;
 }
@@ -252,8 +215,7 @@ nav{
 .post-actions{
     margin-top:11px;
     display:flex;
-    gap:12px;
-    flex-wrap:wrap;
+    gap:14px;
 }
 
 .small-btn{
@@ -262,12 +224,10 @@ nav{
     color:#063b75;
     font-size:12px;
     font-weight:bold;
-    padding:5px 0;
+    cursor:pointer;
 }
 
-/* =========================
-   QUESTIONS
-========================= */
+/* QUESTIONS */
 
 .question-box{
     background:#f5f8fc;
@@ -287,15 +247,13 @@ nav{
     line-height:1.5;
 }
 
-/* =========================
-   EVENTS
-========================= */
+/* EVENTS */
 
 .event{
     border-left:4px solid #087333;
     background:#f7faf8;
-    padding:13px;
-    margin-top:10px;
+    padding:14px;
+    margin-top:11px;
     border-radius:8px;
 }
 
@@ -311,23 +269,45 @@ nav{
 }
 
 .event button{
-    margin-top:9px;
+    margin-top:10px;
     border:0;
     background:#087333;
     color:white;
     padding:8px 12px;
-    border-radius:6px;
+    border-radius:7px;
     font-size:11px;
     font-weight:bold;
+    cursor:pointer;
 }
 
-.event button.enrolled{
-    background:#063b75;
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:15px;
 }
 
-/* =========================
-   DIVISIONS
-========================= */
+.stat{
+    background:#f5f8fc;
+    padding:13px 8px;
+    text-align:center;
+    border-radius:9px;
+}
+
+.stat strong{
+    display:block;
+    color:#063b75;
+    font-size:20px;
+}
+
+.stat span{
+    color:#687386;
+    font-size:10px;
+}
+
+/* DIVISIONS */
 
 .division{
     border:1px solid #e0e5ec;
@@ -346,9 +326,7 @@ nav{
     margin-top:4px;
 }
 
-/* =========================
-   TUTORS
-========================= */
+/* TUTORS */
 
 .tutor{
     display:flex;
@@ -383,38 +361,7 @@ nav{
     margin-top:3px;
 }
 
-/* =========================
-   STATS
-========================= */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-top:15px;
-}
-
-.stat{
-    background:#f5f8fc;
-    padding:13px 8px;
-    text-align:center;
-    border-radius:9px;
-}
-
-.stat strong{
-    display:block;
-    color:#063b75;
-    font-size:20px;
-}
-
-.stat span{
-    color:#687386;
-    font-size:10px;
-}
-
-/* =========================
-   SAFETY
-========================= */
+/* SAFETY */
 
 .safety{
     background:#fff8df;
@@ -434,9 +381,7 @@ nav{
     line-height:1.5;
 }
 
-/* =========================
-   MODALS
-========================= */
+/* MODAL */
 
 .modal{
     display:none;
@@ -449,17 +394,12 @@ nav{
     padding:20px;
 }
 
-.modal.show{
-    display:flex;
-}
-
 .modal-box{
     background:white;
     width:100%;
     max-width:500px;
-    border-radius:15px;
+    border-radius:16px;
     padding:22px;
-    box-shadow:0 15px 50px rgba(0,0,0,.2);
 }
 
 .modal-box h2{
@@ -473,12 +413,9 @@ nav{
     resize:vertical;
     padding:12px;
     border:1px solid #ccd5e0;
-    border-radius:8px;
-    outline:none;
-}
-
-.modal-box textarea:focus{
-    border-color:#063b75;
+    border-radius:9px;
+    font-family:Arial;
+    font-size:14px;
 }
 
 .modal-actions{
@@ -490,9 +427,10 @@ nav{
 
 .modal-actions button{
     border:0;
-    padding:9px 13px;
+    padding:9px 14px;
     border-radius:7px;
     font-weight:bold;
+    cursor:pointer;
 }
 
 .cancel{
@@ -504,9 +442,7 @@ nav{
     color:white;
 }
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
 .toast{
     position:fixed;
@@ -516,12 +452,13 @@ nav{
     background:#063b75;
     color:white;
     padding:12px 18px;
-    border-radius:9px;
+    border-radius:10px;
     font-size:13px;
-    z-index:200;
+    font-weight:bold;
     opacity:0;
     transition:.3s;
-    box-shadow:0 5px 25px rgba(0,0,0,.2);
+    z-index:200;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
 }
 
 .toast.show{
@@ -529,9 +466,7 @@ nav{
     transform:translateX(-50%) translateY(0);
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer{
     background:#03284f;
@@ -546,9 +481,7 @@ footer p{
     margin-top:5px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:760px){
 
@@ -568,16 +501,8 @@ footer p{
         display:none;
     }
 
-    .hero{
-        padding:32px 18px;
-    }
-
-    .container{
-        padding:20px 14px 60px;
-    }
-
-    .card{
-        padding:17px;
+    .back{
+        font-size:11px;
     }
 
 }
@@ -586,21 +511,15 @@ footer p{
 
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- NAV -->
 
 <nav>
 
 <div class="brand">
 
-<div class="logo">
-GAM
-</div>
+<div class="logo">GAM</div>
 
 <div>
 
@@ -612,26 +531,20 @@ GAM
 
 </div>
 
-<a
-href="communities.html"
-class="back">
+<a href="communities.html" class="back">
 ← Communities
 </a>
 
 </nav>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <section class="hero">
 
 <div class="hero-inner">
 
-<div
-class="community-icon"
-id="communityIcon">
+<div class="community-icon" id="communityIcon">
 🔢
 </div>
 
@@ -641,7 +554,8 @@ Mathematics
 
 <p id="communityDescription">
 Explore mathematics together — ask questions,
-solve problems and learn from one another.
+solve problems, join sessions and learn from
+other members.
 </p>
 
 <div class="community-status">
@@ -655,84 +569,44 @@ solve problems and learn from one another.
 
 <div class="container">
 
-
-<!-- =========================
-     ACTIONS
-========================= -->
+<!-- ACTIONS -->
 
 <div class="actions">
 
-<button
-class="action join"
-id="joinBtn"
-type="button">
-
+<button class="action join" id="joinBtn">
 + Join Community
-
 </button>
 
-
-<button
-class="action ask"
-id="askBtn"
-type="button">
-
+<button class="action ask" id="askBtn">
 ❓ Ask a Question
-
 </button>
 
-
-<button
-class="action report"
-id="reportBtn"
-type="button">
-
+<button class="action report" id="reportBtn">
 🚩 Report
-
 </button>
-
-
-<div
-id="connectionStatus"
-class="connection-status">
-
-GAM Community ready • Account connection is optional
-for viewing this community.
-
-</div>
 
 </div>
 
 
 <div class="layout">
 
-
-<!-- =========================
-     MAIN COLUMN
-========================= -->
+<!-- MAIN -->
 
 <main>
-
 
 <!-- DISCUSSION -->
 
 <div class="card">
 
-<h2>
-💬 Community Discussion
-</h2>
+<h2>💬 Community Discussion</h2>
 
-<p style="color:#687386;font-size:13px;line-height:1.5;">
-
-A real learning community where students,
-peer tutors and approved tutors can discuss
-ideas and help one another.
-
+<p style="color:#687386;font-size:13px;">
+Ask questions, explain ideas, share knowledge
+and learn respectfully from one another.
 </p>
 
 
-<div
-class="post">
+<div class="post">
 
 <div class="post-header">
 
@@ -747,27 +621,19 @@ Peer Tutor
 </div>
 
 <p>
-Can someone explain how they approach a difficult
-algebra problem when they don't know which method
-to use?
+Can someone explain how they approach a
+difficult algebra problem when they don't
+know which method to use?
 </p>
 
 <div class="post-actions">
 
-<button
-class="small-btn helpful-btn"
-type="button">
-
+<button class="small-btn reply-btn">
 💬 Reply
-
 </button>
 
-<button
-class="small-btn helpful-btn"
-type="button">
-
+<button class="small-btn helpful-btn">
 👍 Helpful
-
 </button>
 
 </div>
@@ -775,8 +641,7 @@ type="button">
 </div>
 
 
-<div
-class="post">
+<div class="post">
 
 <div class="post-header">
 
@@ -791,26 +656,18 @@ Student
 </div>
 
 <p>
-I'm preparing for an upcoming mathematics assessment.
-Which topics should I practise first?
+I'm preparing for an upcoming mathematics
+assessment. Which topics should I practise first?
 </p>
 
 <div class="post-actions">
 
-<button
-class="small-btn"
-type="button">
-
+<button class="small-btn reply-btn">
 💬 Reply
-
 </button>
 
-<button
-class="small-btn helpful-btn"
-type="button">
-
+<button class="small-btn helpful-btn">
 👍 Helpful
-
 </button>
 
 </div>
@@ -818,8 +675,7 @@ type="button">
 </div>
 
 
-<div
-class="post">
+<div class="post">
 
 <div class="post-header">
 
@@ -834,26 +690,19 @@ Approved Tutor
 </div>
 
 <p>
-We'll be holding a problem-solving session this week.
-Check the upcoming sessions section to enrol.
+We'll be holding a problem-solving session
+this week. Check the upcoming sessions section
+to enrol.
 </p>
 
 <div class="post-actions">
 
-<button
-class="small-btn"
-type="button">
-
+<button class="small-btn reply-btn">
 💬 Reply
-
 </button>
 
-<button
-class="small-btn helpful-btn"
-type="button">
-
+<button class="small-btn helpful-btn">
 👍 Helpful
-
 </button>
 
 </div>
@@ -867,38 +716,27 @@ type="button">
 
 <div class="card">
 
-<h2>
-❓ Questions From Members
-</h2>
-
+<h2>❓ Questions From Members</h2>
 
 <div class="question-box">
 
 <strong>
-Algebra Question
+Algebra question
 </strong>
 
 <p>
-A student is stuck on an algebra problem
-and is looking for help from other members.
+A student is stuck on an algebra problem and
+is looking for help from other members.
 </p>
 
 <div class="post-actions">
 
-<button
-class="small-btn"
-type="button">
-
+<button class="small-btn answer-btn">
 Answer
-
 </button>
 
-<button
-class="small-btn"
-type="button">
-
+<button class="small-btn view-btn">
 View Question
-
 </button>
 
 </div>
@@ -909,7 +747,7 @@ View Question
 <div class="question-box">
 
 <strong>
-Geometry Question
+Geometry question
 </strong>
 
 <p>
@@ -919,20 +757,12 @@ geometry proofs?
 
 <div class="post-actions">
 
-<button
-class="small-btn"
-type="button">
-
+<button class="small-btn answer-btn">
 Answer
-
 </button>
 
-<button
-class="small-btn"
-type="button">
-
+<button class="small-btn view-btn">
 View Question
-
 </button>
 
 </div>
@@ -942,26 +772,19 @@ View Question
 </div>
 
 
-<!-- SESSIONS -->
+<!-- EVENTS -->
 
 <div class="card">
 
-<h2>
-📅 Upcoming GAM Sessions
-</h2>
+<h2>📅 Upcoming GAM Sessions</h2>
 
-<p style="color:#687386;font-size:13px;line-height:1.5;">
-
-Sessions can eventually be organised by approved
-tutors and trusted peer tutors. Small rooms can
-support up to 20 learners, while GAM halls can
-support larger groups.
-
+<p style="color:#687386;font-size:13px;">
+Sessions organised by approved tutors
+and peer tutors.
 </p>
 
 
-<div
-class="event">
+<div class="event">
 
 <h3>
 Algebra Problem-Solving Session
@@ -972,22 +795,17 @@ Algebra Problem-Solving Session
 </p>
 
 <p>
-👥 <span class="count">12</span> / 20 enrolled
+👥 12 / 20 enrolled
 </p>
 
-<button
-class="enrol-btn"
-type="button">
-
+<button class="enrol-btn">
 Enrol
-
 </button>
 
 </div>
 
 
-<div
-class="event">
+<div class="event">
 
 <h3>
 KCSE Mathematics Revision
@@ -998,151 +816,53 @@ KCSE Mathematics Revision
 </p>
 
 <p>
-👥 <span class="count">18</span> / 20 enrolled
+👥 18 / 20 enrolled
 </p>
 
-<button
-class="enrol-btn"
-type="button">
-
+<button class="enrol-btn">
 Enrol
-
-</button>
-
-</div>
-
-
-<div
-class="event">
-
-<h3>
-GAM Mathematics Open Hall
-</h3>
-
-<p>
-👨‍🏫 GAM Community Tutors • Sunday • 2:00 PM
-</p>
-
-<p>
-👥 Open GAM Hall
-</p>
-
-<button
-class="enrol-btn"
-type="button">
-
-Join Hall
-
 </button>
 
 </div>
 
 </div>
-
-
-<!-- LEARNING MODEL -->
-
-<div class="card">
-
-<h2>
-🌍 Learn From Each Other
-</h2>
-
-<p
-style="color:#596579;font-size:14px;line-height:1.7;">
-
-GAM is designed around community learning.
-A learner who understands one subject especially
-well may become a peer tutor. Another learner may
-help with coding, chemistry, mathematics, English
-or another field.
-
-</p>
-
-<p
-style="color:#596579;font-size:14px;line-height:1.7;margin-top:10px;">
-
-Trusted members can eventually organise learning
-programs, revision sessions, coding projects,
-KCSE preparation groups and other useful activities
-inside GAM.
-
-</p>
-
-</div>
-
 
 </main>
 
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+<!-- SIDEBAR -->
 
 <aside>
 
-
-<!-- STATS -->
-
 <div class="card">
 
-<h2>
-👥 Community
-</h2>
+<h2>👥 Community</h2>
 
 <div class="stats">
 
 <div class="stat">
-
-<strong>
-428
-</strong>
-
-<span>
-Members
-</span>
-
+<strong>428</strong>
+<span>Members</span>
 </div>
-
 
 <div class="stat">
-
-<strong>
-86
-</strong>
-
-<span>
-Active
-</span>
-
+<strong>86</strong>
+<span>Active</span>
 </div>
-
 
 <div class="stat">
-
-<strong>
-24
-</strong>
-
-<span>
-Tutors
-</span>
-
+<strong>24</strong>
+<span>Tutors</span>
 </div>
 
 </div>
 
 </div>
 
-
-<!-- DIVISIONS -->
 
 <div class="card">
 
-<h2>
-🏅 Divisions
-</h2>
-
+<h2>🏅 Divisions</h2>
 
 <div class="division">
 
@@ -1151,11 +871,10 @@ Division 1
 </strong>
 
 <p>
-Advanced learners and highly active contributors.
+Advanced learners and experienced contributors.
 </p>
 
 </div>
-
 
 <div class="division">
 
@@ -1164,11 +883,10 @@ Division 2
 </strong>
 
 <p>
-Developing learners strengthening their skills.
+Developing learners building strong foundations.
 </p>
 
 </div>
-
 
 <div class="division">
 
@@ -1177,31 +895,22 @@ Division 3
 </strong>
 
 <p>
-Learners building their foundations.
+Learners building their understanding.
 </p>
 
 </div>
 
-
-<p
-style="margin-top:12px;color:#687386;font-size:11px;line-height:1.5;">
-
-Division placement can eventually be determined
-by GAM entry assessments, community contribution
-and demonstrated performance.
-
+<p style="margin-top:12px;color:#687386;font-size:11px;">
+GAM will eventually determine division placement
+using performance in the relevant field.
 </p>
 
 </div>
 
-
-<!-- TUTORS -->
 
 <div class="card">
 
-<h2>
-👨‍🏫 Community Tutors
-</h2>
+<h2>👨‍🏫 Community Tutors</h2>
 
 
 <div class="tutor">
@@ -1245,31 +954,8 @@ Peer Tutor • Division 1
 
 </div>
 
-
-<div class="tutor">
-
-<div class="avatar">
-GM
 </div>
 
-<div>
-
-<div class="tutor-name">
-GAM.M
-</div>
-
-<div class="tutor-type">
-Community Moderator
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- SAFETY -->
 
 <div class="safety">
 
@@ -1278,24 +964,13 @@ Community Moderator
 </h3>
 
 <p>
-
-GAM communities are designed to keep learning
-inside the platform. Members should not share
-phone numbers, private contact details,
-passwords or unsafe links.
-
-</p>
-
-<p style="margin-top:8px;">
-
-Members can report harmful content. Moderators
-can investigate reports and take appropriate
-action under GAM community rules.
-
+Keep discussions respectful. Never share phone
+numbers, passwords or private contact information.
+GAM moderators can review reports and take action
+when necessary.
 </p>
 
 </div>
-
 
 </aside>
 
@@ -1303,10 +978,6 @@ action under GAM community rules.
 
 </div>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
@@ -1321,13 +992,9 @@ Learn • Connect • Compete • Excel
 </footer>
 
 
-<!-- =========================
-     ASK MODAL
-========================= -->
+<!-- ASK MODAL -->
 
-<div
-class="modal"
-id="askModal">
+<div class="modal" id="askModal">
 
 <div class="modal-box">
 
@@ -1342,22 +1009,12 @@ placeholder="Write your question here...">
 
 <div class="modal-actions">
 
-<button
-class="cancel"
-id="cancelAsk"
-type="button">
-
+<button class="cancel" id="cancelAsk">
 Cancel
-
 </button>
 
-<button
-class="submit"
-id="submitAsk"
-type="button">
-
+<button class="submit" id="submitAsk">
 Post Question
-
 </button>
 
 </div>
@@ -1367,13 +1024,9 @@ Post Question
 </div>
 
 
-<!-- =========================
-     REPORT MODAL
-========================= -->
+<!-- REPORT MODAL -->
 
-<div
-class="modal"
-id="reportModal">
+<div class="modal" id="reportModal">
 
 <div class="modal-box">
 
@@ -1388,22 +1041,12 @@ placeholder="Tell GAM what you are reporting...">
 
 <div class="modal-actions">
 
-<button
-class="cancel"
-id="cancelReport"
-type="button">
-
+<button class="cancel" id="cancelReport">
 Cancel
-
 </button>
 
-<button
-class="submit"
-id="submitReport"
-type="button">
-
+<button class="submit" id="submitReport">
 Submit Report
-
 </button>
 
 </div>
@@ -1413,31 +1056,33 @@ Submit Report
 </div>
 
 
-<!-- =========================
-     TOAST
-========================= -->
+<!-- TOAST -->
 
-<div
-class="toast"
-id="toast">
-
+<div class="toast" id="toast">
+Done
 </div>
 
-
-<!-- =========================
-     MAIN JAVASCRIPT
-     NO FIREBASE DEPENDENCY
-     FOR BASIC UI
-========================= -->
 
 <script>
 
-"use strict";
+/* =========================================
+   GAM COMMUNITY FRONT-END
+   No authentication blocking.
+   The page works immediately.
+========================================= */
 
 
-/* =========================
-   COMMUNITY DATA
-========================= */
+/* COMMUNITY DATA */
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const community =
+params.get("community") ||
+"mathematics";
+
 
 const communityData = {
 
@@ -1481,30 +1126,9 @@ const communityData = {
         icon:"🌍",
         description:
         "Explore history, geography, society, culture and the world around us."
-    },
-
-    technology:{
-        title:"Technology",
-        icon:"💻",
-        description:
-        "Learn technology, digital skills, programming and practical computer projects together."
     }
 
 };
-
-
-/* =========================
-   GET COMMUNITY
-========================= */
-
-const params =
-new URLSearchParams(
-    window.location.search
-);
-
-const community =
-params.get("community") ||
-"mathematics";
 
 
 const selected =
@@ -1512,87 +1136,403 @@ communityData[community] ||
 communityData.mathematics;
 
 
-/* =========================
-   DISPLAY
-========================= */
+/* DISPLAY COMMUNITY */
 
 document.getElementById(
-    "communityTitle"
+"communityTitle"
 ).textContent =
-    selected.title;
+selected.title;
 
 
 document.getElementById(
-    "communityIcon"
+"communityIcon"
 ).textContent =
-    selected.icon;
+selected.icon;
 
 
 document.getElementById(
-    "communityDescription"
+"communityDescription"
 ).textContent =
-    selected.description;
+selected.description;
 
 
-/* =========================
-   ELEMENTS
-========================= */
+/* ELEMENTS */
 
 const joinBtn =
 document.getElementById(
-    "joinBtn"
-);
-
-const askBtn =
-document.getElementById(
-    "askBtn"
-);
-
-const reportBtn =
-document.getElementById(
-    "reportBtn"
+"joinBtn"
 );
 
 const askModal =
 document.getElementById(
-    "askModal"
+"askModal"
 );
 
 const reportModal =
 document.getElementById(
-    "reportModal"
+"reportModal"
 );
 
 const toast =
 document.getElementById(
-    "toast"
-);
-
-const connectionStatus =
-document.getElementById(
-    "connectionStatus"
+"toast"
 );
 
 
-/* =========================
-   TOAST
-========================= */
-
-let toastTimer;
-
+/* TOAST */
 
 function showToast(message){
 
     toast.textContent =
-        message;
+    message;
 
-    toast.classList.add(
-        "show"
+    toast.classList.add("show");
+
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
     );
 
-    clearTimeout(
-        toastTimer
+}
+
+
+/* JOIN COMMUNITY */
+
+joinBtn.addEventListener(
+"click",
+function(){
+
+    if(
+        joinBtn.dataset.joined === "true"
+    ){
+
+        showToast(
+            "You are already a member of this community."
+        );
+
+        return;
+
+    }
+
+
+    joinBtn.dataset.joined =
+    "true";
+
+    joinBtn.textContent =
+    "✓ Joined Community";
+
+    joinBtn.style.background =
+    "#063b75";
+
+
+    showToast(
+        "You joined the " +
+        selected.title +
+        " community."
     );
 
-    toastTimer =
-       
+});
+
+
+/* ASK QUESTION */
+
+document.getElementById(
+"askBtn"
+).addEventListener(
+"click",
+function(){
+
+    askModal.style.display =
+    "flex";
+
+});
+
+
+document.getElementById(
+"cancelAsk"
+).addEventListener(
+"click",
+function(){
+
+    askModal.style.display =
+    "none";
+
+});
+
+
+document.getElementById(
+"submitAsk"
+).addEventListener(
+"click",
+function(){
+
+    const input =
+    document.getElementById(
+        "questionText"
+    );
+
+    const text =
+    input.value.trim();
+
+
+    if(!text){
+
+        showToast(
+            "Please write your question first."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Temporary local behaviour.
+     * Firebase posting will be added
+     * after the interface is stable.
+     */
+
+    const questionsCard =
+    document.querySelector(
+        ".card:nth-of-type(2)"
+    );
+
+
+    const question =
+    document.createElement(
+        "div"
+    );
+
+
+    question.className =
+    "question-box";
+
+
+    question.innerHTML = `
+        <strong>New community question</strong>
+        <p>${escapeHTML(text)}</p>
+        <div class="post-actions">
+            <button class="small-btn answer-btn">
+                Answer
+            </button>
+            <button class="small-btn view-btn">
+                View Question
+            </button>
+        </div>
+    `;
+
+
+    /*
+     * Insert the new question
+     * before existing questions.
+     */
+
+    const firstQuestion =
+    document.querySelector(
+        ".question-box"
+    );
+
+
+    if(firstQuestion){
+
+        firstQuestion.parentNode.insertBefore(
+            question,
+            firstQuestion
+        );
+
+    }
+
+
+    input.value =
+    "";
+
+    askModal.style.display =
+    "none";
+
+
+    showToast(
+        "Your question has been posted."
+    );
+
+
+    attachQuestionButtons(
+        question
+    );
+
+});
+
+
+/* REPORT */
+
+document.getElementById(
+"reportBtn"
+).addEventListener(
+"click",
+function(){
+
+    reportModal.style.display =
+    "flex";
+
+});
+
+
+document.getElementById(
+"cancelReport"
+).addEventListener(
+"click",
+function(){
+
+    reportModal.style.display =
+    "none";
+
+});
+
+
+document.getElementById(
+"submitReport"
+).addEventListener(
+"click",
+function(){
+
+    const input =
+    document.getElementById(
+        "reportText"
+    );
+
+    const text =
+    input.value.trim();
+
+
+    if(!text){
+
+        showToast(
+            "Please describe the concern."
+        );
+
+        return;
+
+    }
+
+
+    input.value =
+    "";
+
+    reportModal.style.display =
+    "none";
+
+
+    showToast(
+        "Report received by GAM moderation."
+    );
+
+});
+
+
+/* EVENT ENROLMENT */
+
+document.querySelectorAll(
+".enrol-btn"
+).forEach(
+function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            if(
+                this.dataset.enrolled === "true"
+            ){
+
+                showToast(
+                    "You are already enrolled."
+                );
+
+                return;
+
+            }
+
+
+            this.dataset.enrolled =
+            "true";
+
+            this.textContent =
+            "✓ Enrolled";
+
+            this.style.background =
+            "#063b75";
+
+
+            showToast(
+                "You have enrolled for this GAM session."
+            );
+
+        }
+    );
+
+});
+
+
+/* REPLY BUTTONS */
+
+document.querySelectorAll(
+".reply-btn"
+).forEach(
+function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            showToast(
+                "Reply feature is ready for the next community upgrade."
+            );
+
+        }
+    );
+
+});
+
+
+/* HELPFUL BUTTONS */
+
+document.querySelectorAll(
+".helpful-btn"
+).forEach(
+function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            this.textContent =
+            "✓ Helpful";
+
+            showToast(
+                "Marked as helpful."
+            );
+
+        }
+    );
+
+});
+
+
+/* QUESTION BUTTONS */
+
+function attachQuestionButtons(
+container
+){
+
+    const answer =
+    container.querySelector(
+        ".answer-btn"
+    );
+
+    const view =
+    co
