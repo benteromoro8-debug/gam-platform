@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+
+<title>GAM Africa | Member Hub</title>
+
+<style>
+:root {
+  --bg: #071426;
+  --panel: #101f35;
+  --panel2: #152943;
+  --gold: #f5c451;
+  --text: #f4f7fc;
+  --muted: #a9b8ce;
+  --border: rgba(255,255,255,.10);
+  --green: #51d6a1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button, a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 5%;
+  border-bottom: 1px solid var(--border);
+  background: #09182c;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: var(--gold);
+  color: #101b2c;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.brand h1 {
+  font-size: 17px;
+  margin: 0;
+}
+
+.brand p {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1.2px;
+}
+
+.signout {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: white;
+  padding: 10px 13px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+main {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+  padding: 30px 0 50px;
+}
+
+.welcome {
+  padding: 30px;
+  border-radius: 22px;
+  background: linear-gradient(130deg, #183c61, #14243c 65%, #222c42);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.welcome h2 {
+  font-size: clamp(27px, 5vw, 43px);
+  margin: 14px 0 10px;
+}
+
+.welcome p {
+  color: #d1dced;
+  line-height: 1.7;
+  max-width: 650px;
+}
+
+.member-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--gold);
+  color: #101b2c;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.member-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.member-role {
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.status {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.status.ok {
+  color: var(--green);
+}
+
+.status.error {
+  color: #ffaaaa;
+}
+
+.section-heading {
+  margin: 34px 0 16px;
+}
+
+.section-heading h3 {
+  font-size: 21px;
+  margin: 0 0 7px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 21px;
+  min-width: 0;
+  transition: transform .2s, border-color .2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245,196,81,.65);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--panel2);
+  border-radius: 13px;
+  font-size: 24px;
+}
+
+.badge {
+  border-radius: 20px;
+  padding: 6px 9px;
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--gold);
+  background: rgba(245,196,81,.10);
+}
+
+.card h4 {
+  font-size: 18px;
+  margin: 18px 0 8px;
+}
+
+.card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.card-action {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.owner-panel {
+  margin-top: 30px;
+  padding: 23px;
+  border-radius: 17px;
+  background: #182d39;
+  border: 1px solid rgba(81,214,161,.25);
+}
+
+.owner-panel h3 {
+  margin: 0 0 9px;
+  color: var(--green);
+}
+
+.owner-panel p {
+  font-size: 13px;
+  color: #c2d1dc;
+  line-height: 1.7;
+}
+
+.owner-label {
+  display: inline-block;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(81,214,161,.12);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.notice {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 17px;
+  margin-top: 25px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 15px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.loading {
+  color: var(--gold);
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    padding: 13px 4%;
+  }
+
+  .brand h1 {
+    font-size: 14px;
+  }
+
+  .brand p {
+    font-size: 9px;
+  }
+
+  .signout {
+    padding: 9px;
+    font-size: 12px;
+  }
+
+  main {
+    width: 92%;
+    padding-top: 20px;
+  }
+
+  .welcome {
+    padding: 22px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 19px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">G</div>
+    <div>
+      <h1>GAM AFRICA</h1>
+      <p>GLOBAL ACADEMY OF MINDS</p>
+    </div>
+  </div>
+
+  <button class="signout" id="signOutBtn" type="button">
+    Sign out
+  </button>
+</header>
+
+<main>
+
+  <section class="welcome">
+    <div class="eyebrow">Your learning community</div>
+
+    <h2>Welcome to GAM Africa.</h2>
+
+    <p>
+      Learn together. Think deeper. Compete fairly.
+      Connect with fellow learners, join classrooms, share knowledge,
+      and develop your abilities through meaningful challenges.
+    </p>
+
+    <div class="member-row">
+      <div class="avatar" id="avatar">G</div>
+
+      <div>
+        <div class="member-name" id="memberName">Checking your account...</div>
+        <div class="member-role" id="memberRole">Verifying membership</div>
+      </div>
+    </div>
+
+    <div class="status" id="accountStatus" aria-live="polite">
+      Connecting to GAM account services...
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <h3>Your GAM Spaces</h3>
+      <p>One account for your learning, communication, and competitions.</p>
+    </div>
+
+    <div class="grid">
+
+      <a class="card" href="chat.html">
+        <div class="card-top">
+          <div class="icon">💬</div>
+          <span class="badge">PLANNED</span>
+        </div>
+        <h4>GAM Chat</h4>
+        <p>
+          A dedicated space for private messages, study groups,
+          discussions, and communication with other members.
+        </p>
+        <span class="card-action">Open Chat →</span>
+      </a>
+
+      <a class="card" href="rooms.html">
+        <div class="card-top">
+          <div class="icon">🎥</div>
+          <span class="badge">PLANNED</span>
+        </div>
+        <h4>GAM Live Rooms</h4>
+        <p>
+          Five learning rooms and the Grand Hall for lessons,
+          presentations, tutoring, and general meetings.
+        </p>
+        <span class="card-action">Explore Rooms →</span>
+      </a>
+
+      <a class="card" href="community.html">
+        <div class="card-top">
+          <div class="icon">🛡️</div>
+          <span class="badge">PLANNED</span>
+        </div>
+        <h4>GAM Community</h4>
+        <p>
+          Meet members, follow community regulations, discover
+          opportunities, and participate according to your role.
+        </p>
+        <span class="card-action">Enter Community →</span>
+      </a>
+
+      <a class="card" href="exam.html">
+        <div class="card-top">
+          <div class="icon">📝</div>
+          <span class="badge">PLANNED</span>
+        </div>
+        <h4>GAM Exam Space</h4>
+        <p>
+          Prepare for assessments, take practice tests, participate
+          in mathematics challenges, and view your results.
+        </p>
+        <span class="card-action">Explore Exams →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section id="ownerPanel" class="owner-panel" hidden>
+    <span class="owner-label">OWNER ACCOUNT RECOGNIZED</span>
+    <h3>GAM Owner Centre</h3>
+
+    <p>
+      Your account has been recognized as the designated GAM owner.
+      This is the starting point for platform administration.
+      Administrative actions will be added after their server-side
+      permissions and audit records are implemented.
+    </p>
+  </section>
+
+  <div class="notice">
+    <strong>Our promise:</strong>
+    GAM will grow one working feature at a time. Member counts,
+    online activity, examination results, and other statistics
+    will come from real data rather than invented demonstration numbers.
+  </div>
+
+</main>
+
+<footer>
+  GAM Africa · Global Academy of Minds Africa<br>
+  Learn together. Grow together. Make a difference.
+</footer>
+
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
+  authDomain: "gam-platform-59f1c.firebaseapp.com",
+  projectId: "gam-platform-59f1c",
+  storageBucket: "gam-platform-59f1c.firebasestorage.app",
+  messagingSenderId: "423635446027",
+  appId: "1:423635446027:web:7b42cd097b928ed7671a0e"
+};
+
+// Use the established owner UID rather than relying on an email
+// address typed into a form.
+const OWNER_UID = "Ib6GNciZ5kOEbOcCRlMLURoNTXG2";
+
+const nameElement = document.getElementById("memberName");
+const roleElement = document.getElementById("memberRole");
+const statusElement = document.getElementById("accountStatus");
+const avatarElement = document.getElementById("avatar");
+const ownerPanel = document.getElementById("ownerPanel");
+const signOutBtn = document.getElementById("signOutBtn");
+
+function setStatus(message, type = "") {
+  statusElement.textContent = message;
+  statusElement.className = "status " + type;
+}
+
+function showLoginRequired() {
+  nameElement.textContent = "Sign-in required";
+  roleElement.textContent = "Please sign in to continue";
+  avatarElement.textContent = "G";
+  setStatus("You are not signed in. Opening the GAM login page...");
+}
+
+let auth;
+let db;
+
+try {
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      showLoginRequired();
+
+      setTimeout(() => {
+        window.location.replace("login.html");
+      }, 1200);
+
+      return;
+    }
+
+    ownerPanel.hidden = true;
+
+    nameElement.textContent = "GAM Member";
+    roleElement.textContent = "Loading your profile...";
+    setStatus("Signed in. Loading your GAM profile...", "loading");
+
+    if (user.uid === OWNER_UID) {
+      ownerPanel.hidden = false;
+      roleElement.textContent = "GAM Owner";
+    }
+
+    try {
+      const profileRef = doc(db, "users", user.uid);
+      const profileSnapshot = await getDoc(profileRef);
+
+      let displayName =
+        user.displayName ||
+        (user.email ? user.email.split("@")[0] : "GAM Member");
+
+      let role = user.uid === OWNER_UID ? "GAM Owner" : "Member";
+
+      if (profileSnapshot.exists()) {
+        const profile = profileSnapshot.data();
+
+        displayName =
+          profile.displayName ||
+          profile.fullName ||
+          profile.name ||
+          displayName;
+
+        // This profile value is displayed for information only.
+        // It must not grant administrative permissions.
+        if (user.uid !== OWNER_UID && profile.role) {
+          role = String(profile.role);
+        }
+      }
+
+      nameElement.textContent = displayName;
+      roleElement.textContent = role;
+
+      avatarElement.textContent =
+        displayName.trim().charAt(0).toUpperCase() || "G";
+
+      setStatus(
+        "Your GAM account is connected successfully.",
+        "ok"
+      );
+
+    } catch (error) {
+      console.error("GAM profile error:", error);
+
+      nameElement.textContent =
+        user.displayName ||
+        (user.email ? user.email.split("@")[0] : "GAM Member");
+
+      roleElement.textContent =
+        user.uid === OWNER_UID ? "GAM Owner" : "Member";
+
+      setStatus(
+        "You are signed in, but your profile could not be loaded. " +
+        "Check your Firestore permissions and users profile document.",
+        "error"
+      );
+    }
+  });
+
+} catch (error) {
+  console.error("GAM initialization error:", error);
+
+  nameElement.textContent = "Connection problem";
+  roleElement.textContent = "GAM services unavailable";
+
+  setStatus(
+    "GAM could not initialize Firebase. Check the configuration " +
+    "and browser console for details.",
+    "error"
+  );
+}
+
+signOutBtn.addEventListener("click", async () => {
+  if (!auth) {
+    alert("GAM authentication has not initialized.");
+    return;
+  }
+
+  signOutBtn.disabled = true;
+  signOutBtn.textContent = "Signing out...";
+
+  try {
+    await signOut(auth);
+    window.location.replace("login.html");
+  } catch (error) {
+    console.error("Sign-out error:", error);
+    alert("Sign-out failed. Please try again.");
+    signOutBtn.disabled = false;
+    signOutBtn.textContent = "Sign out";
+  }
+});
+</script>
+
+</body>
+  </html>
