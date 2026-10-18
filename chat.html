@@ -130,10 +130,6 @@
       overflow-wrap: anywhere;
     }
 
-    button {
-      cursor: pointer;
-    }
-
     .logout-button {
       padding: 9px 12px;
       border: none;
@@ -172,6 +168,7 @@
       color: #718096;
       padding: 35px 10px;
       font-size: 14px;
+      overflow-wrap: anywhere;
     }
 
     .message {
@@ -340,51 +337,33 @@
 
         <div class="room-buttons">
 
-          <button
-            type="button"
-            class="room-button active"
-            data-room="general"
-          >
+          <button type="button" class="room-button active"
+            data-room="general" aria-pressed="true">
             💬 General
           </button>
 
-          <button
-            type="button"
-            class="room-button"
-            data-room="mathematics"
-          >
+          <button type="button" class="room-button"
+            data-room="mathematics" aria-pressed="false">
             🔢 Mathematics
           </button>
 
-          <button
-            type="button"
-            class="room-button"
-            data-room="sciences"
-          >
+          <button type="button" class="room-button"
+            data-room="sciences" aria-pressed="false">
             🧪 Sciences
           </button>
 
-          <button
-            type="button"
-            class="room-button"
-            data-room="languages"
-          >
+          <button type="button" class="room-button"
+            data-room="languages" aria-pressed="false">
             📚 Languages
           </button>
 
-          <button
-            type="button"
-            class="room-button"
-            data-room="technology"
-          >
+          <button type="button" class="room-button"
+            data-room="technology" aria-pressed="false">
             💻 Technology
           </button>
 
-          <button
-            type="button"
-            class="room-button"
-            data-room="contests"
-          >
+          <button type="button" class="room-button"
+            data-room="contests" aria-pressed="false">
             🏆 Contests
           </button>
 
@@ -394,11 +373,8 @@
       <div class="account-bar">
         <span id="currentUserLabel">Checking your account...</span>
 
-        <button
-          type="button"
-          id="logoutButton"
-          class="logout-button"
-        >
+        <button type="button" id="logoutButton"
+          class="logout-button">
           Sign out
         </button>
       </div>
@@ -410,11 +386,8 @@
         </p>
       </div>
 
-      <div
-        id="messages"
-        aria-live="polite"
-        aria-label="Chat messages"
-      >
+      <div id="messages" aria-live="polite"
+        aria-label="Chat messages">
         <div class="empty-state">Loading messages...</div>
       </div>
 
@@ -430,9 +403,7 @@
             required
           ></textarea>
 
-          <button type="submit" id="sendButton">
-            Send
-          </button>
+          <button type="submit" id="sendButton">Send</button>
 
         </form>
 
@@ -475,13 +446,11 @@
       serverTimestamp,
       query,
       where,
-      orderBy,
-      limit,
       onSnapshot
     } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 
-    // YOUR EXISTING GAM FIREBASE PROJECT
+    // EXISTING GAM FIREBASE CONFIGURATION
 
     const firebaseConfig = {
       apiKey: "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
@@ -491,7 +460,6 @@
       messagingSenderId: "423635446027",
       appId: "1:423635446027:web:7b42cd097b928ed7671a0e"
     };
-
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -512,7 +480,7 @@
     const roomButtons = document.querySelectorAll("[data-room]");
 
 
-    // ROOM INFORMATION
+    // SIX ROOMS
 
     const rooms = {
       general: {
@@ -522,27 +490,27 @@
 
       mathematics: {
         title: "🔢 Mathematics",
-        description: "Ask questions, share solutions and discuss mathematics."
+        description: "Mathematics questions, solutions and discussions."
       },
 
       sciences: {
         title: "🧪 Sciences",
-        description: "Discuss Biology, Chemistry, Physics and other sciences."
+        description: "Biology, Chemistry, Physics and other sciences."
       },
 
       languages: {
         title: "📚 Languages",
-        description: "Practise languages and improve communication skills."
+        description: "Practise languages and improve communication."
       },
 
       technology: {
         title: "💻 Technology",
-        description: "Explore computing, programming and innovation."
+        description: "Computing, programming and innovation."
       },
 
       contests: {
         title: "🏆 Contests",
-        description: "Discuss GAM challenges and academic competitions."
+        description: "GAM challenges and academic competitions."
       }
     };
 
@@ -552,9 +520,10 @@
     let currentName = "GAM Member";
     let unsubscribeMessages = null;
     let sendingMessage = false;
+    let listenerVersion = 0;
 
 
-    // STATUS DISPLAY
+    // STATUS
 
     function showStatus(message, type = "") {
       statusBox.textContent = message;
@@ -562,7 +531,8 @@
     }
 
 
-    // SWITCH ROOMS
+    // ROOM SWITCHING
+    // Buttons change rooms immediately, without waiting for Firebase.
 
     function switchRoom(roomId) {
 
@@ -573,10 +543,12 @@
       currentRoomId = roomId;
 
       roomButtons.forEach((button) => {
+
         const selected = button.dataset.room === roomId;
 
         button.classList.toggle("active", selected);
         button.setAttribute("aria-pressed", String(selected));
+
       });
 
       roomTitle.textContent = rooms[roomId].title;
@@ -586,12 +558,11 @@
 
       const loading = document.createElement("div");
       loading.className = "empty-state";
-      loading.textContent = "Loading room messages...";
+      loading.textContent = "Loading messages for " + rooms[roomId].title + "...";
 
       messagesBox.appendChild(loading);
 
       messageInput.value = "";
-
       showStatus("");
 
       if (currentUser) {
@@ -601,13 +572,15 @@
 
 
     roomButtons.forEach((button) => {
+
       button.addEventListener("click", () => {
         switchRoom(button.dataset.room);
       });
+
     });
 
 
-    // CLICKABLE LINKS
+    // DISPLAY CLICKABLE LINKS SAFELY
 
     function renderMessageText(container, messageText) {
 
@@ -656,7 +629,7 @@
     }
 
 
-    // MESSAGE TIME
+    // FORMAT TIME
 
     function formatMessageTime(timestamp) {
 
@@ -683,7 +656,7 @@
 
         empty.className = "empty-state";
         empty.textContent =
-          "No messages in this room yet. Start the conversation!";
+          "No messages in this room yet. Send the first message!";
 
         fragment.appendChild(empty);
         messagesBox.replaceChildren(fragment);
@@ -691,9 +664,19 @@
         return;
       }
 
-      const documents = [...snapshot.docs].reverse();
+      // Sort messages locally instead of asking Firestore to sort.
+      const documents = [...snapshot.docs].sort((a, b) => {
 
-      documents.forEach((messageDocument) => {
+        const aTime = a.data().createdAt?.toMillis?.() || 0;
+        const bTime = b.data().createdAt?.toMillis?.() || 0;
+
+        return aTime - bTime;
+      });
+
+      // Show the latest 100 messages in this room.
+      const visibleDocuments = documents.slice(-100);
+
+      visibleDocuments.forEach((messageDocument) => {
 
         const message = messageDocument.data();
 
@@ -733,7 +716,9 @@
     }
 
 
-    // LOAD ONLY THE SELECTED ROOM'S MESSAGES
+    // LISTEN TO THE SELECTED ROOM
+    // No orderBy and no limit in the Firestore query.
+    // This avoids the composite-index requirement for this query.
 
     function startMessageListener() {
 
@@ -742,44 +727,59 @@
         unsubscribeMessages = null;
       }
 
+      const thisListenerVersion = ++listenerVersion;
+      const selectedRoom = currentRoomId;
+
       const messagesQuery = query(
         collection(db, "gamChatMessages"),
-        where("roomId", "==", currentRoomId),
-        orderBy("createdAt", "desc"),
-        limit(100)
+        where("roomId", "==", selectedRoom)
       );
 
       unsubscribeMessages = onSnapshot(
+
         messagesQuery,
 
         (snapshot) => {
+
+          // Ignore responses from a room that is no longer selected.
+          if (
+            thisListenerVersion !== listenerVersion ||
+            selectedRoom !== currentRoomId
+          ) {
+            return;
+          }
+
           renderMessages(snapshot);
         },
 
         (error) => {
 
-          console.error("GAM chat listener error:", error);
+          console.error("GAM chat loading error:", error);
 
-          if (error.code === "failed-precondition") {
-
-            showStatus(
-              "Firebase needs a chat index. Open the browser console or send me a screenshot of this error.",
-              "error"
-            );
-
-          } else {
-
-            showStatus(
-              "Could not load room messages: " + error.message,
-              "error"
-            );
+          if (
+            thisListenerVersion !== listenerVersion ||
+            selectedRoom !== currentRoomId
+          ) {
+            return;
           }
+
+          const message = document.createElement("div");
+          message.className = "empty-state";
+          message.textContent =
+            "Could not load messages. " + error.message;
+
+          messagesBox.replaceChildren(message);
+
+          showStatus(
+            "Chat loading failed. Check your connection and Firebase permissions.",
+            "error"
+          );
         }
       );
     }
 
 
-    // LOAD DISPLAY NAME
+    // LOAD PROFILE
 
     async function loadUserProfile(user) {
 
@@ -831,7 +831,7 @@
     }
 
 
-    // SEND MESSAGE TO THE SELECTED ROOM
+    // SEND MESSAGE
 
     messageForm.addEventListener("submit", async (event) => {
 
@@ -863,6 +863,9 @@
 
       showStatus("Sending message...");
 
+      // Remember the room in which the message was written.
+      const targetRoom = currentRoomId;
+
       try {
 
         await addDoc(
@@ -871,10 +874,7 @@
             uid: currentUser.uid,
             displayName: currentName,
             text: text,
-
-            // Save the selected room with every message.
-            roomId: currentRoomId,
-
+            roomId: targetRoom,
             createdAt: serverTimestamp()
           }
         );
@@ -887,26 +887,15 @@
 
         console.error("GAM message send error:", error);
 
-        if (error.code === "permission-denied") {
-
-          showStatus(
-            "Firebase rejected this message. Check Firestore permissions.",
-            "error"
-          );
-
-        } else {
-
-          showStatus(
-            "Message could not be sent: " + error.message,
-            "error"
-          );
-        }
+        showStatus(
+          "Message could not be sent: " + error.message,
+          "error"
+        );
 
       } finally {
 
         sendingMessage = false;
         sendButton.disabled = false;
-        messageInput.focus();
       }
     });
 
@@ -918,32 +907,4 @@
       try {
 
         if (unsubscribeMessages) {
-          unsubscribeMessages();
-          unsubscribeMessages = null;
-        }
-
-        await signOut(auth);
-
-        window.location.href = "login.html";
-
-      } catch (error) {
-
-        console.error("GAM sign-out error:", error);
-
-        showStatus("Unable to sign out. Please try again.", "error");
-      }
-    });
-
-
-    // CHECK AUTHENTICATION
-
-    onAuthStateChanged(auth, async (user) => {
-
-      if (!user) {
-
-        if (unsubscribeMessages) {
-          unsubscribeMessages();
-          unsubscribeMessages = null;
-        }
-
-        window.location.hr
+          unsubscribe
