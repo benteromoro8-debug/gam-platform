@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>GAM Africa | General Chat</title>
+  <title>GAM Africa | Community Chat</title>
 
   <style>
     * {
@@ -21,13 +21,13 @@
     header {
       background: #102b50;
       color: white;
-      padding: 18px 15px;
       text-align: center;
+      padding: 20px 12px;
     }
 
     header h1 {
       margin: 0;
-      font-size: 23px;
+      font-size: 25px;
     }
 
     header p {
@@ -39,22 +39,21 @@
     .top-links {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 12px;
+      gap: 18px;
+      padding: 13px;
       background: white;
       border-bottom: 1px solid #dce3ec;
     }
 
     .top-links a {
       color: #1456a0;
+      font-weight: bold;
       text-decoration: none;
       font-size: 14px;
-      font-weight: bold;
     }
 
     .page {
-      max-width: 850px;
+      max-width: 950px;
       margin: 20px auto;
       padding: 0 12px;
     }
@@ -66,29 +65,63 @@
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
     }
 
-    .chat-heading {
+    .heading {
+      padding: 17px;
       background: #e5efff;
-      padding: 15px;
       border-bottom: 1px solid #d4e1f4;
     }
 
-    .chat-heading h2 {
+    .heading h2 {
       margin: 0 0 6px;
-      font-size: 19px;
+      font-size: 20px;
     }
 
-    .chat-heading p {
+    .heading p {
       margin: 0;
-      font-size: 13px;
       color: #53647c;
+      font-size: 13px;
+    }
+
+    .room-section {
+      padding: 13px;
+      border-bottom: 1px solid #e1e7ef;
+    }
+
+    .room-section h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .room-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .room-button {
+      padding: 12px 5px;
+      min-height: 52px;
+      background: #f0f4f9;
+      color: #26384f;
+      border: 1px solid #dce4ef;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .room-button.active {
+      background: #1456a0;
+      border-color: #1456a0;
+      color: white;
     }
 
     .account-bar {
-      padding: 12px 15px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 10px;
+      padding: 12px 15px;
       border-bottom: 1px solid #e6ebf1;
       font-size: 13px;
     }
@@ -99,15 +132,32 @@
 
     button {
       cursor: pointer;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-weight: bold;
     }
 
     .logout-button {
+      padding: 9px 12px;
+      border: none;
+      border-radius: 8px;
       background: #e8edf4;
       color: #26384f;
+      font-weight: bold;
+    }
+
+    .current-room {
+      padding: 12px 15px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e1e7ef;
+    }
+
+    .current-room h3 {
+      margin: 0 0 5px;
+      font-size: 17px;
+    }
+
+    .current-room p {
+      margin: 0;
+      color: #64748b;
+      font-size: 12px;
     }
 
     #messages {
@@ -168,8 +218,8 @@
 
     .composer {
       padding: 14px;
-      border-top: 1px solid #e1e7ef;
       background: white;
+      border-top: 1px solid #e1e7ef;
     }
 
     #messageForm {
@@ -181,29 +231,28 @@
     #messageInput {
       flex: 1;
       min-width: 0;
-      resize: vertical;
       min-height: 46px;
       max-height: 140px;
+      resize: vertical;
       padding: 12px;
       border: 1px solid #ccd6e3;
       border-radius: 9px;
       font-family: inherit;
       font-size: 15px;
-      outline: none;
-    }
-
-    #messageInput:focus {
-      border-color: #2469b5;
     }
 
     #sendButton {
       min-height: 46px;
+      padding: 10px 16px;
       background: #1456a0;
       color: white;
+      border: none;
+      border-radius: 9px;
+      font-weight: bold;
     }
 
     #sendButton:disabled {
-      background: #8ba5c5;
+      opacity: 0.6;
       cursor: not-allowed;
     }
 
@@ -211,7 +260,6 @@
       min-height: 20px;
       margin: 10px 2px 0;
       font-size: 13px;
-      color: #53647c;
       overflow-wrap: anywhere;
     }
 
@@ -225,7 +273,7 @@
 
     .notice {
       margin-top: 15px;
-      padding: 12px;
+      padding: 13px;
       background: #fff8e5;
       border: 1px solid #f0dfaa;
       border-radius: 9px;
@@ -236,12 +284,16 @@
 
     footer {
       text-align: center;
-      padding: 20px 12px;
+      padding: 22px 12px;
       color: #68778b;
       font-size: 12px;
     }
 
     @media (max-width: 500px) {
+      .room-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       #messages {
         height: 55vh;
         min-height: 300px;
@@ -278,13 +330,70 @@
 
     <section class="chat-card">
 
-      <div class="chat-heading">
-        <h2>General Chat</h2>
-        <p>Connect, share ideas and learn together.</p>
+      <div class="heading">
+        <h2>GAM Community</h2>
+        <p>Six rooms. One learning community.</p>
       </div>
+
+      <section class="room-section">
+        <h3>Choose your room</h3>
+
+        <div class="room-buttons">
+
+          <button
+            type="button"
+            class="room-button active"
+            data-room="general"
+          >
+            💬 General
+          </button>
+
+          <button
+            type="button"
+            class="room-button"
+            data-room="mathematics"
+          >
+            🔢 Mathematics
+          </button>
+
+          <button
+            type="button"
+            class="room-button"
+            data-room="sciences"
+          >
+            🧪 Sciences
+          </button>
+
+          <button
+            type="button"
+            class="room-button"
+            data-room="languages"
+          >
+            📚 Languages
+          </button>
+
+          <button
+            type="button"
+            class="room-button"
+            data-room="technology"
+          >
+            💻 Technology
+          </button>
+
+          <button
+            type="button"
+            class="room-button"
+            data-room="contests"
+          >
+            🏆 Contests
+          </button>
+
+        </div>
+      </section>
 
       <div class="account-bar">
         <span id="currentUserLabel">Checking your account...</span>
+
         <button
           type="button"
           id="logoutButton"
@@ -292,6 +401,13 @@
         >
           Sign out
         </button>
+      </div>
+
+      <div class="current-room">
+        <h3 id="roomTitle">💬 General</h3>
+        <p id="roomDescription">
+          General conversations and announcements.
+        </p>
       </div>
 
       <div
@@ -328,8 +444,9 @@
 
     <div class="notice">
       <strong>GAM Community Guidelines:</strong>
-      Respect other members. Do not share passwords or private
-      information. Only share links you trust.
+      Respect other members. Keep discussions relevant to the room.
+      Do not share passwords or private information. Only share links
+      you trust.
     </div>
 
   </main>
@@ -357,13 +474,14 @@
       addDoc,
       serverTimestamp,
       query,
+      where,
       orderBy,
       limit,
       onSnapshot
     } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 
-    // GAM FIREBASE CONFIGURATION
+    // YOUR EXISTING GAM FIREBASE PROJECT
 
     const firebaseConfig = {
       apiKey: "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
@@ -374,8 +492,6 @@
       appId: "1:423635446027:web:7b42cd097b928ed7671a0e"
     };
 
-
-    // INITIALIZE FIREBASE
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -391,20 +507,54 @@
     const statusBox = document.getElementById("status");
     const currentUserLabel = document.getElementById("currentUserLabel");
     const logoutButton = document.getElementById("logoutButton");
+    const roomTitle = document.getElementById("roomTitle");
+    const roomDescription = document.getElementById("roomDescription");
+    const roomButtons = document.querySelectorAll("[data-room]");
 
 
-    // CHAT SETTINGS
+    // ROOM INFORMATION
 
-    const CHAT_ROOM_ID = "general";
-    const MAX_MESSAGE_LENGTH = 2000;
+    const rooms = {
+      general: {
+        title: "💬 General",
+        description: "General conversations and announcements."
+      },
 
+      mathematics: {
+        title: "🔢 Mathematics",
+        description: "Ask questions, share solutions and discuss mathematics."
+      },
+
+      sciences: {
+        title: "🧪 Sciences",
+        description: "Discuss Biology, Chemistry, Physics and other sciences."
+      },
+
+      languages: {
+        title: "📚 Languages",
+        description: "Practise languages and improve communication skills."
+      },
+
+      technology: {
+        title: "💻 Technology",
+        description: "Explore computing, programming and innovation."
+      },
+
+      contests: {
+        title: "🏆 Contests",
+        description: "Discuss GAM challenges and academic competitions."
+      }
+    };
+
+
+    let currentRoomId = "general";
     let currentUser = null;
     let currentName = "GAM Member";
     let unsubscribeMessages = null;
     let sendingMessage = false;
 
 
-    // STATUS MESSAGE
+    // STATUS DISPLAY
 
     function showStatus(message, type = "") {
       statusBox.textContent = message;
@@ -412,7 +562,52 @@
     }
 
 
-    // SAFELY DISPLAY MESSAGE TEXT AND CLICKABLE LINKS
+    // SWITCH ROOMS
+
+    function switchRoom(roomId) {
+
+      if (!Object.prototype.hasOwnProperty.call(rooms, roomId)) {
+        return;
+      }
+
+      currentRoomId = roomId;
+
+      roomButtons.forEach((button) => {
+        const selected = button.dataset.room === roomId;
+
+        button.classList.toggle("active", selected);
+        button.setAttribute("aria-pressed", String(selected));
+      });
+
+      roomTitle.textContent = rooms[roomId].title;
+      roomDescription.textContent = rooms[roomId].description;
+
+      messagesBox.replaceChildren();
+
+      const loading = document.createElement("div");
+      loading.className = "empty-state";
+      loading.textContent = "Loading room messages...";
+
+      messagesBox.appendChild(loading);
+
+      messageInput.value = "";
+
+      showStatus("");
+
+      if (currentUser) {
+        startMessageListener();
+      }
+    }
+
+
+    roomButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        switchRoom(button.dataset.room);
+      });
+    });
+
+
+    // CLICKABLE LINKS
 
     function renderMessageText(container, messageText) {
 
@@ -424,13 +619,9 @@
       while ((match = urlPattern.exec(messageText)) !== null) {
 
         const rawUrl = match[0];
-
-        // Remove common punctuation from the end of a URL.
         const url = rawUrl.replace(/[.,!?;:)\]}]+$/g, "");
-
         const trailingText = rawUrl.slice(url.length);
 
-        // Display the text before this URL.
         container.appendChild(
           document.createTextNode(
             messageText.slice(lastIndex, match.index)
@@ -448,10 +639,8 @@
           link.textContent = url;
 
           container.appendChild(link);
-
         }
 
-        // Keep punctuation after the clickable link.
         if (trailingText) {
           container.appendChild(
             document.createTextNode(trailingText)
@@ -461,14 +650,13 @@
         lastIndex = match.index + rawUrl.length;
       }
 
-      // Display any remaining text.
       container.appendChild(
         document.createTextNode(messageText.slice(lastIndex))
       );
     }
 
 
-    // FORMAT MESSAGE TIME
+    // MESSAGE TIME
 
     function formatMessageTime(timestamp) {
 
@@ -483,7 +671,7 @@
     }
 
 
-    // RENDER MESSAGES
+    // DISPLAY MESSAGES
 
     function renderMessages(snapshot) {
 
@@ -494,27 +682,26 @@
         const empty = document.createElement("div");
 
         empty.className = "empty-state";
-        empty.textContent = "No messages yet. Start the conversation!";
+        empty.textContent =
+          "No messages in this room yet. Start the conversation!";
 
         fragment.appendChild(empty);
-
         messagesBox.replaceChildren(fragment);
 
         return;
       }
 
-      // The query is newest first, so display oldest first.
       const documents = [...snapshot.docs].reverse();
 
       documents.forEach((messageDocument) => {
 
         const message = messageDocument.data();
 
-        const messageCard = document.createElement("article");
-        messageCard.className = "message";
+        const card = document.createElement("article");
+        card.className = "message";
 
         if (currentUser && message.uid === currentUser.uid) {
-          messageCard.classList.add("own-message");
+          card.classList.add("own-message");
         }
 
         const meta = document.createElement("div");
@@ -537,28 +724,27 @@
           typeof message.text === "string" ? message.text : ""
         );
 
-        messageCard.append(meta, text);
-
-        fragment.appendChild(messageCard);
+        card.append(meta, text);
+        fragment.appendChild(card);
       });
 
       messagesBox.replaceChildren(fragment);
-
-      // Keep the latest messages visible.
       messagesBox.scrollTop = messagesBox.scrollHeight;
     }
 
 
-    // LISTEN FOR FIRESTORE MESSAGES
+    // LOAD ONLY THE SELECTED ROOM'S MESSAGES
 
     function startMessageListener() {
 
       if (unsubscribeMessages) {
         unsubscribeMessages();
+        unsubscribeMessages = null;
       }
 
       const messagesQuery = query(
         collection(db, "gamChatMessages"),
+        where("roomId", "==", currentRoomId),
         orderBy("createdAt", "desc"),
         limit(100)
       );
@@ -574,16 +760,26 @@
 
           console.error("GAM chat listener error:", error);
 
-          showStatus(
-            "Unable to load chat messages. Check your connection and Firestore permissions.",
-            "error"
-          );
+          if (error.code === "failed-precondition") {
+
+            showStatus(
+              "Firebase needs a chat index. Open the browser console or send me a screenshot of this error.",
+              "error"
+            );
+
+          } else {
+
+            showStatus(
+              "Could not load room messages: " + error.message,
+              "error"
+            );
+          }
         }
       );
     }
 
 
-    // LOAD THE USER'S DISPLAY NAME
+    // LOAD DISPLAY NAME
 
     async function loadUserProfile(user) {
 
@@ -629,23 +825,20 @@
         name = "GAM Member";
       }
 
-      // The Firestore rules allow display names up to 80 characters.
       currentName = name.slice(0, 80);
 
       currentUserLabel.textContent = "Signed in as " + currentName;
     }
 
 
-    // SEND A MESSAGE
+    // SEND MESSAGE TO THE SELECTED ROOM
 
     messageForm.addEventListener("submit", async (event) => {
 
       event.preventDefault();
 
       if (!currentUser) {
-
         showStatus("Please sign in before sending a message.", "error");
-
         return;
       }
 
@@ -660,7 +853,7 @@
         return;
       }
 
-      if (text.length > MAX_MESSAGE_LENGTH) {
+      if (text.length > 2000) {
         showStatus("Your message is too long.", "error");
         return;
       }
@@ -679,10 +872,9 @@
             displayName: currentName,
             text: text,
 
-            // REQUIRED BY YOUR FIRESTORE SECURITY RULES.
-            roomId: CHAT_ROOM_ID,
+            // Save the selected room with every message.
+            roomId: currentRoomId,
 
-            // Firestore server timestamp.
             createdAt: serverTimestamp()
           }
         );
@@ -698,24 +890,14 @@
         if (error.code === "permission-denied") {
 
           showStatus(
-            "Firebase rejected the message. Check Firestore Rules and the required message fields.",
-            "error"
-          );
-
-        } else if (
-          error.code === "unavailable" ||
-          error.code === "deadline-exceeded"
-        ) {
-
-          showStatus(
-            "Firebase is temporarily unavailable. Check your connection and try again.",
+            "Firebase rejected this message. Check Firestore permissions.",
             "error"
           );
 
         } else {
 
           showStatus(
-            "Message could not be sent. Please try again and check the browser console if the problem continues.",
+            "Message could not be sent: " + error.message,
             "error"
           );
         }
@@ -764,21 +946,4 @@
           unsubscribeMessages = null;
         }
 
-        window.location.href = "login.html";
-
-        return;
-      }
-
-      currentUser = user;
-
-      currentUserLabel.textContent = "Loading your GAM profile...";
-
-      await loadUserProfile(user);
-
-      startMessageListener();
-    });
-
-  </script>
-
-</body>
-  </html>
+        window.location.hr
