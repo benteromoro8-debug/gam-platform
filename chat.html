@@ -17,6 +17,7 @@
   --muted: #a9b8ce;
   --border: rgba(255,255,255,.1);
   --green: #50d6a0;
+  --blue: #72b7ff;
 }
 
 * {
@@ -51,6 +52,7 @@ button {
   color: var(--gold);
   text-decoration: none;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .brand {
@@ -89,7 +91,7 @@ main {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .room-status {
@@ -109,7 +111,7 @@ main {
 }
 
 .message {
-  max-width: 85%;
+  max-width: 90%;
   width: fit-content;
   margin-bottom: 14px;
   padding: 11px 13px;
@@ -139,8 +141,19 @@ main {
 
 .message-text {
   white-space: pre-wrap;
-  line-height: 1.55;
+  line-height: 1.6;
   font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.resource-link {
+  color: var(--blue);
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.resource-link:hover {
+  color: var(--gold);
 }
 
 .message-time {
@@ -171,8 +184,8 @@ main {
 #messageInput {
   flex: 1;
   min-width: 0;
-  min-height: 45px;
-  max-height: 130px;
+  min-height: 48px;
+  max-height: 150px;
   resize: vertical;
   padding: 13px;
   border-radius: 12px;
@@ -187,7 +200,7 @@ main {
 }
 
 #sendBtn {
-  min-height: 45px;
+  min-height: 48px;
   padding: 0 18px;
   border: 0;
   border-radius: 12px;
@@ -208,11 +221,30 @@ main {
   border-radius: 12px;
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.7;
+  line-height: 1.8;
+}
+
+.notice strong {
+  color: var(--gold);
 }
 
 .error {
   color: #ffaaaa;
+}
+
+.resource-help {
+  margin-top: 12px;
+  padding: 13px;
+  background: #102139;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.resource-help strong {
+  color: var(--green);
 }
 
 footer {
@@ -225,10 +257,19 @@ footer {
 @media(max-width: 520px) {
   .topbar {
     padding: 13px 4%;
+    gap: 10px;
+  }
+
+  .brand h1 {
+    font-size: 16px;
+  }
+
+  .brand p {
+    font-size: 9px;
   }
 
   .message {
-    max-width: 94%;
+    max-width: 96%;
   }
 
   .composer {
@@ -264,11 +305,16 @@ footer {
 
     <p>
       Welcome to the GAM community conversation.
-      Share learning ideas, ask questions, and encourage other members.
+      Ask questions, exchange learning ideas, share revision
+      resources, and encourage fellow members.
       Please respect every member and follow GAM regulations.
     </p>
 
-    <div class="room-status" id="connectionStatus" aria-live="polite">
+    <div
+      class="room-status"
+      id="connectionStatus"
+      aria-live="polite"
+    >
       Connecting to GAM Chat...
     </div>
   </section>
@@ -278,26 +324,61 @@ footer {
   </section>
 
   <form class="composer" id="messageForm">
+
     <textarea
       id="messageInput"
       maxlength="2000"
       rows="1"
-      placeholder="Write a message..."
-      aria-label="Your message"
+      placeholder="Write a message or paste a learning resource link..."
+      aria-label="Your message or learning resource link"
       required
     ></textarea>
 
     <button id="sendBtn" type="submit" disabled>
       Send
     </button>
+
   </form>
+
+  <section class="resource-help">
+    <strong>📚 Share learning resources</strong><br>
+
+    Paste a link to revision notes, a PDF, a past paper,
+    an educational image, or a learning video into your message.
+
+    Links beginning with https:// or http:// will become clickable.
+
+    <br><br>
+
+    <strong>Example:</strong><br>
+
+    Mathematics revision notes:<br>
+    https://example.com/revision-notes.pdf
+
+    <br><br>
+
+    Replace the example with the actual link to your resource.
+  </section>
 
   <div class="notice">
     <strong>GAM Community Guidelines</strong><br>
-    Be respectful. Do not share passwords or private information.
-    Do not harass other members or post harmful content.
-    Messages in this initial group chat are visible to authorized
-    members who can access the room.
+
+    1. Respect every member.<br>
+    2. Do not share passwords or private information.<br>
+    3. Do not harass other members.<br>
+    4. Share educational and appropriate resources.<br>
+    5. Check that links are trustworthy before opening them.<br>
+    6. Never publish another person's private files or information.
+
+    <br><br>
+
+    <strong>Resource privacy:</strong>
+
+    GAM shares the links you post, not the original files.
+    Make sure you have permission to share a resource.
+    Only use a public or appropriately shared link when other
+    GAM members need to access it.
+
   </div>
 
 </main>
@@ -307,6 +388,7 @@ footer {
 </footer>
 
 <script type="module">
+
 import {
   initializeApp,
   getApps
@@ -327,9 +409,9 @@ import {
   addDoc,
   getDoc,
   doc,
-  serverTimestamp,
-  Timestamp
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyB_Hd_LkXjPKMyUJUD-ob2m4rOFepm9niU",
@@ -340,6 +422,7 @@ const firebaseConfig = {
   appId: "1:423635446027:web:7b42cd097b928ed7671a0e"
 };
 
+
 const app = getApps().length
   ? getApps()[0]
   : initializeApp(firebaseConfig);
@@ -347,11 +430,13 @@ const app = getApps().length
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+
 const messagesBox = document.getElementById("messages");
 const messageInput = document.getElementById("messageInput");
 const messageForm = document.getElementById("messageForm");
 const sendBtn = document.getElementById("sendBtn");
 const connectionStatus = document.getElementById("connectionStatus");
+
 
 let currentUser = null;
 let currentName = "GAM Member";
@@ -359,21 +444,32 @@ let unsubscribeMessages = null;
 let sending = false;
 let seenInitialMessages = false;
 
+
+/* Show connection or error messages */
+
 function setStatus(message, isError = false) {
   connectionStatus.textContent = message;
+
   connectionStatus.className =
     "room-status" + (isError ? " error" : "");
 }
+
+
+/* Show an empty-state message */
 
 function showMessagePlaceholder(message) {
   messagesBox.replaceChildren();
 
   const div = document.createElement("div");
+
   div.className = "empty";
   div.textContent = message;
 
   messagesBox.appendChild(div);
 }
+
+
+/* Format the time displayed on each message */
 
 function formatTime(timestamp) {
   if (!timestamp) return "Just now";
@@ -392,7 +488,112 @@ function formatTime(timestamp) {
   });
 }
 
+
+/*
+  Convert HTTP and HTTPS URLs into clickable links.
+
+  Message content is always inserted as text, not HTML.
+  This prevents message text from injecting scripts.
+*/
+
+function renderMessageText(container, messageText) {
+  const text = String(messageText || "");
+
+  const urlPattern = /https?:\/\/[^\s<>"']+/gi;
+
+  let lastIndex = 0;
+  let match;
+
+  while ((match = urlPattern.exec(text)) !== null) {
+
+    const originalUrl = match[0];
+
+    /*
+      Remove common punctuation that belongs to the sentence
+      rather than the URL.
+    */
+
+    const cleanUrl = originalUrl.replace(/[.,!?;:)\]]+$/g, "");
+
+    const trailingText = originalUrl.slice(cleanUrl.length);
+
+    /*
+      Add the ordinary text before the URL.
+    */
+
+    container.appendChild(
+      document.createTextNode(
+        text.slice(lastIndex, match.index)
+      )
+    );
+
+    /*
+      Verify the URL uses HTTP or HTTPS.
+    */
+
+    let validUrl = null;
+
+    try {
+      const parsedUrl = new URL(cleanUrl);
+
+      if (
+        parsedUrl.protocol === "https:" ||
+        parsedUrl.protocol === "http:"
+      ) {
+        validUrl = parsedUrl.href;
+      }
+    } catch {
+      validUrl = null;
+    }
+
+    if (validUrl) {
+
+      const link = document.createElement("a");
+
+      link.className = "resource-link";
+      link.href = validUrl;
+      link.textContent = cleanUrl;
+
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+
+      container.appendChild(link);
+
+    } else {
+
+      container.appendChild(
+        document.createTextNode(cleanUrl)
+      );
+
+    }
+
+    /*
+      Restore any punctuation removed from the URL.
+    */
+
+    if (trailingText) {
+      container.appendChild(
+        document.createTextNode(trailingText)
+      );
+    }
+
+    lastIndex = match.index + originalUrl.length;
+  }
+
+  /*
+    Add the remaining message after the final URL.
+  */
+
+  container.appendChild(
+    document.createTextNode(text.slice(lastIndex))
+  );
+}
+
+
+/* Display the latest messages */
+
 function renderMessages(snapshot) {
+
   const wasNearBottom =
     messagesBox.scrollHeight -
     messagesBox.scrollTop -
@@ -401,13 +602,16 @@ function renderMessages(snapshot) {
   messagesBox.replaceChildren();
 
   if (snapshot.empty) {
+
     showMessagePlaceholder(
       "No messages yet. Start the conversation and welcome your fellow GAM members!"
     );
+
     return;
   }
 
   for (const messageDoc of snapshot.docs) {
+
     const message = messageDoc.data();
 
     const item = document.createElement("article");
@@ -417,23 +621,27 @@ function renderMessages(snapshot) {
       (message.uid === currentUser?.uid ? " mine" : "");
 
     const author = document.createElement("div");
+
     author.className = "message-author";
+
     author.textContent =
       message.uid === currentUser?.uid
         ? "You"
         : (message.displayName || "GAM Member");
 
     const text = document.createElement("div");
+
     text.className = "message-text";
 
-    // Use textContent so message text cannot inject HTML or scripts.
-    text.textContent = message.text || "";
+    renderMessageText(text, message.text);
 
     const time = document.createElement("div");
+
     time.className = "message-time";
     time.textContent = formatTime(message.createdAt);
 
     item.append(author, text, time);
+
     messagesBox.appendChild(item);
   }
 
@@ -444,16 +652,24 @@ function renderMessages(snapshot) {
   seenInitialMessages = true;
 }
 
+
+/* Load the signed-in member's display name */
+
 async function loadProfile(user) {
+
   let name =
     user.displayName ||
     user.email?.split("@")[0] ||
     "GAM Member";
 
   try {
-    const profile = await getDoc(doc(db, "users", user.uid));
+
+    const profile = await getDoc(
+      doc(db, "users", user.uid)
+    );
 
     if (profile.exists()) {
+
       const data = profile.data();
 
       name =
@@ -461,15 +677,23 @@ async function loadProfile(user) {
         data.fullName ||
         data.name ||
         name;
+
     }
+
   } catch (error) {
+
     console.warn("Could not load GAM profile:", error);
+
   }
 
   return String(name).slice(0, 80);
 }
 
+
+/* Listen for real-time chat messages */
+
 function startListening() {
+
   if (unsubscribeMessages) {
     unsubscribeMessages();
   }
@@ -484,15 +708,20 @@ function startListening() {
 
   unsubscribeMessages = onSnapshot(
     messagesQuery,
+
     (snapshot) => {
+
       renderMessages({
         docs: [...snapshot.docs].reverse(),
         empty: snapshot.empty
       });
 
       setStatus("Connected to GAM General Chat.");
+
     },
+
     (error) => {
+
       console.error("Chat listener error:", error);
 
       setStatus(
@@ -503,18 +732,26 @@ function startListening() {
       showMessagePlaceholder(
         "Messages could not be loaded. Your administrator may need to configure Firestore permissions."
       );
+
     }
   );
 }
 
+
+/* Check Firebase authentication */
+
 onAuthStateChanged(auth, async (user) => {
+
   if (!user) {
+
     currentUser = null;
+
     sendBtn.disabled = true;
 
     setStatus("Sign-in required.");
 
     window.location.replace("login.html");
+
     return;
   }
 
@@ -524,12 +761,26 @@ onAuthStateChanged(auth, async (user) => {
 
   currentName = await loadProfile(user);
 
+  /*
+    Check that the user is still signed in after loading
+    the profile.
+  */
+
+  if (auth.currentUser?.uid !== user.uid) {
+    return;
+  }
+
   sendBtn.disabled = false;
 
   startListening();
+
 });
 
+
+/* Send a message or a resource link */
+
 messageForm.addEventListener("submit", async (event) => {
+
   event.preventDefault();
 
   if (!currentUser || sending) return;
@@ -539,46 +790,71 @@ messageForm.addEventListener("submit", async (event) => {
   if (!text) return;
 
   if (text.length > 2000) {
-    setStatus("Messages cannot exceed 2,000 characters.", true);
+
+    setStatus(
+      "Messages cannot exceed 2,000 characters.",
+      true
+    );
+
     return;
   }
 
   sending = true;
+
   sendBtn.disabled = true;
   sendBtn.textContent = "Sending...";
 
   try {
-    await addDoc(collection(db, "gamChatMessages"), {
-      uid: currentUser.uid,
-      displayName: currentName,
-      text: text,
-      createdAt: serverTimestamp()
-    });
+
+    await addDoc(
+      collection(db, "gamChatMessages"),
+      {
+        uid: currentUser.uid,
+        displayName: currentName,
+        text: text,
+        createdAt: serverTimestamp()
+      }
+    );
 
     messageInput.value = "";
+
     messageInput.focus();
 
-    setStatus("Message sent.");
+    setStatus("Message sent successfully.");
+
   } catch (error) {
+
     console.error("Could not send message:", error);
 
     setStatus(
       "Message not sent. Check your internet connection and Firestore permissions.",
       true
     );
+
   } finally {
+
     sending = false;
+
     sendBtn.disabled = !currentUser;
+
     sendBtn.textContent = "Send";
+
   }
+
 });
 
+
+/* Stop listening when leaving the page */
+
 window.addEventListener("pagehide", () => {
+
   if (unsubscribeMessages) {
     unsubscribeMessages();
   }
+
 });
+
 </script>
 
 </body>
-  </html>
+    </html>
