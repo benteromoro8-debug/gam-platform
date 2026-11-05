@@ -108,6 +108,7 @@
       font-size: 13px;
       font-weight: bold;
       overflow-wrap: anywhere;
+      cursor: pointer;
     }
 
     .room-button.active {
@@ -137,6 +138,7 @@
       background: #e8edf4;
       color: #26384f;
       font-weight: bold;
+      cursor: pointer;
     }
 
     .current-room {
@@ -246,6 +248,7 @@
       border: none;
       border-radius: 9px;
       font-weight: bold;
+      cursor: pointer;
     }
 
     #sendButton:disabled {
@@ -319,8 +322,8 @@
   </header>
 
   <nav class="top-links">
-    <a href="gam-hub.html">GAM Hub</a>
     <a href="index.html">Home</a>
+    <a href="chat.html">Community 💬</a>
   </nav>
 
   <main class="page">
@@ -532,7 +535,6 @@
 
 
     // ROOM SWITCHING
-    // Buttons change rooms immediately, without waiting for Firebase.
 
     function switchRoom(roomId) {
 
@@ -664,7 +666,6 @@
         return;
       }
 
-      // Sort messages locally instead of asking Firestore to sort.
       const documents = [...snapshot.docs].sort((a, b) => {
 
         const aTime = a.data().createdAt?.toMillis?.() || 0;
@@ -673,7 +674,6 @@
         return aTime - bTime;
       });
 
-      // Show the latest 100 messages in this room.
       const visibleDocuments = documents.slice(-100);
 
       visibleDocuments.forEach((messageDocument) => {
@@ -717,8 +717,6 @@
 
 
     // LISTEN TO THE SELECTED ROOM
-    // No orderBy and no limit in the Firestore query.
-    // This avoids the composite-index requirement for this query.
 
     function startMessageListener() {
 
@@ -741,7 +739,6 @@
 
         (snapshot) => {
 
-          // Ignore responses from a room that is no longer selected.
           if (
             thisListenerVersion !== listenerVersion ||
             selectedRoom !== currentRoomId
@@ -863,7 +860,6 @@
 
       showStatus("Sending message...");
 
-      // Remember the room in which the message was written.
       const targetRoom = currentRoomId;
 
       try {
@@ -880,17 +876,12 @@
         );
 
         messageInput.value = "";
-
         showStatus("Message sent successfully.", "success");
 
       } catch (error) {
 
         console.error("GAM message send error:", error);
-
-        showStatus(
-          "Message could not be sent: " + error.message,
-          "error"
-        );
+        showStatus("Message could not be sent: " + error.message, "error");
 
       } finally {
 
@@ -907,4 +898,25 @@
       try {
 
         if (unsubscribeMessages) {
-          unsubscribe
+          unsubscribeMessages();
+          unsubscribeMessages = null;
+        }
+
+        await signOut(auth);
+        window.location.href = "login.html";
+
+      } catch (error) {
+
+        console.error("Sign out error:", error);
+        showStatus("Could not sign out: " + error.message, "error");
+
+      }
+    });
+
+
+    // AUTH STATE LISTENER
+
+    onAuthStateChanged(auth, (user) => {
+
+      if (user) {
+        currentUser
